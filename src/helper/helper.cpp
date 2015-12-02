@@ -26,7 +26,7 @@
 
 //KDE
 #include <KDebug>
-#include <KGlobal>
+//#include <KGlobal>
 #include <KLocale>
 #include <KProcess>
 #include <KAuth/HelperSupport>
@@ -44,7 +44,8 @@ static const QString path = QLatin1String("/usr/sbin:/usr/bin:/sbin:/bin");
 
 Helper::Helper()
 {
-    KGlobal::locale()->insertCatalog("kcm-grub2");
+    //TO BE FIXED
+    //KGlobal::locale()->insertCatalog("kcm-grub2");
     qputenv("PATH", path.toLatin1());
 }
 
@@ -59,8 +60,9 @@ ActionReply Helper::executeCommand(const QStringList &command)
 
     ActionReply reply;
     if (exitCode != 0) {
-        reply = ActionReply::HelperErrorReply;
-        reply.setErrorCode(exitCode);
+        reply = ActionReply::HelperErrorReply();
+        //TO BE FIXED
+        reply.setErrorCode(ActionReply::Error::InvalidActionError);
     }
     reply.addData("command", command);
     reply.addData("output", process.readAll());
@@ -75,17 +77,17 @@ ActionReply Helper::defaults(QVariantMap args)
     QString originalConfigFileName = configFileName + ".original";
 
     if (!QFile::exists(originalConfigFileName)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Original configuration file <filename>%1</filename> does not exist.", originalConfigFileName));
         return reply;
     }
     if (!QFile::remove(configFileName)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Cannot remove current configuration file <filename>%1</filename>.", configFileName));
         return reply;
     }
     if (!QFile::copy(originalConfigFileName, configFileName)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Cannot copy original configuration file <filename>%1</filename> to <filename>%2</filename>.", originalConfigFileName, configFileName));
         return reply;
     }
@@ -101,7 +103,7 @@ ActionReply Helper::install(QVariantMap args)
     if (mountPoint.isEmpty()) {
         for (int i = 0; QDir(mountPoint = QString("%1/kcm-grub2-%2").arg(QDir::tempPath(), QString::number(i))).exists(); i++);
         if (!QDir().mkpath(mountPoint)) {
-            reply = ActionReply::HelperErrorReply;
+            reply = ActionReply::HelperErrorReply();
             reply.addData("errorDescription", i18nc("@info", "Failed to create temporary mount point."));
             return reply;
         }
@@ -145,7 +147,7 @@ ActionReply Helper::load(QVariantMap args)
 
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", file.errorString());
         return reply;
     }
@@ -190,7 +192,7 @@ ActionReply Helper::probevbe(QVariantMap args)
     hd_free_hd_data(&hd_data);
     reply.addData("gfxmodes", gfxmodes);
 #else
-    reply = ActionReply::HelperErrorReply;
+    reply = ActionReply::HelperErrorReply();
 #endif
 
     return reply;
@@ -207,7 +209,7 @@ ActionReply Helper::save(QVariantMap args)
 
     QFile file(configFileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", file.errorString());
         return reply;
     }
@@ -237,4 +239,4 @@ ActionReply Helper::save(QVariantMap args)
     return grub_mkconfigReply;
 }
 
-KDE4_AUTH_HELPER_MAIN("org.kde.kcontrol.kcmgrub2", Helper)
+KAUTH_HELPER_MAIN("org.kde.kcontrol.kcmgrub2", Helper)

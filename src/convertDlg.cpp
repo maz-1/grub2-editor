@@ -50,11 +50,11 @@ ConvertDialog::ConvertDialog(QWidget *parent, Qt::WFlags flags) : KDialog(parent
     QString writeFilter = QString("*%1|%5 (%1)\n*%2|%6 (%2)\n*%3 *%4|%7 (%3 %4)").arg(".png", ".tga", ".jpg", ".jpeg", KMimeType::mimeType("image/png")->comment(), KMimeType::mimeType("image/x-tga")->comment(), KMimeType::mimeType("image/jpeg")->comment());
 
     ui->kurlrequester_image->setMode(KFile::File | KFile::ExistingOnly | KFile::LocalOnly);
-    ui->kurlrequester_image->fileDialog()->setOperationMode(KFileDialog::Opening);
-    ui->kurlrequester_image->fileDialog()->setFilter(readFilter);
+    ui->kurlrequester_image->fileDialog()->setAcceptMode(QFileDialog::AcceptOpen);
+    ui->kurlrequester_image->fileDialog()->setNameFilter(readFilter);
     ui->kurlrequester_converted->setMode(KFile::File | KFile::LocalOnly);
-    ui->kurlrequester_converted->fileDialog()->setOperationMode(KFileDialog::Saving);
-    ui->kurlrequester_converted->fileDialog()->setFilter(writeFilter);
+    ui->kurlrequester_converted->fileDialog()->setAcceptMode(QFileDialog::AcceptSave);
+    ui->kurlrequester_converted->fileDialog()->setNameFilter(writeFilter);
 }
 ConvertDialog::~ConvertDialog()
 {
@@ -71,6 +71,7 @@ void ConvertDialog::setResolution(int width, int height)
 
 void ConvertDialog::slotButtonClicked(int button)
 {
+    QRegularExpression getdirectory("\\S*/");
     if (button == KDialog::Ok) {
         if (ui->kurlrequester_image->text().isEmpty() || ui->kurlrequester_converted->text().isEmpty()) {
             KMessageBox::information(this, i18nc("@info", "Please fill in both <interface>Image</interface> and <interface>Convert To</interface> fields."));
@@ -78,7 +79,7 @@ void ConvertDialog::slotButtonClicked(int button)
         } else if (ui->spinBox_width->value() == 0 || ui->spinBox_height->value() == 0) {
             KMessageBox::information(this, i18nc("@info", "Please fill in both <interface>Width</interface> and <interface>Height</interface> fields."));
             return;
-        } else if (!QFileInfo(ui->kurlrequester_converted->url().directory()).isWritable()) {
+        } else if (!QFileInfo(getdirectory.match(ui->kurlrequester_converted->url().toLocalFile()).captured(1)).isWritable()) {
             KMessageBox::information(this, i18nc("@info", "You do not have write permissions in this directory, please select another destination."));
             return;
         }

@@ -1,7 +1,7 @@
 add_subdirectory(helper)
 
 # Set Include Directories
-set(kcm_grub2_INCLUDE_DIRS ${KDE4_INCLUDES})
+# set(kcm_grub2_INCLUDE_DIRS ${KDE4_INCLUDES})
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_INCLUDE_DIRS ${kcm_grub2_INCLUDE_DIRS} ${ImageMagick_INCLUDE_DIRS})
 endif(HAVE_IMAGEMAGICK)
@@ -12,15 +12,15 @@ elseif(HAVE_QPACKAGEKIT)
 endif(HAVE_QAPT)
 
 # Set Sources
-set(kcm_grub2_SRCS common.cpp entry.cpp installDlg.cpp kcm_grub2.cpp)
-kde4_add_ui_files(kcm_grub2_SRCS ../ui/installDlg.ui ../ui/kcm_grub2.ui)
+set(kcm_grub2_SRCS common.cpp entry.cpp installDlg.cpp kcm_grub2.cpp widgets/regexpinputdialog.cpp)
+ki18n_wrap_ui(kcm_grub2_SRCS ../ui/installDlg.ui ../ui/kcm_grub2.ui)
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_SRCS ${kcm_grub2_SRCS} convertDlg.cpp)
-    kde4_add_ui_files(kcm_grub2_SRCS ../ui/convertDlg.ui)
+    ki18n_wrap_ui(kcm_grub2_SRCS ../ui/convertDlg.ui)
 endif(HAVE_IMAGEMAGICK)
 if(HAVE_QAPT OR HAVE_QPACKAGEKIT)
     set(kcm_grub2_SRCS ${kcm_grub2_SRCS} removeDlg.cpp)
-    kde4_add_ui_files(kcm_grub2_SRCS ../ui/removeDlg.ui)
+    ki18n_wrap_ui(kcm_grub2_SRCS ../ui/removeDlg.ui)
 endif(HAVE_QAPT OR HAVE_QPACKAGEKIT)
 if(HAVE_QAPT)
     if(QAPT_VERSION_MAJOR EQUAL 1)
@@ -33,7 +33,7 @@ elseif(HAVE_QPACKAGEKIT)
 endif(HAVE_QAPT)
 
 # Set Link Libraries
-set(kcm_grub2_LINK_LIBS ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_SOLID_LIBS})
+set(kcm_grub2_LINK_LIBS KF5::KDELibs4Support KF5::KIOCore KF5::Solid KF5::I18n)
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_LINK_LIBS ${kcm_grub2_LINK_LIBS} ${ImageMagick_LIBRARIES})
 endif(HAVE_IMAGEMAGICK)
@@ -50,7 +50,7 @@ endif(HAVE_IMAGEMAGICK)
 
 # Build & Link
 include_directories(${kcm_grub2_INCLUDE_DIRS})
-kde4_add_plugin(kcm_grub2 ${kcm_grub2_SRCS})
+add_library(kcm_grub2 MODULE ${kcm_grub2_SRCS})
 target_link_libraries(kcm_grub2 ${kcm_grub2_LINK_LIBS})
 
 # Install

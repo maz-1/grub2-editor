@@ -21,6 +21,7 @@
 //KDE
 #include <KDialog>
 
+#include <QProgressDialog>
 //Ui
 namespace Ui
 {

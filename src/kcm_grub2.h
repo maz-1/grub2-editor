@@ -20,9 +20,10 @@
 
 //Qt
 #include <QBitArray>
-
+#include <QProgressDialog>
 //KDE
 #include <KCModule>
+
 namespace KAuth
 {
     class ActionReply;
@@ -89,7 +90,7 @@ private:
     QString convertToGRUBFileName(const QString &fileName);
     QString convertToLocalFileName(const QString &grubFileName);
 
-    ActionReply loadFile(GrubFile grubFile);
+    ExecuteJob * loadFile(GrubFile grubFile);
     QString readFile(GrubFile grubFile);
     void readEntries();
     void readSettings();

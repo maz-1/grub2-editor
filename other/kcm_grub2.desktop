@@ -2,12 +2,12 @@
 Icon=system-reboot
 Type=Service
 X-KDE-ServiceTypes=KCModule
-Exec=kcmshell4 kcm_grub2
+Exec=kcmshell5 kcm_grub2
 
 X-KDE-Library=kcm_grub2
 X-KDE-ParentApp=kcontrol
 
-X-KDE-System-Settings-Parent-Category=startup-and-shutdown
+X-KDE-System-Settings-Parent-Category=session
 
 Name=GRUB2 Bootloader
 Name[bs]=GRUB2 pokretač sistemar

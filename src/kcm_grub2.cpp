@@ -20,22 +20,25 @@
 
 //Own
 #include "kcm_grub2.h"
-
+#include "widgets/regexpinputdialog.h"
 //Qt
 #include <QDesktopWidget>
 #include <QStandardItemModel>
 #include <QTreeView>
-
+#include <QMenu>
+#include <QProgressBar>
 //KDE
 #include <KAboutData>
 #include <KDebug>
-#include <KInputDialog>
-#include <KMenu>
+//#include <KInputDialog>
 #include <KMessageBox>
 #include <kmountpoint.h>
 #include <KPluginFactory>
-#include <KProgressDialog>
-#include <KAuth/ActionWatcher>
+#include <KAuth>
+using namespace KAuth;
+
+#define TRANSLATION_DOMAIN "kcm-grub2"
+#include <klocalizedstring.h>
 
 //Project
 #include "common.h"
@@ -54,13 +57,21 @@
 K_PLUGIN_FACTORY(GRUB2Factory, registerPlugin<KCMGRUB2>();)
 K_EXPORT_PLUGIN(GRUB2Factory("kcmgrub2"))
 
-KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(GRUB2Factory::componentData(), parent, list)
+#include <kcm_grub2.moc>
+
+KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(parent, list)
 {
     //Isn't KAboutData's second argument supposed to do this?
-    KGlobal::locale()->insertCatalog("kcm-grub2");
+    //The function is deprecated. TO BE FIXED
+    //KGlobal::locale()->insertCatalog("kcm-grub2");
 
-    KAboutData *about = new KAboutData("kcmgrub2", "kcm-grub2", ki18nc("@title", "KDE GRUB2 Bootloader Control Module"), KCM_GRUB2_VERSION, ki18nc("@title", "A KDE Control Module for configuring the GRUB2 bootloader."), KAboutData::License_GPL_V3, ki18nc("@info:credit", "Copyright (C) 2008-2013 Konstantinos Smanis"), KLocalizedString(), "http://ksmanis.wordpress.com/projects/grub2-editor/");
-    about->addAuthor(ki18nc("@info:credit", "Κonstantinos Smanis"), ki18nc("@info:credit", "Main Developer"), "konstantinos.smanis@gmail.com", "http://ksmanis.wordpress.com/");
+    KAboutData* about = new KAboutData("kcmgrub2", i18n("KDE GRUB2 Bootloader Control Module"), KCM_GRUB2_VERSION);
+    about->setShortDescription(i18n("A KDE Control Module for configuring the GRUB2 bootloader."));
+    about->setLicense(KAboutLicense::GPL_V3);
+    about->setHomepage("http://ksmanis.wordpress.com/projects/grub2-editor/");
+
+    about->addAuthor("Κonstantinos Smanis", i18n("Main Developer"), "konstantinos.smanis@gmail.com");
+    
     setAboutData(about);
 
     ui = new Ui::KCMGRUB2;
@@ -76,20 +87,15 @@ KCMGRUB2::~KCMGRUB2()
 void KCMGRUB2::defaults()
 {
     Action defaultsAction("org.kde.kcontrol.kcmgrub2.defaults");
-    defaultsAction.setHelperID("org.kde.kcontrol.kcmgrub2");
-#if KDE_IS_VERSION(4,6,0)
-    defaultsAction.setParentWidget(this);
-#endif
-
-    ActionReply reply = defaultsAction.execute();
-    processReply(reply);
-    if (reply.succeeded()) {
+    defaultsAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    
+    ExecuteJob *reply = defaultsAction.execute();
+    if (!reply->exec())
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), reply->errorString());
+    else
         load();
         save();
         KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
-    } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), reply.errorDescription());
-    }
 }
 void KCMGRUB2::load()
 {
@@ -455,41 +461,39 @@ void KCMGRUB2::save()
     }
 
     Action saveAction("org.kde.kcontrol.kcmgrub2.save");
-    saveAction.setHelperID("org.kde.kcontrol.kcmgrub2");
+    saveAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     saveAction.addArgument("rawConfigFileContents", configFileContents.toLocal8Bit());
     saveAction.addArgument("rawDefaultEntry", !m_entries.isEmpty() ? grubDefault : m_settings.value("GRUB_DEFAULT").toLocal8Bit());
     if (m_dirtyBits.testBit(memtestDirty)) {
         saveAction.addArgument("memtest", ui->checkBox_memtest->isChecked());
     }
-#if KDE_IS_VERSION(4,6,0)
-    saveAction.setParentWidget(this);
-#endif
-
+/*
     if (saveAction.authorize() != Action::Authorized) {
         return;
     }
-
-    KProgressDialog progressDlg(this, i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"), i18nc("@info:progress", "Saving GRUB settings..."));
-    progressDlg.setAllowCancel(false);
-    progressDlg.setModal(true);
-    progressDlg.progressBar()->setMinimum(0);
-    progressDlg.progressBar()->setMaximum(0);
-    progressDlg.show();
-    connect(saveAction.watcher(), SIGNAL(actionPerformed(ActionReply)), &progressDlg, SLOT(hide()));
-
-    ActionReply reply = saveAction.execute();
-    processReply(reply);
-    if (reply.succeeded()) {
-        KDialog *dialog = new KDialog(this, Qt::Dialog);
-        dialog->setCaption(i18nc("@title:window", "Information"));
-        dialog->setButtons(KDialog::Ok | KDialog::Details);
+*/
+    QProgressDialog progressDlg(this, Qt::Dialog);
+        progressDlg.setWindowTitle(i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"));
+        progressDlg.setLabelText(i18nc("@info:progress", "Saving GRUB settings..."));
+        progressDlg.setCancelButton(0);
+        progressDlg.setModal(true);
+        progressDlg.setRange(0,0);
+        progressDlg.show();
+    
+    
+    ExecuteJob *reply = saveAction.execute();
+    //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
+    reply->exec();
+    progressDlg.hide();
+    if (!reply->error()) {
+        QDialog *dialog = new QDialog(this, Qt::Dialog);
+        dialog->setWindowTitle(i18nc("@title:window", "Information"));
         dialog->setModal(true);
-        dialog->setDefaultButton(KDialog::Ok);
-        dialog->setEscapeButton(KDialog::Ok);
-        KMessageBox::createKMessageBox(dialog, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, reply.data().value("output").toString()); // krazy:exclude=qclasses
+        QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
+        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, reply->data().value("output").toString()); // krazy:exclude=qclasses
         load();
     } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), reply.errorDescription());
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), reply->errorString());
     }
 }
 
@@ -559,8 +563,11 @@ void KCMGRUB2::slotGrubGfxmodeChanged()
 {
     if (ui->kcombobox_gfxmode->currentIndex() == 0) {
         bool ok;
-        QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
-        QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), &ok, this, &regExp);
+        //QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
+        QRegExp regExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?");
+        //regExp.setPatternSyntax(QRegExp::Wildcard);
+        //QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), &ok, this, &regExp);
+        QString resolution = RegExpInputDialog::getText(this, i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), regExp, &ok);
         if (ok) {
             if (!m_resolutions.contains(resolution)) {
                 QString gfxpayload = ui->kcombobox_gfxpayload->itemData(ui->kcombobox_gfxpayload->currentIndex()).toString();
@@ -581,8 +588,11 @@ void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
 {
     if (ui->kcombobox_gfxpayload->currentIndex() == 0) {
         bool ok;
-        QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
-        QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a Linux boot resolution:"), QString(), &ok, this, &regExp);
+        //QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
+        QRegExp regExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?");
+        //regExp.setPatternSyntax(QRegExp::Wildcard);
+        //QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a Linux boot resolution:"), QString(), &ok, this, &regExp);
+        QString resolution = RegExpInputDialog::getText(this, i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), regExp, &ok);
         if (ok) {
             if (!m_resolutions.contains(resolution)) {
                 QString gfxmode = ui->kcombobox_gfxmode->itemData(ui->kcombobox_gfxmode->currentIndex()).toString();
@@ -770,8 +780,8 @@ void KCMGRUB2::setupObjects()
     view->setRootIsDecorated(false);
     ui->kcombobox_default->setView(view);
 
-    ui->kpushbutton_install->setIcon(KIcon("system-software-update"));
-    ui->kpushbutton_remove->setIcon(KIcon("list-remove"));
+    ui->kpushbutton_install->setIcon(QIcon::fromTheme(QStringLiteral("system-software-update")));
+    ui->kpushbutton_remove->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
     ui->kpushbutton_remove->setVisible(HAVE_QAPT || HAVE_QPACKAGEKIT);
 
     QPixmap black(16, 16), transparent(16, 16);
@@ -825,12 +835,12 @@ void KCMGRUB2::setupObjects()
     ui->kcombobox_highlightForeground->setCurrentIndex(ui->kcombobox_highlightForeground->findData("black"));
     ui->kcombobox_highlightBackground->setCurrentIndex(ui->kcombobox_highlightBackground->findData("light-gray"));
 
-    ui->kpushbutton_preview->setIcon(KIcon("image-png"));
-    ui->kpushbutton_create->setIcon(KIcon("insert-image"));
+    ui->kpushbutton_preview->setIcon(QIcon::fromTheme(QStringLiteral("image-png")));
+    ui->kpushbutton_create->setIcon(QIcon::fromTheme(QStringLiteral("insert-image")));
     ui->kpushbutton_create->setVisible(HAVE_IMAGEMAGICK);
 
-    ui->kpushbutton_cmdlineDefaultSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_cmdlineDefaultSuggestions->setMenu(new KMenu(ui->kpushbutton_cmdlineDefaultSuggestions));
+    ui->kpushbutton_cmdlineDefaultSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_cmdlineDefaultSuggestions->setMenu(new QMenu(ui->kpushbutton_cmdlineDefaultSuggestions));
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Quiet Boot"))->setData("quiet");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Show Splash Screen"))->setData("splash");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Disable Plymouth"))->setData("noplymouth");
@@ -838,8 +848,8 @@ void KCMGRUB2::setupObjects()
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off APIC"))->setData("noapic");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off Local APIC"))->setData("nolapic");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Single User Mode"))->setData("single");
-    ui->kpushbutton_cmdlineSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_cmdlineSuggestions->setMenu(new KMenu(ui->kpushbutton_cmdlineSuggestions));
+    ui->kpushbutton_cmdlineSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_cmdlineSuggestions->setMenu(new QMenu(ui->kpushbutton_cmdlineSuggestions));
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Quiet Boot"))->setData("quiet");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Show Splash Screen"))->setData("splash");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Disable Plymouth"))->setData("noplymouth");
@@ -847,20 +857,20 @@ void KCMGRUB2::setupObjects()
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off APIC"))->setData("noapic");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off Local APIC"))->setData("nolapic");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Single User Mode"))->setData("single");
-    ui->kpushbutton_terminalSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_terminalSuggestions->setMenu(new KMenu(ui->kpushbutton_terminalSuggestions));
+    ui->kpushbutton_terminalSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_terminalSuggestions->setMenu(new QMenu(ui->kpushbutton_terminalSuggestions));
     ui->kpushbutton_terminalSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC BIOS && EFI Console"))->setData("console");
     ui->kpushbutton_terminalSuggestions->menu()->addAction(i18nc("@action:inmenu", "Serial Terminal"))->setData("serial");
     ui->kpushbutton_terminalSuggestions->menu()->addAction(i18nc("@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a former IEEE standard.", "Open Firmware Console"))->setData("ofconsole");
-    ui->kpushbutton_terminalInputSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_terminalInputSuggestions->setMenu(new KMenu(ui->kpushbutton_terminalInputSuggestions));
+    ui->kpushbutton_terminalInputSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_terminalInputSuggestions->setMenu(new QMenu(ui->kpushbutton_terminalInputSuggestions));
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC BIOS && EFI Console"))->setData("console");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "Serial Terminal"))->setData("serial");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a former IEEE standard.", "Open Firmware Console"))->setData("ofconsole");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC AT Keyboard (Coreboot)"))->setData("at_keyboard");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "USB Keyboard (HID Boot Protocol)"))->setData("usb_keyboard");
-    ui->kpushbutton_terminalOutputSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_terminalOutputSuggestions->setMenu(new KMenu(ui->kpushbutton_terminalOutputSuggestions));
+    ui->kpushbutton_terminalOutputSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_terminalOutputSuggestions->setMenu(new QMenu(ui->kpushbutton_terminalOutputSuggestions));
     ui->kpushbutton_terminalOutputSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC BIOS && EFI Console"))->setData("console");
     ui->kpushbutton_terminalOutputSuggestions->menu()->addAction(i18nc("@action:inmenu", "Serial Terminal"))->setData("serial");
     ui->kpushbutton_terminalOutputSuggestions->menu()->addAction(i18nc("@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a former IEEE standard.", "Open Firmware Console"))->setData("ofconsole");
@@ -956,18 +966,13 @@ QString KCMGRUB2::convertToLocalFileName(const QString &grubFileName)
     return fileName;
 }
 
-ActionReply KCMGRUB2::loadFile(GrubFile grubFile)
+ExecuteJob * KCMGRUB2::loadFile(GrubFile grubFile)
 {
     Action loadAction("org.kde.kcontrol.kcmgrub2.load");
-    loadAction.setHelperID("org.kde.kcontrol.kcmgrub2");
+    loadAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     loadAction.addArgument("grubFile", grubFile);
-#if KDE_IS_VERSION(4,6,0)
-    loadAction.setParentWidget(this);
-#endif
 
-    ActionReply reply = loadAction.execute();
-    processReply(reply);
-    return reply;
+    return loadAction.execute();
 }
 QString KCMGRUB2::readFile(GrubFile grubFile)
 {
@@ -992,13 +997,13 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
         return stream.readAll();
     }
 
-    ActionReply reply = loadFile(grubFile);
-    if (reply.failed()) {
+    ExecuteJob *reply = loadFile(grubFile);
+    if (!reply->exec()) {
         kError() << "Error loading:" << fileName;
-        kError() << "Error description:" << reply.errorDescription();
+        kError() << "Error description:" << reply->errorString();
         return QString();
     }
-    return QString::fromLocal8Bit(reply.data().value("rawFileContents").toByteArray());
+    return QString::fromLocal8Bit(reply->data().value("rawFileContents").toByteArray());
 }
 void KCMGRUB2::readEntries()
 {
@@ -1030,15 +1035,15 @@ void KCMGRUB2::readMemtest()
         return;
     }
 
-    ActionReply reply = loadFile(GrubMemtestFile);
-    if (reply.failed()) {
+    ExecuteJob *reply = loadFile(GrubMemtestFile);
+    if (!reply->exec()) {
         kError() << "Error loading:" << GRUB_MEMTEST;
-        kError() << "Error description:" << reply.errorDescription();
+        kError() << "Error description:" << reply->errorString();
         return;
     }
-    m_memtest = reply.data().value("memtest").toBool();
+    m_memtest = reply->data().value("memtest").toBool();
     if (m_memtest) {
-        m_memtestOn = reply.data().value("memtestOn").toBool();
+        m_memtestOn = reply->data().value("memtestOn").toBool();
     }
 }
 void KCMGRUB2::readDevices()
@@ -1051,28 +1056,36 @@ void KCMGRUB2::readDevices()
     }
 
     Action probeAction("org.kde.kcontrol.kcmgrub2.probe");
-    probeAction.setHelperID("org.kde.kcontrol.kcmgrub2");
+    probeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     probeAction.addArgument("mountPoints", mountPoints);
-#if KDE_IS_VERSION(4,6,0)
-    probeAction.setParentWidget(this);
-#endif
-    if (probeAction.authorize() != Action::Authorized) {
+    
+    QProgressDialog progressDlg(this, Qt::Dialog);
+        progressDlg.setWindowTitle(i18nc("@title:window", "Probing devices"));
+        progressDlg.setLabelText(i18nc("@info:progress", "Probing devices for their GRUB names..."));
+        progressDlg.setCancelButton(0);
+        progressDlg.setModal(true);
+        QProgressBar * mProgressBar = new QProgressBar(this);
+        progressDlg.setBar(mProgressBar);
+        progressDlg.show();
+        
+    ExecuteJob *reply = probeAction.execute();
+    //connect(reply, SIGNAL(progressStep(int)), mProgressBar, SLOT(setValue(int)));
+    reply->exec();
+    
+    if (probeAction.status() != Action::AuthorizedStatus ) {
+        progressDlg.hide();
         return;
     }
-
-    KProgressDialog progressDlg(this, i18nc("@title:window", "Probing devices"), i18nc("@info:progress", "Probing devices for their GRUB names..."));
-    progressDlg.setAllowCancel(false);
-    progressDlg.setModal(true);
-    progressDlg.show();
-    connect(probeAction.watcher(), SIGNAL(progressStep(int)), progressDlg.progressBar(), SLOT(setValue(int)));
-
-    ActionReply reply = probeAction.execute();
-    processReply(reply);
-    if (reply.failed()) {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), reply.errorDescription());
+    
+    progressDlg.hide();
+    
+    if (reply->error()) {
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), reply->errorString());
         return;
-    }
-    QStringList grubPartitions = reply.data().value("grubPartitions").toStringList();
+    }// else {
+     // progressDlg.hide();
+//}
+    QStringList grubPartitions = reply->data().value("grubPartitions").toStringList();
     if (mountPoints.size() != grubPartitions.size()) {
         KMessageBox::error(this, i18nc("@info", "Helper returned malformed device list."));
         return;
@@ -1086,19 +1099,15 @@ void KCMGRUB2::readDevices()
 void KCMGRUB2::readResolutions()
 {
     Action probeVbeAction("org.kde.kcontrol.kcmgrub2.probevbe");
-    probeVbeAction.setHelperID("org.kde.kcontrol.kcmgrub2");
-#if KDE_IS_VERSION(4,6,0)
-    probeVbeAction.setParentWidget(this);
-#endif
+    probeVbeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
 
-    ActionReply reply = probeVbeAction.execute();
-    processReply(reply);
-    if (reply.failed()) {
+    ExecuteJob *reply = probeVbeAction.execute();
+    if (!reply->exec()) {
         return;
     }
 
     m_resolutions.clear();
-    m_resolutions = reply.data().value("gfxmodes").toStringList();
+    m_resolutions = reply->data().value("gfxmodes").toStringList();
 }
 
 void KCMGRUB2::sortResolutions()
@@ -1140,8 +1149,8 @@ void KCMGRUB2::showResolutions()
         ui->kcombobox_gfxpayload->addItem(resolution, resolution);
     }
 }
-
-void KCMGRUB2::processReply(ActionReply &reply)
+/*
+void KCMGRUB2::processReply(ExecuteJob * reply)
 {
     if (reply.type() == ActionReply::Success || reply.type() == ActionReply::KAuthError) {
         return;
@@ -1171,6 +1180,7 @@ void KCMGRUB2::processReply(ActionReply &reply)
     reply.addData(QLatin1String("errorMessage"), errorMessage);
     reply.setErrorDescription(i18nc("@info", "Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error message:<nl/><message>%3</message>", reply.data().value(QLatin1String("command")).toStringList().join(QLatin1String(" ")), reply.errorCode(), errorMessage));
 }
+*/
 QString KCMGRUB2::parseTitle(const QString &line)
 {
     QChar ch;
