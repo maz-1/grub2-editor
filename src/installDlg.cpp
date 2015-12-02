@@ -21,11 +21,10 @@
 //Qt
 #include <QFile>
 #include <QRadioButton>
-
+#include <QPushButton>
 //KDE
-#include <kdeversion.h>
 #include <KMessageBox>
-#include <KProgressDialog>
+//#include <KProgressDialog>
 
 #include <KFormat>
 #include <Solid/Device>
@@ -38,23 +37,31 @@ using namespace KAuth;
 //Ui
 #include "ui_installDlg.h"
 
-InstallDialog::InstallDialog(QWidget *parent, Qt::WFlags flags) : KDialog(parent, flags)
+InstallDialog::InstallDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags)
 {
     QWidget *widget = new QWidget(this);
     KFormat format;
     ui = new Ui::InstallDialog;
     ui->setupUi(widget);
-    setMainWidget(widget);
-    enableButtonOk(false);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(widget);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+    buttonBox->button(QDialogButtonBox::Ok)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOkButton));
+    buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCancelButton));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(SlotOkButtonClicked()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     setWindowTitle(i18nc("@title:window", "Install/Recover Bootloader"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("system-software-update")));
     if (parent) {
-        setInitialSize(parent->size());
+        resize(parent->size());
     }
 
     ui->treeWidget_recover->headerItem()->setText(0, QString());
-    ui->treeWidget_recover->header()->setResizeMode(QHeaderView::Stretch);
-    ui->treeWidget_recover->header()->setResizeMode(0, QHeaderView::ResizeToContents);
+    ui->treeWidget_recover->header()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->treeWidget_recover->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     Q_FOREACH(const Solid::Device &device, Solid::Device::listFromType(Solid::DeviceInterface::StorageAccess)) {
         if (!device.is<Solid::StorageAccess>() || !device.is<Solid::StorageVolume>()) {
             continue;
@@ -75,7 +82,7 @@ InstallDialog::InstallDialog(QWidget *parent, Qt::WFlags flags) : KDialog(parent
         item->setTextAlignment(5, Qt::AlignRight | Qt::AlignVCenter);
         ui->treeWidget_recover->addTopLevelItem(item);
         QRadioButton *radio = new QRadioButton(ui->treeWidget_recover);
-        connect(radio, SIGNAL(clicked(bool)), this, SLOT(enableButtonOk(bool)));
+        connect(radio, SIGNAL(clicked(bool)), buttonBox->button(QDialogButtonBox::Ok), SLOT(setEnabled(bool)));
         ui->treeWidget_recover->setItemWidget(item, 0, radio);
     }
 }
@@ -84,9 +91,8 @@ InstallDialog::~InstallDialog()
     delete ui;
 }
 
-void InstallDialog::slotButtonClicked(int button)
+void InstallDialog::SlotOkButtonClicked()
 {
-    if (button == KDialog::Ok) {
         Action installAction("org.kde.kcontrol.kcmgrub2.install");
         installAction.setHelperId("org.kde.kcontrol.kcmgrub2");
         for (int i = 0; i < ui->treeWidget_recover->topLevelItemCount(); i++) {
@@ -132,6 +138,5 @@ void InstallDialog::slotButtonClicked(int button)
             QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
             KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully installed GRUB."), QStringList(), QString(), 0, KMessageBox::Notify, reply->data().value("output").toString()); // krazy:exclude=qclasses
         }
-    }
-    KDialog::slotButtonClicked(button);
+    this->accept();
 }

@@ -17,9 +17,10 @@
 
 #ifndef HELPER_H
 #define HELPER_H
-
+//Qt
+#include <QDebug>
 //KDE
-#include <KAuth/ActionReply>
+#include <KAuth>
 using namespace KAuth;
 
 class Helper : public QObject

@@ -33,7 +33,14 @@ elseif(HAVE_QPACKAGEKIT)
 endif(HAVE_QAPT)
 
 # Set Link Libraries
-set(kcm_grub2_LINK_LIBS KF5::KDELibs4Support KF5::KIOCore KF5::Solid KF5::I18n)
+set(kcm_grub2_LINK_LIBS
+     Qt5::Widgets
+     KF5::ConfigWidgets
+     KF5::KIOWidgets
+     KF5::I18n
+     KF5::Auth
+     KF5::Solid
+     ) # 
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_LINK_LIBS ${kcm_grub2_LINK_LIBS} ${ImageMagick_LIBRARIES})
 endif(HAVE_IMAGEMAGICK)
@@ -45,7 +52,7 @@ endif(HAVE_QAPT)
 
 # Definitions
 if(HAVE_IMAGEMAGICK)
-    add_definitions(${KDE4_ENABLE_EXCEPTIONS})
+    add_definitions(${KDE_ENABLE_EXCEPTIONS})
 endif(HAVE_IMAGEMAGICK)
 
 # Build & Link

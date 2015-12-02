@@ -25,11 +25,12 @@
 #include <QDir>
 
 //KDE
-#include <KDebug>
+//#include <KDebug>
 //#include <KGlobal>
-#include <KLocale>
+//#include <KLocale>
 #include <KProcess>
-#include <KAuth/HelperSupport>
+#include <klocalizedstring.h>
+//#include <KAuth/HelperSupport>
 
 //Project
 #include "../config.h"
@@ -44,8 +45,6 @@ static const QString path = QLatin1String("/usr/sbin:/usr/bin:/sbin:/bin");
 
 Helper::Helper()
 {
-    //TO BE FIXED
-    //KGlobal::locale()->insertCatalog("kcm-grub2");
     qputenv("PATH", path.toLatin1());
 }
 
@@ -55,7 +54,7 @@ ActionReply Helper::executeCommand(const QStringList &command)
     process.setProgram(command);
     process.setOutputChannelMode(KProcess::MergedChannels);
 
-    kDebug() << "Executing" << command.join(" ");
+    //qDebug() << "Executing" << command.join(" ");
     int exitCode = process.execute();
 
     ActionReply reply;

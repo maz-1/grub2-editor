@@ -21,6 +21,7 @@
 //Qt
 #include <QBitArray>
 #include <QProgressDialog>
+#include <QDebug>
 //KDE
 #include <KCModule>
 

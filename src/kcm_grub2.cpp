@@ -27,9 +27,10 @@
 #include <QTreeView>
 #include <QMenu>
 #include <QProgressBar>
+#include <QTextStream>
 //KDE
 #include <KAboutData>
-#include <KDebug>
+//#include <KDebug>
 //#include <KInputDialog>
 #include <KMessageBox>
 #include <kmountpoint.h>
@@ -169,7 +170,7 @@ void KCMGRUB2::load()
                 ui->kcombobox_default->setRootModelIndex(model->indexFromItem(model->invisibleRootItem()));
             }
         } else {
-            kWarning() << "Invalid GRUB_DEFAULT value";
+            qDebug() << "Invalid GRUB_DEFAULT value";
         }
     }
     ui->kpushbutton_remove->setEnabled(!m_entries.isEmpty());
@@ -182,7 +183,7 @@ void KCMGRUB2::load()
             ui->checkBox_hiddenTimeout->setChecked(grubHiddenTimeout > 0);
             ui->spinBox_hiddenTimeout->setValue(grubHiddenTimeout);
         } else {
-            kWarning() << "Invalid GRUB_HIDDEN_TIMEOUT value";
+            qDebug() << "Invalid GRUB_HIDDEN_TIMEOUT value";
         }
     }
     ui->checkBox_hiddenTimeoutShowTimer->setChecked(unquoteWord(m_settings.value("GRUB_HIDDEN_TIMEOUT_QUIET")).compare("true") != 0);
@@ -193,7 +194,7 @@ void KCMGRUB2::load()
         ui->radioButton_timeout->setChecked(grubTimeout > 0);
         ui->spinBox_timeout->setValue(grubTimeout);
     } else {
-        kWarning() << "Invalid GRUB_TIMEOUT value";
+        qDebug() << "Invalid GRUB_TIMEOUT value";
     }
 
     ui->checkBox_recovery->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_RECOVERY")).compare("true") != 0);
@@ -221,7 +222,7 @@ void KCMGRUB2::load()
         int normalForegroundIndex = ui->kcombobox_normalForeground->findData(grubColorNormal.section('/', 0, 0));
         int normalBackgroundIndex = ui->kcombobox_normalBackground->findData(grubColorNormal.section('/', 1));
         if (normalForegroundIndex == -1 || normalBackgroundIndex == -1) {
-            kWarning() << "Invalid GRUB_COLOR_NORMAL value";
+            qDebug() << "Invalid GRUB_COLOR_NORMAL value";
         }
         if (normalForegroundIndex != -1) {
             ui->kcombobox_normalForeground->setCurrentIndex(normalForegroundIndex);
@@ -235,7 +236,7 @@ void KCMGRUB2::load()
         int highlightForegroundIndex = ui->kcombobox_highlightForeground->findData(grubColorHighlight.section('/', 0, 0));
         int highlightBackgroundIndex = ui->kcombobox_highlightBackground->findData(grubColorHighlight.section('/', 1));
         if (highlightForegroundIndex == -1 || highlightBackgroundIndex == -1) {
-            kWarning() << "Invalid GRUB_COLOR_HIGHLIGHT value";
+            qDebug() << "Invalid GRUB_COLOR_HIGHLIGHT value";
         }
         if (highlightForegroundIndex != -1) {
             ui->kcombobox_highlightForeground->setCurrentIndex(highlightForegroundIndex);
@@ -332,14 +333,14 @@ void KCMGRUB2::save()
     }
     if (m_dirtyBits.testBit(grubGfxmodeDirty)) {
         if (ui->kcombobox_gfxmode->currentIndex() <= 0) {
-            kError() << "Something went terribly wrong!";
+            qDebug() << "Something went terribly wrong!";
         } else {
             m_settings["GRUB_GFXMODE"] = quoteWord(ui->kcombobox_gfxmode->itemData(ui->kcombobox_gfxmode->currentIndex()).toString());
         }
     }
     if (m_dirtyBits.testBit(grubGfxpayloadLinuxDirty)) {
         if (ui->kcombobox_gfxpayload->currentIndex() <= 0) {
-            kError() << "Something went terribly wrong!";
+            qDebug() << "Something went terribly wrong!";
         } else if (ui->kcombobox_gfxpayload->currentIndex() == 1) {
             m_settings.remove("GRUB_GFXPAYLOAD_LINUX");
         } else if (ui->kcombobox_gfxpayload->currentIndex() > 1) {
@@ -999,8 +1000,8 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
 
     ExecuteJob *reply = loadFile(grubFile);
     if (!reply->exec()) {
-        kError() << "Error loading:" << fileName;
-        kError() << "Error description:" << reply->errorString();
+        qDebug() << "Error loading:" << fileName;
+        qDebug() << "Error description:" << reply->errorString();
         return QString();
     }
     return QString::fromLocal8Bit(reply->data().value("rawFileContents").toByteArray());
@@ -1037,8 +1038,8 @@ void KCMGRUB2::readMemtest()
 
     ExecuteJob *reply = loadFile(GrubMemtestFile);
     if (!reply->exec()) {
-        kError() << "Error loading:" << GRUB_MEMTEST;
-        kError() << "Error description:" << reply->errorString();
+        qDebug() << "Error loading:" << GRUB_MEMTEST;
+        qDebug() << "Error description:" << reply->errorString();
         return;
     }
     m_memtest = reply->data().value("memtest").toBool();
@@ -1240,8 +1241,8 @@ void KCMGRUB2::parseEntries(const QString &config)
         //If the first word is known, process the rest of the line
         if (word == QLatin1String("menuentry")) {
             if (inEntry) {
-                kError() << "Malformed configuration file! Aborting entries' parsing.";
-                kDebug() << "A 'menuentry' directive was detected inside the scope of a menuentry.";
+                qDebug() << "Malformed configuration file! Aborting entries' parsing.";
+                qDebug() << "A 'menuentry' directive was detected inside the scope of a menuentry.";
                 m_entries.clear();
                 return;
             }
@@ -1255,8 +1256,8 @@ void KCMGRUB2::parseEntries(const QString &config)
             continue;
         } else if (word == QLatin1String("submenu")) {
             if (inEntry) {
-                kError() << "Malformed configuration file! Aborting entries' parsing.";
-                kDebug() << "A 'submenu' directive was detected inside the scope of a menuentry.";
+                qDebug() << "Malformed configuration file! Aborting entries' parsing.";
+                qDebug() << "A 'submenu' directive was detected inside the scope of a menuentry.";
                 m_entries.clear();
                 return;
             }
@@ -1272,8 +1273,8 @@ void KCMGRUB2::parseEntries(const QString &config)
             continue;
         } else if (word == QLatin1String("linux")) {
             if (!inEntry) {
-                kError() << "Malformed configuration file! Aborting entries' parsing.";
-                kDebug() << "A 'linux' directive was detected outside the scope of a menuentry.";
+                qDebug() << "Malformed configuration file! Aborting entries' parsing.";
+                qDebug() << "A 'linux' directive was detected outside the scope of a menuentry.";
                 m_entries.clear();
                 return;
             }

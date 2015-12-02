@@ -10,7 +10,7 @@ set(KCM_GRUB2_VERSION_MAJOR "0")
 set(KCM_GRUB2_VERSION_MINOR "5")
 set(KCM_GRUB2_VERSION_PATCH "8")
 set(KCM_GRUB2_VERSION "${KCM_GRUB2_VERSION_MAJOR}.${KCM_GRUB2_VERSION_MINOR}.${KCM_GRUB2_VERSION_PATCH}")
-
+set(KDE_ENABLE_EXCEPTIONS "-fexceptions -UQT_NO_EXCEPTIONS")
 
 find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake/modules)
@@ -20,13 +20,14 @@ include(KDECMakeSettings)
 include(KDECompilerSettings)
 include(FeatureSummary)
 
-find_package(Qt5 REQUIRED COMPONENTS Widgets)
-find_package(KF5 REQUIRED COMPONENTS KDELibs4Support Solid I18n) #CoreAddons  
+find_package(Qt5 REQUIRED COMPONENTS Widgets DBus)
+find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n Auth ConfigWidgets KIO Solid) #  
 
 
 include(GRUBPaths)
 
 include(MacroLogFeature)
+include(MacroBoolTo01)
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS -DMAGICKCORE_QUANTUM_DEPTH=16 -DMAGICKCORE_HDRI_ENABLE=0)
 

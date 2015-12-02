@@ -8,14 +8,14 @@ endif(HAVE_HD)
 set(kcmgrub2helper_SRCS helper.cpp)
 
 # Set Link Libraries
-set(kcmgrub2helper_LINK_LIBS KF5::KDELibs4Support)
+set(kcmgrub2helper_LINK_LIBS Qt5::DBus KF5::Auth KF5::I18n)
 if(HAVE_HD)
     set(kcmgrub2helper_LINK_LIBS ${kcmgrub2helper_LINK_LIBS} ${HD_LIBRARY})
 endif(HAVE_HD)
 
 # Build & Link
 include_directories(${kcmgrub2helper_INCLUDE_DIRS})
-kde4_add_executable(kcmgrub2helper ${kcmgrub2helper_SRCS})
+add_executable(kcmgrub2helper ${kcmgrub2helper_SRCS})
 target_link_libraries(kcmgrub2helper ${kcmgrub2helper_LINK_LIBS})
 
 # Install
