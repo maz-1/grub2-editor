@@ -37,7 +37,7 @@
 //Ui
 #include "ui_removeDlg.h"
 
-RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WFlags flags) : KDialog(parent, flags)
+RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags)
 {
     QWidget *widget = new QWidget(this);
     ui = new Ui::RemoveDialog;
