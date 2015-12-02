@@ -1,0 +1,86 @@
+v.0.5.8 (18/06/2012)
+--------------------
+*ADDED: Install on the boot sector of a partition instead of the MBR.
+*FIXED: Fix installation detection in Gentoo.
+*FIXED: Fix translation loading.
+
+v.0.5.5 (09/01/2012)
+--------------------
+*ADDED: Experimental BURG support (only commands shared with GRUB2).
+*ADDED: Option to disable Plymouth (Advanced -> Linux Kernel Arguments).
+*FIXED: Fedora/openSUSE: the GRUB installation is now properly detected.
+*FIXED: Encoding issue (UTF-8 encoding is now supported).
+*FIXED: A QPackageKit backend bug where previous results were returned.
+
+*I18N: Translations included: Catalan, Czech, Danish, German, Greek, Spanish, Estonian, French, Irish [Gaelic], Hungarian, Lithuanian, Dutch, Panjabi/Punjabi, Polish, Portuguese, Brazilian Portuguese, Russian, Swedish, Ukrainian, Traditional Chinese.
+
+v.0.5.0 (09/05/2011)
+--------------------
+*ADDED: Recover GRUB2 (from a Live CD).
+*ADDED: Option to toggle generation of memtest entries.
+*ADDED: Manually find missing configuration files which are needed.
+*ADDED: Restore default settings.
+*FIXED: Warn the user when trying to uninstall the current kernel.
+
+*I18N: Added 9 new translations: Danish, German, Estonian, Hungarian, Dutch, Portuguese, Portuguese (Brazil), Swedish, Ukrainian.
+
+v.0.4.5 (29/04/2011)
+--------------------
+*ADDED: Remove old entries (using QApt or QPackageKit).
+*FIXED: Simplify the default-entry-picking UI.
+*ADDED: Provide list of valid GRUB resolutions.
+*FIXED: Simplify [GRUB & Linux] resolution picking UI.
+*ADDED: Perform variable substitution and unquoting using 'echo'.
+*FIXED: Suggest GRUB's resolution when creating a splash image.
+*FIXED: Query ImageMagick for supported mimetypes.
+*FIXED: Merge save and update actions.
+*FIXED: Polishing all around the codebase.
+
+v.0.3.6 (03/04/2011)
+--------------------
+A security issue which was accidentally introduced in v0.3.5.
+Various fixes and polishing all around.
+
+v.0.3.5 (31/03/2011)
+--------------------
+*ADDED: Splash image creation dialog.
+*ADDED: Linux Kernel parameters suggestions.
+*ADDED: Terminal suggestions.
+*FIXED: Reload configuration after updating GRUB.
+*FIXED: Preview GRUB wallpapers (=splash images) fullscreen.
+
+v.0.3.0 (21/03/2011)
+--------------------
+*ADDED: Allow previewing a wallpaper (=splash image).
+*ADDED: Support for GRUB_INIT_TUNE.
+*FIXED: Make colors actually work.
+*FIXED: Handle better GRUB device naming.
+*FIXED: Rewrote big part of the code.
+
+v.0.2.5 (13/03/2011)
+--------------------
+*ADDED: Resolution options improved.
+*ADDED: Visual color management.
+*ADDED: File selection dialogs for Wallpaper and Theme.
+*ADDED: Incorporated CPack in the build system.
+*FIXED: Improved detection of GRUB's configuration files (depends on distributions).
+
+v.0.2.0 (10/03/2011)
+--------------------
+*ADDED: A script to extract translatable strings into a translation template.
+*ADDED: Option to choose another GRUB file, in case a file other than the default is used.
+*ADDED: Support for GRUB_DISABLE_LINUX_UUID, GRUB_DISABLE_RECOVERY, GRUB_DISABLE_OS_PROBER.
+*FIXED: More consistent reporting of 'grub-mkconfig' output.
+*FIXED: A bug which always set GRUB_SAVEDEFAULT to an empty string if not explicitly set.
+
+v.0.1.5 (09/03/2011)
+--------------------
+*ADDED: Process and view the output from 'grub-mkconfig' while updating the menu.
+*ADDED: Option whether or not to run 'grub-mkconfig' after saving.
+*ADDED: Detailed information in case 'grub-mkconfig' fails.
+*FIXED: Proper argument quoting for 'grub-mkconfig' (to avoid potential security holes).
+*FIXED: Quote only values that need quoting, not all of them.
+
+v.0.1.0 (07/03/2011)
+--------------------
+*Initial release

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>InstallDialog</class>
+ <widget class="QWidget" name="InstallDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>291</width>
+    <height>242</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string comment="@label:listbox">Select partition to install/recover GRUB:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTreeWidget" name="treeWidget_recover">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="rootIsDecorated">
+      <bool>false</bool>
+     </property>
+     <property name="columnCount">
+      <number>6</number>
+     </property>
+     <attribute name="headerStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string/>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string comment="@title:column">Partition</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string comment="@title:column">Mountpoint</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string comment="@title:column">Label</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string comment="@title:column">File System</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string comment="@title:column">Size</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBox_partition">
+     <property name="toolTip">
+      <string comment="@info:tooltip">Install the bootloader on the boot sector of the selected partition instead of the MBR(=Master Boot Sector). Not recommended.</string>
+     </property>
+     <property name="text">
+      <string comment="@option:check">Install on partition instead of MBR (Advanced)</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

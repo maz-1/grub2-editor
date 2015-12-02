@@ -1,0 +1,79 @@
+/==========================\
+| Build & Run Instructions |
+\==========================/
+
+Enter the directory where you extracted the source code and run:
+
+$ mkdir build
+$ cd build
+$ cmake .. -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+$ make
+$ sudo make install
+
+You may then find the GRUB2 KCModule under "Startup and Shutdown" in
+System Settings. You may also launch it running:
+
+$ kcmshell4 kcm_grub2
+
+In order to appear in System Settings the first time you install the
+GRUB2 KCModule, you may have to run:
+
+$ kbuildsycoca4
+
+Note: '$' indicates a shell prompt.
+
+/=============================\
+| Dependencies & Requirements |
+\=============================/
+
+Requires KDE >= 4.4, Qt >= 4.6, GRUB2.
+Suggests ImageMagick for GRUB splash image management.
+Suggests hwinfo for valid GRUB resolution detection.
+Suggests LibQApt or QPackageKit for removing old entries.
+
+Minimum KDE requirement is kdebase-runtime.
+Install kdebase-workspace instead for System Settings integration.
+
+/======================\
+| GRUB Path Resolution |
+\======================/
+
+Almost every distribution has different paths for GRUB executable and
+configuration files. Thus, the need to automatically detect them arises.
+Hopefully the most prevalent naming schemes boil down to three cases:
+
+* vanilla grub-foo executables and boot directory,
+* modified grub2-foo executables and boot directory (allows for parallel
+  installation of both major versions of GRUB),
+* and as a third, last case we consider BURG installations with vanilla
+  burg-foo executables and boot directory.
+
+CMake will detect the above cases in the order specified and
+appropriately fill in the following variables:
+
+* GRUB_INSTALL_EXE = executable which installs GRUB
+* GRUB_MKCONFIG_EXE = executable which generates GRUB's menu file
+* GRUB_PROBE_EXE = executable which probes devices for GRUB information
+* GRUB_SET_DEFAULT_EXE = executable which sets the default entry in
+                         GRUB's environment file
+* GRUB_MENU = GRUB's menu file
+* GRUB_CONFIG = GRUB's main configuration file
+* GRUB_ENV = GRUB's environment file
+* GRUB_MEMTEST = script installed by memtest (usually under /etc/grub.d)
+
+For security reasons these variables can only be set at compile time and
+will be embedded in the binary, so that they cannot be altered
+afterwards.
+
+The following options exist:
+
+* Do not manually specify any of the above variables, in which case
+  CMake will try to resolve them automatically. If it fails you will be
+  prompted to manually specify them all.
+* If you specify at least one of the *_EXE variables, you will have to
+  specify all other variables as well.
+* You can make changes to the non-EXE variables as long as you don't
+  alter any of the *_EXE ones.
+
+Package maintainers are encouraged to manually specify all of the above
+variables in order to fit with each distribution's naming scheme.

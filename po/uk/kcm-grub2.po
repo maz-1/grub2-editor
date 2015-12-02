@@ -1,0 +1,1141 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2013-10-12 01:33+0000\n"
+"PO-Revision-Date: 2013-06-21 15:06+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 1.5\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Юрій Чорноіван"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "yurchor@ukr.net"
+
+#: src/convertDlg.cpp:48
+msgctxt "@item:inlistbox"
+msgid "ImageMagick supported image formats"
+msgstr "Підтримувані ImageMagick формати зображень"
+
+#: src/convertDlg.cpp:76
+msgctxt "@info"
+msgid ""
+"Please fill in both <interface>Image</interface> and <interface>Convert To</"
+"interface> fields."
+msgstr ""
+"Будь ласка, заповніть обидва поля, <interface>Зображення</interface> і "
+"<interface>Перетворити на</interface>."
+
+#: src/convertDlg.cpp:79
+msgctxt "@info"
+msgid ""
+"Please fill in both <interface>Width</interface> and <interface>Height</"
+"interface> fields."
+msgstr ""
+"Будь ласка, заповніть обидва поля, <interface>Ширина</interface> і "
+"<interface>Висота</interface>."
+
+#: src/convertDlg.cpp:82
+msgctxt "@info"
+msgid ""
+"You do not have write permissions in this directory, please select another "
+"destination."
+msgstr ""
+"У вас не вистачає прав для запису до цього каталогу. Будь ласка, виберіть "
+"інший каталог."
+
+#: src/helper/helper.cpp:79
+#, kde-format
+msgctxt "@info"
+msgid "Original configuration file <filename>%1</filename> does not exist."
+msgstr "Початкового файла налаштувань, <filename>%1</filename>, не існує."
+
+#: src/helper/helper.cpp:84
+#, kde-format
+msgctxt "@info"
+msgid "Cannot remove current configuration file <filename>%1</filename>."
+msgstr ""
+"Не вдалося вилучити файл поточних налаштувань, <filename>%1</filename>."
+
+#: src/helper/helper.cpp:89
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Cannot copy original configuration file <filename>%1</filename> to <filename>"
+"%2</filename>."
+msgstr ""
+"Не вдалося скопіювати файл налаштувань <filename>%1</filename> до <filename>"
+"%2</filename>."
+
+#: src/helper/helper.cpp:105
+msgctxt "@info"
+msgid "Failed to create temporary mount point."
+msgstr "Не вдалося створити тимчасову точку монтування."
+
+#: src/installDlg.cpp:45
+msgctxt "@title:window"
+msgid "Install/Recover Bootloader"
+msgstr "Встановити або відновити завантажувач"
+
+#: src/installDlg.cpp:98
+msgctxt "@info"
+msgid "Sorry, you have to select a partition with a proper name!"
+msgstr "Вибачте, вам слід вибрати розділ з належною назвою."
+
+#: src/installDlg.cpp:109
+msgctxt "@title:window"
+msgid "Installing"
+msgstr "Встановлення"
+
+#: src/installDlg.cpp:109
+msgctxt "@info:progress"
+msgid "Installing GRUB..."
+msgstr "Встановлення GRUB…"
+
+#: src/installDlg.cpp:120 src/kcm_grub2.cpp:484
+msgctxt "@title:window"
+msgid "Information"
+msgstr "Інформація"
+
+#: src/installDlg.cpp:125
+msgctxt "@info"
+msgid "Successfully installed GRUB."
+msgstr "GRUB успішно встановлено."
+
+#: src/installDlg.cpp:127
+msgctxt "@info"
+msgid "Failed to install GRUB."
+msgstr "Не вдалося встановити GRUB."
+
+#: src/kcm_grub2.cpp:62
+msgctxt "@title"
+msgid "KDE GRUB2 Bootloader Control Module"
+msgstr "Модуль керування завантажувачем GRUB2 для KDE"
+
+#: src/kcm_grub2.cpp:62
+msgctxt "@title"
+msgid "A KDE Control Module for configuring the GRUB2 bootloader."
+msgstr "Модуль «Системних параметрів» для налаштування завантажувача GRUB2."
+
+#: src/kcm_grub2.cpp:62
+msgctxt "@info:credit"
+msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
+msgstr "© Konstantinos Smanis, 2008–2013"
+
+#: src/kcm_grub2.cpp:63
+msgctxt "@info:credit"
+msgid "Κonstantinos Smanis"
+msgstr "Κonstantinos Smanis"
+
+#: src/kcm_grub2.cpp:63
+msgctxt "@info:credit"
+msgid "Main Developer"
+msgstr "Головний розробник"
+
+#: src/kcm_grub2.cpp:89
+msgctxt "@info"
+msgid "Successfully restored the default values."
+msgstr "Типові значення успішно відновлено."
+
+#: src/kcm_grub2.cpp:91
+msgctxt "@info"
+msgid "Failed to restore the default values."
+msgstr "Не вдалося відновити типові значення."
+
+#: src/kcm_grub2.cpp:472
+msgctxt "@title:window Verb (gerund). Refers to current status."
+msgid "Saving"
+msgstr "Збереження"
+
+#: src/kcm_grub2.cpp:472
+msgctxt "@info:progress"
+msgid "Saving GRUB settings..."
+msgstr "Збереження параметрів GRUB…"
+
+#: src/kcm_grub2.cpp:489
+msgctxt "@info"
+msgid "Successfully saved GRUB settings."
+msgstr "Параметри GRUB успішно збережено."
+
+#: src/kcm_grub2.cpp:492
+msgctxt "@info"
+msgid "Failed to save GRUB settings."
+msgstr "Не вдалося зберегти параметри GRUB."
+
+#: src/kcm_grub2.cpp:563 src/kcm_grub2.cpp:585
+msgctxt "@title:window"
+msgid "Enter screen resolution"
+msgstr "Вкажіть роздільність"
+
+#: src/kcm_grub2.cpp:563
+msgctxt "@label:textbox"
+msgid "Please enter a GRUB resolution:"
+msgstr "Вкажіть роздільність GRUB:"
+
+#: src/kcm_grub2.cpp:585
+msgctxt "@label:textbox"
+msgid "Please enter a Linux boot resolution:"
+msgstr "Вкажіть роздільність під час завантаження Linux:"
+
+#: src/kcm_grub2.cpp:631
+msgctxt "@info"
+msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
+msgstr ""
+"Натисніть клавішу <shortcut>Esc</shortcut>, щоб вийти з повноекранного "
+"режиму."
+
+#: src/kcm_grub2.cpp:780 src/kcm_grub2.cpp:781
+msgctxt "@item:inlistbox Refers to color."
+msgid "Black"
+msgstr "чорний"
+
+#: src/kcm_grub2.cpp:782 src/kcm_grub2.cpp:783
+msgctxt "@item:inlistbox Refers to color."
+msgid "Transparent"
+msgstr "прозорий"
+
+#: src/kcm_grub2.cpp:785
+msgctxt "@item:inlistbox Refers to color."
+msgid "Blue"
+msgstr "синій"
+
+#: src/kcm_grub2.cpp:787
+msgctxt "@item:inlistbox Refers to color."
+msgid "Cyan"
+msgstr "блакитний"
+
+#: src/kcm_grub2.cpp:789
+msgctxt "@item:inlistbox Refers to color."
+msgid "Dark Gray"
+msgstr "темно-сірий"
+
+#: src/kcm_grub2.cpp:791
+msgctxt "@item:inlistbox Refers to color."
+msgid "Green"
+msgstr "зелений"
+
+#: src/kcm_grub2.cpp:793
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Cyan"
+msgstr "світло-бірюзовий"
+
+#: src/kcm_grub2.cpp:795
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Blue"
+msgstr "світло-синій"
+
+#: src/kcm_grub2.cpp:797
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Green"
+msgstr "світло-зелений"
+
+#: src/kcm_grub2.cpp:799
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Gray"
+msgstr "світло-сірий"
+
+#: src/kcm_grub2.cpp:801
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Magenta"
+msgstr "світло-бузковий"
+
+#: src/kcm_grub2.cpp:803
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Red"
+msgstr "світло-червоний"
+
+#: src/kcm_grub2.cpp:805
+msgctxt "@item:inlistbox Refers to color."
+msgid "Magenta"
+msgstr "пурпуровий"
+
+#: src/kcm_grub2.cpp:807
+msgctxt "@item:inlistbox Refers to color."
+msgid "Red"
+msgstr "червоний"
+
+#: src/kcm_grub2.cpp:809
+msgctxt "@item:inlistbox Refers to color."
+msgid "White"
+msgstr "білий"
+
+#: src/kcm_grub2.cpp:811
+msgctxt "@item:inlistbox Refers to color."
+msgid "Yellow"
+msgstr "жовтий"
+
+#: src/kcm_grub2.cpp:834 src/kcm_grub2.cpp:843
+msgctxt "@action:inmenu"
+msgid "Quiet Boot"
+msgstr "Завантаження без повідомлень"
+
+#: src/kcm_grub2.cpp:835 src/kcm_grub2.cpp:844
+msgctxt "@action:inmenu"
+msgid "Show Splash Screen"
+msgstr "Показувати вікно вітання"
+
+#: src/kcm_grub2.cpp:836 src/kcm_grub2.cpp:845
+msgctxt "@action:inmenu"
+msgid "Disable Plymouth"
+msgstr "Вимкнути Plymouth"
+
+#: src/kcm_grub2.cpp:837 src/kcm_grub2.cpp:846
+msgctxt "@action:inmenu"
+msgid "Turn Off ACPI"
+msgstr "Вимкнути ACPI"
+
+#: src/kcm_grub2.cpp:838 src/kcm_grub2.cpp:847
+msgctxt "@action:inmenu"
+msgid "Turn Off APIC"
+msgstr "Вимкнути APIC"
+
+#: src/kcm_grub2.cpp:839 src/kcm_grub2.cpp:848
+msgctxt "@action:inmenu"
+msgid "Turn Off Local APIC"
+msgstr "Вимкнути локальний APIC"
+
+#: src/kcm_grub2.cpp:840 src/kcm_grub2.cpp:849
+msgctxt "@action:inmenu"
+msgid "Single User Mode"
+msgstr "Режим з одним користувачем"
+
+#: src/kcm_grub2.cpp:852 src/kcm_grub2.cpp:857 src/kcm_grub2.cpp:864
+msgctxt "@action:inmenu"
+msgid "PC BIOS && EFI Console"
+msgstr "Консоль PC BIOS і EFI"
+
+#: src/kcm_grub2.cpp:853 src/kcm_grub2.cpp:858 src/kcm_grub2.cpp:865
+msgctxt "@action:inmenu"
+msgid "Serial Terminal"
+msgstr "Термінал для послідовного порту"
+
+#: src/kcm_grub2.cpp:854 src/kcm_grub2.cpp:859 src/kcm_grub2.cpp:866
+msgctxt ""
+"@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
+"former IEEE standard."
+msgid "Open Firmware Console"
+msgstr "Консоль Open Firmware"
+
+#: src/kcm_grub2.cpp:860
+msgctxt "@action:inmenu"
+msgid "PC AT Keyboard (Coreboot)"
+msgstr "Клавіатура PC AT (Coreboot)"
+
+#: src/kcm_grub2.cpp:861
+msgctxt "@action:inmenu"
+msgid "USB Keyboard (HID Boot Protocol)"
+msgstr "Клавіатура USB (протокол завантаження HID)"
+
+#: src/kcm_grub2.cpp:867
+msgctxt "@action:inmenu"
+msgid "Graphics Mode Output"
+msgstr "Режим графічного виведення"
+
+#: src/kcm_grub2.cpp:868
+msgctxt "@action:inmenu"
+msgid "VGA Text Output (Coreboot)"
+msgstr "Текстове виведення VGA (Coreboot)"
+
+#: src/kcm_grub2.cpp:1063
+msgctxt "@title:window"
+msgid "Probing devices"
+msgstr "Визначення пристроїв"
+
+#: src/kcm_grub2.cpp:1063
+msgctxt "@info:progress"
+msgid "Probing devices for their GRUB names..."
+msgstr "Визначення назв GRUB для пристроїв…"
+
+#: src/kcm_grub2.cpp:1072
+msgctxt "@info"
+msgid "Failed to get GRUB device names."
+msgstr "Не вдалося отримати назви пристроїв GRUB."
+
+#: src/kcm_grub2.cpp:1077
+msgctxt "@info"
+msgid "Helper returned malformed device list."
+msgstr ""
+"Допоміжною програмою повернуто список пристроїв з помилковим форматуванням."
+
+#: src/kcm_grub2.cpp:1130 src/kcm_grub2.cpp:1133
+msgctxt "@item:inlistbox Refers to screen resolution."
+msgid "Custom..."
+msgstr "Нетипова…"
+
+#: src/kcm_grub2.cpp:1134
+msgctxt "@item:inlistbox"
+msgid "Unspecified"
+msgstr "Не вказано"
+
+#: src/kcm_grub2.cpp:1135
+msgctxt "@item:inlistbox"
+msgid "Boot in Text Mode"
+msgstr "Завантаження у текстовому режимі"
+
+#: src/kcm_grub2.cpp:1136
+msgctxt "@item:inlistbox"
+msgid "Keep GRUB's Resolution"
+msgstr "Зберігати роздільність GRUB"
+
+#: src/kcm_grub2.cpp:1162
+msgctxt "@info"
+msgid "The process could not be started."
+msgstr "Не вдалося запустити процес."
+
+#: src/kcm_grub2.cpp:1165
+msgctxt "@info"
+msgid "The process crashed."
+msgstr "Процес завершив роботу у аварійному режимі."
+
+#: src/kcm_grub2.cpp:1172
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error "
+"message:<nl/><message>%3</message>"
+msgstr ""
+"Команда: <command>%1</command><nl/>Код помилки: <numid>%2</numid><nl/"
+">Повідомлення про помилку:<nl/><message>%3</message>"
+
+#: src/qPkBackend.cpp:31
+msgctxt "This is when the transaction status is not known"
+msgid "Unknown state"
+msgstr "Невідомий стан"
+
+#: src/qPkBackend.cpp:34
+msgctxt "transaction state, the daemon is in the process of starting"
+msgid "Waiting for service to start"
+msgstr "Очікування на запуск служби"
+
+#: src/qPkBackend.cpp:37
+msgctxt "transaction state, the transaction is waiting for another to complete"
+msgid "Waiting for other tasks"
+msgstr "Очікування на завершення інших завдань"
+
+#: src/qPkBackend.cpp:40
+msgctxt "transaction state, just started"
+msgid "Running task"
+msgstr "Виконання завдання"
+
+#: src/qPkBackend.cpp:43
+msgctxt "transaction state, is querying data"
+msgid "Querying"
+msgstr "Виконання запиту"
+
+#: src/qPkBackend.cpp:46
+msgctxt "transaction state, getting data from a server"
+msgid "Getting information"
+msgstr "Отримання інформації"
+
+#: src/qPkBackend.cpp:49
+msgctxt "transaction state, removing packages"
+msgid "Removing packages"
+msgstr "Вилучення пакунків"
+
+#: src/qPkBackend.cpp:52
+msgctxt "transaction state, downloading package files"
+msgid "Downloading packages"
+msgstr "Звантаження пакунків"
+
+#: src/qPkBackend.cpp:55
+msgctxt "transaction state, installing packages"
+msgid "Installing packages"
+msgstr "Встановлення пакунків"
+
+#: src/qPkBackend.cpp:58
+msgctxt "transaction state, refreshing internal lists"
+msgid "Refreshing software list"
+msgstr "Освіження списку програм"
+
+#: src/qPkBackend.cpp:61
+msgctxt "transaction state, installing updates"
+msgid "Updating packages"
+msgstr "Оновлення пакунків"
+
+#: src/qPkBackend.cpp:64
+msgctxt "transaction state, removing old packages, and cleaning config files"
+msgid "Cleaning up packages"
+msgstr "Вилучення зайвих пакунків"
+
+#: src/qPkBackend.cpp:67
+msgctxt "transaction state, obsoleting old packages"
+msgid "Obsoleting packages"
+msgstr "Вилучення застарілих пакунків"
+
+#: src/qPkBackend.cpp:70
+msgctxt "transaction state, checking the transaction before we do it"
+msgid "Resolving dependencies"
+msgstr "Розв’язання залежностей"
+
+#: src/qPkBackend.cpp:73
+msgctxt ""
+"transaction state, checking if we have all the security keys for the "
+"operation"
+msgid "Checking signatures"
+msgstr "Перевірка підписів"
+
+#: src/qPkBackend.cpp:76
+msgctxt "transaction state, when we return to a previous system state"
+msgid "Rolling back"
+msgstr "Повернення до попереднього"
+
+#: src/qPkBackend.cpp:79
+msgctxt "transaction state, when we're doing a test transaction"
+msgid "Testing changes"
+msgstr "Випробування змін"
+
+#: src/qPkBackend.cpp:82
+msgctxt "transaction state, when we're writing to the system package database"
+msgid "Committing changes"
+msgstr "Застосування змін"
+
+#: src/qPkBackend.cpp:85
+msgctxt "transaction state, requesting data from a server"
+msgid "Requesting data"
+msgstr "Запит щодо даних"
+
+#: src/qPkBackend.cpp:88
+msgctxt "transaction state, all done!"
+msgid "Finished"
+msgstr "Завершено"
+
+#: src/qPkBackend.cpp:91
+msgctxt "transaction state, in the process of cancelling"
+msgid "Cancelling"
+msgstr "Скасування"
+
+#: src/qPkBackend.cpp:94
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading repository information"
+msgstr "Звантаження інформації щодо сховища"
+
+#: src/qPkBackend.cpp:97
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading list of packages"
+msgstr "Звантаження списку пакунків"
+
+#: src/qPkBackend.cpp:100
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading file lists"
+msgstr "Звантаження списків файлів"
+
+#: src/qPkBackend.cpp:103
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading lists of changes"
+msgstr "Звантаження списків змін"
+
+#: src/qPkBackend.cpp:106
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading groups"
+msgstr "Звантаження груп"
+
+#: src/qPkBackend.cpp:109
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading update information"
+msgstr "Звантаження інформації про оновлення"
+
+#: src/qPkBackend.cpp:112
+msgctxt "transaction state, repackaging delta files"
+msgid "Repackaging files"
+msgstr "Перепакування файлів"
+
+#: src/qPkBackend.cpp:115
+msgctxt "transaction state, loading databases"
+msgid "Loading cache"
+msgstr "Завантаження кешу"
+
+#: src/qPkBackend.cpp:118
+msgctxt "transaction state, scanning for running processes"
+msgid "Scanning installed applications"
+msgstr "Перевірка встановлених програм"
+
+#: src/qPkBackend.cpp:121
+msgctxt ""
+"transaction state, generating a list of packages installed on the system"
+msgid "Generating package lists"
+msgstr "Створення списків пакунків"
+
+#: src/qPkBackend.cpp:124
+msgctxt "transaction state, when we're waiting for the native tools to exit"
+msgid "Waiting for package manager lock"
+msgstr "Очікування на зняття блокування керування пакунками"
+
+#: src/qPkBackend.cpp:127
+msgctxt "waiting for user to type in a password"
+msgid "Waiting for authentication"
+msgstr "Очікування на завершення розпізнавання"
+
+#: src/qPkBackend.cpp:130
+msgctxt "we are updating the list of processes"
+msgid "Updating the list of running applications"
+msgstr "Оновлення списку запущених програм"
+
+#: src/qPkBackend.cpp:133
+msgctxt "we are checking executable files in use"
+msgid "Checking for applications currently in use"
+msgstr "Виявлення програм, що використовуються"
+
+#: src/qPkBackend.cpp:136
+msgctxt "we are checking for libraries in use"
+msgid "Checking for libraries currently in use"
+msgstr "Виявлення бібліотек, що використовуються"
+
+#: src/qPkBackend.cpp:139
+msgctxt "we are copying package files to prepare to install"
+msgid "Copying files"
+msgstr "Копіювання файлів"
+
+#: src/removeDlg.cpp:46
+msgctxt "@title:window"
+msgid "Remove Old Entries"
+msgstr "Вилучення застарілих пунктів"
+
+#: src/removeDlg.cpp:60
+msgctxt "@title:window"
+msgid "Finding Old Entries"
+msgstr "Пошук застарілих пунктів"
+
+#: src/removeDlg.cpp:60
+msgctxt "@info:progress"
+msgid "Finding Old Entries..."
+msgstr "Пошук застарілих пунктів…"
+
+#: src/removeDlg.cpp:86
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "Kernel %1"
+msgstr "Ядро %1"
+
+#: src/removeDlg.cpp:102
+msgctxt "@info"
+msgid "No removable entries were found."
+msgstr "Не знайдено придатних до вилучення пунктів."
+
+#: src/removeDlg.cpp:124
+msgctxt "@info"
+msgid "Are you sure you want to remove the following packages?"
+msgstr "Ви певні, що хочете вилучити наведені нижче пакунки?"
+
+#: src/removeDlg.cpp:148
+msgctxt "@title:window"
+msgid "Removing Old Entries"
+msgstr "Вилучення застарілих пунктів"
+
+#: src/removeDlg.cpp:161
+msgctxt "@info"
+msgid "Package removal failed."
+msgstr "Спроба вилучення пакунка зазнала невдачі."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/convertDlg.ui:19
+msgctxt "@label:textbox"
+msgid "Image:"
+msgstr "Зображення:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: ui/convertDlg.ui:29
+msgctxt "@label:textbox"
+msgid "Convert To:"
+msgstr "Перетворити на:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: ui/convertDlg.ui:41
+msgctxt "@title:group"
+msgid "Conversion Options"
+msgstr "Параметри перетворення"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: ui/convertDlg.ui:47
+msgctxt "@label:spinbox"
+msgid "Width:"
+msgstr "Ширина:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: ui/convertDlg.ui:61
+msgctxt "@label:spinbox"
+msgid "Height:"
+msgstr "Висота:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: ui/convertDlg.ui:75
+msgctxt "@option:check"
+msgid "Force resolution:"
+msgstr "Примусова роздільність:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: ui/convertDlg.ui:85
+msgctxt "@option:check"
+msgid "Set As GRUB Wallpaper:"
+msgstr "Встановити тло екрана GRUB:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/installDlg.ui:17
+msgctxt "@label:listbox"
+msgid "Select partition to install/recover GRUB:"
+msgstr "Виберіть розділ для встановлення або відновлення GRUB:"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:48
+msgctxt "@title:column"
+msgid "Partition"
+msgstr "Розділ"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:53
+msgctxt "@title:column"
+msgid "Mountpoint"
+msgstr "Точка монтування"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:58
+msgctxt "@title:column"
+msgid "Label"
+msgstr "Мітка"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:63
+msgctxt "@title:column"
+msgid "File System"
+msgstr "Файлова система"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:68
+msgctxt "@title:column"
+msgid "Size"
+msgstr "Розмір"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_partition)
+#: ui/installDlg.ui:76
+msgctxt "@info:tooltip"
+msgid ""
+"Install the bootloader on the boot sector of the selected partition instead "
+"of the MBR(=Master Boot Sector). Not recommended."
+msgstr ""
+"Встановити завантажувач до сектору завантаження вибраного розділу, а не до "
+"MBR (=основного сектора завантаження). Не рекомендовано."
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_partition)
+#: ui/installDlg.ui:79
+msgctxt "@option:check"
+msgid "Install on partition instead of MBR (Advanced)"
+msgstr "Встановити на розділ замість MBR (для досвідчених)"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: ui/kcm_grub2.ui:21
+msgctxt "@title:tab Refers to settings."
+msgid "General"
+msgstr "Загальне"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_timeout)
+#: ui/kcm_grub2.ui:27
+msgctxt "@title:group"
+msgid "Timeout"
+msgstr "Час очікування"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeout)
+#: ui/kcm_grub2.ui:35
+msgctxt "@option:check"
+msgid "Hide the menu for:"
+msgstr "Приховати меню на:"
+
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
+#: ui/kcm_grub2.ui:45 ui/kcm_grub2.ui:144
+msgctxt "@label:spinbox seconds (suffix)"
+msgid "s"
+msgstr "с"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeoutShowTimer)
+#: ui/kcm_grub2.ui:76
+msgctxt "@option:check"
+msgid "Show countdown timer"
+msgstr "Показувати зворотний відлік часу"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_timeout)
+#: ui/kcm_grub2.ui:83
+msgctxt "@option:check"
+msgid "Automatically boot the default entry after showing the menu"
+msgstr "Автоматично завантажити типовий пункт після показу меню"
+
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
+#: ui/kcm_grub2.ui:106
+msgctxt "@option:radio"
+msgid "Immediately"
+msgstr "Негайно"
+
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
+#: ui/kcm_grub2.ui:131
+msgctxt "@option:radio"
+msgid "After:"
+msgstr "Після:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
+#: ui/kcm_grub2.ui:172
+msgctxt "@title:group"
+msgid "Generated Entries"
+msgstr "Створені пункти"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
+#: ui/kcm_grub2.ui:178
+msgctxt "@option:check"
+msgid "Generate recovery entries"
+msgstr "Створити пункти відновлення"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
+#: ui/kcm_grub2.ui:185
+msgctxt "@option:check"
+msgid "Generate memtest entries"
+msgstr "Створити пункти memtest"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
+#: ui/kcm_grub2.ui:192
+msgctxt "@option:check"
+msgid "Probe for operating systems"
+msgstr "Шукати операційні системи"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
+#: ui/kcm_grub2.ui:202
+msgctxt "@title:group"
+msgid "Default Entry"
+msgstr "Типовий пункт"
+
+#. i18n: ectx: property (text), widget (QLabel, label_default)
+#: ui/kcm_grub2.ui:208
+msgctxt "@label:listbox"
+msgid "Default Entry:"
+msgstr "Типовий пункт:"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_remove)
+#: ui/kcm_grub2.ui:224
+msgctxt "@action:button"
+msgid "Remove Old Entries"
+msgstr "Вилучити застарілі пункти"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
+#: ui/kcm_grub2.ui:233
+msgctxt "@option:check"
+msgid "The next booted entry will become default"
+msgstr "Наступний пункт завантаження стане типовим"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: ui/kcm_grub2.ui:244
+msgctxt "@title:tab"
+msgid "Appearance"
+msgstr "Вигляд"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#: ui/kcm_grub2.ui:250
+msgctxt "@title:group"
+msgid "Resolutions"
+msgstr "Роздільності"
+
+#. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
+#: ui/kcm_grub2.ui:256
+msgctxt "@label:listbox"
+msgid "GRUB:"
+msgstr "GRUB:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
+#: ui/kcm_grub2.ui:270
+msgctxt "@label:listbox"
+msgid "Linux Kernel:"
+msgstr "Ядро Linux:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
+#: ui/kcm_grub2.ui:287
+msgctxt "@title:group"
+msgid "Colors"
+msgstr "Кольори"
+
+#. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
+#: ui/kcm_grub2.ui:295
+msgctxt "@label:chooser"
+msgid "Normal Foreground (Text):"
+msgstr "Звичайний текст:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
+#: ui/kcm_grub2.ui:305
+msgctxt "@label:chooser"
+msgid "Highlight Foreground (Text):"
+msgstr "Позначений текст:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
+#: ui/kcm_grub2.ui:319
+msgctxt "@label:chooser"
+msgid "Normal Background:"
+msgstr "Звичайне тло:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
+#: ui/kcm_grub2.ui:329
+msgctxt "@label:chooser"
+msgid "Highlight Background:"
+msgstr "Тло позначеного:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
+#: ui/kcm_grub2.ui:344
+msgctxt "@title:group Refers to the image shown behind the boot menu."
+msgid "Background"
+msgstr "Тло"
+
+#. i18n: ectx: property (text), widget (QLabel, label_background)
+#: ui/kcm_grub2.ui:350
+msgctxt "@label:textbox"
+msgid "Wallpaper:"
+msgstr "Тло стільниці:"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_preview)
+#: ui/kcm_grub2.ui:362
+msgctxt "@action:button"
+msgid "Preview"
+msgstr "Перегляд"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_create)
+#: ui/kcm_grub2.ui:369
+msgctxt "@action:button"
+msgid "Create"
+msgstr "Створити"
+
+#. i18n: ectx: property (text), widget (QLabel, label_theme)
+#: ui/kcm_grub2.ui:378
+msgctxt "@label:textbox"
+msgid "Theme:"
+msgstr "Тема:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: ui/kcm_grub2.ui:405
+msgctxt "@title:tab Refers to settings."
+msgid "Advanced"
+msgstr "Додатково"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
+#: ui/kcm_grub2.ui:411
+msgctxt "@title:group"
+msgid "Linux Kernel Arguments"
+msgstr "Параметри ядра Linux"
+
+#. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
+#: ui/kcm_grub2.ui:417
+msgctxt "@label:textbox"
+msgid "Normal Entries:"
+msgstr "Звичайні пункти:"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineDefaultSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalInputSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalOutputSuggestions)
+#: ui/kcm_grub2.ui:429 ui/kcm_grub2.ui:450 ui/kcm_grub2.ui:480
+#: ui/kcm_grub2.ui:501 ui/kcm_grub2.ui:522
+msgctxt "@action:button"
+msgid "Suggestions"
+msgstr "Варіанти"
+
+#. i18n: ectx: property (text), widget (QLabel, label_cmdline)
+#: ui/kcm_grub2.ui:438
+msgctxt "@label:textbox"
+msgid "All Entries:"
+msgstr "Всі пункти:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
+#: ui/kcm_grub2.ui:462
+msgctxt "@title:group Noun."
+msgid "Terminal"
+msgstr "Термінал"
+
+#. i18n: ectx: property (text), widget (QLabel, label_terminal)
+#: ui/kcm_grub2.ui:468
+msgctxt "@label:textbox Noun."
+msgid "Terminal:"
+msgstr "Термінал:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
+#: ui/kcm_grub2.ui:489
+msgctxt "@label:textbox"
+msgid "Input Terminal:"
+msgstr "Термінал введення даних:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
+#: ui/kcm_grub2.ui:510
+msgctxt "@label:textbox"
+msgid "Output Terminal:"
+msgstr "Термінал виведення даних:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
+#: ui/kcm_grub2.ui:534
+msgctxt "@title:group Refers to settings."
+msgid "Other"
+msgstr "Інше"
+
+#. i18n: ectx: property (text), widget (QLabel, label_distributor)
+#: ui/kcm_grub2.ui:540
+msgctxt "@label:textbox"
+msgid "Distributor:"
+msgstr "Розповсюджувач:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_serial)
+#: ui/kcm_grub2.ui:550
+msgctxt "@label:textbox"
+msgid "Serial Command:"
+msgstr "Команда послідовного порту:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_initTune)
+#: ui/kcm_grub2.ui:560
+msgctxt "@label:textbox"
+msgid "Init Tune:"
+msgstr "Початкова мелодія:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_uuid)
+#: ui/kcm_grub2.ui:570
+msgctxt "@option:check"
+msgid "Enable UUIDs:"
+msgstr "Увімкнути UUID:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
+#: ui/kcm_grub2.ui:596
+msgctxt "@title:group"
+msgid "Tools"
+msgstr "Інструменти"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_install)
+#: ui/kcm_grub2.ui:608
+msgctxt "@action:button"
+msgid "Install/Recover Bootloader"
+msgstr "Встановити або відновити завантажувач"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/removeDlg.ui:17
+msgctxt "@label:listbox"
+msgid "Select entries to remove:"
+msgstr "Позначте пункти, які слід вилучити:"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
+#: ui/removeDlg.ui:34
+msgctxt "@info:tooltip"
+msgid "Remove associated kernel header files."
+msgstr "Вилучити пов’язані з пунктом файли заголовків ядра."
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
+#: ui/removeDlg.ui:37
+msgctxt "@option:check"
+msgid "Also remove associated old packages"
+msgstr "Вилучити пов’язані застарілі пакунки"
+
+#~ msgctxt "@info"
+#~ msgid "No valid GRUB2/BURG installation could be detected!"
+#~ msgstr "Не вдалося виявити коректно встановленого GRUB2 або BURG!"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reload Configuration"
+#~ msgstr "Перезавантажити налаштування"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Image"
+#~ msgstr "Зображення"
+
+#~ msgctxt "@info"
+#~ msgid "Could not locate <command>%1</command> executable."
+#~ msgstr "Не вдалося знайти виконуваний файл <command>%1</command>."
+
+#~ msgid "Path of the GRUB menu file."
+#~ msgstr "Шлях до файла меню GRUB."
+
+#~ msgid "Path of the GRUB configuration file."
+#~ msgstr "Шлях до файла налаштувань GRUB."
+
+#~ msgid "Path of the GRUB environment file."
+#~ msgstr "Шлях до файла середовища GRUB."
+
+#~ msgid "Path of the GRUB memtest script."
+#~ msgstr "Шлях до скрипту memtest GRUB."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Some necessary GRUB configuration files are missing/invalid.<br/>Please "
+#~ "select an action:"
+#~ msgstr ""
+#~ "Деякі з необхідних файлів налаштування GRUB не знайдено або ці файли є "
+#~ "некоректними.<br/>Виберіть дію, яку слід виконати:"
+
+#~ msgctxt "@option:radio"
+#~ msgid "Recover GRUB from a previous installation"
+#~ msgstr "Відновити GRUB з попередньої встановленої системи"
+
+#~ msgctxt "@option:radio"
+#~ msgid "Manually browse for GRUB configuration files"
+#~ msgstr "Вручну вказати файли налаштувань GRUB"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "GRUB Menu File:"
+#~ msgstr "Файл меню GRUB:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "GRUB Environment File:"
+#~ msgstr "Файл середовища GRUB:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "GRUB Memtest Script:"
+#~ msgstr "Скрипт Memtest GRUB:"
+
+#~ msgctxt "@info"
+#~ msgid "This is your current kernel!<br/>Are you sure you want to remove it?"
+#~ msgstr "Це ваше поточне ядро!<br/>Ви справді бажаєте його вилучити?"
+
+#~ msgid "%1 GiB"
+#~ msgstr "%1 ГіБ"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>None of the following files were readable.</para><para>Select "
+#~ "another file?</para>"
+#~ msgstr ""
+#~ "<para>Жоден з вказаних нижче файлів непридатний для читання.</"
+#~ "para><para>Вибрати інший файл?</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>Your configuration was successfully saved.<nl/>For the changes to "
+#~ "take effect your GRUB menu has to be updated.</para><para>Update your "
+#~ "GRUB menu?</para>"
+#~ msgstr ""
+#~ "<para>Ваші налаштування було успішно збережено.<nl/>Щоб внесені зміни "
+#~ "набули чинності, ваше меню GRUB слід оновити.</para><para>Оновити меню "
+#~ "GRUB?</para>"
+
+#~ msgctxt "@info"
+#~ msgid "Error code: %1<nl/>Error description: %2"
+#~ msgstr "Код помилки: %1<nl/>Опис помилки: %2"
+
+#~ msgctxt "@title:window"
+#~ msgid "Updating GRUB"
+#~ msgstr "Оновлення GRUB"
+
+#~ msgctxt "@info"
+#~ msgid "Failed to update the GRUB menu."
+#~ msgstr "Не вдалося оновити меню GRUB."
+
+#~ msgctxt "@option:radio"
+#~ msgid "Default Entry Is Defined Using 'grub-set-default' or 'grub-reboot'"
+#~ msgstr ""
+#~ "Типовий пункт визначено за допомогою «grub-set-default» або «grub-reboot»"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "ImageMagick was not found."
+#~ msgstr "ImageMagick не знайдено."
+
+#~ msgctxt "@option:radio"
+#~ msgid "Other:"
+#~ msgstr "Інше:"

@@ -1,0 +1,1045 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Kira J. Fernandez <kirajfdez@gmail.com>, 2012.
+# Eloy Cuadra <ecuadra@eloihr.net>, 2012, 2013.
+# Rocio Gallego <traducciones@rociogallego.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2013-10-12 01:33+0000\n"
+"PO-Revision-Date: 2013-07-02 09:00+0200\n"
+"Last-Translator: Rocio Gallego <traducciones@rociogallego.com>\n"
+"Language-Team: Spanish <kde-l10n-es@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Rocío Gallego,Kira J. Fernández"
+
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "traducciones@rociogallego.com,kirajfdez@gmail.com"
+
+#: src/convertDlg.cpp:48
+msgctxt "@item:inlistbox"
+msgid "ImageMagick supported image formats"
+msgstr "Formatos de imagen aceptados por ImageMagick"
+
+#: src/convertDlg.cpp:76
+msgctxt "@info"
+msgid ""
+"Please fill in both <interface>Image</interface> and <interface>Convert To</"
+"interface> fields."
+msgstr ""
+"Por favor, rellene los campos <interface>Imagen</interface> y "
+"<interface>Convertir a</interface>."
+
+#: src/convertDlg.cpp:79
+msgctxt "@info"
+msgid ""
+"Please fill in both <interface>Width</interface> and <interface>Height</"
+"interface> fields."
+msgstr ""
+"Por favor, rellene los campos <interface>Anchura</interface> y "
+"<interface>Altura</interface>."
+
+#: src/convertDlg.cpp:82
+msgctxt "@info"
+msgid ""
+"You do not have write permissions in this directory, please select another "
+"destination."
+msgstr ""
+"No tiene permisos de escritura en este directorio, seleccione otro destino."
+
+#: src/helper/helper.cpp:79
+#, kde-format
+msgctxt "@info"
+msgid "Original configuration file <filename>%1</filename> does not exist."
+msgstr ""
+"El archivo de configuración original <filename>%1</filename> no existe."
+
+#: src/helper/helper.cpp:84
+#, kde-format
+msgctxt "@info"
+msgid "Cannot remove current configuration file <filename>%1</filename>."
+msgstr ""
+"No se puede eliminar el archivo de configuración actual <filename>%1</"
+"filename>."
+
+#: src/helper/helper.cpp:89
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Cannot copy original configuration file <filename>%1</filename> to <filename>"
+"%2</filename>."
+msgstr ""
+"No se puede copiar el archivo de configuración original <filename>%1</"
+"filename> en <filename>%2</filename>."
+
+#: src/helper/helper.cpp:105
+msgctxt "@info"
+msgid "Failed to create temporary mount point."
+msgstr "No se ha podido crear un punto de montaje temporal."
+
+#: src/installDlg.cpp:45
+msgctxt "@title:window"
+msgid "Install/Recover Bootloader"
+msgstr "Instalar/recuperar el cargador de arranque"
+
+#: src/installDlg.cpp:98
+msgctxt "@info"
+msgid "Sorry, you have to select a partition with a proper name!"
+msgstr "Lo siento, tiene que seleccionar una partición con un nombre adecuado."
+
+#: src/installDlg.cpp:109
+msgctxt "@title:window"
+msgid "Installing"
+msgstr "Instalando"
+
+#: src/installDlg.cpp:109
+msgctxt "@info:progress"
+msgid "Installing GRUB..."
+msgstr "Instalando GRUB..."
+
+#: src/installDlg.cpp:120 src/kcm_grub2.cpp:484
+msgctxt "@title:window"
+msgid "Information"
+msgstr "Información"
+
+#: src/installDlg.cpp:125
+msgctxt "@info"
+msgid "Successfully installed GRUB."
+msgstr "GRUB instalado con éxito"
+
+#: src/installDlg.cpp:127
+msgctxt "@info"
+msgid "Failed to install GRUB."
+msgstr "No se ha podido instalar GRUB."
+
+#: src/kcm_grub2.cpp:62
+msgctxt "@title"
+msgid "KDE GRUB2 Bootloader Control Module"
+msgstr "Módulo de control del cargador de arranque de GRUB2 para KDE"
+
+#: src/kcm_grub2.cpp:62
+msgctxt "@title"
+msgid "A KDE Control Module for configuring the GRUB2 bootloader."
+msgstr ""
+"Módulo de control de KDE para configurar el cargador de arranque de GRUB2"
+
+#: src/kcm_grub2.cpp:62
+msgctxt "@info:credit"
+msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
+msgstr "Copyright © 2008-2013 Konstantinos Smanis"
+
+#: src/kcm_grub2.cpp:63
+msgctxt "@info:credit"
+msgid "Κonstantinos Smanis"
+msgstr "Κonstantinos Smanis"
+
+#: src/kcm_grub2.cpp:63
+msgctxt "@info:credit"
+msgid "Main Developer"
+msgstr "Desarrollador principal"
+
+#: src/kcm_grub2.cpp:89
+msgctxt "@info"
+msgid "Successfully restored the default values."
+msgstr "Los valores por defecto se han restaurado con éxito."
+
+#: src/kcm_grub2.cpp:91
+msgctxt "@info"
+msgid "Failed to restore the default values."
+msgstr "No se han podido restaurar los valores por defecto."
+
+#: src/kcm_grub2.cpp:472
+msgctxt "@title:window Verb (gerund). Refers to current status."
+msgid "Saving"
+msgstr "Guardando"
+
+#: src/kcm_grub2.cpp:472
+msgctxt "@info:progress"
+msgid "Saving GRUB settings..."
+msgstr "Guardando la configuración de GRUB..."
+
+#: src/kcm_grub2.cpp:489
+msgctxt "@info"
+msgid "Successfully saved GRUB settings."
+msgstr "La configuración de GRUB se ha guardado con éxito."
+
+#: src/kcm_grub2.cpp:492
+msgctxt "@info"
+msgid "Failed to save GRUB settings."
+msgstr "No se ha podido guardar la configuración de GRUB."
+
+#: src/kcm_grub2.cpp:563 src/kcm_grub2.cpp:585
+msgctxt "@title:window"
+msgid "Enter screen resolution"
+msgstr "Introduzca la resolución de pantalla"
+
+#: src/kcm_grub2.cpp:563
+msgctxt "@label:textbox"
+msgid "Please enter a GRUB resolution:"
+msgstr "Por favor, introduzca una resolución para GRUB:"
+
+#: src/kcm_grub2.cpp:585
+msgctxt "@label:textbox"
+msgid "Please enter a Linux boot resolution:"
+msgstr "Por favor, introduzca una resolución para el arranque de Linux:"
+
+#: src/kcm_grub2.cpp:631
+msgctxt "@info"
+msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
+msgstr ""
+"Presione <shortcut>Escape</shortcut> para salir del modo de pantalla "
+"completa."
+
+#: src/kcm_grub2.cpp:780 src/kcm_grub2.cpp:781
+msgctxt "@item:inlistbox Refers to color."
+msgid "Black"
+msgstr "Negro"
+
+#: src/kcm_grub2.cpp:782 src/kcm_grub2.cpp:783
+msgctxt "@item:inlistbox Refers to color."
+msgid "Transparent"
+msgstr "Transparente"
+
+#: src/kcm_grub2.cpp:785
+msgctxt "@item:inlistbox Refers to color."
+msgid "Blue"
+msgstr "Azul"
+
+#: src/kcm_grub2.cpp:787
+msgctxt "@item:inlistbox Refers to color."
+msgid "Cyan"
+msgstr "Cian"
+
+#: src/kcm_grub2.cpp:789
+msgctxt "@item:inlistbox Refers to color."
+msgid "Dark Gray"
+msgstr "Gris oscuro"
+
+#: src/kcm_grub2.cpp:791
+msgctxt "@item:inlistbox Refers to color."
+msgid "Green"
+msgstr "Verde"
+
+#: src/kcm_grub2.cpp:793
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Cyan"
+msgstr "Cian claro"
+
+#: src/kcm_grub2.cpp:795
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Blue"
+msgstr "Azul claro"
+
+#: src/kcm_grub2.cpp:797
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Green"
+msgstr "Verde claro"
+
+#: src/kcm_grub2.cpp:799
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Gray"
+msgstr "Gris claro"
+
+#: src/kcm_grub2.cpp:801
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Magenta"
+msgstr "Magenta claro"
+
+#: src/kcm_grub2.cpp:803
+msgctxt "@item:inlistbox Refers to color."
+msgid "Light Red"
+msgstr "Rojo claro"
+
+#: src/kcm_grub2.cpp:805
+msgctxt "@item:inlistbox Refers to color."
+msgid "Magenta"
+msgstr "Magenta"
+
+#: src/kcm_grub2.cpp:807
+msgctxt "@item:inlistbox Refers to color."
+msgid "Red"
+msgstr "Rojo"
+
+#: src/kcm_grub2.cpp:809
+msgctxt "@item:inlistbox Refers to color."
+msgid "White"
+msgstr "Blanco"
+
+#: src/kcm_grub2.cpp:811
+msgctxt "@item:inlistbox Refers to color."
+msgid "Yellow"
+msgstr "Amarillo"
+
+#: src/kcm_grub2.cpp:834 src/kcm_grub2.cpp:843
+msgctxt "@action:inmenu"
+msgid "Quiet Boot"
+msgstr "Arranque silencioso"
+
+#: src/kcm_grub2.cpp:835 src/kcm_grub2.cpp:844
+msgctxt "@action:inmenu"
+msgid "Show Splash Screen"
+msgstr "Mostrar pantalla de bienvenida"
+
+#: src/kcm_grub2.cpp:836 src/kcm_grub2.cpp:845
+msgctxt "@action:inmenu"
+msgid "Disable Plymouth"
+msgstr "Deshabilitar Plymouth"
+
+#: src/kcm_grub2.cpp:837 src/kcm_grub2.cpp:846
+msgctxt "@action:inmenu"
+msgid "Turn Off ACPI"
+msgstr "Apagar ACPI"
+
+#: src/kcm_grub2.cpp:838 src/kcm_grub2.cpp:847
+msgctxt "@action:inmenu"
+msgid "Turn Off APIC"
+msgstr "Apagar APIC"
+
+#: src/kcm_grub2.cpp:839 src/kcm_grub2.cpp:848
+msgctxt "@action:inmenu"
+msgid "Turn Off Local APIC"
+msgstr "Apagar APIC local"
+
+#: src/kcm_grub2.cpp:840 src/kcm_grub2.cpp:849
+msgctxt "@action:inmenu"
+msgid "Single User Mode"
+msgstr "Modo monousuario"
+
+#: src/kcm_grub2.cpp:852 src/kcm_grub2.cpp:857 src/kcm_grub2.cpp:864
+msgctxt "@action:inmenu"
+msgid "PC BIOS && EFI Console"
+msgstr "BIOS del PC && Consola EFI"
+
+#: src/kcm_grub2.cpp:853 src/kcm_grub2.cpp:858 src/kcm_grub2.cpp:865
+msgctxt "@action:inmenu"
+msgid "Serial Terminal"
+msgstr "Terminal serie"
+
+#: src/kcm_grub2.cpp:854 src/kcm_grub2.cpp:859 src/kcm_grub2.cpp:866
+msgctxt ""
+"@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
+"former IEEE standard."
+msgid "Open Firmware Console"
+msgstr "Abrir la consola de firmware"
+
+#: src/kcm_grub2.cpp:860
+msgctxt "@action:inmenu"
+msgid "PC AT Keyboard (Coreboot)"
+msgstr "Teclado para PC AT (arranque del núcleo)"
+
+#: src/kcm_grub2.cpp:861
+msgctxt "@action:inmenu"
+msgid "USB Keyboard (HID Boot Protocol)"
+msgstr "Teclado USB (protocolo de arranque HID)"
+
+#: src/kcm_grub2.cpp:867
+msgctxt "@action:inmenu"
+msgid "Graphics Mode Output"
+msgstr "Salida en modo gráfico"
+
+#: src/kcm_grub2.cpp:868
+msgctxt "@action:inmenu"
+msgid "VGA Text Output (Coreboot)"
+msgstr "Salida en modo texto VGA (arranque del núcleo)"
+
+#: src/kcm_grub2.cpp:1063
+msgctxt "@title:window"
+msgid "Probing devices"
+msgstr "Examinando dispositivos"
+
+#: src/kcm_grub2.cpp:1063
+msgctxt "@info:progress"
+msgid "Probing devices for their GRUB names..."
+msgstr "Examinando los nombres de los dispositivos en GRUB..."
+
+#: src/kcm_grub2.cpp:1072
+msgctxt "@info"
+msgid "Failed to get GRUB device names."
+msgstr "No se han podido obtener los nombres de dispositivos en GRUB"
+
+#: src/kcm_grub2.cpp:1077
+msgctxt "@info"
+msgid "Helper returned malformed device list."
+msgstr "El asistente ha devuelto una lista de dispositivos defectuosa."
+
+#: src/kcm_grub2.cpp:1130 src/kcm_grub2.cpp:1133
+msgctxt "@item:inlistbox Refers to screen resolution."
+msgid "Custom..."
+msgstr "Personalizado..."
+
+#: src/kcm_grub2.cpp:1134
+msgctxt "@item:inlistbox"
+msgid "Unspecified"
+msgstr "Sin especificar"
+
+#: src/kcm_grub2.cpp:1135
+msgctxt "@item:inlistbox"
+msgid "Boot in Text Mode"
+msgstr "Arranque en modo texto"
+
+#: src/kcm_grub2.cpp:1136
+msgctxt "@item:inlistbox"
+msgid "Keep GRUB's Resolution"
+msgstr "Mantener la resolución de GRUB"
+
+#: src/kcm_grub2.cpp:1162
+msgctxt "@info"
+msgid "The process could not be started."
+msgstr "No se puede iniciar el proceso."
+
+#: src/kcm_grub2.cpp:1165
+msgctxt "@info"
+msgid "The process crashed."
+msgstr "El proceso ha fallado."
+
+#: src/kcm_grub2.cpp:1172
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error "
+"message:<nl/><message>%3</message>"
+msgstr ""
+"Orden: <command>%1</command><nl/>Código de error: <numid>%2</numid><nl/"
+">Mensaje de error:<nl/><message>%3</message>"
+
+#: src/qPkBackend.cpp:31
+msgctxt "This is when the transaction status is not known"
+msgid "Unknown state"
+msgstr "Estado desconocido"
+
+#: src/qPkBackend.cpp:34
+msgctxt "transaction state, the daemon is in the process of starting"
+msgid "Waiting for service to start"
+msgstr "Esperando a que se inicie el servicio"
+
+#: src/qPkBackend.cpp:37
+msgctxt "transaction state, the transaction is waiting for another to complete"
+msgid "Waiting for other tasks"
+msgstr "Esperando otras tareas"
+
+#: src/qPkBackend.cpp:40
+msgctxt "transaction state, just started"
+msgid "Running task"
+msgstr "Ejecutando tarea"
+
+#: src/qPkBackend.cpp:43
+msgctxt "transaction state, is querying data"
+msgid "Querying"
+msgstr "Solicitando"
+
+#: src/qPkBackend.cpp:46
+msgctxt "transaction state, getting data from a server"
+msgid "Getting information"
+msgstr "Obteniendo información"
+
+#: src/qPkBackend.cpp:49
+msgctxt "transaction state, removing packages"
+msgid "Removing packages"
+msgstr "Eliminando paquetes"
+
+#: src/qPkBackend.cpp:52
+msgctxt "transaction state, downloading package files"
+msgid "Downloading packages"
+msgstr "Descargando paquetes"
+
+#: src/qPkBackend.cpp:55
+msgctxt "transaction state, installing packages"
+msgid "Installing packages"
+msgstr "Instalando paquetes"
+
+#: src/qPkBackend.cpp:58
+msgctxt "transaction state, refreshing internal lists"
+msgid "Refreshing software list"
+msgstr "Refrescando la lista de software"
+
+#: src/qPkBackend.cpp:61
+msgctxt "transaction state, installing updates"
+msgid "Updating packages"
+msgstr "Actualizando paquetes"
+
+#: src/qPkBackend.cpp:64
+msgctxt "transaction state, removing old packages, and cleaning config files"
+msgid "Cleaning up packages"
+msgstr "Limpiando paquetes"
+
+#: src/qPkBackend.cpp:67
+msgctxt "transaction state, obsoleting old packages"
+msgid "Obsoleting packages"
+msgstr "Marcando paquetes como anticuados"
+
+#: src/qPkBackend.cpp:70
+msgctxt "transaction state, checking the transaction before we do it"
+msgid "Resolving dependencies"
+msgstr "Resolviendo dependencias"
+
+#: src/qPkBackend.cpp:73
+msgctxt ""
+"transaction state, checking if we have all the security keys for the "
+"operation"
+msgid "Checking signatures"
+msgstr "Comprobando las firmas"
+
+#: src/qPkBackend.cpp:76
+msgctxt "transaction state, when we return to a previous system state"
+msgid "Rolling back"
+msgstr "Reanudando"
+
+#: src/qPkBackend.cpp:79
+msgctxt "transaction state, when we're doing a test transaction"
+msgid "Testing changes"
+msgstr "Probando los cambios"
+
+#: src/qPkBackend.cpp:82
+msgctxt "transaction state, when we're writing to the system package database"
+msgid "Committing changes"
+msgstr "Enviando cambios"
+
+#: src/qPkBackend.cpp:85
+msgctxt "transaction state, requesting data from a server"
+msgid "Requesting data"
+msgstr "Solicitando datos"
+
+#: src/qPkBackend.cpp:88
+msgctxt "transaction state, all done!"
+msgid "Finished"
+msgstr "Terminado"
+
+#: src/qPkBackend.cpp:91
+msgctxt "transaction state, in the process of cancelling"
+msgid "Cancelling"
+msgstr "Cancelando"
+
+#: src/qPkBackend.cpp:94
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading repository information"
+msgstr "Descargando la información del repositorio"
+
+#: src/qPkBackend.cpp:97
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading list of packages"
+msgstr "Descargando la lista de paquetes"
+
+#: src/qPkBackend.cpp:100
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading file lists"
+msgstr "Descargando listas de archivos"
+
+#: src/qPkBackend.cpp:103
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading lists of changes"
+msgstr "Descargando listas de cambios"
+
+#: src/qPkBackend.cpp:106
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading groups"
+msgstr "Descargando grupos"
+
+#: src/qPkBackend.cpp:109
+msgctxt "transaction state, downloading metadata"
+msgid "Downloading update information"
+msgstr "Descargando información de actualizaciones"
+
+#: src/qPkBackend.cpp:112
+msgctxt "transaction state, repackaging delta files"
+msgid "Repackaging files"
+msgstr "Reempaquetando archivos"
+
+#: src/qPkBackend.cpp:115
+msgctxt "transaction state, loading databases"
+msgid "Loading cache"
+msgstr "Cargando caché"
+
+#: src/qPkBackend.cpp:118
+msgctxt "transaction state, scanning for running processes"
+msgid "Scanning installed applications"
+msgstr "Escaneando las aplicaciones intaladas"
+
+#: src/qPkBackend.cpp:121
+msgctxt ""
+"transaction state, generating a list of packages installed on the system"
+msgid "Generating package lists"
+msgstr "Generando lista de paquetes"
+
+#: src/qPkBackend.cpp:124
+msgctxt "transaction state, when we're waiting for the native tools to exit"
+msgid "Waiting for package manager lock"
+msgstr "Esperando a que se bloquee el gestor de paquetes"
+
+#: src/qPkBackend.cpp:127
+msgctxt "waiting for user to type in a password"
+msgid "Waiting for authentication"
+msgstr "Esperando autenticación"
+
+#: src/qPkBackend.cpp:130
+msgctxt "we are updating the list of processes"
+msgid "Updating the list of running applications"
+msgstr "Actualizando la lista de aplicaciones en ejecución"
+
+#: src/qPkBackend.cpp:133
+msgctxt "we are checking executable files in use"
+msgid "Checking for applications currently in use"
+msgstr "Comprobando aplicaciones actualmente en uso"
+
+#: src/qPkBackend.cpp:136
+msgctxt "we are checking for libraries in use"
+msgid "Checking for libraries currently in use"
+msgstr "Comprobando bibliotecas actualmente en uso"
+
+#: src/qPkBackend.cpp:139
+msgctxt "we are copying package files to prepare to install"
+msgid "Copying files"
+msgstr "Copiando archivos"
+
+#: src/removeDlg.cpp:46
+msgctxt "@title:window"
+msgid "Remove Old Entries"
+msgstr "Eliminando entradas antiguas"
+
+#: src/removeDlg.cpp:60
+msgctxt "@title:window"
+msgid "Finding Old Entries"
+msgstr "Encontrando entradas antiguas"
+
+#: src/removeDlg.cpp:60
+msgctxt "@info:progress"
+msgid "Finding Old Entries..."
+msgstr "Encontrando entradas antiguas..."
+
+#: src/removeDlg.cpp:86
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "Kernel %1"
+msgstr "Kernel %1"
+
+#: src/removeDlg.cpp:102
+msgctxt "@info"
+msgid "No removable entries were found."
+msgstr "No se han encontrado entradas eliminables"
+
+#: src/removeDlg.cpp:124
+msgctxt "@info"
+msgid "Are you sure you want to remove the following packages?"
+msgstr "¿Seguro que desea eliminar los siguientes paquetes?"
+
+#: src/removeDlg.cpp:148
+msgctxt "@title:window"
+msgid "Removing Old Entries"
+msgstr "Eliminando entradas antiguas"
+
+#: src/removeDlg.cpp:161
+msgctxt "@info"
+msgid "Package removal failed."
+msgstr "La eliminación del paquete ha fallado."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/convertDlg.ui:19
+msgctxt "@label:textbox"
+msgid "Image:"
+msgstr "Imagen:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: ui/convertDlg.ui:29
+msgctxt "@label:textbox"
+msgid "Convert To:"
+msgstr "Convertir a:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: ui/convertDlg.ui:41
+msgctxt "@title:group"
+msgid "Conversion Options"
+msgstr "Opciones de conversión"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: ui/convertDlg.ui:47
+msgctxt "@label:spinbox"
+msgid "Width:"
+msgstr "Anchura:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: ui/convertDlg.ui:61
+msgctxt "@label:spinbox"
+msgid "Height:"
+msgstr "Altura:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: ui/convertDlg.ui:75
+msgctxt "@option:check"
+msgid "Force resolution:"
+msgstr "Forzar resolución:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: ui/convertDlg.ui:85
+msgctxt "@option:check"
+msgid "Set As GRUB Wallpaper:"
+msgstr "Establecer como fondo de GRUB:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/installDlg.ui:17
+msgctxt "@label:listbox"
+msgid "Select partition to install/recover GRUB:"
+msgstr "Seleccionar la partición donde instalar/recuperar GRUB:"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:48
+msgctxt "@title:column"
+msgid "Partition"
+msgstr "Partición"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:53
+msgctxt "@title:column"
+msgid "Mountpoint"
+msgstr "Punto de montaje"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:58
+msgctxt "@title:column"
+msgid "Label"
+msgstr "Etiqueta"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:63
+msgctxt "@title:column"
+msgid "File System"
+msgstr "Sistema de archivos"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: ui/installDlg.ui:68
+msgctxt "@title:column"
+msgid "Size"
+msgstr "Tamaño"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_partition)
+#: ui/installDlg.ui:76
+msgctxt "@info:tooltip"
+msgid ""
+"Install the bootloader on the boot sector of the selected partition instead "
+"of the MBR(=Master Boot Sector). Not recommended."
+msgstr ""
+"Instalar el cargador de arranque en el sector de arranque de la partición "
+"seleccionada en lugar de en el MBR (Master Boot Sector). No se recomienda."
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_partition)
+#: ui/installDlg.ui:79
+msgctxt "@option:check"
+msgid "Install on partition instead of MBR (Advanced)"
+msgstr "Instalar en la partición en lugar de en el MBR (Avanzado)"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: ui/kcm_grub2.ui:21
+msgctxt "@title:tab Refers to settings."
+msgid "General"
+msgstr "General"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_timeout)
+#: ui/kcm_grub2.ui:27
+msgctxt "@title:group"
+msgid "Timeout"
+msgstr "Tiempo límite"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeout)
+#: ui/kcm_grub2.ui:35
+msgctxt "@option:check"
+msgid "Hide the menu for:"
+msgstr "Ocultar el menú para:"
+
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
+#: ui/kcm_grub2.ui:45 ui/kcm_grub2.ui:144
+msgctxt "@label:spinbox seconds (suffix)"
+msgid "s"
+msgstr "s"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeoutShowTimer)
+#: ui/kcm_grub2.ui:76
+msgctxt "@option:check"
+msgid "Show countdown timer"
+msgstr "Mostrar cuenta atrás"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_timeout)
+#: ui/kcm_grub2.ui:83
+msgctxt "@option:check"
+msgid "Automatically boot the default entry after showing the menu"
+msgstr "Arrancar automáticamente la entrada por defecto tras mostrar el menú"
+
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
+#: ui/kcm_grub2.ui:106
+msgctxt "@option:radio"
+msgid "Immediately"
+msgstr "Inmediatamente"
+
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
+#: ui/kcm_grub2.ui:131
+msgctxt "@option:radio"
+msgid "After:"
+msgstr "Después de:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
+#: ui/kcm_grub2.ui:172
+msgctxt "@title:group"
+msgid "Generated Entries"
+msgstr "Entradas generadas"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
+#: ui/kcm_grub2.ui:178
+msgctxt "@option:check"
+msgid "Generate recovery entries"
+msgstr "Generar entradas de recuperación"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
+#: ui/kcm_grub2.ui:185
+msgctxt "@option:check"
+msgid "Generate memtest entries"
+msgstr "Generar entradas de test de memoria"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
+#: ui/kcm_grub2.ui:192
+msgctxt "@option:check"
+msgid "Probe for operating systems"
+msgstr "Examinando sistemas operativos"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
+#: ui/kcm_grub2.ui:202
+msgctxt "@title:group"
+msgid "Default Entry"
+msgstr "Entrada por defecto"
+
+#. i18n: ectx: property (text), widget (QLabel, label_default)
+#: ui/kcm_grub2.ui:208
+msgctxt "@label:listbox"
+msgid "Default Entry:"
+msgstr "Entrada por defecto:"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_remove)
+#: ui/kcm_grub2.ui:224
+msgctxt "@action:button"
+msgid "Remove Old Entries"
+msgstr "Eliminar entradas antiguas"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
+#: ui/kcm_grub2.ui:233
+msgctxt "@option:check"
+msgid "The next booted entry will become default"
+msgstr "La próxima entrada que se arranque se convertirá en la predeterminada"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: ui/kcm_grub2.ui:244
+msgctxt "@title:tab"
+msgid "Appearance"
+msgstr "Apariencia"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#: ui/kcm_grub2.ui:250
+msgctxt "@title:group"
+msgid "Resolutions"
+msgstr "Resoluciones"
+
+#. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
+#: ui/kcm_grub2.ui:256
+msgctxt "@label:listbox"
+msgid "GRUB:"
+msgstr "GRUB:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
+#: ui/kcm_grub2.ui:270
+msgctxt "@label:listbox"
+msgid "Linux Kernel:"
+msgstr "Kernel de Linux:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
+#: ui/kcm_grub2.ui:287
+msgctxt "@title:group"
+msgid "Colors"
+msgstr "Colores"
+
+#. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
+#: ui/kcm_grub2.ui:295
+msgctxt "@label:chooser"
+msgid "Normal Foreground (Text):"
+msgstr "Primer plano normal (texto):"
+
+#. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
+#: ui/kcm_grub2.ui:305
+msgctxt "@label:chooser"
+msgid "Highlight Foreground (Text):"
+msgstr "Primer plano resaltado (texto):"
+
+#. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
+#: ui/kcm_grub2.ui:319
+msgctxt "@label:chooser"
+msgid "Normal Background:"
+msgstr "Fondo normal:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
+#: ui/kcm_grub2.ui:329
+msgctxt "@label:chooser"
+msgid "Highlight Background:"
+msgstr "Fondo resaltado:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
+#: ui/kcm_grub2.ui:344
+msgctxt "@title:group Refers to the image shown behind the boot menu."
+msgid "Background"
+msgstr "Fondo"
+
+#. i18n: ectx: property (text), widget (QLabel, label_background)
+#: ui/kcm_grub2.ui:350
+msgctxt "@label:textbox"
+msgid "Wallpaper:"
+msgstr "Fondo de pantalla:"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_preview)
+#: ui/kcm_grub2.ui:362
+msgctxt "@action:button"
+msgid "Preview"
+msgstr "Vista previa"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_create)
+#: ui/kcm_grub2.ui:369
+msgctxt "@action:button"
+msgid "Create"
+msgstr "Crear"
+
+#. i18n: ectx: property (text), widget (QLabel, label_theme)
+#: ui/kcm_grub2.ui:378
+msgctxt "@label:textbox"
+msgid "Theme:"
+msgstr "Tema:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: ui/kcm_grub2.ui:405
+msgctxt "@title:tab Refers to settings."
+msgid "Advanced"
+msgstr "Avanzado"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
+#: ui/kcm_grub2.ui:411
+msgctxt "@title:group"
+msgid "Linux Kernel Arguments"
+msgstr "Argumentos del kernel de Linux"
+
+#. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
+#: ui/kcm_grub2.ui:417
+msgctxt "@label:textbox"
+msgid "Normal Entries:"
+msgstr "Entradas normales:"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineDefaultSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalInputSuggestions)
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalOutputSuggestions)
+#: ui/kcm_grub2.ui:429 ui/kcm_grub2.ui:450 ui/kcm_grub2.ui:480
+#: ui/kcm_grub2.ui:501 ui/kcm_grub2.ui:522
+msgctxt "@action:button"
+msgid "Suggestions"
+msgstr "Sugerencias"
+
+#. i18n: ectx: property (text), widget (QLabel, label_cmdline)
+#: ui/kcm_grub2.ui:438
+msgctxt "@label:textbox"
+msgid "All Entries:"
+msgstr "Todas las entradas:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
+#: ui/kcm_grub2.ui:462
+msgctxt "@title:group Noun."
+msgid "Terminal"
+msgstr "Terminal"
+
+#. i18n: ectx: property (text), widget (QLabel, label_terminal)
+#: ui/kcm_grub2.ui:468
+msgctxt "@label:textbox Noun."
+msgid "Terminal:"
+msgstr "Terminal:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
+#: ui/kcm_grub2.ui:489
+msgctxt "@label:textbox"
+msgid "Input Terminal:"
+msgstr "Terminal de entrada:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
+#: ui/kcm_grub2.ui:510
+msgctxt "@label:textbox"
+msgid "Output Terminal:"
+msgstr "Terminal de salida:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
+#: ui/kcm_grub2.ui:534
+msgctxt "@title:group Refers to settings."
+msgid "Other"
+msgstr "Otra"
+
+#. i18n: ectx: property (text), widget (QLabel, label_distributor)
+#: ui/kcm_grub2.ui:540
+msgctxt "@label:textbox"
+msgid "Distributor:"
+msgstr "Distribuidor:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_serial)
+#: ui/kcm_grub2.ui:550
+msgctxt "@label:textbox"
+msgid "Serial Command:"
+msgstr "Orden en serie:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_initTune)
+#: ui/kcm_grub2.ui:560
+msgctxt "@label:textbox"
+msgid "Init Tune:"
+msgstr "Melodía de inicio:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_uuid)
+#: ui/kcm_grub2.ui:570
+msgctxt "@option:check"
+msgid "Enable UUIDs:"
+msgstr "Habilitar UUIDs:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
+#: ui/kcm_grub2.ui:596
+msgctxt "@title:group"
+msgid "Tools"
+msgstr "Herramientas"
+
+#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_install)
+#: ui/kcm_grub2.ui:608
+msgctxt "@action:button"
+msgid "Install/Recover Bootloader"
+msgstr "Instalar/recuperar el cargador de arranque"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/removeDlg.ui:17
+msgctxt "@label:listbox"
+msgid "Select entries to remove:"
+msgstr "Seleccionar las entradas para eliminar:"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
+#: ui/removeDlg.ui:34
+msgctxt "@info:tooltip"
+msgid "Remove associated kernel header files."
+msgstr "Eliminar archivos de encabezamiento del kernel asociados."
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
+#: ui/removeDlg.ui:37
+msgctxt "@option:check"
+msgid "Also remove associated old packages"
+msgstr "Eliminar también los paquetes antiguos asociados"
+
+#~ msgctxt "@info"
+#~ msgid "No valid GRUB2/BURG installation could be detected!"
+#~ msgstr "¡No se ha detectado una instalación de GRUB2/BURG válida!"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reload Configuration"
+#~ msgstr "Recargar la configuración"
