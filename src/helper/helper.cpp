@@ -54,7 +54,7 @@ ActionReply Helper::executeCommand(const QStringList &command)
     process.setProgram(command);
     process.setOutputChannelMode(KProcess::MergedChannels);
 
-    //qDebug() << "Executing" << command.join(" ");
+    qDebug() << "Executing" << command.join(" ");
     int exitCode = process.execute();
 
     ActionReply reply;
