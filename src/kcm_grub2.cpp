@@ -72,6 +72,7 @@ KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(parent,
     about->setHomepage("http://ksmanis.wordpress.com/projects/grub2-editor/");
 
     about->addAuthor("Κonstantinos Smanis", i18n("Main Developer"), "konstantinos.smanis@gmail.com");
+    about->addAuthor("Lin Ziyun", i18n("Developer"), "ohmygod19993@gmail.com");
     
     setAboutData(about);
 

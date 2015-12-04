@@ -1,0 +1,24 @@
+A KDE Control Module for configuring the GRUB2 bootloader.
+
+Smoothly integrated in KDE System Settings, it is the central place for managing your GRUB2 configuration. Supports many GRUB2 configuration options, most notably:
+
+* Manage default boot entry
+* Manage boot timeout
+* Manage boot resolutions
+* Manage boot menu colors
+* Manage boot menu theme
+* Manage linux kernel arguments
+* Save and update the configuration files of GRUB2
+
+Extra features include:
+
+* Recover GRUB2
+* Remove old entries
+* Create and preview GRUB2 splash images
+
+Related Blog: http://ksmanis.wordpress.com/category/grub2-editor/
+SourceForge Page: https://sourceforge.net/projects/kcm-grub2/
+KDE-Apps.org Page: http://kde-apps.org/content/show.php?content=139643
+KDE Extragear Page: https://projects.kde.org/projects/extragear/sysadmin/kcm-grub2
+
+For installation instructions see the INSTALL file.
