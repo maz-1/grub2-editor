@@ -18,6 +18,12 @@
 #define GRUB_ENV "@GRUB_ENV@"
 #define GRUB_MEMTEST "@GRUB_MEMTEST@"
 
+enum actionType {
+    actionLoad,
+    actionProbe,
+    actionProbevbe
+};
+
 enum GrubFile {
     GrubMenuFile,
     GrubConfigurationFile,

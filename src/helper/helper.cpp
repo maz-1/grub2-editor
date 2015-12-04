@@ -26,11 +26,8 @@
 
 //KDE
 //#include <KDebug>
-//#include <KGlobal>
-//#include <KLocale>
 #include <KProcess>
 #include <klocalizedstring.h>
-//#include <KAuth/HelperSupport>
 
 //Project
 #include "../config.h"
@@ -65,6 +62,22 @@ ActionReply Helper::executeCommand(const QStringList &command)
     }
     reply.addData("command", command);
     reply.addData("output", process.readAll());
+    return reply;
+}
+
+ActionReply Helper::initialize(QVariantMap args)
+{
+    ActionReply reply;
+    switch (args.value("actionType").toInt()) {
+    case actionLoad:
+        reply = load(args);
+        break;
+    case actionProbe:
+        reply = probe(args);
+        break;
+    case actionProbevbe:
+        reply = probevbe(args);
+    }
     return reply;
 }
 

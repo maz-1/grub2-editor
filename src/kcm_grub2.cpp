@@ -969,8 +969,9 @@ QString KCMGRUB2::convertToLocalFileName(const QString &grubFileName)
 
 ExecuteJob * KCMGRUB2::loadFile(GrubFile grubFile)
 {
-    Action loadAction("org.kde.kcontrol.kcmgrub2.load");
+    Action loadAction("org.kde.kcontrol.kcmgrub2.initialize");
     loadAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    loadAction.addArgument("actionType", actionLoad);
     loadAction.addArgument("grubFile", grubFile);
 
     return loadAction.execute();
@@ -1056,8 +1057,9 @@ void KCMGRUB2::readDevices()
         }
     }
 
-    Action probeAction("org.kde.kcontrol.kcmgrub2.probe");
+    Action probeAction("org.kde.kcontrol.kcmgrub2.initialize");
     probeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    probeAction.addArgument("actionType", actionProbe);
     probeAction.addArgument("mountPoints", mountPoints);
     
     QProgressDialog progressDlg(this, Qt::Dialog);
@@ -1099,8 +1101,9 @@ void KCMGRUB2::readDevices()
 }
 void KCMGRUB2::readResolutions()
 {
-    Action probeVbeAction("org.kde.kcontrol.kcmgrub2.probevbe");
+    Action probeVbeAction("org.kde.kcontrol.kcmgrub2.initialize");
     probeVbeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    probeVbeAction.addArgument("actionType", actionProbevbe);
 
     ExecuteJob *reply = probeVbeAction.execute();
     if (!reply->exec()) {

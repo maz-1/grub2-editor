@@ -121,15 +121,16 @@ void InstallDialog::SlotOkButtonClicked()
         ExecuteJob* reply = installAction.execute();
         reply->exec();
         
-        if (installAction.status() != Action::AuthorizedStatus ) {
-          progressDlg.hide();
-          return;
-        }
+        //if (installAction.status() != Action::AuthorizedStatus ) {
+        //  progressDlg.hide();
+        //  return;
+        //}
         
         //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
         progressDlg.hide();
         if (reply->error()) {
             KMessageBox::detailedError(this, i18nc("@info", "Failed to install GRUB."), reply->data().value("errorDescription").toString());
+            this->reject();
         } else {
             progressDlg.hide();
             QDialog *dialog = new QDialog(this, Qt::Dialog);
@@ -137,6 +138,7 @@ void InstallDialog::SlotOkButtonClicked()
             dialog->setModal(true);
             QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
             KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully installed GRUB."), QStringList(), QString(), 0, KMessageBox::Notify, reply->data().value("output").toString()); // krazy:exclude=qclasses
+            this->accept();
         }
-    this->accept();
+    //this->accept();
 }
