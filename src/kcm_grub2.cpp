@@ -105,6 +105,7 @@ void KCMGRUB2::load()
     readSettings();
     readEnv();
     readMemtest();
+    parseGroupDir();
 #if HAVE_HD
     readResolutions();
 #endif
@@ -565,10 +566,7 @@ void KCMGRUB2::slotGrubGfxmodeChanged()
 {
     if (ui->kcombobox_gfxmode->currentIndex() == 0) {
         bool ok;
-        //QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
         QRegExp regExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?");
-        //regExp.setPatternSyntax(QRegExp::Wildcard);
-        //QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), &ok, this, &regExp);
         QString resolution = RegExpInputDialog::getText(this, i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), regExp, &ok);
         if (ok) {
             if (!m_resolutions.contains(resolution)) {
@@ -590,10 +588,7 @@ void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
 {
     if (ui->kcombobox_gfxpayload->currentIndex() == 0) {
         bool ok;
-        //QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
         QRegExp regExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?");
-        //regExp.setPatternSyntax(QRegExp::Wildcard);
-        //QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a Linux boot resolution:"), QString(), &ok, this, &regExp);
         QString resolution = RegExpInputDialog::getText(this, i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), regExp, &ok);
         if (ok) {
             if (!m_resolutions.contains(resolution)) {
@@ -992,6 +987,8 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
         break;
     case GrubMemtestFile:
         return QString();
+    case GrubGroupFile:
+        return QString();
     }
 
     QFile file(fileName);
@@ -1114,6 +1111,97 @@ void KCMGRUB2::readResolutions()
     m_resolutions.clear();
     m_resolutions = reply->data().value("gfxmodes").toStringList();
 }
+
+//Security
+void KCMGRUB2::parseGroupDir()
+{
+    m_groupFilesList.clear();
+    m_groupFiles.clear();
+    QDir GroupDir(GRUB_CONFIGDIR);
+    QStringList filters;
+    filters << "*_*";
+    GroupDir.setNameFilters(filters);
+    m_groupFilesList = GroupDir.entryList(QDir::Files);
+    for( int i=0; i<m_groupFilesList.count(); ++i )
+    {
+        Action readGroupAction("org.kde.kcontrol.kcmgrub2.initialize");
+        readGroupAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+        readGroupAction.addArgument("actionType", actionLoad);
+        readGroupAction.addArgument("grubFile", GrubGroupFile);
+        readGroupAction.addArgument("groupFile", m_groupFilesList[i]);
+        //DEBUG------------------------------
+        //qDebug() << "file number :" << i;
+        //qDebug() << "file name :" << m_groupFilesList[i];
+        
+        ExecuteJob * readGroupJob = readGroupAction.execute();
+        if (!readGroupJob->exec()) {
+           qDebug() << "Error loading:" << m_groupFilesList[i];
+           qDebug() << "Error description:" << readGroupJob->errorString();
+           m_groupFiles[m_groupFilesList[i]] = QString();
+        } else {
+           m_groupFiles[m_groupFilesList[i]] = QString::fromLocal8Bit(readGroupJob->data().value("rawFileContents").toByteArray());
+           //qDebug() << "loaded " << m_groupFilesList[i];
+           //qDebug() << "content " << m_groupFiles[m_groupFilesList[i]];
+        }
+    }
+    
+    //getSuperUsers();
+    //getUsers();
+    getGroups();
+}
+void KCMGRUB2::getSuperUsers()
+{
+    QRegExp regex("set superusers ?= ?\"?([a-zA-Z0-9,]{1,})\"?");
+    for( int i=0; i<m_groupFiles.count(); ++i )
+    {
+        
+    }
+}
+void KCMGRUB2::getUsers()
+{
+    QRegExp cryptoreg("password_pbkdf2 ([a-zA-Z0-9]{1,}) ([^\\\\n #]+)");
+    QRegExp plainreg("password ([a-zA-Z0-9]{1,}) ([^\\\\n #]+)");
+    for( int i=0; i<m_groupFiles.count(); ++i )
+    {
+        
+    }
+}
+void KCMGRUB2::getGroups()
+{
+    ui->groups->setRowCount(0);
+    ui->groups->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    QStringList tableHeader;  
+    tableHeader << "Name" << "Locked" << "Allowed users";  
+    ui->groups->setHorizontalHeaderLabels(tableHeader); 
+    //QRegExp lockedregex("menuentry.+--users \"?[a-zA-Z0-9,]{0,}\"? .*{");
+    //QRegExp unlockedregex("menuentry.+{");
+    QRegExp usersregex("--users \"?([a-zA-Z0-9,]{0,})\"? \\{");
+    for( int i=0; i<m_groupFiles.count(); ++i )
+    {
+        //qDebug() << "checking";
+        int lockedmatch = QRegExp("menuentry.+--users \"?[a-zA-Z0-9,]{0,}\"? .*\\{").indexIn(m_groupFiles.value(m_groupFilesList[i]));
+        int unlockedmatch = QRegExp("menuentry.+\\{").indexIn(m_groupFiles.value(m_groupFilesList[i]));
+        qDebug() << m_groupFilesList[i];
+        //qDebug() << "content " << m_groupFiles.value(m_groupFilesList[i]);
+        qDebug() << lockedmatch;
+        qDebug() << unlockedmatch;
+        
+        ui->groups->setRowCount(i + 1);
+        ui->groups->setItem(i,0,new QTableWidgetItem(m_groupFilesList[i]));
+        if (lockedmatch != -1 || unlockedmatch != -1)
+        {
+            //qDebug() << "adding";
+            if (lockedmatch != -1)
+                ui->groups->setItem(i,1,new QTableWidgetItem("Yes"));
+            else
+                ui->groups->setItem(i,1,new QTableWidgetItem("No"));
+        } else {
+            ui->groups->setItem(i,1,new QTableWidgetItem("Invalid"));
+        }
+    }
+}
+
+
 
 void KCMGRUB2::sortResolutions()
 {

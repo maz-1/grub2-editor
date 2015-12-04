@@ -17,6 +17,7 @@
 #define GRUB_CONFIG "@GRUB_CONFIG@"
 #define GRUB_ENV "@GRUB_ENV@"
 #define GRUB_MEMTEST "@GRUB_MEMTEST@"
+#define GRUB_CONFIGDIR "@GRUB_CONFIGDIR@/"
 
 enum actionType {
     actionLoad,
@@ -28,7 +29,8 @@ enum GrubFile {
     GrubMenuFile,
     GrubConfigurationFile,
     GrubEnvironmentFile,
-    GrubMemtestFile
+    GrubMemtestFile,
+    GrubGroupFile
 };
 
 #endif

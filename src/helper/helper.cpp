@@ -148,6 +148,10 @@ ActionReply Helper::load(QVariantMap args)
     case GrubEnvironmentFile:
         fileName = GRUB_ENV;
         break;
+//Security
+    case GrubGroupFile:
+        fileName = GRUB_CONFIGDIR + args.value("groupFile").toString();
+        break;
     case GrubMemtestFile:
         bool memtest = QFile::exists(GRUB_MEMTEST);
         reply.addData("memtest", memtest);
@@ -156,7 +160,8 @@ ActionReply Helper::load(QVariantMap args)
         }
         return reply;
     }
-
+    
+    qDebug() << fileName;
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         reply = ActionReply::HelperErrorReply();

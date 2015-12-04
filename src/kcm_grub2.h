@@ -22,6 +22,7 @@
 #include <QBitArray>
 #include <QProgressDialog>
 #include <QDebug>
+//#include <QRegularExpression>
 //KDE
 #include <KCModule>
 
@@ -99,7 +100,13 @@ private:
     void readMemtest();
     void readDevices();
     void readResolutions();
-
+//Security
+    void parseGroupDir();
+    void getSuperUsers();
+    void getUsers();
+    void getGroups();
+    
+    
     void sortResolutions();
     void showResolutions();
 
@@ -145,6 +152,9 @@ private:
     bool m_memtestOn;
     QHash<QString, QString> m_devices;
     QStringList m_resolutions;
+//Security
+    QStringList m_groupFilesList;
+    QHash<QString, QString> m_groupFiles;
 };
 
 #endif
