@@ -103,7 +103,7 @@
              <bool>false</bool>
             </property>
             <property name="text">
-             <string comment="@option:radio">&amp;Immediately</string>
+             <string comment="@option:radio">Immediately</string>
             </property>
            </widget>
           </item>
@@ -128,7 +128,7 @@
                <bool>false</bool>
               </property>
               <property name="text">
-               <string comment="@option:radio">&amp;After:</string>
+               <string comment="@option:radio">After:</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -810,7 +810,7 @@
   </customwidget>
   <customwidget>
    <class>KUrlRequester</class>
-   <extends>QWidget</extends>
+   <extends>QFrame</extends>
    <header>kurlrequester.h</header>
   </customwidget>
   <customwidget>

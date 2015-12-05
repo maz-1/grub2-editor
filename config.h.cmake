@@ -18,6 +18,7 @@
 #define GRUB_ENV "@GRUB_ENV@"
 #define GRUB_MEMTEST "@GRUB_MEMTEST@"
 #define GRUB_CONFIGDIR "@GRUB_CONFIGDIR@/"
+#define GRUB_SECURITY "@GRUB_SECURITY@"
 
 enum actionType {
     actionLoad,

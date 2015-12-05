@@ -151,6 +151,13 @@ ActionReply Helper::load(QVariantMap args)
 //Security
     case GrubGroupFile:
         fileName = GRUB_CONFIGDIR + args.value("groupFile").toString();
+        if (args.value("groupFile").toString() == GRUB_SECURITY) {
+            if (!QFile::exists(fileName)) 
+                executeCommand(QStringList() << "touch" << fileName);
+            bool security = QFile::exists(fileName);
+            reply.addData("security", security);
+            reply.addData("securityOn", (bool)(QFile::permissions(fileName) & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther)));
+        }
         break;
     case GrubMemtestFile:
         bool memtest = QFile::exists(GRUB_MEMTEST);
@@ -161,7 +168,7 @@ ActionReply Helper::load(QVariantMap args)
         return reply;
     }
     
-    qDebug() << fileName;
+    //qDebug() << fileName;
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         reply = ActionReply::HelperErrorReply();
@@ -221,6 +228,7 @@ ActionReply Helper::save(QVariantMap args)
     QByteArray rawConfigFileContents = args.value("rawConfigFileContents").toByteArray();
     QByteArray rawDefaultEntry = args.value("rawDefaultEntry").toByteArray();
     bool memtest = args.value("memtest").toBool();
+    bool security = args.value("security").toBool();
 
     QFile::copy(configFileName, configFileName + ".original");
 
@@ -242,7 +250,18 @@ ActionReply Helper::save(QVariantMap args)
         }
         QFile::setPermissions(GRUB_MEMTEST, permissions);
     }
-
+    
+    if (args.contains("security")) {
+        QString filePath(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+        QFile::Permissions permissions = QFile::permissions(filePath);
+        if (security) {
+            permissions |= (QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        } else {
+            permissions &= ~(QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        }
+        QFile::setPermissions(filePath, permissions);
+    }
+    
     ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;

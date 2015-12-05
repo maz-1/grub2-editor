@@ -31,7 +31,6 @@
 //KDE
 #include <KAboutData>
 //#include <KDebug>
-//#include <KInputDialog>
 #include <KMessageBox>
 #include <kmountpoint.h>
 #include <KPluginFactory>
@@ -63,8 +62,6 @@ K_EXPORT_PLUGIN(GRUB2Factory("kcmgrub2"))
 KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(parent, list)
 {
     //Isn't KAboutData's second argument supposed to do this?
-    //The function is deprecated. TO BE FIXED
-    //KGlobal::locale()->insertCatalog("kcm-grub2");
 
     KAboutData* about = new KAboutData("kcmgrub2", i18n("KDE GRUB2 Bootloader Control Module"), KCM_GRUB2_VERSION);
     about->setShortDescription(i18n("A KDE Control Module for configuring the GRUB2 bootloader."));
@@ -105,6 +102,7 @@ void KCMGRUB2::load()
     readSettings();
     readEnv();
     readMemtest();
+//Security
     parseGroupDir();
 #if HAVE_HD
     readResolutions();
@@ -202,6 +200,10 @@ void KCMGRUB2::load()
     ui->checkBox_recovery->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_RECOVERY")).compare("true") != 0);
     ui->checkBox_memtest->setVisible(m_memtest);
     ui->checkBox_memtest->setChecked(m_memtestOn);
+    //Security
+    ui->usersGroup->setEnabled(m_securityOn);
+    ui->groupsGroup->setEnabled(m_securityOn);
+    
     ui->checkBox_osProber->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_OS_PROBER")).compare("true") != 0);
 
     m_resolutions.append("640x480");
@@ -268,6 +270,11 @@ void KCMGRUB2::load()
     ui->klineedit_initTune->setText(unquoteWord(m_settings.value("GRUB_INIT_TUNE")));
     ui->checkBox_uuid->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_LINUX_UUID")).compare("true") != 0);
 
+//Security
+    ui->secEnabled->setVisible(m_security);
+    ui->secEnabled->setChecked(m_securityOn);
+    
+    
     m_dirtyBits.fill(0);
     emit changed(false);
 }
@@ -470,6 +477,10 @@ void KCMGRUB2::save()
     if (m_dirtyBits.testBit(memtestDirty)) {
         saveAction.addArgument("memtest", ui->checkBox_memtest->isChecked());
     }
+    //Security
+    if (m_dirtyBits.testBit(securityDirty)) {
+        saveAction.addArgument("security", ui->secEnabled->isChecked());
+    }
 /*
     if (saveAction.authorize() != Action::Authorized) {
         return;
@@ -549,6 +560,11 @@ void KCMGRUB2::slotGrubDisableRecoveryChanged()
 void KCMGRUB2::slotMemtestChanged()
 {
     m_dirtyBits.setBit(memtestDirty);
+    emit changed(true);
+}
+void KCMGRUB2::slotSecurityChanged()
+{
+    m_dirtyBits.setBit(securityDirty);
     emit changed(true);
 }
 void KCMGRUB2::slotGrubDisableOsProberChanged()
@@ -894,6 +910,11 @@ void KCMGRUB2::setupConnections()
 
     connect(ui->checkBox_recovery, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableRecoveryChanged()));
     connect(ui->checkBox_memtest, SIGNAL(clicked(bool)), this, SLOT(slotMemtestChanged()));
+    //Security
+    connect(ui->secEnabled, SIGNAL(clicked(bool)), this, SLOT(slotSecurityChanged()));
+    connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->usersGroup, SLOT(setEnabled(bool)));
+    connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->groupsGroup, SLOT(setEnabled(bool)));
+    
     connect(ui->checkBox_osProber, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableOsProberChanged()));
 
     connect(ui->kcombobox_gfxmode, SIGNAL(activated(int)), this, SLOT(slotGrubGfxmodeChanged()));
@@ -1116,87 +1137,161 @@ void KCMGRUB2::readResolutions()
 void KCMGRUB2::parseGroupDir()
 {
     m_groupFilesList.clear();
-    m_groupFiles.clear();
+    m_groupFilesContent.clear();
     QDir GroupDir(GRUB_CONFIGDIR);
-    QStringList filters;
-    filters << "*_*";
-    GroupDir.setNameFilters(filters);
-    m_groupFilesList = GroupDir.entryList(QDir::Files);
-    for( int i=0; i<m_groupFilesList.count(); ++i )
-    {
+    //exclude GRUB_SECURITY
+    QRegExp filters(QString("(?!%1)[0-9]{1,}.*").arg(GRUB_SECURITY));
+    m_groupFilesList = GroupDir.entryList(QDir::Files).filter(filters);
+    m_groupFilesList.removeDuplicates();
+    for( int i=0; i<m_groupFilesList.count(); ++i ) {
         Action readGroupAction("org.kde.kcontrol.kcmgrub2.initialize");
         readGroupAction.setHelperId("org.kde.kcontrol.kcmgrub2");
         readGroupAction.addArgument("actionType", actionLoad);
         readGroupAction.addArgument("grubFile", GrubGroupFile);
         readGroupAction.addArgument("groupFile", m_groupFilesList[i]);
-        //DEBUG------------------------------
-        //qDebug() << "file number :" << i;
-        //qDebug() << "file name :" << m_groupFilesList[i];
-        
         ExecuteJob * readGroupJob = readGroupAction.execute();
         if (!readGroupJob->exec()) {
            qDebug() << "Error loading:" << m_groupFilesList[i];
            qDebug() << "Error description:" << readGroupJob->errorString();
-           m_groupFiles[m_groupFilesList[i]] = QString();
+           m_groupFilesContent[m_groupFilesList[i]] = QString();
         } else {
-           m_groupFiles[m_groupFilesList[i]] = QString::fromLocal8Bit(readGroupJob->data().value("rawFileContents").toByteArray());
-           //qDebug() << "loaded " << m_groupFilesList[i];
-           //qDebug() << "content " << m_groupFiles[m_groupFilesList[i]];
+           m_groupFilesContent[m_groupFilesList[i]] = QString::fromLocal8Bit(readGroupJob->data().value("rawFileContents").toByteArray());
         }
     }
-    
-    //getSuperUsers();
-    //getUsers();
+    //parse GRUB_SECURITY
+    Action readHeaderAction("org.kde.kcontrol.kcmgrub2.initialize");
+     readHeaderAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+     readHeaderAction.addArgument("actionType", actionLoad);
+     readHeaderAction.addArgument("grubFile", GrubGroupFile);
+     readHeaderAction.addArgument("groupFile", GRUB_SECURITY);
+     
+     ExecuteJob * readHeaderJob = readHeaderAction.execute();
+     if (!readHeaderJob->exec()) {
+           qDebug() << "Error loading:" << GRUB_SECURITY;
+           qDebug() << "Error description:" << readHeaderJob->errorString();
+           m_headerFile = QString();
+     } else {
+           m_headerFile = QString::fromLocal8Bit(readHeaderJob->data().value("rawFileContents").toByteArray()).replace(";", "\n");
+     }
+     
+    m_security = readHeaderJob->data().value("security").toBool();
+    if (m_security) {
+        m_securityOn = readHeaderJob->data().value("securityOn").toBool();
+    }
+     
+    getSuperUsers();
+    getUsers();
     getGroups();
 }
 void KCMGRUB2::getSuperUsers()
 {
-    QRegExp regex("set superusers ?= ?\"?([a-zA-Z0-9,]{1,})\"?");
-    for( int i=0; i<m_groupFiles.count(); ++i )
-    {
-        
-    }
+    m_superUsers.clear();
+    QRegExp regex("set( +)superusers *= *\"?([a-zA-Z0-9,]{1,})\"?");
+     regex.setMinimal(false);
+    int superusersmatch = regex.indexIn(m_headerFile);
+    QString superusersstring = regex.cap(2);
+    m_superUsers = superusersstring.split(",", QString::SkipEmptyParts);
 }
 void KCMGRUB2::getUsers()
 {
-    QRegExp cryptoreg("password_pbkdf2 ([a-zA-Z0-9]{1,}) ([^\\\\n #]+)");
-    QRegExp plainreg("password ([a-zA-Z0-9]{1,}) ([^\\\\n #]+)");
-    for( int i=0; i<m_groupFiles.count(); ++i )
-    {
-        
+    m_users.clear();
+    m_userPasswordEncrypted.clear();
+    m_userPassword.clear();
+    ui->users->setRowCount(0);
+    ui->users->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    QStringList tableHeader;  
+    tableHeader << i18nc("@headerName", "Name") << i18nc("@headerSuper", "Superuser") << i18nc("@headerPasswdType", "Password type");  
+    ui->users->setHorizontalHeaderLabels(tableHeader); 
+    
+    QRegExp cryptoreg(" *password_pbkdf2 +[a-zA-Z0-9]{1,} +[^ \n#]+ *");
+     cryptoreg.setMinimal(false);
+    QRegExp plainreg(" *password +[a-zA-Z0-9]{1,} +[^ \n#]+ *");
+     plainreg.setMinimal(false);
+    
+    QStringList headerFileLines = m_headerFile.split("\n", QString::SkipEmptyParts);
+    
+    int j = 0;
+    for( int i=0; i<headerFileLines.count(); ++i ) {
+        QStringList currentUser = headerFileLines[i].split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        if (cryptoreg.exactMatch(headerFileLines[i]) || plainreg.exactMatch(headerFileLines[i])) {
+            m_users.append(currentUser[1]);
+            m_userPassword[currentUser[1]] = currentUser[2];
+            ui->users->setRowCount(j + 1);
+            ui->users->setItem(j,0,new QTableWidgetItem(m_users[j]));
+            
+            if (m_superUsers.contains(m_users[j])) {
+                m_userIsSuper[m_users[j]] = true;
+                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@propertyYes", "Yes")));
+            } else {
+                m_userIsSuper[m_users[j]] = false;
+                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@propertyNo", "No")));
+            }
+            
+            if (cryptoreg.exactMatch(headerFileLines[i])) {
+                m_userPasswordEncrypted[currentUser[1]] = true;
+                ui->users->setItem(j,2,new QTableWidgetItem(i18nc("@passwdType", "Encrypted")));
+            } else {
+                m_userPasswordEncrypted[currentUser[1]] = false;
+                ui->users->setItem(j,2,new QTableWidgetItem(i18nc("@passwdType", "Plain")));
+            }
+            
+            
+            ++j;
+        }
     }
+    
 }
 void KCMGRUB2::getGroups()
 {
+    m_groupFileLocked.clear();
+    m_groupFileAllowedUsers.clear();
     ui->groups->setRowCount(0);
     ui->groups->setEditTriggers(QAbstractItemView::NoEditTriggers);
     QStringList tableHeader;  
-    tableHeader << "Name" << "Locked" << "Allowed users";  
+    tableHeader << i18nc("@headerName", "Name") << i18nc("@headerLocked", "Locked") << i18nc("@headerAllowed", "Allowed users");  
     ui->groups->setHorizontalHeaderLabels(tableHeader); 
-    //QRegExp lockedregex("menuentry.+--users \"?[a-zA-Z0-9,]{0,}\"? .*{");
-    //QRegExp unlockedregex("menuentry.+{");
-    QRegExp usersregex("--users \"?([a-zA-Z0-9,]{0,})\"? \\{");
-    for( int i=0; i<m_groupFiles.count(); ++i )
-    {
-        //qDebug() << "checking";
-        int lockedmatch = QRegExp("menuentry.+--users \"?[a-zA-Z0-9,]{0,}\"? .*\\{").indexIn(m_groupFiles.value(m_groupFilesList[i]));
-        int unlockedmatch = QRegExp("menuentry.+\\{").indexIn(m_groupFiles.value(m_groupFilesList[i]));
-        qDebug() << m_groupFilesList[i];
-        //qDebug() << "content " << m_groupFiles.value(m_groupFilesList[i]);
-        qDebug() << lockedmatch;
-        qDebug() << unlockedmatch;
-        
-        ui->groups->setRowCount(i + 1);
-        ui->groups->setItem(i,0,new QTableWidgetItem(m_groupFilesList[i]));
-        if (lockedmatch != -1 || unlockedmatch != -1)
-        {
-            //qDebug() << "adding";
-            if (lockedmatch != -1)
-                ui->groups->setItem(i,1,new QTableWidgetItem("Yes"));
-            else
-                ui->groups->setItem(i,1,new QTableWidgetItem("No"));
+    QRegExp lockedregex("menuentry.+--users \"?[a-zA-Z0-9,]{0,}\"? .*\\{");
+     lockedregex.setMinimal(true);
+    QRegExp unlockedregex("menuentry .+\\{");
+     unlockedregex.setMinimal(true);
+    QRegExp usersregex("--users \"?([a-zA-Z0-9,]{0,})\"? .*\\{");
+     usersregex.setMinimal(true);
+    
+    int j = 0;
+    for( int i=0; i<m_groupFilesContent.count(); ++i ) {
+        int lockedmatch = lockedregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        int unlockedmatch = unlockedregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        int usersmatch = usersregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        QString usersmatchstring = usersregex.cap(1);
+        if (unlockedmatch != -1 || lockedmatch != -1) {
+            ui->groups->setRowCount(j + 1);
+            ui->groups->setItem(j,0,new QTableWidgetItem(m_groupFilesList[i]));
+            if (lockedmatch != -1) {
+                m_groupFileLocked[m_groupFilesList[i]] = true;
+                m_groupFileAllowedUsers[m_groupFilesList[i]] = usersmatchstring;
+                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@propertyYes", "Yes")));
+                if (usersmatchstring == "") {
+                    ui->groups->setItem(j,2,new QTableWidgetItem(i18nc("@groupSuperUser", "Superusers only")));
+                } else {
+                    ui->groups->setItem(j,2,new QTableWidgetItem(usersmatchstring));
+                }
+            } else {
+                m_groupFileLocked[m_groupFilesList[i]] = false;
+                //m_groupFileAllowedUsers[m_groupFilesList[i]] = "__ALLUSERS__";
+                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@propertyNo", "No")));
+                ui->groups->setItem(j,2,new QTableWidgetItem(i18nc("@groupEveryone", "Everyone")));
+            }
+            //qDebug() << "File" << GRUB_CONFIGDIR + m_groupFilesList[i] << "processed.";
+            ++j;
         } else {
-            ui->groups->setItem(i,1,new QTableWidgetItem("Invalid"));
+            //qDebug() << "File" << GRUB_CONFIGDIR + m_groupFilesList[i] << "ignored.";
+        }
+    }
+    //set text alignment
+    for( int i=0; i<ui->groups->columnCount(); ++i ) {
+        for( int j=0; j<ui->groups->rowCount(); ++j ) {
+            ui->groups->item(j,i)->setTextAlignment(Qt::AlignHCenter);
+            ui->groups->item(j,i)->setTextAlignment(Qt::AlignVCenter);
         }
     }
 }

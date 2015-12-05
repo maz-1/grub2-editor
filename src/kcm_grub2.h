@@ -81,6 +81,7 @@ private Q_SLOTS:
     void slotGrubSerialCommandChanged();
     void slotGrubInitTuneChanged();
     void slotGrubDisableLinuxUuidChanged();
+    void slotSecurityChanged();//Security
 
     void slotUpdateSuggestions();
     void slotTriggeredSuggestion(QAction *action);
@@ -141,6 +142,7 @@ private:
         grubSerialCommandDirty,
         grubInitTuneDirty,
         grubDisableLinuxUuidDirty,
+        securityDirty, //Security
         lastDirtyBit
     };
     QBitArray m_dirtyBits;
@@ -153,8 +155,25 @@ private:
     QHash<QString, QString> m_devices;
     QStringList m_resolutions;
 //Security
+    bool m_security;
+    bool m_securityOn;
+//Group
+//-----------------------------------------------------
     QStringList m_groupFilesList;
-    QHash<QString, QString> m_groupFiles;
+    QHash<QString, QString> m_groupFilesContent;
+    QHash<QString, bool> m_groupFileLocked;
+    QHash<QString, QString> m_groupFileAllowedUsers;
+//-----------------------------------------------------
+    QString m_headerFile;
+//SuperUsers
+    QStringList m_superUsers;
+//Users
+//-----------------------------------------------------
+    QStringList m_users;
+    QHash<QString, QString> m_userPassword;
+    QHash<QString, bool> m_userPasswordEncrypted;
+    QHash<QString, bool> m_userIsSuper;
+//-----------------------------------------------------
 };
 
 #endif
