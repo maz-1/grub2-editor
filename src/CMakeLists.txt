@@ -40,7 +40,8 @@ set(kcm_grub2_LINK_LIBS
      KF5::I18n
      KF5::Auth
      KF5::Solid
-     ) # 
+     #qca-qt5
+     )
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_LINK_LIBS ${kcm_grub2_LINK_LIBS} ${ImageMagick_LIBRARIES})
 endif(HAVE_IMAGEMAGICK)

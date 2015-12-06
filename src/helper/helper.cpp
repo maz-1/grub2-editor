@@ -157,6 +157,8 @@ ActionReply Helper::load(QVariantMap args)
             bool security = QFile::exists(fileName);
             reply.addData("security", security);
             reply.addData("securityOn", (bool)(QFile::permissions(fileName) & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther)));
+            if (!security)
+                qDebug() << "Unable to create" << fileName << ", please check file permissions.";
         }
         break;
     case GrubMemtestFile:
@@ -168,7 +170,6 @@ ActionReply Helper::load(QVariantMap args)
         return reply;
     }
     
-    //qDebug() << fileName;
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         reply = ActionReply::HelperErrorReply();

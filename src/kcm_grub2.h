@@ -22,7 +22,6 @@
 #include <QBitArray>
 #include <QProgressDialog>
 #include <QDebug>
-//#include <QRegularExpression>
 //KDE
 #include <KCModule>
 
@@ -81,7 +80,14 @@ private Q_SLOTS:
     void slotGrubSerialCommandChanged();
     void slotGrubInitTuneChanged();
     void slotGrubDisableLinuxUuidChanged();
-    void slotSecurityChanged();//Security
+    //Security
+    void slotSecurityChanged();
+    //users
+    //void slotAddUser();
+    void slotDeleteUser();
+    //void slotEditUser();
+    //groups
+    //void slotEditGroup();
 
     void slotUpdateSuggestions();
     void slotTriggeredSuggestion(QAction *action);
@@ -106,7 +112,8 @@ private:
     void getSuperUsers();
     void getUsers();
     void getGroups();
-    
+//Encryption
+    QString pbkdf2Encrypt(QString passwd, int key_length, int iteration_count);
     
     void sortResolutions();
     void showResolutions();
@@ -142,7 +149,12 @@ private:
         grubSerialCommandDirty,
         grubInitTuneDirty,
         grubDisableLinuxUuidDirty,
-        securityDirty, //Security
+//Security
+//-------------------------------------------------
+        securityDirty,
+        securityUsersDirty,
+        securityGroupsDirty,
+//-------------------------------------------------
         lastDirtyBit
     };
     QBitArray m_dirtyBits;

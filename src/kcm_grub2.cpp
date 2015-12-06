@@ -28,6 +28,9 @@
 #include <QMenu>
 #include <QProgressBar>
 #include <QTextStream>
+#include <QProcess>
+//Encryption
+//#define random(x) (rand()%x)
 //KDE
 #include <KAboutData>
 //#include <KDebug>
@@ -104,6 +107,9 @@ void KCMGRUB2::load()
     readMemtest();
 //Security
     parseGroupDir();
+//TEST
+    //qDebug() << "Password : passwd_sample";
+    //qDebug() << "Result :" << pbkdf2Encrypt("passwd_sample", 64, 10000);
 #if HAVE_HD
     readResolutions();
 #endif
@@ -562,11 +568,29 @@ void KCMGRUB2::slotMemtestChanged()
     m_dirtyBits.setBit(memtestDirty);
     emit changed(true);
 }
+//Security
 void KCMGRUB2::slotSecurityChanged()
 {
     m_dirtyBits.setBit(securityDirty);
     emit changed(true);
 }
+void KCMGRUB2::slotDeleteUser()
+{
+    QList<QTableWidgetItem *> selectedUser = ui->users->selectedItems();
+    if (selectedUser.count() == 0)
+        return;
+    int selectedUserNum = selectedUser[0]->row();
+    QString selectedUserName = ui->users->item(selectedUserNum, 0)->text();
+    m_users.removeOne(selectedUserName);
+    m_userPassword.remove(selectedUserName);
+    m_userPasswordEncrypted.remove(selectedUserName);
+    m_userIsSuper.remove(selectedUserName);
+    ui->users->removeRow(selectedUserNum);
+    m_dirtyBits.setBit(securityUsersDirty);
+    emit changed(true);
+}
+
+
 void KCMGRUB2::slotGrubDisableOsProberChanged()
 {
     m_dirtyBits.setBit(grubDisableOsProberDirty);
@@ -914,6 +938,9 @@ void KCMGRUB2::setupConnections()
     connect(ui->secEnabled, SIGNAL(clicked(bool)), this, SLOT(slotSecurityChanged()));
     connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->usersGroup, SLOT(setEnabled(bool)));
     connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->groupsGroup, SLOT(setEnabled(bool)));
+    //Delete user
+    connect(ui->userDel, SIGNAL(clicked(bool)), this, SLOT(slotDeleteUser()));
+    
     
     connect(ui->checkBox_osProber, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableOsProberChanged()));
 
@@ -1199,6 +1226,7 @@ void KCMGRUB2::getUsers()
     m_userPassword.clear();
     ui->users->setRowCount(0);
     ui->users->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->users->setSelectionMode(QAbstractItemView::SingleSelection);
     QStringList tableHeader;  
     tableHeader << i18nc("@headerName", "Name") << i18nc("@headerSuper", "Superuser") << i18nc("@headerPasswdType", "Password type");  
     ui->users->setHorizontalHeaderLabels(tableHeader); 
@@ -1247,6 +1275,7 @@ void KCMGRUB2::getGroups()
     m_groupFileAllowedUsers.clear();
     ui->groups->setRowCount(0);
     ui->groups->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->groups->setSelectionMode(QAbstractItemView::SingleSelection);
     QStringList tableHeader;  
     tableHeader << i18nc("@headerName", "Name") << i18nc("@headerLocked", "Locked") << i18nc("@headerAllowed", "Allowed users");  
     ui->groups->setHorizontalHeaderLabels(tableHeader); 
@@ -1295,7 +1324,33 @@ void KCMGRUB2::getGroups()
         }
     }
 }
-
+QString KCMGRUB2::pbkdf2Encrypt(QString passwd, int key_length, int iteration_count){
+    /*
+    QByteArray salt;
+    for( int i=0; i<key_length; ++i ) {
+        qsrand(time(NULL));
+        char salt_char = random(256);
+        salt.append(salt_char);
+    }
+    QByteArray salt_hex = salt.toHex().toUpper();
+    qDebug() << "Salt :" << salt_hex;
+    return passwd;
+    */
+    QByteArray passwdstr("");
+    for (unsigned i = 0; i < 2; ++i){
+        passwdstr.append(passwd.toLatin1().append(QChar(10)));
+    }
+    QProcess process;
+    process.start(GRUB_MAKE_PASSWD_EXE);
+    process.write(passwdstr);
+    process.waitForFinished(-1);
+    QRegExp passwdregex("(grub[A-Za-z0-9.]{20,})");
+    int pos = passwdregex.indexIn(process.readAllStandardOutput());
+    if (pos > -1)
+        return passwdregex.cap(1);
+    else
+        return QString();
+}
 
 
 void KCMGRUB2::sortResolutions()
