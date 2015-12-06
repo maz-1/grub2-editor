@@ -50,6 +50,7 @@ using namespace KAuth;
 #endif
 #include "entry.h"
 #include "installDlg.h"
+#include "userDlg.h"
 #if HAVE_QAPT || HAVE_QPACKAGEKIT
 #include "removeDlg.h"
 #endif
@@ -589,6 +590,50 @@ void KCMGRUB2::slotDeleteUser()
     m_dirtyBits.setBit(securityUsersDirty);
     emit changed(true);
 }
+void KCMGRUB2::slotEditUser()
+{
+    QList<QTableWidgetItem *> selectedUser = ui->users->selectedItems();
+    if (selectedUser.count() == 0)
+        return;
+    int selectedUserNum = selectedUser[0]->row();
+    QString selectedUserName = ui->users->item(selectedUserNum, 0)->text();
+    QPointer<UserDialog> userDlg = new UserDialog(this, selectedUserName);
+    if(userDlg->exec()) {
+        m_userIsSuper[selectedUserName] = userDlg->isSuperUser();
+        if (userDlg->requireEncryption()) {
+            m_userPasswordEncrypted[selectedUserName] = true;
+            m_userPassword[selectedUserName] = pbkdf2Encrypt(userDlg->getPassword());
+        } else {
+            m_userPasswordEncrypted[selectedUserName] = false;
+            m_userPassword[selectedUserName] = userDlg->getPassword();
+        }
+        ui->users->setItem(selectedUserNum,1,new QTableWidgetItem(userDlg->isSuperUser() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
+        ui->users->setItem(selectedUserNum,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@passwdType", "Encrypted") : i18nc("@passwdType", "Plain")));
+    }
+    delete userDlg;
+}
+void KCMGRUB2::slotAddUser(){
+    QPointer<UserDialog> userDlg = new UserDialog(this);
+    if(userDlg->exec()) {
+        int j = ui->users->rowCount();
+        ui->users->setRowCount(j+1);
+        m_users.append(userDlg->getUserName());
+        m_userIsSuper[userDlg->getUserName()] = userDlg->isSuperUser();
+        if (userDlg->requireEncryption()) {
+            m_userPasswordEncrypted[userDlg->getUserName()] = true;
+            m_userPassword[userDlg->getUserName()] = pbkdf2Encrypt(userDlg->getPassword());
+        } else {
+            m_userPasswordEncrypted[userDlg->getUserName()] = false;
+            m_userPassword[userDlg->getUserName()] = userDlg->getPassword();
+        }
+        ui->users->setItem(j,0,new QTableWidgetItem(userDlg->getUserName()));
+        
+        ui->users->setItem(j,1,new QTableWidgetItem(userDlg->isSuperUser() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
+        
+        ui->users->setItem(j,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@passwdType", "Encrypted") : i18nc("@passwdType", "Plain")));
+    }
+    delete userDlg;
+}
 
 
 void KCMGRUB2::slotGrubDisableOsProberChanged()
@@ -940,7 +985,8 @@ void KCMGRUB2::setupConnections()
     connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->groupsGroup, SLOT(setEnabled(bool)));
     //Delete user
     connect(ui->userDel, SIGNAL(clicked(bool)), this, SLOT(slotDeleteUser()));
-    
+    connect(ui->userMod, SIGNAL(clicked(bool)), this, SLOT(slotEditUser()));
+    connect(ui->userAdd, SIGNAL(clicked(bool)), this, SLOT(slotAddUser()));
     
     connect(ui->checkBox_osProber, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableOsProberChanged()));
 
@@ -1249,10 +1295,10 @@ void KCMGRUB2::getUsers()
             
             if (m_superUsers.contains(m_users[j])) {
                 m_userIsSuper[m_users[j]] = true;
-                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@propertyYes", "Yes")));
+                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@property", "Yes")));
             } else {
                 m_userIsSuper[m_users[j]] = false;
-                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@propertyNo", "No")));
+                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@property", "No")));
             }
             
             if (cryptoreg.exactMatch(headerFileLines[i])) {
@@ -1298,7 +1344,7 @@ void KCMGRUB2::getGroups()
             if (lockedmatch != -1) {
                 m_groupFileLocked[m_groupFilesList[i]] = true;
                 m_groupFileAllowedUsers[m_groupFilesList[i]] = usersmatchstring;
-                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@propertyYes", "Yes")));
+                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@property", "Yes")));
                 if (usersmatchstring == "") {
                     ui->groups->setItem(j,2,new QTableWidgetItem(i18nc("@groupSuperUser", "Superusers only")));
                 } else {
@@ -1307,7 +1353,7 @@ void KCMGRUB2::getGroups()
             } else {
                 m_groupFileLocked[m_groupFilesList[i]] = false;
                 //m_groupFileAllowedUsers[m_groupFilesList[i]] = "__ALLUSERS__";
-                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@propertyNo", "No")));
+                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@property", "No")));
                 ui->groups->setItem(j,2,new QTableWidgetItem(i18nc("@groupEveryone", "Everyone")));
             }
             //qDebug() << "File" << GRUB_CONFIGDIR + m_groupFilesList[i] << "processed.";
@@ -1324,7 +1370,7 @@ void KCMGRUB2::getGroups()
         }
     }
 }
-QString KCMGRUB2::pbkdf2Encrypt(QString passwd, int key_length, int iteration_count){
+QString KCMGRUB2::pbkdf2Encrypt(QString passwd){ //, int key_length = 64, int iteration_count = 10000
     /*
     QByteArray salt;
     for( int i=0; i<key_length; ++i ) {

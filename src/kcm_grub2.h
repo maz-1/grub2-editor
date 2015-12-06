@@ -83,9 +83,9 @@ private Q_SLOTS:
     //Security
     void slotSecurityChanged();
     //users
-    //void slotAddUser();
+    void slotAddUser();
     void slotDeleteUser();
-    //void slotEditUser();
+    void slotEditUser();
     //groups
     //void slotEditGroup();
 
@@ -113,7 +113,7 @@ private:
     void getUsers();
     void getGroups();
 //Encryption
-    QString pbkdf2Encrypt(QString passwd, int key_length, int iteration_count);
+    QString pbkdf2Encrypt(QString passwd); //, int key_length, int iteration_count
     
     void sortResolutions();
     void showResolutions();

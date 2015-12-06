@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>groupDiag</class>
- <widget class="QDialog" name="groupDiag">
+ <class>GroupDialog</class>
+ <widget class="QWidget" name="GroupDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,12 +9,6 @@
     <width>400</width>
     <height>300</height>
    </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Group Settings</string>
-  </property>
-  <property name="modal">
-   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
