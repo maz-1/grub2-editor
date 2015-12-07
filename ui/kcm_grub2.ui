@@ -408,7 +408,7 @@
        <item row="0" column="0">
         <widget class="QCheckBox" name="secEnabled">
          <property name="text">
-          <string>Enable security</string>
+          <string comment="@label:enablesec">Enable security</string>
          </property>
         </widget>
        </item>
@@ -421,7 +421,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Users</string>
+          <string comment="@label:users">Users</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0">
@@ -479,21 +479,21 @@
             <item>
              <widget class="QPushButton" name="userAdd">
               <property name="text">
-               <string>Add</string>
+               <string comment="@label:add">Add</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="userDel">
               <property name="text">
-               <string>Delete</string>
+               <string comment="@label:del">Delete</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="userMod">
               <property name="text">
-               <string>Edit</string>
+               <string comment="@label:edit">Edit</string>
               </property>
              </widget>
             </item>
@@ -511,7 +511,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Groups</string>
+          <string comment="@label:groups">Groups</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0">
@@ -560,7 +560,7 @@
             <item>
              <widget class="QPushButton" name="groupMod">
               <property name="text">
-               <string>Edit</string>
+               <string comment="@label:edit">Edit</string>
               </property>
              </widget>
             </item>

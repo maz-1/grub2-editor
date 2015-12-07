@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2013-10-12 01:33+0000\n"
+"Report-Msgid-Bugs-To: sallewell@users.sourceforge.net\n"
+"POT-Creation-Date: 2015-12-07 23:05+0800\n"
 "PO-Revision-Date: 2012-12-25 17:12+0200\n"
 "Last-Translator: Marek Laane <bald@smail.ee>\n"
 "Language-Team: Estonian <kde-et@linux.ee>\n"
@@ -17,20 +17,609 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
+#. i18n: file: ui/convertDlg.ui:19
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:3
+msgctxt "@label:textbox"
+msgid "Image:"
+msgstr "Tõmmis:"
+
+#. i18n: file: ui/convertDlg.ui:29
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:6
+msgctxt "@label:textbox"
+msgid "Convert To:"
+msgstr "Teisendatakse:"
+
+#. i18n: file: ui/convertDlg.ui:41
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: rc.cpp:9
+msgctxt "@title:group"
+msgid "Conversion Options"
+msgstr "Teisendamise valikud"
+
+#. i18n: file: ui/convertDlg.ui:47
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:12
+msgctxt "@label:spinbox"
+msgid "Width:"
+msgstr "Laius:"
+
+#. i18n: file: ui/convertDlg.ui:61
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: rc.cpp:15
+msgctxt "@label:spinbox"
+msgid "Height:"
+msgstr "Kõrgus:"
+
+#. i18n: file: ui/convertDlg.ui:75
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: rc.cpp:18
+msgctxt "@option:check"
+msgid "Force resolution:"
+msgstr "Määratud lahutusvõime:"
+
+#. i18n: file: ui/convertDlg.ui:85
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: rc.cpp:21
+msgctxt "@option:check"
+msgid "Set As GRUB Wallpaper:"
+msgstr "Määramine GRUB-i taustapildiks:"
+
+#. i18n: file: ui/groupDlg.ui:17
+#. i18n: ectx: property (text), widget (QCheckBox, checkbox_locked)
+#: rc.cpp:24
+msgctxt "@label:lockgroup"
+msgid "Lock group"
+msgstr ""
+
+#. i18n: file: ui/groupDlg.ui:24
+#. i18n: ectx: property (availableLabel), widget (KActionSelector, userSelector)
+#: rc.cpp:27
+msgctxt "@label:availusers"
+msgid "&Available users:"
+msgstr ""
+
+#. i18n: file: ui/groupDlg.ui:27
+#. i18n: ectx: property (selectedLabel), widget (KActionSelector, userSelector)
+#: rc.cpp:30
+msgctxt "@label:selecusers"
+msgid "Selected &users:"
+msgstr ""
+
+#. i18n: file: ui/installDlg.ui:17
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:33
+msgctxt "@label:listbox"
+msgid "Select partition to install/recover GRUB:"
+msgstr "Partitsioon GRUB-i paigaldamiseks/taastamiseks:"
+
+#. i18n: file: ui/installDlg.ui:48
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:36
+msgctxt "@title:column"
+msgid "Partition"
+msgstr "Partitsioon"
+
+#. i18n: file: ui/installDlg.ui:53
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:39
+msgctxt "@title:column"
+msgid "Mountpoint"
+msgstr "Ühenduspunkt"
+
+#. i18n: file: ui/installDlg.ui:58
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:42
+msgctxt "@title:column"
+msgid "Label"
+msgstr "Nimi"
+
+#. i18n: file: ui/installDlg.ui:63
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:45
+msgctxt "@title:column"
+msgid "File System"
+msgstr "Failisüsteem"
+
+#. i18n: file: ui/installDlg.ui:68
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:48
+msgctxt "@title:column"
+msgid "Size"
+msgstr "Suurus"
+
+#. i18n: file: ui/installDlg.ui:76
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_partition)
+#: rc.cpp:51
+msgctxt "@info:tooltip"
+msgid ""
+"Install the bootloader on the boot sector of the selected partition instead "
+"of the MBR(=Master Boot Sector). Not recommended."
+msgstr ""
+"Alglaaduri paigaldamine valitud partitsiooni alglaadesektorisse, mitte MBR-"
+"i. Pole soovitatav."
+
+#. i18n: file: ui/installDlg.ui:79
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_partition)
+#: rc.cpp:54
+msgctxt "@option:check"
+msgid "Install on partition instead of MBR (Advanced)"
+msgstr "Paigaldamine partitsiooni, mitte MBR-i (kogenud kasutajatele)"
+
+#. i18n: file: ui/kcm_grub2.ui:21
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: rc.cpp:57
+msgctxt "@title:tab Refers to settings."
+msgid "General"
+msgstr "Üldine"
+
+#. i18n: file: ui/kcm_grub2.ui:27
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_timeout)
+#: rc.cpp:60
+msgctxt "@title:group"
+msgid "Timeout"
+msgstr "Aegumine"
+
+#. i18n: file: ui/kcm_grub2.ui:35
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeout)
+#: rc.cpp:63
+msgctxt "@option:check"
+msgid "Hide the menu for:"
+msgstr "Menüü peitmise aeg:"
+
+#. i18n: file: ui/kcm_grub2.ui:45
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
+#. i18n: file: ui/kcm_grub2.ui:144
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
+#. i18n: file: ui/kcm_grub2.ui:45
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
+#. i18n: file: ui/kcm_grub2.ui:144
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
+#: rc.cpp:66 rc.cpp:81
+msgctxt "@label:spinbox seconds (suffix)"
+msgid "s"
+msgstr "s"
+
+#. i18n: file: ui/kcm_grub2.ui:76
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeoutShowTimer)
+#: rc.cpp:69
+msgctxt "@option:check"
+msgid "Show countdown timer"
+msgstr "Ajaloenduri näitamine"
+
+#. i18n: file: ui/kcm_grub2.ui:83
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_timeout)
+#: rc.cpp:72
+msgctxt "@option:check"
+msgid "Automatically boot the default entry after showing the menu"
+msgstr "Automaatne alglaadimine vaikekirjega pärast menüü näitamist"
+
+#. i18n: file: ui/kcm_grub2.ui:106
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
+#: rc.cpp:75
+msgctxt "@option:radio"
+msgid "Immediately"
+msgstr "Kohe"
+
+#. i18n: file: ui/kcm_grub2.ui:131
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
+#: rc.cpp:78
+msgctxt "@option:radio"
+msgid "After:"
+msgstr "Pärast:"
+
+#. i18n: file: ui/kcm_grub2.ui:172
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
+#: rc.cpp:84
+msgctxt "@title:group"
+msgid "Generated Entries"
+msgstr "Genereeritud kirjed"
+
+#. i18n: file: ui/kcm_grub2.ui:178
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
+#: rc.cpp:87
+msgctxt "@option:check"
+msgid "Generate recovery entries"
+msgstr "Taastamiskirjete genereerimine"
+
+#. i18n: file: ui/kcm_grub2.ui:185
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
+#: rc.cpp:90
+msgctxt "@option:check"
+msgid "Generate memtest entries"
+msgstr "Memtest-kirjete genereerimine"
+
+#. i18n: file: ui/kcm_grub2.ui:192
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
+#: rc.cpp:93
+msgctxt "@option:check"
+msgid "Probe for operating systems"
+msgstr "Operatsioonisüsteemide uurimine"
+
+#. i18n: file: ui/kcm_grub2.ui:202
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
+#: rc.cpp:96
+msgctxt "@title:group"
+msgid "Default Entry"
+msgstr "Vaikimisi kirje"
+
+#. i18n: file: ui/kcm_grub2.ui:208
+#. i18n: ectx: property (text), widget (QLabel, label_default)
+#: rc.cpp:99
+msgctxt "@label:listbox"
+msgid "Default Entry:"
+msgstr "Vaikimisi kirje:"
+
+#. i18n: file: ui/kcm_grub2.ui:224
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_remove)
+#: rc.cpp:102
+msgctxt "@action:button"
+msgid "Remove Old Entries"
+msgstr "Eemalda vanad kirjed"
+
+#. i18n: file: ui/kcm_grub2.ui:233
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
+#: rc.cpp:105
+msgctxt "@option:check"
+msgid "The next booted entry will become default"
+msgstr "Järgmine alglaaditav kirje saab vaikekirjeks"
+
+#. i18n: file: ui/kcm_grub2.ui:244
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: rc.cpp:108
+msgctxt "@title:tab"
+msgid "Appearance"
+msgstr "Välimus"
+
+#. i18n: file: ui/kcm_grub2.ui:250
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#: rc.cpp:111
+msgctxt "@title:group"
+msgid "Resolutions"
+msgstr "Lahutusvõimed"
+
+#. i18n: file: ui/kcm_grub2.ui:256
+#. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
+#: rc.cpp:114
+msgctxt "@label:listbox"
+msgid "GRUB:"
+msgstr "GRUB:"
+
+#. i18n: file: ui/kcm_grub2.ui:270
+#. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
+#: rc.cpp:117
+msgctxt "@label:listbox"
+msgid "Linux Kernel:"
+msgstr "Linuxi kernel:"
+
+#. i18n: file: ui/kcm_grub2.ui:287
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
+#: rc.cpp:120
+msgctxt "@title:group"
+msgid "Colors"
+msgstr "Värvid"
+
+#. i18n: file: ui/kcm_grub2.ui:295
+#. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
+#: rc.cpp:123
+msgctxt "@label:chooser"
+msgid "Normal Foreground (Text):"
+msgstr "Tavaline esiplaan (tekst):"
+
+#. i18n: file: ui/kcm_grub2.ui:305
+#. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
+#: rc.cpp:126
+msgctxt "@label:chooser"
+msgid "Highlight Foreground (Text):"
+msgstr "Esile tõstetud esiplaan (tekst):"
+
+#. i18n: file: ui/kcm_grub2.ui:319
+#. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
+#: rc.cpp:129
+msgctxt "@label:chooser"
+msgid "Normal Background:"
+msgstr "Tavaline taust:"
+
+#. i18n: file: ui/kcm_grub2.ui:329
+#. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
+#: rc.cpp:132
+msgctxt "@label:chooser"
+msgid "Highlight Background:"
+msgstr "Esile tõstetud taust:"
+
+#. i18n: file: ui/kcm_grub2.ui:344
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
+#: rc.cpp:135
+msgctxt "@title:group Refers to the image shown behind the boot menu."
+msgid "Background"
+msgstr "Taust"
+
+#. i18n: file: ui/kcm_grub2.ui:350
+#. i18n: ectx: property (text), widget (QLabel, label_background)
+#: rc.cpp:138
+msgctxt "@label:textbox"
+msgid "Wallpaper:"
+msgstr "Taustapilt:"
+
+#. i18n: file: ui/kcm_grub2.ui:362
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_preview)
+#: rc.cpp:141
+msgctxt "@action:button"
+msgid "Preview"
+msgstr "Eelvaatlus"
+
+#. i18n: file: ui/kcm_grub2.ui:369
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_create)
+#: rc.cpp:144
+msgctxt "@action:button"
+msgid "Create"
+msgstr "Loo"
+
+#. i18n: file: ui/kcm_grub2.ui:378
+#. i18n: ectx: property (text), widget (QLabel, label_theme)
+#: rc.cpp:147
+msgctxt "@label:textbox"
+msgid "Theme:"
+msgstr "Teema:"
+
+#. i18n: file: ui/kcm_grub2.ui:405
+#. i18n: ectx: attribute (title), widget (QWidget, tab_4)
+#: rc.cpp:150
+msgctxt "@title:tab"
+msgid "Security"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:411
+#. i18n: ectx: property (text), widget (QCheckBox, secEnabled)
+#: rc.cpp:153
+msgctxt "@label:enablesec"
+msgid "Enable security"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:424
+#. i18n: ectx: property (title), widget (QGroupBox, usersGroup)
+#: rc.cpp:156
+msgctxt "@label:users"
+msgid "Users"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:482
+#. i18n: ectx: property (text), widget (QPushButton, userAdd)
+#: rc.cpp:159
+msgctxt "@label:add"
+msgid "Add"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:489
+#. i18n: ectx: property (text), widget (QPushButton, userDel)
+#: rc.cpp:162
+msgctxt "@label:del"
+msgid "Delete"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:496
+#. i18n: ectx: property (text), widget (QPushButton, userMod)
+#. i18n: file: ui/kcm_grub2.ui:563
+#. i18n: ectx: property (text), widget (QPushButton, groupMod)
+#. i18n: file: ui/kcm_grub2.ui:496
+#. i18n: ectx: property (text), widget (QPushButton, userMod)
+#. i18n: file: ui/kcm_grub2.ui:563
+#. i18n: ectx: property (text), widget (QPushButton, groupMod)
+#: rc.cpp:165 rc.cpp:171
+msgctxt "@label:edit"
+msgid "Edit"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:514
+#. i18n: ectx: property (title), widget (QGroupBox, groupsGroup)
+#: rc.cpp:168
+msgctxt "@label:groups"
+msgid "Groups"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:589
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: rc.cpp:174
+msgctxt "@title:tab Refers to settings."
+msgid "Advanced"
+msgstr "Muu"
+
+#. i18n: file: ui/kcm_grub2.ui:595
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
+#: rc.cpp:177
+msgctxt "@title:group"
+msgid "Linux Kernel Arguments"
+msgstr "Linuxi kerneli argumendid"
+
+#. i18n: file: ui/kcm_grub2.ui:601
+#. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
+#: rc.cpp:180
+msgctxt "@label:textbox"
+msgid "Normal Entries:"
+msgstr "Tavakirjed:"
+
+#. i18n: file: ui/kcm_grub2.ui:613
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:634
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:664
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:685
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:613
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:634
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:664
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:685
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
+#: rc.cpp:183 rc.cpp:189 rc.cpp:198 rc.cpp:204 rc.cpp:210
+msgctxt "@action:button"
+msgid "Suggestions"
+msgstr "Pakkumised"
+
+#. i18n: file: ui/kcm_grub2.ui:622
+#. i18n: ectx: property (text), widget (QLabel, label_cmdline)
+#: rc.cpp:186
+msgctxt "@label:textbox"
+msgid "All Entries:"
+msgstr "Kõik kirjed:"
+
+#. i18n: file: ui/kcm_grub2.ui:646
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
+#: rc.cpp:192
+msgctxt "@title:group Noun."
+msgid "Terminal"
+msgstr "Terminal"
+
+#. i18n: file: ui/kcm_grub2.ui:652
+#. i18n: ectx: property (text), widget (QLabel, label_terminal)
+#: rc.cpp:195
+msgctxt "@label:textbox Noun."
+msgid "Terminal:"
+msgstr "Terminal:"
+
+#. i18n: file: ui/kcm_grub2.ui:673
+#. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
+#: rc.cpp:201
+msgctxt "@label:textbox"
+msgid "Input Terminal:"
+msgstr "Sisendterminal:"
+
+#. i18n: file: ui/kcm_grub2.ui:694
+#. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
+#: rc.cpp:207
+msgctxt "@label:textbox"
+msgid "Output Terminal:"
+msgstr "Väljundterminal:"
+
+#. i18n: file: ui/kcm_grub2.ui:718
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
+#: rc.cpp:213
+msgctxt "@title:group Refers to settings."
+msgid "Other"
+msgstr "Muu"
+
+#. i18n: file: ui/kcm_grub2.ui:724
+#. i18n: ectx: property (text), widget (QLabel, label_distributor)
+#: rc.cpp:216
+msgctxt "@label:textbox"
+msgid "Distributor:"
+msgstr "Levitaja"
+
+#. i18n: file: ui/kcm_grub2.ui:734
+#. i18n: ectx: property (text), widget (QLabel, label_serial)
+#: rc.cpp:219
+msgctxt "@label:textbox"
+msgid "Serial Command:"
+msgstr "Jadakäsk:"
+
+#. i18n: file: ui/kcm_grub2.ui:744
+#. i18n: ectx: property (text), widget (QLabel, label_initTune)
+#: rc.cpp:222
+msgctxt "@label:textbox"
+msgid "Init Tune:"
+msgstr "Init heli:"
+
+#. i18n: file: ui/kcm_grub2.ui:754
+#. i18n: ectx: property (text), widget (QLabel, label_uuid)
+#: rc.cpp:225
+msgctxt "@option:check"
+msgid "Enable UUIDs:"
+msgstr "UUID-de lubamine:"
+
+#. i18n: file: ui/kcm_grub2.ui:780
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
+#: rc.cpp:228
+msgctxt "@title:group"
+msgid "Tools"
+msgstr "Tööriistad"
+
+#. i18n: file: ui/kcm_grub2.ui:792
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_install)
+#: rc.cpp:231
+msgctxt "@action:button"
+msgid "Install/Recover Bootloader"
+msgstr "Paigalda/taasta alglaadur"
+
+#. i18n: file: ui/removeDlg.ui:17
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:234
+msgctxt "@label:listbox"
+msgid "Select entries to remove:"
+msgstr "Eemaldatavad kirjed:"
+
+#. i18n: file: ui/removeDlg.ui:34
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
+#: rc.cpp:237
+msgctxt "@info:tooltip"
+msgid "Remove associated kernel header files."
+msgstr "Kerneliga seostatud päisefailide eemaldamine."
+
+#. i18n: file: ui/removeDlg.ui:37
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
+#: rc.cpp:240
+msgctxt "@option:check"
+msgid "Also remove associated old packages"
+msgstr "Ka seotud vanade pakettide eemaldamine"
+
+#. i18n: file: ui/userDlg.ui:19
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:243
+msgctxt "@label:username"
+msgid "User Name"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:29
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:246
+msgctxt "@label:password"
+msgid "Password"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:43
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:249
+msgctxt "@label:confirmpassword"
+msgid "Confirm password"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:59
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
+#: rc.cpp:252
+msgctxt "@label:superuser"
+msgid "Superuser"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:66
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
+#: rc.cpp:255
+msgctxt "@label:cryptpassword"
+msgid "Crypt password"
+msgstr ""
+
+#: rc.cpp:256
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Marek Laane"
 
+#: rc.cpp:257
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "bald@smail.ee"
 
-#: src/convertDlg.cpp:48
+#: src/convertDlg.cpp:59
 msgctxt "@item:inlistbox"
 msgid "ImageMagick supported image formats"
 msgstr "ImageMagicku toetatud pildivormingud"
 
-#: src/convertDlg.cpp:76
+#: src/convertDlg.cpp:88
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Image</interface> and <interface>Convert To</"
@@ -39,7 +628,7 @@ msgstr ""
 "Palun täida nii väli <interface>Tõmmis</interface> kui ka "
 "<interface>Teisendatakse</interface>."
 
-#: src/convertDlg.cpp:79
+#: src/convertDlg.cpp:91
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
@@ -48,27 +637,29 @@ msgstr ""
 "Palun täida nii väli <interface>Laius</interface> kui ka <interface>Kõrgus</"
 "interface>."
 
-#: src/convertDlg.cpp:82
+#: src/convertDlg.cpp:94
 msgctxt "@info"
 msgid ""
 "You do not have write permissions in this directory, please select another "
 "destination."
 msgstr ""
 
-#: src/helper/helper.cpp:79
-#, kde-format
+#: src/groupDlg.cpp:34
+msgctxt "@title:window"
+msgid "Edit Group"
+msgstr ""
+
+#: src/helper/helper.cpp:93
 msgctxt "@info"
 msgid "Original configuration file <filename>%1</filename> does not exist."
 msgstr "Algset seadistusfaili <filename>%1</filename> ei ole olemas."
 
-#: src/helper/helper.cpp:84
-#, kde-format
+#: src/helper/helper.cpp:98
 msgctxt "@info"
 msgid "Cannot remove current configuration file <filename>%1</filename>."
 msgstr "Aktiivse seadistusfaili <filename>%1</filename> eemaldamine nurjus."
 
-#: src/helper/helper.cpp:89
-#, kde-format
+#: src/helper/helper.cpp:103
 msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
@@ -77,335 +668,364 @@ msgstr ""
 "Algse seadistusfaili <filename>%1</filename> kopeerimine asukohta <filename>"
 "%2</filename> nurjus."
 
-#: src/helper/helper.cpp:105
+#: src/helper/helper.cpp:119
 msgctxt "@info"
 msgid "Failed to create temporary mount point."
 msgstr "Ajutist ühenduskohta ei suudetud luua."
 
-#: src/installDlg.cpp:45
+#: src/installDlg.cpp:56
 msgctxt "@title:window"
 msgid "Install/Recover Bootloader"
 msgstr "Alglaaduri paigaldamine/taastamine"
 
-#: src/installDlg.cpp:98
+#: src/installDlg.cpp:108
 msgctxt "@info"
 msgid "Sorry, you have to select a partition with a proper name!"
 msgstr "Vabandust, sa pead valima korraliku nimega partitsiooni!"
 
-#: src/installDlg.cpp:109
+#: src/installDlg.cpp:114
 msgctxt "@title:window"
 msgid "Installing"
 msgstr "Paigaldamine"
 
-#: src/installDlg.cpp:109
+#: src/installDlg.cpp:115
 msgctxt "@info:progress"
 msgid "Installing GRUB..."
 msgstr "GRUB-i paigaldamine..."
 
-#: src/installDlg.cpp:120 src/kcm_grub2.cpp:484
-msgctxt "@title:window"
-msgid "Information"
-msgstr "Teave"
-
-#: src/installDlg.cpp:125
-msgctxt "@info"
-msgid "Successfully installed GRUB."
-msgstr "GRUB on edukalt paigaldatud."
-
-#: src/installDlg.cpp:127
+#: src/installDlg.cpp:132
 msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "GRUB-i paigaldamine nurjus."
 
-#: src/kcm_grub2.cpp:62
-msgctxt "@title"
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:556
+msgctxt "@title:window"
+msgid "Information"
+msgstr "Teave"
+
+#: src/installDlg.cpp:140
+msgctxt "@info"
+msgid "Successfully installed GRUB."
+msgstr "GRUB on edukalt paigaldatud."
+
+#: src/kcm_grub2.cpp:75
+#, fuzzy
 msgid "KDE GRUB2 Bootloader Control Module"
 msgstr "KDE GRUB2 alglaaduri seadistusmoodul"
 
-#: src/kcm_grub2.cpp:62
-msgctxt "@title"
+#: src/kcm_grub2.cpp:76
+#, fuzzy
 msgid "A KDE Control Module for configuring the GRUB2 bootloader."
 msgstr "KDE juhtimiskeskuse moodul GRUB2 alglaaduri seadistamiseks."
 
-#: src/kcm_grub2.cpp:62
+#: src/kcm_grub2.cpp:80
 #, fuzzy
-#| msgctxt "@info:credit"
-#| msgid "Copyright (C) 2008-2012 Konstantinos Smanis"
-msgctxt "@info:credit"
-msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
-msgstr "Autoriõigus (C) 2008-2012: Konstantinos Smanis"
-
-#: src/kcm_grub2.cpp:63
-msgctxt "@info:credit"
-msgid "Κonstantinos Smanis"
-msgstr "Κonstantinos Smanis"
-
-#: src/kcm_grub2.cpp:63
-msgctxt "@info:credit"
 msgid "Main Developer"
 msgstr "Põhiarendaja"
 
-#: src/kcm_grub2.cpp:89
-msgctxt "@info"
-msgid "Successfully restored the default values."
-msgstr "Vaikeväärtused taastati edukalt."
+#: src/kcm_grub2.cpp:81
+#, fuzzy
+msgid "Developer"
+msgstr "Põhiarendaja"
 
-#: src/kcm_grub2.cpp:91
+#: src/kcm_grub2.cpp:102
 msgctxt "@info"
 msgid "Failed to restore the default values."
 msgstr "Vaikeväärtuste taastamine nurjus."
 
-#: src/kcm_grub2.cpp:472
+#: src/kcm_grub2.cpp:106
+msgctxt "@info"
+msgid "Successfully restored the default values."
+msgstr "Vaikeväärtused taastati edukalt."
+
+#: src/kcm_grub2.cpp:542
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "Salvestamine"
 
-#: src/kcm_grub2.cpp:472
+#: src/kcm_grub2.cpp:543
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "GRUB-i seadistuste salvestamine..."
 
-#: src/kcm_grub2.cpp:489
+#: src/kcm_grub2.cpp:559
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "GRUB-i seadistused on edukalt salvestatud."
 
-#: src/kcm_grub2.cpp:492
+#: src/kcm_grub2.cpp:562
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "GRUB-i seadistuste salvestamine nurjus."
 
-#: src/kcm_grub2.cpp:563 src/kcm_grub2.cpp:585
+#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
+#: src/kcm_grub2.cpp:1380 src/kcm_grub2.cpp:1440
+msgctxt "@property"
+msgid "Yes"
+msgstr ""
+
+#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
+#: src/kcm_grub2.cpp:1383 src/kcm_grub2.cpp:1448
+msgctxt "@property"
+msgid "No"
+msgstr ""
+
+#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1388
+msgctxt "@property"
+msgid "Encrypted"
+msgstr ""
+
+#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1391
+msgctxt "@property"
+msgid "Plain"
+msgstr ""
+
+#: src/kcm_grub2.cpp:665
+msgctxt "@info"
+msgid "No users found!"
+msgstr ""
+
+#: src/kcm_grub2.cpp:682 src/kcm_grub2.cpp:1444
+msgctxt "@property"
+msgid "Superusers only"
+msgstr ""
+
+#: src/kcm_grub2.cpp:686 src/kcm_grub2.cpp:1449
+msgctxt "@property"
+msgid "Everyone"
+msgstr ""
+
+#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Ekraani lahutusvõime"
 
-#: src/kcm_grub2.cpp:563
+#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "GRUB-i lahutusvõime:"
 
-#: src/kcm_grub2.cpp:585
-msgctxt "@label:textbox"
-msgid "Please enter a Linux boot resolution:"
-msgstr "Linuxi laadimise lahutusvõime:"
-
-#: src/kcm_grub2.cpp:631
+#: src/kcm_grub2.cpp:803
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr "Täisekraanirežiimist väljumiseks vajuta <shortcut>Escape</shortcut>."
 
-#: src/kcm_grub2.cpp:780 src/kcm_grub2.cpp:781
+#: src/kcm_grub2.cpp:952 src/kcm_grub2.cpp:953
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Must"
 
-#: src/kcm_grub2.cpp:782 src/kcm_grub2.cpp:783
+#: src/kcm_grub2.cpp:954 src/kcm_grub2.cpp:955
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Läbipaistev"
 
-#: src/kcm_grub2.cpp:785
+#: src/kcm_grub2.cpp:957
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Sinine"
 
-#: src/kcm_grub2.cpp:787
+#: src/kcm_grub2.cpp:959
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Tsüaan"
 
-#: src/kcm_grub2.cpp:789
+#: src/kcm_grub2.cpp:961
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Tumehall"
 
-#: src/kcm_grub2.cpp:791
+#: src/kcm_grub2.cpp:963
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Roheline"
 
-#: src/kcm_grub2.cpp:793
+#: src/kcm_grub2.cpp:965
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Heletsüaan"
 
-#: src/kcm_grub2.cpp:795
+#: src/kcm_grub2.cpp:967
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Helesinine"
 
-#: src/kcm_grub2.cpp:797
+#: src/kcm_grub2.cpp:969
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Heleroheline"
 
-#: src/kcm_grub2.cpp:799
+#: src/kcm_grub2.cpp:971
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Helehall"
 
-#: src/kcm_grub2.cpp:801
+#: src/kcm_grub2.cpp:973
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Helemagenta"
 
-#: src/kcm_grub2.cpp:803
+#: src/kcm_grub2.cpp:975
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Helepunane"
 
-#: src/kcm_grub2.cpp:805
+#: src/kcm_grub2.cpp:977
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/kcm_grub2.cpp:807
+#: src/kcm_grub2.cpp:979
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Punane"
 
-#: src/kcm_grub2.cpp:809
+#: src/kcm_grub2.cpp:981
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Valge"
 
-#: src/kcm_grub2.cpp:811
+#: src/kcm_grub2.cpp:983
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Kollane"
 
-#: src/kcm_grub2.cpp:834 src/kcm_grub2.cpp:843
+#: src/kcm_grub2.cpp:1006 src/kcm_grub2.cpp:1015
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Vaikne alglaadimine"
 
-#: src/kcm_grub2.cpp:835 src/kcm_grub2.cpp:844
+#: src/kcm_grub2.cpp:1007 src/kcm_grub2.cpp:1016
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Tiitelkuva näitamine"
 
-#: src/kcm_grub2.cpp:836 src/kcm_grub2.cpp:845
+#: src/kcm_grub2.cpp:1008 src/kcm_grub2.cpp:1017
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Plymouthi keelamine"
 
-#: src/kcm_grub2.cpp:837 src/kcm_grub2.cpp:846
+#: src/kcm_grub2.cpp:1009 src/kcm_grub2.cpp:1018
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "ACPI väljalülitamine"
 
-#: src/kcm_grub2.cpp:838 src/kcm_grub2.cpp:847
+#: src/kcm_grub2.cpp:1010 src/kcm_grub2.cpp:1019
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "APIC-i väljalülitamine"
 
-#: src/kcm_grub2.cpp:839 src/kcm_grub2.cpp:848
+#: src/kcm_grub2.cpp:1011 src/kcm_grub2.cpp:1020
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Kohaliku APIC-i väljalülitamine"
 
-#: src/kcm_grub2.cpp:840 src/kcm_grub2.cpp:849
+#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Üksikkasutaja režiim"
 
-#: src/kcm_grub2.cpp:852 src/kcm_grub2.cpp:857 src/kcm_grub2.cpp:864
+#: src/kcm_grub2.cpp:1024 src/kcm_grub2.cpp:1029 src/kcm_grub2.cpp:1036
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "PC BIOS && EFI konsool"
 
-#: src/kcm_grub2.cpp:853 src/kcm_grub2.cpp:858 src/kcm_grub2.cpp:865
+#: src/kcm_grub2.cpp:1025 src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1037
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Jadaporditerminal"
 
-#: src/kcm_grub2.cpp:854 src/kcm_grub2.cpp:859 src/kcm_grub2.cpp:866
+#: src/kcm_grub2.cpp:1026 src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1038
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Open Firmware konsool"
 
-#: src/kcm_grub2.cpp:860
+#: src/kcm_grub2.cpp:1032
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "PC AT klaviatuur (Coreboot)"
 
-#: src/kcm_grub2.cpp:861
+#: src/kcm_grub2.cpp:1033
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "USB klaviatuur (HID alglaadimisprotokoll)"
 
-#: src/kcm_grub2.cpp:867
+#: src/kcm_grub2.cpp:1039
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Graafikarežiimi väljund"
 
-#: src/kcm_grub2.cpp:868
+#: src/kcm_grub2.cpp:1040
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "VGA tekstiväljund (Coreboot)"
 
-#: src/kcm_grub2.cpp:1063
+#: src/kcm_grub2.cpp:1240
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Seadmete proovimine"
 
-#: src/kcm_grub2.cpp:1063
+#: src/kcm_grub2.cpp:1241
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "Seadmete proovimine GRUB-i nimede osas..."
 
-#: src/kcm_grub2.cpp:1072
+#: src/kcm_grub2.cpp:1260
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "GRUB-i seadmenimede hankimine nurjus."
 
-#: src/kcm_grub2.cpp:1077
+#: src/kcm_grub2.cpp:1267
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "Abiline tagastas vigase seadmeloendi."
 
-#: src/kcm_grub2.cpp:1130 src/kcm_grub2.cpp:1133
+#: src/kcm_grub2.cpp:1359 src/kcm_grub2.cpp:1408
+msgctxt "@header"
+msgid "Name"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1359
+msgctxt "@header"
+msgid "Superuser"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1359
+msgctxt "@header"
+msgid "Password type"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1408
+msgctxt "@header"
+msgid "Locked"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1408
+msgctxt "@header"
+msgid "Allowed users"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1513 src/kcm_grub2.cpp:1516
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "Kohandatud..."
 
-#: src/kcm_grub2.cpp:1134
+#: src/kcm_grub2.cpp:1517
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Täpsustamata"
 
-#: src/kcm_grub2.cpp:1135
+#: src/kcm_grub2.cpp:1518
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Alglaadimine tekstirežiimis"
 
-#: src/kcm_grub2.cpp:1136
+#: src/kcm_grub2.cpp:1519
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "GRUB-i lahutusvõime säilitamine"
-
-#: src/kcm_grub2.cpp:1162
-msgctxt "@info"
-msgid "The process could not be started."
-msgstr "Protsessi käivitamine nurjus."
-
-#: src/kcm_grub2.cpp:1165
-msgctxt "@info"
-msgid "The process crashed."
-msgstr "Protsessi tabas krahh."
-
-#: src/kcm_grub2.cpp:1172
-#, kde-format
-msgctxt "@info"
-msgid ""
-"Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error "
-"message:<nl/><message>%3</message>"
-msgstr ""
-"Käsk: <command>%1</command><nl/>Veakood: <numid>%2</numid><nl/>Veateade:<nl/"
-"><message>%3</message>"
 
 #: src/qPkBackend.cpp:31
 msgctxt "This is when the transaction status is not known"
@@ -595,440 +1215,96 @@ msgctxt "we are copying package files to prepare to install"
 msgid "Copying files"
 msgstr "Failide kopeerimine"
 
-#: src/removeDlg.cpp:46
+#: src/removeDlg.cpp:56
 msgctxt "@title:window"
 msgid "Remove Old Entries"
 msgstr "Vanade kirjete eemaldamine"
 
-#: src/removeDlg.cpp:60
+#: src/removeDlg.cpp:70
 msgctxt "@title:window"
 msgid "Finding Old Entries"
 msgstr "Vanade kirjete otsimine"
 
-#: src/removeDlg.cpp:60
+#: src/removeDlg.cpp:70
 msgctxt "@info:progress"
 msgid "Finding Old Entries..."
 msgstr "Vanade kirjete otsimine..."
 
-#: src/removeDlg.cpp:86
-#, kde-format
+#: src/removeDlg.cpp:96
 msgctxt "@item:inlistbox"
 msgid "Kernel %1"
 msgstr "Kernel %1"
 
-#: src/removeDlg.cpp:102
+#: src/removeDlg.cpp:112
 msgctxt "@info"
 msgid "No removable entries were found."
 msgstr "Ühtegi eemaldatavat kirjet ei leitud."
 
-#: src/removeDlg.cpp:124
+#: src/removeDlg.cpp:134
 msgctxt "@info"
 msgid "Are you sure you want to remove the following packages?"
 msgstr "Kas tõesti eemaldada järgmised paketid?"
 
-#: src/removeDlg.cpp:148
+#: src/removeDlg.cpp:157
 msgctxt "@title:window"
 msgid "Removing Old Entries"
 msgstr "Vanade kirjete eemaldamine"
 
-#: src/removeDlg.cpp:161
+#: src/removeDlg.cpp:170
 msgctxt "@info"
 msgid "Package removal failed."
 msgstr "Paketi eemaldamine nurjus."
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/convertDlg.ui:19
-msgctxt "@label:textbox"
-msgid "Image:"
-msgstr "Tõmmis:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: ui/convertDlg.ui:29
-msgctxt "@label:textbox"
-msgid "Convert To:"
-msgstr "Teisendatakse:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ui/convertDlg.ui:41
-msgctxt "@title:group"
-msgid "Conversion Options"
-msgstr "Teisendamise valikud"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: ui/convertDlg.ui:47
-msgctxt "@label:spinbox"
-msgid "Width:"
-msgstr "Laius:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: ui/convertDlg.ui:61
-msgctxt "@label:spinbox"
-msgid "Height:"
-msgstr "Kõrgus:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: ui/convertDlg.ui:75
-msgctxt "@option:check"
-msgid "Force resolution:"
-msgstr "Määratud lahutusvõime:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: ui/convertDlg.ui:85
-msgctxt "@option:check"
-msgid "Set As GRUB Wallpaper:"
-msgstr "Määramine GRUB-i taustapildiks:"
-
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/installDlg.ui:17
-msgctxt "@label:listbox"
-msgid "Select partition to install/recover GRUB:"
-msgstr "Partitsioon GRUB-i paigaldamiseks/taastamiseks:"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:48
-msgctxt "@title:column"
-msgid "Partition"
-msgstr "Partitsioon"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:53
-msgctxt "@title:column"
-msgid "Mountpoint"
-msgstr "Ühenduspunkt"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:58
-msgctxt "@title:column"
-msgid "Label"
-msgstr "Nimi"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:63
-msgctxt "@title:column"
-msgid "File System"
-msgstr "Failisüsteem"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:68
-msgctxt "@title:column"
-msgid "Size"
-msgstr "Suurus"
-
-#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_partition)
-#: ui/installDlg.ui:76
-msgctxt "@info:tooltip"
-msgid ""
-"Install the bootloader on the boot sector of the selected partition instead "
-"of the MBR(=Master Boot Sector). Not recommended."
+#: src/userDlg.cpp:31
+msgctxt "@title:window"
+msgid "Edit User"
 msgstr ""
-"Alglaaduri paigaldamine valitud partitsiooni alglaadesektorisse, mitte MBR-"
-"i. Pole soovitatav."
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_partition)
-#: ui/installDlg.ui:79
-msgctxt "@option:check"
-msgid "Install on partition instead of MBR (Advanced)"
-msgstr "Paigaldamine partitsiooni, mitte MBR-i (kogenud kasutajatele)"
+#: src/userDlg.cpp:67
+msgctxt "@info"
+msgid "Passwords don't match!"
+msgstr ""
 
-#. i18n: ectx: attribute (title), widget (QWidget, tab)
-#: ui/kcm_grub2.ui:21
-msgctxt "@title:tab Refers to settings."
-msgid "General"
-msgstr "Üldine"
+#: src/userDlg.cpp:70
+msgctxt "@info"
+msgid "Please fill in passwords!"
+msgstr ""
 
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_timeout)
-#: ui/kcm_grub2.ui:27
-msgctxt "@title:group"
-msgid "Timeout"
-msgstr "Aegumine"
+#: src/userDlg.cpp:73
+msgctxt "@info"
+msgid "Please fill in username!"
+msgstr ""
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeout)
-#: ui/kcm_grub2.ui:35
-msgctxt "@option:check"
-msgid "Hide the menu for:"
-msgstr "Menüü peitmise aeg:"
+#, fuzzy
+#~| msgctxt "@info:credit"
+#~| msgid "Copyright (C) 2008-2012 Konstantinos Smanis"
+#~ msgctxt "@info:credit"
+#~ msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
+#~ msgstr "Autoriõigus (C) 2008-2012: Konstantinos Smanis"
 
-#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
-#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
-#: ui/kcm_grub2.ui:45 ui/kcm_grub2.ui:144
-msgctxt "@label:spinbox seconds (suffix)"
-msgid "s"
-msgstr "s"
+#~ msgctxt "@info:credit"
+#~ msgid "Κonstantinos Smanis"
+#~ msgstr "Κonstantinos Smanis"
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeoutShowTimer)
-#: ui/kcm_grub2.ui:76
-msgctxt "@option:check"
-msgid "Show countdown timer"
-msgstr "Ajaloenduri näitamine"
+#~ msgctxt "@label:textbox"
+#~ msgid "Please enter a Linux boot resolution:"
+#~ msgstr "Linuxi laadimise lahutusvõime:"
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_timeout)
-#: ui/kcm_grub2.ui:83
-msgctxt "@option:check"
-msgid "Automatically boot the default entry after showing the menu"
-msgstr "Automaatne alglaadimine vaikekirjega pärast menüü näitamist"
+#~ msgctxt "@info"
+#~ msgid "The process could not be started."
+#~ msgstr "Protsessi käivitamine nurjus."
 
-#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
-#: ui/kcm_grub2.ui:106
-msgctxt "@option:radio"
-msgid "Immediately"
-msgstr "Kohe"
+#~ msgctxt "@info"
+#~ msgid "The process crashed."
+#~ msgstr "Protsessi tabas krahh."
 
-#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
-#: ui/kcm_grub2.ui:131
-msgctxt "@option:radio"
-msgid "After:"
-msgstr "Pärast:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
-#: ui/kcm_grub2.ui:172
-msgctxt "@title:group"
-msgid "Generated Entries"
-msgstr "Genereeritud kirjed"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
-#: ui/kcm_grub2.ui:178
-msgctxt "@option:check"
-msgid "Generate recovery entries"
-msgstr "Taastamiskirjete genereerimine"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
-#: ui/kcm_grub2.ui:185
-msgctxt "@option:check"
-msgid "Generate memtest entries"
-msgstr "Memtest-kirjete genereerimine"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
-#: ui/kcm_grub2.ui:192
-msgctxt "@option:check"
-msgid "Probe for operating systems"
-msgstr "Operatsioonisüsteemide uurimine"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
-#: ui/kcm_grub2.ui:202
-msgctxt "@title:group"
-msgid "Default Entry"
-msgstr "Vaikimisi kirje"
-
-#. i18n: ectx: property (text), widget (QLabel, label_default)
-#: ui/kcm_grub2.ui:208
-msgctxt "@label:listbox"
-msgid "Default Entry:"
-msgstr "Vaikimisi kirje:"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_remove)
-#: ui/kcm_grub2.ui:224
-msgctxt "@action:button"
-msgid "Remove Old Entries"
-msgstr "Eemalda vanad kirjed"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
-#: ui/kcm_grub2.ui:233
-msgctxt "@option:check"
-msgid "The next booted entry will become default"
-msgstr "Järgmine alglaaditav kirje saab vaikekirjeks"
-
-#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: ui/kcm_grub2.ui:244
-msgctxt "@title:tab"
-msgid "Appearance"
-msgstr "Välimus"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
-#: ui/kcm_grub2.ui:250
-msgctxt "@title:group"
-msgid "Resolutions"
-msgstr "Lahutusvõimed"
-
-#. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
-#: ui/kcm_grub2.ui:256
-msgctxt "@label:listbox"
-msgid "GRUB:"
-msgstr "GRUB:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
-#: ui/kcm_grub2.ui:270
-msgctxt "@label:listbox"
-msgid "Linux Kernel:"
-msgstr "Linuxi kernel:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
-#: ui/kcm_grub2.ui:287
-msgctxt "@title:group"
-msgid "Colors"
-msgstr "Värvid"
-
-#. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
-#: ui/kcm_grub2.ui:295
-msgctxt "@label:chooser"
-msgid "Normal Foreground (Text):"
-msgstr "Tavaline esiplaan (tekst):"
-
-#. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
-#: ui/kcm_grub2.ui:305
-msgctxt "@label:chooser"
-msgid "Highlight Foreground (Text):"
-msgstr "Esile tõstetud esiplaan (tekst):"
-
-#. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
-#: ui/kcm_grub2.ui:319
-msgctxt "@label:chooser"
-msgid "Normal Background:"
-msgstr "Tavaline taust:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
-#: ui/kcm_grub2.ui:329
-msgctxt "@label:chooser"
-msgid "Highlight Background:"
-msgstr "Esile tõstetud taust:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
-#: ui/kcm_grub2.ui:344
-msgctxt "@title:group Refers to the image shown behind the boot menu."
-msgid "Background"
-msgstr "Taust"
-
-#. i18n: ectx: property (text), widget (QLabel, label_background)
-#: ui/kcm_grub2.ui:350
-msgctxt "@label:textbox"
-msgid "Wallpaper:"
-msgstr "Taustapilt:"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_preview)
-#: ui/kcm_grub2.ui:362
-msgctxt "@action:button"
-msgid "Preview"
-msgstr "Eelvaatlus"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_create)
-#: ui/kcm_grub2.ui:369
-msgctxt "@action:button"
-msgid "Create"
-msgstr "Loo"
-
-#. i18n: ectx: property (text), widget (QLabel, label_theme)
-#: ui/kcm_grub2.ui:378
-msgctxt "@label:textbox"
-msgid "Theme:"
-msgstr "Teema:"
-
-#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: ui/kcm_grub2.ui:405
-msgctxt "@title:tab Refers to settings."
-msgid "Advanced"
-msgstr "Muu"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
-#: ui/kcm_grub2.ui:411
-msgctxt "@title:group"
-msgid "Linux Kernel Arguments"
-msgstr "Linuxi kerneli argumendid"
-
-#. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
-#: ui/kcm_grub2.ui:417
-msgctxt "@label:textbox"
-msgid "Normal Entries:"
-msgstr "Tavakirjed:"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalOutputSuggestions)
-#: ui/kcm_grub2.ui:429 ui/kcm_grub2.ui:450 ui/kcm_grub2.ui:480
-#: ui/kcm_grub2.ui:501 ui/kcm_grub2.ui:522
-msgctxt "@action:button"
-msgid "Suggestions"
-msgstr "Pakkumised"
-
-#. i18n: ectx: property (text), widget (QLabel, label_cmdline)
-#: ui/kcm_grub2.ui:438
-msgctxt "@label:textbox"
-msgid "All Entries:"
-msgstr "Kõik kirjed:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
-#: ui/kcm_grub2.ui:462
-msgctxt "@title:group Noun."
-msgid "Terminal"
-msgstr "Terminal"
-
-#. i18n: ectx: property (text), widget (QLabel, label_terminal)
-#: ui/kcm_grub2.ui:468
-msgctxt "@label:textbox Noun."
-msgid "Terminal:"
-msgstr "Terminal:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
-#: ui/kcm_grub2.ui:489
-msgctxt "@label:textbox"
-msgid "Input Terminal:"
-msgstr "Sisendterminal:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
-#: ui/kcm_grub2.ui:510
-msgctxt "@label:textbox"
-msgid "Output Terminal:"
-msgstr "Väljundterminal:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
-#: ui/kcm_grub2.ui:534
-msgctxt "@title:group Refers to settings."
-msgid "Other"
-msgstr "Muu"
-
-#. i18n: ectx: property (text), widget (QLabel, label_distributor)
-#: ui/kcm_grub2.ui:540
-msgctxt "@label:textbox"
-msgid "Distributor:"
-msgstr "Levitaja"
-
-#. i18n: ectx: property (text), widget (QLabel, label_serial)
-#: ui/kcm_grub2.ui:550
-msgctxt "@label:textbox"
-msgid "Serial Command:"
-msgstr "Jadakäsk:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_initTune)
-#: ui/kcm_grub2.ui:560
-msgctxt "@label:textbox"
-msgid "Init Tune:"
-msgstr "Init heli:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_uuid)
-#: ui/kcm_grub2.ui:570
-msgctxt "@option:check"
-msgid "Enable UUIDs:"
-msgstr "UUID-de lubamine:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
-#: ui/kcm_grub2.ui:596
-msgctxt "@title:group"
-msgid "Tools"
-msgstr "Tööriistad"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_install)
-#: ui/kcm_grub2.ui:608
-msgctxt "@action:button"
-msgid "Install/Recover Bootloader"
-msgstr "Paigalda/taasta alglaadur"
-
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/removeDlg.ui:17
-msgctxt "@label:listbox"
-msgid "Select entries to remove:"
-msgstr "Eemaldatavad kirjed:"
-
-#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
-#: ui/removeDlg.ui:34
-msgctxt "@info:tooltip"
-msgid "Remove associated kernel header files."
-msgstr "Kerneliga seostatud päisefailide eemaldamine."
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
-#: ui/removeDlg.ui:37
-msgctxt "@option:check"
-msgid "Also remove associated old packages"
-msgstr "Ka seotud vanade pakettide eemaldamine"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/"
+#~ ">Error message:<nl/><message>%3</message>"
+#~ msgstr ""
+#~ "Käsk: <command>%1</command><nl/>Veakood: <numid>%2</numid><nl/>Veateade:"
+#~ "<nl/><message>%3</message>"
 
 #~ msgctxt "@info"
 #~ msgid "No valid GRUB2/BURG installation could be detected!"

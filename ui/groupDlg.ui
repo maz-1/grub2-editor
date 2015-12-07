@@ -14,17 +14,17 @@
    <item row="0" column="0">
     <widget class="QCheckBox" name="checkbox_locked">
      <property name="text">
-      <string>Lock group</string>
+      <string comment="@label:lockgroup">Lock group</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
     <widget class="KActionSelector" name="userSelector">
      <property name="availableLabel">
-      <string>&amp;Available users:</string>
+      <string comment="@label:availusers">&amp;Available users:</string>
      </property>
      <property name="selectedLabel">
-      <string>Selected &amp;users:</string>
+      <string comment="@label:selecusers">Selected &amp;users:</string>
      </property>
      <property name="showUpDownButtons">
       <bool>false</bool>

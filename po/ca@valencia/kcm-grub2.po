@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm-grub2\n"
-"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2013-10-12 01:33+0000\n"
+"Report-Msgid-Bugs-To: sallewell@users.sourceforge.net\n"
+"POT-Creation-Date: 2015-12-07 23:05+0800\n"
 "PO-Revision-Date: 2013-01-25 14:40+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@orange.es>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -21,20 +21,610 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
+#. i18n: file: ui/convertDlg.ui:19
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:3
+msgctxt "@label:textbox"
+msgid "Image:"
+msgstr "Imatge:"
+
+#. i18n: file: ui/convertDlg.ui:29
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:6
+msgctxt "@label:textbox"
+msgid "Convert To:"
+msgstr "Converteix a:"
+
+#. i18n: file: ui/convertDlg.ui:41
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: rc.cpp:9
+msgctxt "@title:group"
+msgid "Conversion Options"
+msgstr "Opcions de la conversió"
+
+#. i18n: file: ui/convertDlg.ui:47
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:12
+msgctxt "@label:spinbox"
+msgid "Width:"
+msgstr "Amplada:"
+
+#. i18n: file: ui/convertDlg.ui:61
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: rc.cpp:15
+msgctxt "@label:spinbox"
+msgid "Height:"
+msgstr "Alçada:"
+
+#. i18n: file: ui/convertDlg.ui:75
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: rc.cpp:18
+msgctxt "@option:check"
+msgid "Force resolution:"
+msgstr "Força la resolució:"
+
+#. i18n: file: ui/convertDlg.ui:85
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: rc.cpp:21
+msgctxt "@option:check"
+msgid "Set As GRUB Wallpaper:"
+msgstr "Estableix com fons d'escriptori de GRUB:"
+
+#. i18n: file: ui/groupDlg.ui:17
+#. i18n: ectx: property (text), widget (QCheckBox, checkbox_locked)
+#: rc.cpp:24
+msgctxt "@label:lockgroup"
+msgid "Lock group"
+msgstr ""
+
+#. i18n: file: ui/groupDlg.ui:24
+#. i18n: ectx: property (availableLabel), widget (KActionSelector, userSelector)
+#: rc.cpp:27
+msgctxt "@label:availusers"
+msgid "&Available users:"
+msgstr ""
+
+#. i18n: file: ui/groupDlg.ui:27
+#. i18n: ectx: property (selectedLabel), widget (KActionSelector, userSelector)
+#: rc.cpp:30
+msgctxt "@label:selecusers"
+msgid "Selected &users:"
+msgstr ""
+
+#. i18n: file: ui/installDlg.ui:17
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:33
+msgctxt "@label:listbox"
+msgid "Select partition to install/recover GRUB:"
+msgstr "Selecciona la partició per instal·lar o recuperar Grub:"
+
+#. i18n: file: ui/installDlg.ui:48
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:36
+msgctxt "@title:column"
+msgid "Partition"
+msgstr "Partició"
+
+#. i18n: file: ui/installDlg.ui:53
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:39
+msgctxt "@title:column"
+msgid "Mountpoint"
+msgstr "Punt de muntatge"
+
+#. i18n: file: ui/installDlg.ui:58
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:42
+msgctxt "@title:column"
+msgid "Label"
+msgstr "Etiqueta"
+
+#. i18n: file: ui/installDlg.ui:63
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:45
+msgctxt "@title:column"
+msgid "File System"
+msgstr "Sistema de fitxers"
+
+#. i18n: file: ui/installDlg.ui:68
+#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
+#: rc.cpp:48
+msgctxt "@title:column"
+msgid "Size"
+msgstr "Mida"
+
+#. i18n: file: ui/installDlg.ui:76
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_partition)
+#: rc.cpp:51
+msgctxt "@info:tooltip"
+msgid ""
+"Install the bootloader on the boot sector of the selected partition instead "
+"of the MBR(=Master Boot Sector). Not recommended."
+msgstr ""
+"Instal·la el carregador d'arrencada al sector d'arrencada de la partició "
+"seleccionada en comptes d'al MBR (Master Boot Sector). No es recomana."
+
+#. i18n: file: ui/installDlg.ui:79
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_partition)
+#: rc.cpp:54
+msgctxt "@option:check"
+msgid "Install on partition instead of MBR (Advanced)"
+msgstr "Instal·la a la partició en comptes d'al MBR (avançat)"
+
+#. i18n: file: ui/kcm_grub2.ui:21
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: rc.cpp:57
+msgctxt "@title:tab Refers to settings."
+msgid "General"
+msgstr "General"
+
+#. i18n: file: ui/kcm_grub2.ui:27
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_timeout)
+#: rc.cpp:60
+msgctxt "@title:group"
+msgid "Timeout"
+msgstr "Temps d'espera"
+
+#. i18n: file: ui/kcm_grub2.ui:35
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeout)
+#: rc.cpp:63
+msgctxt "@option:check"
+msgid "Hide the menu for:"
+msgstr "Amaga el menú per:"
+
+#. i18n: file: ui/kcm_grub2.ui:45
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
+#. i18n: file: ui/kcm_grub2.ui:144
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
+#. i18n: file: ui/kcm_grub2.ui:45
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
+#. i18n: file: ui/kcm_grub2.ui:144
+#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
+#: rc.cpp:66 rc.cpp:81
+msgctxt "@label:spinbox seconds (suffix)"
+msgid "s"
+msgstr "s"
+
+#. i18n: file: ui/kcm_grub2.ui:76
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeoutShowTimer)
+#: rc.cpp:69
+msgctxt "@option:check"
+msgid "Show countdown timer"
+msgstr "Mostra el compte arrere"
+
+#. i18n: file: ui/kcm_grub2.ui:83
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_timeout)
+#: rc.cpp:72
+msgctxt "@option:check"
+msgid "Automatically boot the default entry after showing the menu"
+msgstr ""
+"Arrencarà automàticament l'entrada per omissió després de mostrar el menú"
+
+#. i18n: file: ui/kcm_grub2.ui:106
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
+#: rc.cpp:75
+msgctxt "@option:radio"
+msgid "Immediately"
+msgstr "Immediatament"
+
+#. i18n: file: ui/kcm_grub2.ui:131
+#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
+#: rc.cpp:78
+msgctxt "@option:radio"
+msgid "After:"
+msgstr "Després:"
+
+#. i18n: file: ui/kcm_grub2.ui:172
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
+#: rc.cpp:84
+msgctxt "@title:group"
+msgid "Generated Entries"
+msgstr "Entrades generades"
+
+#. i18n: file: ui/kcm_grub2.ui:178
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
+#: rc.cpp:87
+msgctxt "@option:check"
+msgid "Generate recovery entries"
+msgstr "Genera les entrades de recuperació"
+
+#. i18n: file: ui/kcm_grub2.ui:185
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
+#: rc.cpp:90
+msgctxt "@option:check"
+msgid "Generate memtest entries"
+msgstr "Genera les entrades de «memtest»"
+
+#. i18n: file: ui/kcm_grub2.ui:192
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
+#: rc.cpp:93
+msgctxt "@option:check"
+msgid "Probe for operating systems"
+msgstr "Prova per a sistemes operatius"
+
+#. i18n: file: ui/kcm_grub2.ui:202
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
+#: rc.cpp:96
+msgctxt "@title:group"
+msgid "Default Entry"
+msgstr "Entrada per omissió"
+
+#. i18n: file: ui/kcm_grub2.ui:208
+#. i18n: ectx: property (text), widget (QLabel, label_default)
+#: rc.cpp:99
+msgctxt "@label:listbox"
+msgid "Default Entry:"
+msgstr "Entrada per omissió:"
+
+#. i18n: file: ui/kcm_grub2.ui:224
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_remove)
+#: rc.cpp:102
+msgctxt "@action:button"
+msgid "Remove Old Entries"
+msgstr "Elimina les entrades antigues"
+
+#. i18n: file: ui/kcm_grub2.ui:233
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
+#: rc.cpp:105
+msgctxt "@option:check"
+msgid "The next booted entry will become default"
+msgstr "La propera entrada d'arrencada serà la per omissió"
+
+#. i18n: file: ui/kcm_grub2.ui:244
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: rc.cpp:108
+msgctxt "@title:tab"
+msgid "Appearance"
+msgstr "Aparença"
+
+#. i18n: file: ui/kcm_grub2.ui:250
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#: rc.cpp:111
+msgctxt "@title:group"
+msgid "Resolutions"
+msgstr "Resolucions"
+
+#. i18n: file: ui/kcm_grub2.ui:256
+#. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
+#: rc.cpp:114
+msgctxt "@label:listbox"
+msgid "GRUB:"
+msgstr "Grub:"
+
+#. i18n: file: ui/kcm_grub2.ui:270
+#. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
+#: rc.cpp:117
+msgctxt "@label:listbox"
+msgid "Linux Kernel:"
+msgstr "Nucli Linux:"
+
+#. i18n: file: ui/kcm_grub2.ui:287
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
+#: rc.cpp:120
+msgctxt "@title:group"
+msgid "Colors"
+msgstr "Colors"
+
+#. i18n: file: ui/kcm_grub2.ui:295
+#. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
+#: rc.cpp:123
+msgctxt "@label:chooser"
+msgid "Normal Foreground (Text):"
+msgstr "Primer pla normal (text):"
+
+#. i18n: file: ui/kcm_grub2.ui:305
+#. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
+#: rc.cpp:126
+msgctxt "@label:chooser"
+msgid "Highlight Foreground (Text):"
+msgstr "Primer pla ressaltat (text):"
+
+#. i18n: file: ui/kcm_grub2.ui:319
+#. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
+#: rc.cpp:129
+msgctxt "@label:chooser"
+msgid "Normal Background:"
+msgstr "Fons normal:"
+
+#. i18n: file: ui/kcm_grub2.ui:329
+#. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
+#: rc.cpp:132
+msgctxt "@label:chooser"
+msgid "Highlight Background:"
+msgstr "Fons ressaltat:"
+
+#. i18n: file: ui/kcm_grub2.ui:344
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
+#: rc.cpp:135
+msgctxt "@title:group Refers to the image shown behind the boot menu."
+msgid "Background"
+msgstr "Fons"
+
+#. i18n: file: ui/kcm_grub2.ui:350
+#. i18n: ectx: property (text), widget (QLabel, label_background)
+#: rc.cpp:138
+msgctxt "@label:textbox"
+msgid "Wallpaper:"
+msgstr "Fons d'escriptori:"
+
+#. i18n: file: ui/kcm_grub2.ui:362
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_preview)
+#: rc.cpp:141
+msgctxt "@action:button"
+msgid "Preview"
+msgstr "Vista prèvia"
+
+#. i18n: file: ui/kcm_grub2.ui:369
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_create)
+#: rc.cpp:144
+msgctxt "@action:button"
+msgid "Create"
+msgstr "Crea"
+
+#. i18n: file: ui/kcm_grub2.ui:378
+#. i18n: ectx: property (text), widget (QLabel, label_theme)
+#: rc.cpp:147
+msgctxt "@label:textbox"
+msgid "Theme:"
+msgstr "Tema:"
+
+#. i18n: file: ui/kcm_grub2.ui:405
+#. i18n: ectx: attribute (title), widget (QWidget, tab_4)
+#: rc.cpp:150
+msgctxt "@title:tab"
+msgid "Security"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:411
+#. i18n: ectx: property (text), widget (QCheckBox, secEnabled)
+#: rc.cpp:153
+msgctxt "@label:enablesec"
+msgid "Enable security"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:424
+#. i18n: ectx: property (title), widget (QGroupBox, usersGroup)
+#: rc.cpp:156
+msgctxt "@label:users"
+msgid "Users"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:482
+#. i18n: ectx: property (text), widget (QPushButton, userAdd)
+#: rc.cpp:159
+msgctxt "@label:add"
+msgid "Add"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:489
+#. i18n: ectx: property (text), widget (QPushButton, userDel)
+#: rc.cpp:162
+msgctxt "@label:del"
+msgid "Delete"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:496
+#. i18n: ectx: property (text), widget (QPushButton, userMod)
+#. i18n: file: ui/kcm_grub2.ui:563
+#. i18n: ectx: property (text), widget (QPushButton, groupMod)
+#. i18n: file: ui/kcm_grub2.ui:496
+#. i18n: ectx: property (text), widget (QPushButton, userMod)
+#. i18n: file: ui/kcm_grub2.ui:563
+#. i18n: ectx: property (text), widget (QPushButton, groupMod)
+#: rc.cpp:165 rc.cpp:171
+msgctxt "@label:edit"
+msgid "Edit"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:514
+#. i18n: ectx: property (title), widget (QGroupBox, groupsGroup)
+#: rc.cpp:168
+msgctxt "@label:groups"
+msgid "Groups"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:589
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: rc.cpp:174
+msgctxt "@title:tab Refers to settings."
+msgid "Advanced"
+msgstr "Avançat"
+
+#. i18n: file: ui/kcm_grub2.ui:595
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
+#: rc.cpp:177
+msgctxt "@title:group"
+msgid "Linux Kernel Arguments"
+msgstr "Arguments del nucli Linux"
+
+#. i18n: file: ui/kcm_grub2.ui:601
+#. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
+#: rc.cpp:180
+msgctxt "@label:textbox"
+msgid "Normal Entries:"
+msgstr "Entrades normals:"
+
+#. i18n: file: ui/kcm_grub2.ui:613
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:634
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:664
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:685
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:613
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:634
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:664
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:685
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
+#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
+#: rc.cpp:183 rc.cpp:189 rc.cpp:198 rc.cpp:204 rc.cpp:210
+msgctxt "@action:button"
+msgid "Suggestions"
+msgstr "Consells"
+
+#. i18n: file: ui/kcm_grub2.ui:622
+#. i18n: ectx: property (text), widget (QLabel, label_cmdline)
+#: rc.cpp:186
+msgctxt "@label:textbox"
+msgid "All Entries:"
+msgstr "Totes les entrades:"
+
+#. i18n: file: ui/kcm_grub2.ui:646
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
+#: rc.cpp:192
+msgctxt "@title:group Noun."
+msgid "Terminal"
+msgstr "Terminal"
+
+#. i18n: file: ui/kcm_grub2.ui:652
+#. i18n: ectx: property (text), widget (QLabel, label_terminal)
+#: rc.cpp:195
+msgctxt "@label:textbox Noun."
+msgid "Terminal:"
+msgstr "Terminal:"
+
+#. i18n: file: ui/kcm_grub2.ui:673
+#. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
+#: rc.cpp:201
+msgctxt "@label:textbox"
+msgid "Input Terminal:"
+msgstr "Terminal d'entrada:"
+
+#. i18n: file: ui/kcm_grub2.ui:694
+#. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
+#: rc.cpp:207
+msgctxt "@label:textbox"
+msgid "Output Terminal:"
+msgstr "Terminal d'eixida:"
+
+#. i18n: file: ui/kcm_grub2.ui:718
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
+#: rc.cpp:213
+msgctxt "@title:group Refers to settings."
+msgid "Other"
+msgstr "Altres"
+
+#. i18n: file: ui/kcm_grub2.ui:724
+#. i18n: ectx: property (text), widget (QLabel, label_distributor)
+#: rc.cpp:216
+msgctxt "@label:textbox"
+msgid "Distributor:"
+msgstr "Distribuïdor:"
+
+#. i18n: file: ui/kcm_grub2.ui:734
+#. i18n: ectx: property (text), widget (QLabel, label_serial)
+#: rc.cpp:219
+msgctxt "@label:textbox"
+msgid "Serial Command:"
+msgstr "Instrucció de sèrie:"
+
+#. i18n: file: ui/kcm_grub2.ui:744
+#. i18n: ectx: property (text), widget (QLabel, label_initTune)
+#: rc.cpp:222
+msgctxt "@label:textbox"
+msgid "Init Tune:"
+msgstr "Música d'inici:"
+
+#. i18n: file: ui/kcm_grub2.ui:754
+#. i18n: ectx: property (text), widget (QLabel, label_uuid)
+#: rc.cpp:225
+msgctxt "@option:check"
+msgid "Enable UUIDs:"
+msgstr "Habilita els UUID:"
+
+#. i18n: file: ui/kcm_grub2.ui:780
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
+#: rc.cpp:228
+msgctxt "@title:group"
+msgid "Tools"
+msgstr "Eines"
+
+#. i18n: file: ui/kcm_grub2.ui:792
+#. i18n: ectx: property (text), widget (QPushButton, kpushbutton_install)
+#: rc.cpp:231
+msgctxt "@action:button"
+msgid "Install/Recover Bootloader"
+msgstr "Instal·la/Recupera el gestor d'arrencada"
+
+#. i18n: file: ui/removeDlg.ui:17
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:234
+msgctxt "@label:listbox"
+msgid "Select entries to remove:"
+msgstr "Selecciona les entrades a eliminar:"
+
+#. i18n: file: ui/removeDlg.ui:34
+#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
+#: rc.cpp:237
+msgctxt "@info:tooltip"
+msgid "Remove associated kernel header files."
+msgstr "Elimina fitxers de capçalera del nucli associats."
+
+#. i18n: file: ui/removeDlg.ui:37
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
+#: rc.cpp:240
+msgctxt "@option:check"
+msgid "Also remove associated old packages"
+msgstr "Elimina també els paquets antics associats"
+
+#. i18n: file: ui/userDlg.ui:19
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:243
+msgctxt "@label:username"
+msgid "User Name"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:29
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:246
+msgctxt "@label:password"
+msgid "Password"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:43
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:249
+msgctxt "@label:confirmpassword"
+msgid "Confirm password"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:59
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
+#: rc.cpp:252
+msgctxt "@label:superuser"
+msgid "Superuser"
+msgstr ""
+
+#. i18n: file: ui/userDlg.ui:66
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
+#: rc.cpp:255
+msgctxt "@label:cryptpassword"
+msgid "Crypt password"
+msgstr ""
+
+#: rc.cpp:256
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Antoni Bella Pérez"
 
+#: rc.cpp:257
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "antonibella5@orange.es"
 
-#: src/convertDlg.cpp:48
+#: src/convertDlg.cpp:59
 msgctxt "@item:inlistbox"
 msgid "ImageMagick supported image formats"
 msgstr "Formats d'imatge acceptats per ImageMagick"
 
-#: src/convertDlg.cpp:76
+#: src/convertDlg.cpp:88
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Image</interface> and <interface>Convert To</"
@@ -43,7 +633,7 @@ msgstr ""
 "Per favor ompliu els camps <interface>Imatge</interface> i "
 "<interface>Converteix a</interface>."
 
-#: src/convertDlg.cpp:79
+#: src/convertDlg.cpp:91
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
@@ -52,30 +642,32 @@ msgstr ""
 "Per favor ompliu els camps <interface>Amplada</interface> i "
 "<interface>Alçada</interface>."
 
-#: src/convertDlg.cpp:82
+#: src/convertDlg.cpp:94
 msgctxt "@info"
 msgid ""
 "You do not have write permissions in this directory, please select another "
 "destination."
 msgstr ""
 
-#: src/helper/helper.cpp:79
-#, kde-format
+#: src/groupDlg.cpp:34
+msgctxt "@title:window"
+msgid "Edit Group"
+msgstr ""
+
+#: src/helper/helper.cpp:93
 msgctxt "@info"
 msgid "Original configuration file <filename>%1</filename> does not exist."
 msgstr ""
 "El fitxer <filename>%1</filename> de configuració original no existeix."
 
-#: src/helper/helper.cpp:84
-#, kde-format
+#: src/helper/helper.cpp:98
 msgctxt "@info"
 msgid "Cannot remove current configuration file <filename>%1</filename>."
 msgstr ""
 "No s'ha pogut eliminar la configuració actual, fitxer <filename>%1</"
 "filename>."
 
-#: src/helper/helper.cpp:89
-#, kde-format
+#: src/helper/helper.cpp:103
 msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
@@ -84,334 +676,366 @@ msgstr ""
 "No s'ha pogut copiar la configuració original, fitxer <filename>%1</"
 "filename> a <filename>%2</filename>."
 
-#: src/helper/helper.cpp:105
+#: src/helper/helper.cpp:119
 msgctxt "@info"
 msgid "Failed to create temporary mount point."
 msgstr "Ha fallat en crear el punt de muntatge temporal."
 
-#: src/installDlg.cpp:45
+#: src/installDlg.cpp:56
 msgctxt "@title:window"
 msgid "Install/Recover Bootloader"
 msgstr "Instal·la/Recupera el gestor d'arrencada"
 
-#: src/installDlg.cpp:98
+#: src/installDlg.cpp:108
 msgctxt "@info"
 msgid "Sorry, you have to select a partition with a proper name!"
 msgstr "Ho sento, heu de seleccionar una partició amb un nom propi!"
 
-#: src/installDlg.cpp:109
+#: src/installDlg.cpp:114
 msgctxt "@title:window"
 msgid "Installing"
 msgstr "S'està instal·lant"
 
-#: src/installDlg.cpp:109
+#: src/installDlg.cpp:115
 msgctxt "@info:progress"
 msgid "Installing GRUB..."
 msgstr "S'està instal·lant grub..."
 
-#: src/installDlg.cpp:120 src/kcm_grub2.cpp:484
-msgctxt "@title:window"
-msgid "Information"
-msgstr "Informació"
-
-#: src/installDlg.cpp:125
-msgctxt "@info"
-msgid "Successfully installed GRUB."
-msgstr "Grub s'ha instal·lat correctament."
-
-#: src/installDlg.cpp:127
+#: src/installDlg.cpp:132
 msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "No s'ha pogut instal·lar Grub."
 
-#: src/kcm_grub2.cpp:62
-msgctxt "@title"
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:556
+msgctxt "@title:window"
+msgid "Information"
+msgstr "Informació"
+
+#: src/installDlg.cpp:140
+msgctxt "@info"
+msgid "Successfully installed GRUB."
+msgstr "Grub s'ha instal·lat correctament."
+
+#: src/kcm_grub2.cpp:75
+#, fuzzy
 msgid "KDE GRUB2 Bootloader Control Module"
 msgstr "Mòdul de control del gestor d'arrencada Grub2 per a KDE"
 
-#: src/kcm_grub2.cpp:62
-msgctxt "@title"
+#: src/kcm_grub2.cpp:76
+#, fuzzy
 msgid "A KDE Control Module for configuring the GRUB2 bootloader."
 msgstr ""
 "Un mòdul de control del KDE per a configurar el gestor d'arrencada Grub2."
 
-#: src/kcm_grub2.cpp:62
-msgctxt "@info:credit"
-msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
-msgstr "Copyright (C) 2008-2013 Konstantinos Smanis"
-
-#: src/kcm_grub2.cpp:63
-msgctxt "@info:credit"
-msgid "Κonstantinos Smanis"
-msgstr "Κonstantinos Smanis"
-
-#: src/kcm_grub2.cpp:63
-msgctxt "@info:credit"
+#: src/kcm_grub2.cpp:80
+#, fuzzy
 msgid "Main Developer"
 msgstr "Desenvolupador principal"
 
-#: src/kcm_grub2.cpp:89
-msgctxt "@info"
-msgid "Successfully restored the default values."
-msgstr "S'han restaurat amb èxit els valors per omissió."
+#: src/kcm_grub2.cpp:81
+#, fuzzy
+msgid "Developer"
+msgstr "Desenvolupador principal"
 
-#: src/kcm_grub2.cpp:91
+#: src/kcm_grub2.cpp:102
 msgctxt "@info"
 msgid "Failed to restore the default values."
 msgstr "Error en restaurar els valors per omissió."
 
-#: src/kcm_grub2.cpp:472
+#: src/kcm_grub2.cpp:106
+msgctxt "@info"
+msgid "Successfully restored the default values."
+msgstr "S'han restaurat amb èxit els valors per omissió."
+
+#: src/kcm_grub2.cpp:542
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "S'està guardant"
 
-#: src/kcm_grub2.cpp:472
+#: src/kcm_grub2.cpp:543
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "S'està guardant l'arranjament de Grub..."
 
-#: src/kcm_grub2.cpp:489
+#: src/kcm_grub2.cpp:559
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "L'arranjament de Grub s'ha guardat amb èxit."
 
-#: src/kcm_grub2.cpp:492
+#: src/kcm_grub2.cpp:562
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "Error en guardar l'arranjament de Grub."
 
-#: src/kcm_grub2.cpp:563 src/kcm_grub2.cpp:585
+#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
+#: src/kcm_grub2.cpp:1380 src/kcm_grub2.cpp:1440
+msgctxt "@property"
+msgid "Yes"
+msgstr ""
+
+#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
+#: src/kcm_grub2.cpp:1383 src/kcm_grub2.cpp:1448
+msgctxt "@property"
+msgid "No"
+msgstr ""
+
+#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1388
+msgctxt "@property"
+msgid "Encrypted"
+msgstr ""
+
+#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1391
+msgctxt "@property"
+msgid "Plain"
+msgstr ""
+
+#: src/kcm_grub2.cpp:665
+msgctxt "@info"
+msgid "No users found!"
+msgstr ""
+
+#: src/kcm_grub2.cpp:682 src/kcm_grub2.cpp:1444
+msgctxt "@property"
+msgid "Superusers only"
+msgstr ""
+
+#: src/kcm_grub2.cpp:686 src/kcm_grub2.cpp:1449
+msgctxt "@property"
+msgid "Everyone"
+msgstr ""
+
+#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Introducció de la resolució de la pantalla"
 
-#: src/kcm_grub2.cpp:563
+#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "Per favor, introduïu una resolució per a Grub:"
 
-#: src/kcm_grub2.cpp:585
-msgctxt "@label:textbox"
-msgid "Please enter a Linux boot resolution:"
-msgstr "Per favor, introduïu una resolució per arrencar Linux:"
-
-#: src/kcm_grub2.cpp:631
+#: src/kcm_grub2.cpp:803
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr ""
 "Premeu <shortcut>Esc</shortcut> per a eixir del mode a pantalla completa."
 
-#: src/kcm_grub2.cpp:780 src/kcm_grub2.cpp:781
+#: src/kcm_grub2.cpp:952 src/kcm_grub2.cpp:953
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Negre"
 
-#: src/kcm_grub2.cpp:782 src/kcm_grub2.cpp:783
+#: src/kcm_grub2.cpp:954 src/kcm_grub2.cpp:955
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Transparent"
 
-#: src/kcm_grub2.cpp:785
+#: src/kcm_grub2.cpp:957
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Blau"
 
-#: src/kcm_grub2.cpp:787
+#: src/kcm_grub2.cpp:959
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Cian"
 
-#: src/kcm_grub2.cpp:789
+#: src/kcm_grub2.cpp:961
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Gris fosc"
 
-#: src/kcm_grub2.cpp:791
+#: src/kcm_grub2.cpp:963
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Verd"
 
-#: src/kcm_grub2.cpp:793
+#: src/kcm_grub2.cpp:965
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Cian clar"
 
-#: src/kcm_grub2.cpp:795
+#: src/kcm_grub2.cpp:967
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Blau clar"
 
-#: src/kcm_grub2.cpp:797
+#: src/kcm_grub2.cpp:969
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Verd clar"
 
-#: src/kcm_grub2.cpp:799
+#: src/kcm_grub2.cpp:971
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Gris clar"
 
-#: src/kcm_grub2.cpp:801
+#: src/kcm_grub2.cpp:973
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Magenta clar"
 
-#: src/kcm_grub2.cpp:803
+#: src/kcm_grub2.cpp:975
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Roig clar"
 
-#: src/kcm_grub2.cpp:805
+#: src/kcm_grub2.cpp:977
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/kcm_grub2.cpp:807
+#: src/kcm_grub2.cpp:979
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Roig"
 
-#: src/kcm_grub2.cpp:809
+#: src/kcm_grub2.cpp:981
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Blanc"
 
-#: src/kcm_grub2.cpp:811
+#: src/kcm_grub2.cpp:983
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Groc"
 
-#: src/kcm_grub2.cpp:834 src/kcm_grub2.cpp:843
+#: src/kcm_grub2.cpp:1006 src/kcm_grub2.cpp:1015
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Arrencada silenciosa"
 
-#: src/kcm_grub2.cpp:835 src/kcm_grub2.cpp:844
+#: src/kcm_grub2.cpp:1007 src/kcm_grub2.cpp:1016
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Mostra la pantalla de benvinguda"
 
-#: src/kcm_grub2.cpp:836 src/kcm_grub2.cpp:845
+#: src/kcm_grub2.cpp:1008 src/kcm_grub2.cpp:1017
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Deshabilita Plymouth"
 
-#: src/kcm_grub2.cpp:837 src/kcm_grub2.cpp:846
+#: src/kcm_grub2.cpp:1009 src/kcm_grub2.cpp:1018
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "Desactiva ACPI"
 
-#: src/kcm_grub2.cpp:838 src/kcm_grub2.cpp:847
+#: src/kcm_grub2.cpp:1010 src/kcm_grub2.cpp:1019
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "Desactiva APIC"
 
-#: src/kcm_grub2.cpp:839 src/kcm_grub2.cpp:848
+#: src/kcm_grub2.cpp:1011 src/kcm_grub2.cpp:1020
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Desactiva APIC local"
 
-#: src/kcm_grub2.cpp:840 src/kcm_grub2.cpp:849
+#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Mode d'un sol usuari"
 
-#: src/kcm_grub2.cpp:852 src/kcm_grub2.cpp:857 src/kcm_grub2.cpp:864
+#: src/kcm_grub2.cpp:1024 src/kcm_grub2.cpp:1029 src/kcm_grub2.cpp:1036
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "BIOS del PC i consola EFI"
 
-#: src/kcm_grub2.cpp:853 src/kcm_grub2.cpp:858 src/kcm_grub2.cpp:865
+#: src/kcm_grub2.cpp:1025 src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1037
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Terminal sèrie"
 
-#: src/kcm_grub2.cpp:854 src/kcm_grub2.cpp:859 src/kcm_grub2.cpp:866
+#: src/kcm_grub2.cpp:1026 src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1038
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Consola d'«Open Firmware»"
 
-#: src/kcm_grub2.cpp:860
+#: src/kcm_grub2.cpp:1032
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "Teclat AT per a PC (Coreboot)"
 
-#: src/kcm_grub2.cpp:861
+#: src/kcm_grub2.cpp:1033
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "Teclat USB (protocol d'arrencada HID)"
 
-#: src/kcm_grub2.cpp:867
+#: src/kcm_grub2.cpp:1039
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Eixida del mode gràfic"
 
-#: src/kcm_grub2.cpp:868
+#: src/kcm_grub2.cpp:1040
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "Eixida de text VGA (Coreboot)"
 
-#: src/kcm_grub2.cpp:1063
+#: src/kcm_grub2.cpp:1240
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Prova dels dispositius"
 
-#: src/kcm_grub2.cpp:1063
+#: src/kcm_grub2.cpp:1241
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "S'estan provant els dispositius pels seus noms a Grub2..."
 
-#: src/kcm_grub2.cpp:1072
+#: src/kcm_grub2.cpp:1260
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "No s'han pogut obtindre els noms dels dispositius a Grub2..."
 
-#: src/kcm_grub2.cpp:1077
+#: src/kcm_grub2.cpp:1267
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "L'assistent ha retornat una llista de dispositius mal formada."
 
-#: src/kcm_grub2.cpp:1130 src/kcm_grub2.cpp:1133
+#: src/kcm_grub2.cpp:1359 src/kcm_grub2.cpp:1408
+msgctxt "@header"
+msgid "Name"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1359
+msgctxt "@header"
+msgid "Superuser"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1359
+msgctxt "@header"
+msgid "Password type"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1408
+msgctxt "@header"
+msgid "Locked"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1408
+msgctxt "@header"
+msgid "Allowed users"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1513 src/kcm_grub2.cpp:1516
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "A mida..."
 
-#: src/kcm_grub2.cpp:1134
+#: src/kcm_grub2.cpp:1517
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Sense especificar"
 
-#: src/kcm_grub2.cpp:1135
+#: src/kcm_grub2.cpp:1518
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Arrencada en mode text"
 
-#: src/kcm_grub2.cpp:1136
+#: src/kcm_grub2.cpp:1519
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "Mantindre la resolució de Grub"
-
-#: src/kcm_grub2.cpp:1162
-msgctxt "@info"
-msgid "The process could not be started."
-msgstr "No es pot iniciar el procés."
-
-#: src/kcm_grub2.cpp:1165
-msgctxt "@info"
-msgid "The process crashed."
-msgstr "El procés ha fallat."
-
-#: src/kcm_grub2.cpp:1172
-#, kde-format
-msgctxt "@info"
-msgid ""
-"Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error "
-"message:<nl/><message>%3</message>"
-msgstr ""
-"Orde: <command>%1</command><nl/>Codi d'error: <numid>%2</numid><nl/>Missatge "
-"d'error:<nl/><message>%3</message>"
 
 #: src/qPkBackend.cpp:31
 msgctxt "This is when the transaction status is not known"
@@ -601,441 +1225,93 @@ msgctxt "we are copying package files to prepare to install"
 msgid "Copying files"
 msgstr "S'estan copiant els fitxers"
 
-#: src/removeDlg.cpp:46
+#: src/removeDlg.cpp:56
 msgctxt "@title:window"
 msgid "Remove Old Entries"
 msgstr "Eliminació de les entrades antigues"
 
-#: src/removeDlg.cpp:60
+#: src/removeDlg.cpp:70
 msgctxt "@title:window"
 msgid "Finding Old Entries"
 msgstr "Cerca de les entrades antigues"
 
-#: src/removeDlg.cpp:60
+#: src/removeDlg.cpp:70
 msgctxt "@info:progress"
 msgid "Finding Old Entries..."
 msgstr "S'estan cercant les entrades antigues..."
 
-#: src/removeDlg.cpp:86
-#, kde-format
+#: src/removeDlg.cpp:96
 msgctxt "@item:inlistbox"
 msgid "Kernel %1"
 msgstr "Nucli %1"
 
-#: src/removeDlg.cpp:102
+#: src/removeDlg.cpp:112
 msgctxt "@info"
 msgid "No removable entries were found."
 msgstr "No s'ha trobat cap entrada per eliminar."
 
-#: src/removeDlg.cpp:124
+#: src/removeDlg.cpp:134
 msgctxt "@info"
 msgid "Are you sure you want to remove the following packages?"
 msgstr "Esteu segur que voleu suprimir els paquets següents?"
 
-#: src/removeDlg.cpp:148
+#: src/removeDlg.cpp:157
 msgctxt "@title:window"
 msgid "Removing Old Entries"
 msgstr "Eliminació de les entrades antigues"
 
-#: src/removeDlg.cpp:161
+#: src/removeDlg.cpp:170
 msgctxt "@info"
 msgid "Package removal failed."
 msgstr "L'eliminació del paquet ha fallat."
 
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/convertDlg.ui:19
-msgctxt "@label:textbox"
-msgid "Image:"
-msgstr "Imatge:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: ui/convertDlg.ui:29
-msgctxt "@label:textbox"
-msgid "Convert To:"
-msgstr "Converteix a:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ui/convertDlg.ui:41
-msgctxt "@title:group"
-msgid "Conversion Options"
-msgstr "Opcions de la conversió"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: ui/convertDlg.ui:47
-msgctxt "@label:spinbox"
-msgid "Width:"
-msgstr "Amplada:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: ui/convertDlg.ui:61
-msgctxt "@label:spinbox"
-msgid "Height:"
-msgstr "Alçada:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: ui/convertDlg.ui:75
-msgctxt "@option:check"
-msgid "Force resolution:"
-msgstr "Força la resolució:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: ui/convertDlg.ui:85
-msgctxt "@option:check"
-msgid "Set As GRUB Wallpaper:"
-msgstr "Estableix com fons d'escriptori de GRUB:"
-
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/installDlg.ui:17
-msgctxt "@label:listbox"
-msgid "Select partition to install/recover GRUB:"
-msgstr "Selecciona la partició per instal·lar o recuperar Grub:"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:48
-msgctxt "@title:column"
-msgid "Partition"
-msgstr "Partició"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:53
-msgctxt "@title:column"
-msgid "Mountpoint"
-msgstr "Punt de muntatge"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:58
-msgctxt "@title:column"
-msgid "Label"
-msgstr "Etiqueta"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:63
-msgctxt "@title:column"
-msgid "File System"
-msgstr "Sistema de fitxers"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, treeWidget_recover)
-#: ui/installDlg.ui:68
-msgctxt "@title:column"
-msgid "Size"
-msgstr "Mida"
-
-#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_partition)
-#: ui/installDlg.ui:76
-msgctxt "@info:tooltip"
-msgid ""
-"Install the bootloader on the boot sector of the selected partition instead "
-"of the MBR(=Master Boot Sector). Not recommended."
+#: src/userDlg.cpp:31
+msgctxt "@title:window"
+msgid "Edit User"
 msgstr ""
-"Instal·la el carregador d'arrencada al sector d'arrencada de la partició "
-"seleccionada en comptes d'al MBR (Master Boot Sector). No es recomana."
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_partition)
-#: ui/installDlg.ui:79
-msgctxt "@option:check"
-msgid "Install on partition instead of MBR (Advanced)"
-msgstr "Instal·la a la partició en comptes d'al MBR (avançat)"
-
-#. i18n: ectx: attribute (title), widget (QWidget, tab)
-#: ui/kcm_grub2.ui:21
-msgctxt "@title:tab Refers to settings."
-msgid "General"
-msgstr "General"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_timeout)
-#: ui/kcm_grub2.ui:27
-msgctxt "@title:group"
-msgid "Timeout"
-msgstr "Temps d'espera"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeout)
-#: ui/kcm_grub2.ui:35
-msgctxt "@option:check"
-msgid "Hide the menu for:"
-msgstr "Amaga el menú per:"
-
-#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_hiddenTimeout)
-#. i18n: ectx: property (suffix), widget (QSpinBox, spinBox_timeout)
-#: ui/kcm_grub2.ui:45 ui/kcm_grub2.ui:144
-msgctxt "@label:spinbox seconds (suffix)"
-msgid "s"
-msgstr "s"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_hiddenTimeoutShowTimer)
-#: ui/kcm_grub2.ui:76
-msgctxt "@option:check"
-msgid "Show countdown timer"
-msgstr "Mostra el compte arrere"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_timeout)
-#: ui/kcm_grub2.ui:83
-msgctxt "@option:check"
-msgid "Automatically boot the default entry after showing the menu"
+#: src/userDlg.cpp:67
+msgctxt "@info"
+msgid "Passwords don't match!"
 msgstr ""
-"Arrencarà automàticament l'entrada per omissió després de mostrar el menú"
 
-#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
-#: ui/kcm_grub2.ui:106
-msgctxt "@option:radio"
-msgid "Immediately"
-msgstr "Immediatament"
+#: src/userDlg.cpp:70
+msgctxt "@info"
+msgid "Please fill in passwords!"
+msgstr ""
 
-#. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
-#: ui/kcm_grub2.ui:131
-msgctxt "@option:radio"
-msgid "After:"
-msgstr "Després:"
+#: src/userDlg.cpp:73
+msgctxt "@info"
+msgid "Please fill in username!"
+msgstr ""
 
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
-#: ui/kcm_grub2.ui:172
-msgctxt "@title:group"
-msgid "Generated Entries"
-msgstr "Entrades generades"
+#~ msgctxt "@info:credit"
+#~ msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
+#~ msgstr "Copyright (C) 2008-2013 Konstantinos Smanis"
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
-#: ui/kcm_grub2.ui:178
-msgctxt "@option:check"
-msgid "Generate recovery entries"
-msgstr "Genera les entrades de recuperació"
+#~ msgctxt "@info:credit"
+#~ msgid "Κonstantinos Smanis"
+#~ msgstr "Κonstantinos Smanis"
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
-#: ui/kcm_grub2.ui:185
-msgctxt "@option:check"
-msgid "Generate memtest entries"
-msgstr "Genera les entrades de «memtest»"
+#~ msgctxt "@label:textbox"
+#~ msgid "Please enter a Linux boot resolution:"
+#~ msgstr "Per favor, introduïu una resolució per arrencar Linux:"
 
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
-#: ui/kcm_grub2.ui:192
-msgctxt "@option:check"
-msgid "Probe for operating systems"
-msgstr "Prova per a sistemes operatius"
+#~ msgctxt "@info"
+#~ msgid "The process could not be started."
+#~ msgstr "No es pot iniciar el procés."
 
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
-#: ui/kcm_grub2.ui:202
-msgctxt "@title:group"
-msgid "Default Entry"
-msgstr "Entrada per omissió"
+#~ msgctxt "@info"
+#~ msgid "The process crashed."
+#~ msgstr "El procés ha fallat."
 
-#. i18n: ectx: property (text), widget (QLabel, label_default)
-#: ui/kcm_grub2.ui:208
-msgctxt "@label:listbox"
-msgid "Default Entry:"
-msgstr "Entrada per omissió:"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_remove)
-#: ui/kcm_grub2.ui:224
-msgctxt "@action:button"
-msgid "Remove Old Entries"
-msgstr "Elimina les entrades antigues"
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
-#: ui/kcm_grub2.ui:233
-msgctxt "@option:check"
-msgid "The next booted entry will become default"
-msgstr "La propera entrada d'arrencada serà la per omissió"
-
-#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: ui/kcm_grub2.ui:244
-msgctxt "@title:tab"
-msgid "Appearance"
-msgstr "Aparença"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
-#: ui/kcm_grub2.ui:250
-msgctxt "@title:group"
-msgid "Resolutions"
-msgstr "Resolucions"
-
-#. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
-#: ui/kcm_grub2.ui:256
-msgctxt "@label:listbox"
-msgid "GRUB:"
-msgstr "Grub:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
-#: ui/kcm_grub2.ui:270
-msgctxt "@label:listbox"
-msgid "Linux Kernel:"
-msgstr "Nucli Linux:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
-#: ui/kcm_grub2.ui:287
-msgctxt "@title:group"
-msgid "Colors"
-msgstr "Colors"
-
-#. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
-#: ui/kcm_grub2.ui:295
-msgctxt "@label:chooser"
-msgid "Normal Foreground (Text):"
-msgstr "Primer pla normal (text):"
-
-#. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
-#: ui/kcm_grub2.ui:305
-msgctxt "@label:chooser"
-msgid "Highlight Foreground (Text):"
-msgstr "Primer pla ressaltat (text):"
-
-#. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
-#: ui/kcm_grub2.ui:319
-msgctxt "@label:chooser"
-msgid "Normal Background:"
-msgstr "Fons normal:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
-#: ui/kcm_grub2.ui:329
-msgctxt "@label:chooser"
-msgid "Highlight Background:"
-msgstr "Fons ressaltat:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
-#: ui/kcm_grub2.ui:344
-msgctxt "@title:group Refers to the image shown behind the boot menu."
-msgid "Background"
-msgstr "Fons"
-
-#. i18n: ectx: property (text), widget (QLabel, label_background)
-#: ui/kcm_grub2.ui:350
-msgctxt "@label:textbox"
-msgid "Wallpaper:"
-msgstr "Fons d'escriptori:"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_preview)
-#: ui/kcm_grub2.ui:362
-msgctxt "@action:button"
-msgid "Preview"
-msgstr "Vista prèvia"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_create)
-#: ui/kcm_grub2.ui:369
-msgctxt "@action:button"
-msgid "Create"
-msgstr "Crea"
-
-#. i18n: ectx: property (text), widget (QLabel, label_theme)
-#: ui/kcm_grub2.ui:378
-msgctxt "@label:textbox"
-msgid "Theme:"
-msgstr "Tema:"
-
-#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: ui/kcm_grub2.ui:405
-msgctxt "@title:tab Refers to settings."
-msgid "Advanced"
-msgstr "Avançat"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
-#: ui/kcm_grub2.ui:411
-msgctxt "@title:group"
-msgid "Linux Kernel Arguments"
-msgstr "Arguments del nucli Linux"
-
-#. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
-#: ui/kcm_grub2.ui:417
-msgctxt "@label:textbox"
-msgid "Normal Entries:"
-msgstr "Entrades normals:"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_terminalOutputSuggestions)
-#: ui/kcm_grub2.ui:429 ui/kcm_grub2.ui:450 ui/kcm_grub2.ui:480
-#: ui/kcm_grub2.ui:501 ui/kcm_grub2.ui:522
-msgctxt "@action:button"
-msgid "Suggestions"
-msgstr "Consells"
-
-#. i18n: ectx: property (text), widget (QLabel, label_cmdline)
-#: ui/kcm_grub2.ui:438
-msgctxt "@label:textbox"
-msgid "All Entries:"
-msgstr "Totes les entrades:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
-#: ui/kcm_grub2.ui:462
-msgctxt "@title:group Noun."
-msgid "Terminal"
-msgstr "Terminal"
-
-#. i18n: ectx: property (text), widget (QLabel, label_terminal)
-#: ui/kcm_grub2.ui:468
-msgctxt "@label:textbox Noun."
-msgid "Terminal:"
-msgstr "Terminal:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
-#: ui/kcm_grub2.ui:489
-msgctxt "@label:textbox"
-msgid "Input Terminal:"
-msgstr "Terminal d'entrada:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
-#: ui/kcm_grub2.ui:510
-msgctxt "@label:textbox"
-msgid "Output Terminal:"
-msgstr "Terminal d'eixida:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
-#: ui/kcm_grub2.ui:534
-msgctxt "@title:group Refers to settings."
-msgid "Other"
-msgstr "Altres"
-
-#. i18n: ectx: property (text), widget (QLabel, label_distributor)
-#: ui/kcm_grub2.ui:540
-msgctxt "@label:textbox"
-msgid "Distributor:"
-msgstr "Distribuïdor:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_serial)
-#: ui/kcm_grub2.ui:550
-msgctxt "@label:textbox"
-msgid "Serial Command:"
-msgstr "Instrucció de sèrie:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_initTune)
-#: ui/kcm_grub2.ui:560
-msgctxt "@label:textbox"
-msgid "Init Tune:"
-msgstr "Música d'inici:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_uuid)
-#: ui/kcm_grub2.ui:570
-msgctxt "@option:check"
-msgid "Enable UUIDs:"
-msgstr "Habilita els UUID:"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
-#: ui/kcm_grub2.ui:596
-msgctxt "@title:group"
-msgid "Tools"
-msgstr "Eines"
-
-#. i18n: ectx: property (text), widget (KPushButton, kpushbutton_install)
-#: ui/kcm_grub2.ui:608
-msgctxt "@action:button"
-msgid "Install/Recover Bootloader"
-msgstr "Instal·la/Recupera el gestor d'arrencada"
-
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: ui/removeDlg.ui:17
-msgctxt "@label:listbox"
-msgid "Select entries to remove:"
-msgstr "Selecciona les entrades a eliminar:"
-
-#. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
-#: ui/removeDlg.ui:34
-msgctxt "@info:tooltip"
-msgid "Remove associated kernel header files."
-msgstr "Elimina fitxers de capçalera del nucli associats."
-
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
-#: ui/removeDlg.ui:37
-msgctxt "@option:check"
-msgid "Also remove associated old packages"
-msgstr "Elimina també els paquets antics associats"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/"
+#~ ">Error message:<nl/><message>%3</message>"
+#~ msgstr ""
+#~ "Orde: <command>%1</command><nl/>Codi d'error: <numid>%2</numid><nl/"
+#~ ">Missatge d'error:<nl/><message>%3</message>"
 
 #~ msgctxt "@info"
 #~ msgid "No valid GRUB2/BURG installation could be detected!"
