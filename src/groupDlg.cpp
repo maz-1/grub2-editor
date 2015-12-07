@@ -16,21 +16,24 @@
  *******************************************************************************/
 
 //Own
-#include "userDlg.h"
+#include "groupDlg.h"
 
 //KDE
 #include <KMessageBox>
 //Qt
 #include <QPushButton>
+#include <QDebug>
 //Ui
-#include "ui_userDlg.h"
+#include "ui_groupDlg.h"
+//Strange, not included by KActionSelector
+#include <QListWidget>
 
-UserDialog::UserDialog(QWidget *parent, QString userName, bool isSuperUser, bool isEncrypted, Qt::WindowFlags flags) : QDialog(parent, flags)
+GroupDialog::GroupDialog(QWidget *parent, QString groupName, QStringList allUsers, QStringList usersInGroup, bool Locked, Qt::WindowFlags flags) : QDialog(parent, flags)
 {
-    resize(parent->size().width() / 2, parent->size().height() / 4);
-    this->setWindowTitle(i18nc("@title:window", "Edit User"));
+    resize(parent->size().width(), parent->size().height() / 2);
+    this->setWindowTitle(i18nc("@title:window", "Edit Group"));
     QWidget *widget = new QWidget(this);
-    ui = new Ui::UserDialog;
+    ui = new Ui::GroupDialog;
     ui->setupUi(widget);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
@@ -41,62 +44,57 @@ UserDialog::UserDialog(QWidget *parent, QString userName, bool isSuperUser, bool
     buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCancelButton));
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(slotOkButtonClicked()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    
-    QRegExp regExp("[A-Za-z0-9]+");
-    regExp.setPatternSyntax(QRegExp::RegExp);
-    QRegExpValidator *validator;
-    validator = new QRegExpValidator(regExp);
-    ui->lineEdit_username->setValidator(validator);
-    if (userName != QString()) {
-        ui->lineEdit_username->setText(userName);
-        ui->lineEdit_username->setEnabled(false);
-        ui->checkBox_superuser->setCheckState(isSuperUser ? Qt::Checked : Qt::Unchecked);
-        ui->checkBox_cryptpass->setCheckState(isEncrypted ? Qt::Checked : Qt::Unchecked);
+//initialize users list
+    ui->userSelector->setEnabled(Locked);
+    ui->checkbox_locked->setCheckState(Locked ? Qt::Checked : Qt::Unchecked);
+    m_selectedUsers.clear();
+    m_unselectedUsers.clear();
+    for (int i=0; i<allUsers.count(); ++i) {
+        if (usersInGroup.contains(allUsers[i]))
+            m_selectedUsers.append(allUsers[i]);
+        else
+            m_unselectedUsers.append(allUsers[i]);
     }
+    ui->userSelector->availableListWidget()->clear();
+    ui->userSelector->availableListWidget()->addItems(m_unselectedUsers);
+    ui->userSelector->selectedListWidget()->clear();
+    ui->userSelector->selectedListWidget()->addItems(m_selectedUsers);
+    
+    connect(ui->checkbox_locked, SIGNAL(toggled(bool)), this, SLOT(slotTriggerLocked(bool)));
     
 }
-UserDialog::~UserDialog()
+GroupDialog::~GroupDialog()
 {
     delete ui;
 }
 
 
-void UserDialog::slotOkButtonClicked()
+void GroupDialog::slotOkButtonClicked()
 {
-    if (ui->lineEdit_password->text() != ui->lineEdit_passwordconfirm->text()) {
-        KMessageBox::sorry(this, i18nc("@info", "Passwords don't match!"));
-            return;
-    } else if (ui->lineEdit_password->text().isEmpty()) {
-        KMessageBox::sorry(this, i18nc("@info", "Please fill in passwords!"));
-            return;
-    } else if (ui->lineEdit_username->text().isEmpty()) {
-        KMessageBox::sorry(this, i18nc("@info", "Please fill in username!"));
-            return;
-    } else {
+    //if (ui->userSelector->availableListWidget() && ui->userSelector->selectedListWidget()) {
+        //KMessageBox::sorry(this, i18nc("@info", "Passwords don't match!"));
+            //return;
+    //} else {
         this->accept();
+    //}
+}
+
+void GroupDialog::slotTriggerLocked(bool lockStatus)
+{
+    ui->userSelector->setEnabled(lockStatus);
+}
+
+QStringList GroupDialog::allowedUsers()
+{
+    m_selectedUsers.clear();
+    QListWidget *selectedUsersWidget = ui->userSelector->selectedListWidget();
+    for (int i=0; i<selectedUsersWidget->count(); ++i) {
+        m_selectedUsers.append(selectedUsersWidget->item(i)->text());
     }
+    return m_selectedUsers;
 }
-
-QString UserDialog::getPassword()
-{
-    return ui->lineEdit_password->text();
-}
-QString UserDialog::getUserName()
-{
-    return ui->lineEdit_username->text();
-}
-
-bool UserDialog::isSuperUser()
-{
-    if (ui->checkBox_superuser->checkState() == Qt::Checked)
-        return true;
-    else
-        return false;
-}
-
-bool UserDialog::requireEncryption()
-{
-    if (ui->checkBox_cryptpass->checkState() == Qt::Checked)
+bool GroupDialog::isLocked() {
+    if (ui->checkbox_locked->checkState() == Qt::Checked)
         return true;
     else
         return false;

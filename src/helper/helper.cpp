@@ -263,6 +263,29 @@ ActionReply Helper::save(QVariantMap args)
         QFile::setPermissions(filePath, permissions);
     }
     
+    if (args.contains("securityUsers")) {
+        QByteArray rawUsersFileContents = args.value("securityUsers").toByteArray();
+        //qDebug() << rawUsersFileContents;
+        QFile usersFile(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+        usersFile.open(QIODevice::WriteOnly | QIODevice::Text);
+        usersFile.write(rawUsersFileContents);
+        usersFile.close();
+        
+    }
+    
+    if (args.contains("securityGroupsList")) {
+        QStringList groupFilesList = args.value("securityGroupsList").toString().split("/");
+        for ( int i=0; i<groupFilesList.count(); ++i ) {
+            QByteArray rawGroupFileContent = args.value(QString("GroupContent_")+groupFilesList[i]).toByteArray();
+            //qDebug() << groupFilesList[i] << rawGroupFileContent;
+            QFile groupFile(QString(GRUB_CONFIGDIR)+groupFilesList[i]);
+            groupFile.open(QIODevice::WriteOnly | QIODevice::Text);
+            groupFile.write(rawGroupFileContent);
+            groupFile.close();
+        }
+        //qDebug() << "Groups modified :" << groupFilesList;
+    }
+    
     ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;

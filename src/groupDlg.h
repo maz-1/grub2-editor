@@ -15,8 +15,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.              *
  *******************************************************************************/
 
-#ifndef USERDLG_H
-#define USERDLG_H
+#ifndef GROUPDLG_H
+#define GROUPDLG_H
 
 //Qt
 #include <QDialog>
@@ -24,23 +24,24 @@
 //Ui
 namespace Ui
 {
-    class UserDialog;
+    class GroupDialog;
 }
 
-class UserDialog : public QDialog
+class GroupDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit UserDialog(QWidget *parent = 0, QString userName = QString(), bool isSuperUser = false, bool isEncrypted = false, Qt::WindowFlags flags = 0);
-    virtual ~UserDialog();
-    QString getPassword();
-    QString getUserName();
-    bool isSuperUser();
-    bool requireEncryption();
+    explicit GroupDialog(QWidget *parent = 0, QString userName = QString(), QStringList allUsers = QStringList(), QStringList usersInGroup = QStringList(), bool Locked = true, Qt::WindowFlags flags = 0);
+    virtual ~GroupDialog();
+    QStringList allowedUsers();
+    bool isLocked();
 protected Q_SLOTS:
     virtual void slotOkButtonClicked();
+    virtual void slotTriggerLocked(bool lockStatus);
 private:
-    Ui::UserDialog *ui;
+    Ui::GroupDialog *ui;
+    QStringList m_selectedUsers;
+    QStringList m_unselectedUsers;
 };
 
 #endif

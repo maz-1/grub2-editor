@@ -87,7 +87,7 @@ private Q_SLOTS:
     void slotDeleteUser();
     void slotEditUser();
     //groups
-    //void slotEditGroup();
+    void slotEditGroup();
 
     void slotUpdateSuggestions();
     void slotTriggeredSuggestion(QAction *action);
@@ -187,5 +187,6 @@ private:
     QHash<QString, bool> m_userIsSuper;
 //-----------------------------------------------------
 };
+
 
 #endif
