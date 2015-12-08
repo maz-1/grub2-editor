@@ -1,4 +1,7 @@
 This is an unofficial kde frameworks 5 port of grub editor by Konstantinos Smanis
 https://ksmanis.wordpress.com/category/grub2-editor/
-
 For original README see the README.old file.
+
+This port has some extra features compared to original grub2-editor:
+    * All initialize jobs are merged into the same action, so password are only asked once on startup.
+    * Add password protection setup(only tested on archlinux).
