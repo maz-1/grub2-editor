@@ -94,11 +94,16 @@ KCMGRUB2::~KCMGRUB2()
 
 void KCMGRUB2::defaults()
 {
+    if (initializeAuthorized == false)
+    {
+        return;
+    }
     Action defaultsAction("org.kde.kcontrol.kcmgrub2.defaults");
     defaultsAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     
     ExecuteJob *reply = defaultsAction.execute();
-    if (!reply->exec())
+    reply->exec();
+    if (reply->error())
         KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), processReply(reply));
     else
         load();
@@ -110,7 +115,10 @@ void KCMGRUB2::load()
     readEntries();
     //stop load if not authorized
     if (initializeAuthorized == false)
+    {
+        ui->ktabwidget->setEnabled(false);
         return;
+    }
     readSettings();
     readEnv();
     readMemtest();
@@ -582,7 +590,7 @@ void KCMGRUB2::slotRemoveOldEntries()
 void KCMGRUB2::slotGrubSavedefaultChanged()
 {
     m_dirtyBits.setBit(grubSavedefaultDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubHiddenTimeoutToggled(bool checked)
 {
@@ -592,12 +600,12 @@ void KCMGRUB2::slotGrubHiddenTimeoutToggled(bool checked)
 void KCMGRUB2::slotGrubHiddenTimeoutChanged()
 {
     m_dirtyBits.setBit(grubHiddenTimeoutDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubHiddenTimeoutQuietChanged()
 {
     m_dirtyBits.setBit(grubHiddenTimeoutQuietDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubTimeoutToggled(bool checked)
 {
@@ -608,23 +616,23 @@ void KCMGRUB2::slotGrubTimeoutToggled(bool checked)
 void KCMGRUB2::slotGrubTimeoutChanged()
 {
     m_dirtyBits.setBit(grubTimeoutDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubDisableRecoveryChanged()
 {
     m_dirtyBits.setBit(grubDisableRecoveryDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotMemtestChanged()
 {
     m_dirtyBits.setBit(memtestDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 //Security
 void KCMGRUB2::slotSecurityChanged()
 {
     m_dirtyBits.setBit(securityDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 
 void KCMGRUB2::slotDeleteUser()
@@ -640,7 +648,7 @@ void KCMGRUB2::slotDeleteUser()
     m_userIsSuper.remove(selectedUserName);
     ui->users->removeRow(selectedUserNum);
     m_dirtyBits.setBit(securityUsersDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotEditUser()
 {
@@ -662,7 +670,7 @@ void KCMGRUB2::slotEditUser()
         ui->users->setItem(selectedUserNum,1,new QTableWidgetItem(userDlg->isSuperUser() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
         ui->users->setItem(selectedUserNum,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@property", "Encrypted") : i18nc("@property", "Plain")));
         m_dirtyBits.setBit(securityUsersDirty);
-        if (initializeAuthorized) emit changed(true);
+        emit changed(true);
     }
     delete userDlg;
 }
@@ -681,7 +689,7 @@ void KCMGRUB2::slotEditGroup(){
     
     if(groupDlg->exec()) {
         m_dirtyBits.setBit(securityGroupsDirty);
-        if (initializeAuthorized) emit changed(true);
+        emit changed(true);
         m_groupFileAllowedUsers[selectedGroupName] = groupDlg->allowedUsers().join(",");
         if (groupDlg->isLocked()) {
             if (groupDlg->allowedUsers().count() == 0)
@@ -716,7 +724,7 @@ void KCMGRUB2::slotAddUser(){
         
         ui->users->setItem(j,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@property", "Encrypted") : i18nc("@property", "Plain")));
         m_dirtyBits.setBit(securityUsersDirty);
-        if (initializeAuthorized) emit changed(true);
+        emit changed(true);
     }
     delete userDlg;
 }
@@ -725,7 +733,7 @@ void KCMGRUB2::slotAddUser(){
 void KCMGRUB2::slotGrubDisableOsProberChanged()
 {
     m_dirtyBits.setBit(grubDisableOsProberDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotInstallBootloader()
 {
@@ -753,7 +761,7 @@ void KCMGRUB2::slotGrubGfxmodeChanged()
         }
     }
     m_dirtyBits.setBit(grubGfxmodeDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
 {
@@ -775,23 +783,23 @@ void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
         }
     }
     m_dirtyBits.setBit(grubGfxpayloadLinuxDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubColorNormalChanged()
 {
     m_dirtyBits.setBit(grubColorNormalDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubColorHighlightChanged()
 {
     m_dirtyBits.setBit(grubColorHighlightDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slowGrubBackgroundChanged()
 {
     ui->kpushbutton_preview->setEnabled(!ui->kurlrequester_background->text().isEmpty());
     m_dirtyBits.setBit(grubBackgroundDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotPreviewGrubBackground()
 {
@@ -822,17 +830,17 @@ void KCMGRUB2::slotCreateGrubBackground()
 void KCMGRUB2::slotGrubThemeChanged()
 {
     m_dirtyBits.setBit(grubThemeDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubCmdlineLinuxDefaultChanged()
 {
     m_dirtyBits.setBit(grubCmdlineLinuxDefaultDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubCmdlineLinuxChanged()
 {
     m_dirtyBits.setBit(grubCmdlineLinuxDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubTerminalChanged()
 {
@@ -842,37 +850,37 @@ void KCMGRUB2::slotGrubTerminalChanged()
     ui->klineedit_terminalInput->setText(!grubTerminal.isEmpty() ? grubTerminal : unquoteWord(m_settings.value("GRUB_TERMINAL_INPUT")));
     ui->klineedit_terminalOutput->setText(!grubTerminal.isEmpty() ? grubTerminal : unquoteWord(m_settings.value("GRUB_TERMINAL_OUTPUT")));
     m_dirtyBits.setBit(grubTerminalDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubTerminalInputChanged()
 {
     m_dirtyBits.setBit(grubTerminalInputDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubTerminalOutputChanged()
 {
     m_dirtyBits.setBit(grubTerminalOutputDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubDistributorChanged()
 {
     m_dirtyBits.setBit(grubDistributorDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubSerialCommandChanged()
 {
     m_dirtyBits.setBit(grubSerialCommandDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubInitTuneChanged()
 {
     m_dirtyBits.setBit(grubInitTuneDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 void KCMGRUB2::slotGrubDisableLinuxUuidChanged()
 {
     m_dirtyBits.setBit(grubDisableLinuxUuidDirty);
-    if (initializeAuthorized) emit changed(true);
+    emit changed(true);
 }
 
 void KCMGRUB2::slotUpdateSuggestions()
