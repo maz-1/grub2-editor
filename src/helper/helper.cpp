@@ -148,6 +148,19 @@ ActionReply Helper::load(QVariantMap args)
     case GrubEnvironmentFile:
         fileName = GRUB_ENV;
         break;
+//Security
+    case GrubGroupFile:
+        fileName = GRUB_CONFIGDIR + args.value("groupFile").toString();
+        if (args.value("groupFile").toString() == GRUB_SECURITY) {
+            if (!QFile::exists(fileName)) 
+                executeCommand(QStringList() << "touch" << fileName);
+            bool security = QFile::exists(fileName);
+            reply.addData("security", security);
+            reply.addData("securityOn", (bool)(QFile::permissions(fileName) & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther)));
+            if (!security)
+                qDebug() << "Unable to create" << fileName << ", please check file permissions.";
+        }
+        break;
     case GrubMemtestFile:
         bool memtest = QFile::exists(GRUB_MEMTEST);
         reply.addData("memtest", memtest);
@@ -156,7 +169,7 @@ ActionReply Helper::load(QVariantMap args)
         }
         return reply;
     }
-
+    
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         reply = ActionReply::HelperErrorReply();
@@ -216,6 +229,7 @@ ActionReply Helper::save(QVariantMap args)
     QByteArray rawConfigFileContents = args.value("rawConfigFileContents").toByteArray();
     QByteArray rawDefaultEntry = args.value("rawDefaultEntry").toByteArray();
     bool memtest = args.value("memtest").toBool();
+    bool security = args.value("security").toBool();
 
     QFile::copy(configFileName, configFileName + ".original");
 
@@ -237,7 +251,41 @@ ActionReply Helper::save(QVariantMap args)
         }
         QFile::setPermissions(GRUB_MEMTEST, permissions);
     }
-
+    
+    if (args.contains("security")) {
+        QString filePath(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+        QFile::Permissions permissions = QFile::permissions(filePath);
+        if (security) {
+            permissions |= (QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        } else {
+            permissions &= ~(QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        }
+        QFile::setPermissions(filePath, permissions);
+    }
+    
+    if (args.contains("securityUsers")) {
+        QByteArray rawUsersFileContents = args.value("securityUsers").toByteArray();
+        //qDebug() << rawUsersFileContents;
+        QFile usersFile(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+        usersFile.open(QIODevice::WriteOnly | QIODevice::Text);
+        usersFile.write(rawUsersFileContents);
+        usersFile.close();
+        
+    }
+    
+    if (args.contains("securityGroupsList")) {
+        QStringList groupFilesList = args.value("securityGroupsList").toString().split("/");
+        for ( int i=0; i<groupFilesList.count(); ++i ) {
+            QByteArray rawGroupFileContent = args.value(QString("GroupContent_")+groupFilesList[i]).toByteArray();
+            //qDebug() << groupFilesList[i] << rawGroupFileContent;
+            QFile groupFile(QString(GRUB_CONFIGDIR)+groupFilesList[i]);
+            groupFile.open(QIODevice::WriteOnly | QIODevice::Text);
+            groupFile.write(rawGroupFileContent);
+            groupFile.close();
+        }
+        //qDebug() << "Groups modified :" << groupFilesList;
+    }
+    
     ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;

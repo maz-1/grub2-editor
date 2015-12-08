@@ -21,8 +21,8 @@ include(KDECompilerSettings)
 include(FeatureSummary)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets DBus)
-find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n Auth ConfigWidgets KIO Solid) #  
-
+find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n Auth ConfigWidgets KIO Solid)
+#find_package(Qca-qt5 REQUIRED)
 
 include(GRUBPaths)
 

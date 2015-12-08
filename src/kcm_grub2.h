@@ -80,6 +80,14 @@ private Q_SLOTS:
     void slotGrubSerialCommandChanged();
     void slotGrubInitTuneChanged();
     void slotGrubDisableLinuxUuidChanged();
+    //Security
+    void slotSecurityChanged();
+    //users
+    void slotAddUser();
+    void slotDeleteUser();
+    void slotEditUser();
+    //groups
+    void slotEditGroup();
 
     void slotUpdateSuggestions();
     void slotTriggeredSuggestion(QAction *action);
@@ -99,7 +107,14 @@ private:
     void readMemtest();
     void readDevices();
     void readResolutions();
-
+//Security
+    void parseGroupDir();
+    void getSuperUsers();
+    void getUsers();
+    void getGroups();
+//Encryption
+    QString pbkdf2Encrypt(QString passwd); //, int key_length, int iteration_count
+    
     void sortResolutions();
     void showResolutions();
 
@@ -134,6 +149,12 @@ private:
         grubSerialCommandDirty,
         grubInitTuneDirty,
         grubDisableLinuxUuidDirty,
+//Security
+//-------------------------------------------------
+        securityDirty,
+        securityUsersDirty,
+        securityGroupsDirty,
+//-------------------------------------------------
         lastDirtyBit
     };
     QBitArray m_dirtyBits;
@@ -145,6 +166,27 @@ private:
     bool m_memtestOn;
     QHash<QString, QString> m_devices;
     QStringList m_resolutions;
+//Security
+    bool m_security;
+    bool m_securityOn;
+//Group
+//-----------------------------------------------------
+    QStringList m_groupFilesList;
+    QHash<QString, QString> m_groupFilesContent;
+    QHash<QString, bool> m_groupFileLocked;
+    QHash<QString, QString> m_groupFileAllowedUsers;
+//-----------------------------------------------------
+    QString m_headerFile;
+//SuperUsers
+    QStringList m_superUsers;
+//Users
+//-----------------------------------------------------
+    QStringList m_users;
+    QHash<QString, QString> m_userPassword;
+    QHash<QString, bool> m_userPasswordEncrypted;
+    QHash<QString, bool> m_userIsSuper;
+//-----------------------------------------------------
 };
+
 
 #endif

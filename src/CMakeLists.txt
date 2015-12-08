@@ -12,8 +12,8 @@ elseif(HAVE_QPACKAGEKIT)
 endif(HAVE_QAPT)
 
 # Set Sources
-set(kcm_grub2_SRCS common.cpp entry.cpp installDlg.cpp kcm_grub2.cpp widgets/regexpinputdialog.cpp)
-ki18n_wrap_ui(kcm_grub2_SRCS ../ui/installDlg.ui ../ui/kcm_grub2.ui)
+set(kcm_grub2_SRCS common.cpp entry.cpp installDlg.cpp userDlg.cpp groupDlg.cpp kcm_grub2.cpp widgets/regexpinputdialog.cpp)
+ki18n_wrap_ui(kcm_grub2_SRCS ../ui/installDlg.ui ../ui/groupDlg.ui ../ui/userDlg.ui ../ui/kcm_grub2.ui)
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_SRCS ${kcm_grub2_SRCS} convertDlg.cpp)
     ki18n_wrap_ui(kcm_grub2_SRCS ../ui/convertDlg.ui)
@@ -40,7 +40,8 @@ set(kcm_grub2_LINK_LIBS
      KF5::I18n
      KF5::Auth
      KF5::Solid
-     ) # 
+     #qca-qt5
+     )
 if(HAVE_IMAGEMAGICK)
     set(kcm_grub2_LINK_LIBS ${kcm_grub2_LINK_LIBS} ${ImageMagick_LIBRARIES})
 endif(HAVE_IMAGEMAGICK)
