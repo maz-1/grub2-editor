@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm-grub2\n"
-"Report-Msgid-Bugs-To: sallewell@users.sourceforge.net\n"
-"POT-Creation-Date: 2015-12-07 23:05+0800\n"
+"Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
+"POT-Creation-Date: 2015-12-08 11:36+0800\n"
 "PO-Revision-Date: 2013-01-25 14:40+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@orange.es>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -651,7 +651,7 @@ msgstr ""
 
 #: src/groupDlg.cpp:34
 msgctxt "@title:window"
-msgid "Edit Group"
+msgid "Edit Group %1"
 msgstr ""
 
 #: src/helper/helper.cpp:93
@@ -706,7 +706,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "No s'ha pogut instal·lar Grub."
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:556
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:561
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Informació"
@@ -747,295 +747,320 @@ msgctxt "@info"
 msgid "Successfully restored the default values."
 msgstr "S'han restaurat amb èxit els valors per omissió."
 
-#: src/kcm_grub2.cpp:542
+#: src/kcm_grub2.cpp:541
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "S'està guardant"
 
-#: src/kcm_grub2.cpp:543
+#: src/kcm_grub2.cpp:542
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "S'està guardant l'arranjament de Grub..."
 
-#: src/kcm_grub2.cpp:559
+#: src/kcm_grub2.cpp:565
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "L'arranjament de Grub s'ha guardat amb èxit."
 
-#: src/kcm_grub2.cpp:562
+#: src/kcm_grub2.cpp:568
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "Error en guardar l'arranjament de Grub."
 
-#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
-#: src/kcm_grub2.cpp:1380 src/kcm_grub2.cpp:1440
+#: src/kcm_grub2.cpp:662 src/kcm_grub2.cpp:695 src/kcm_grub2.cpp:715
+#: src/kcm_grub2.cpp:1392 src/kcm_grub2.cpp:1452
 msgctxt "@property"
 msgid "Yes"
 msgstr ""
 
-#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
-#: src/kcm_grub2.cpp:1383 src/kcm_grub2.cpp:1448
+#: src/kcm_grub2.cpp:662 src/kcm_grub2.cpp:695 src/kcm_grub2.cpp:715
+#: src/kcm_grub2.cpp:1395 src/kcm_grub2.cpp:1460
 msgctxt "@property"
 msgid "No"
 msgstr ""
 
-#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1388
+#: src/kcm_grub2.cpp:663 src/kcm_grub2.cpp:717 src/kcm_grub2.cpp:1400
 msgctxt "@property"
 msgid "Encrypted"
 msgstr ""
 
-#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1391
+#: src/kcm_grub2.cpp:663 src/kcm_grub2.cpp:717 src/kcm_grub2.cpp:1403
 msgctxt "@property"
 msgid "Plain"
 msgstr ""
 
-#: src/kcm_grub2.cpp:665
+#: src/kcm_grub2.cpp:671
 msgctxt "@info"
 msgid "No users found!"
 msgstr ""
 
-#: src/kcm_grub2.cpp:682 src/kcm_grub2.cpp:1444
+#: src/kcm_grub2.cpp:688 src/kcm_grub2.cpp:1456
 msgctxt "@property"
 msgid "Superusers only"
 msgstr ""
 
-#: src/kcm_grub2.cpp:686 src/kcm_grub2.cpp:1449
+#: src/kcm_grub2.cpp:692 src/kcm_grub2.cpp:1461
 msgctxt "@property"
 msgid "Everyone"
 msgstr ""
 
-#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
+#: src/kcm_grub2.cpp:741 src/kcm_grub2.cpp:763
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Introducció de la resolució de la pantalla"
 
-#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
+#: src/kcm_grub2.cpp:741 src/kcm_grub2.cpp:763
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "Per favor, introduïu una resolució per a Grub:"
 
-#: src/kcm_grub2.cpp:803
+#: src/kcm_grub2.cpp:809
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr ""
 "Premeu <shortcut>Esc</shortcut> per a eixir del mode a pantalla completa."
 
-#: src/kcm_grub2.cpp:952 src/kcm_grub2.cpp:953
+#: src/kcm_grub2.cpp:958 src/kcm_grub2.cpp:959
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Negre"
 
-#: src/kcm_grub2.cpp:954 src/kcm_grub2.cpp:955
+#: src/kcm_grub2.cpp:960 src/kcm_grub2.cpp:961
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Transparent"
 
-#: src/kcm_grub2.cpp:957
+#: src/kcm_grub2.cpp:963
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Blau"
 
-#: src/kcm_grub2.cpp:959
+#: src/kcm_grub2.cpp:965
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Cian"
 
-#: src/kcm_grub2.cpp:961
+#: src/kcm_grub2.cpp:967
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Gris fosc"
 
-#: src/kcm_grub2.cpp:963
+#: src/kcm_grub2.cpp:969
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Verd"
 
-#: src/kcm_grub2.cpp:965
+#: src/kcm_grub2.cpp:971
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Cian clar"
 
-#: src/kcm_grub2.cpp:967
+#: src/kcm_grub2.cpp:973
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Blau clar"
 
-#: src/kcm_grub2.cpp:969
+#: src/kcm_grub2.cpp:975
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Verd clar"
 
-#: src/kcm_grub2.cpp:971
+#: src/kcm_grub2.cpp:977
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Gris clar"
 
-#: src/kcm_grub2.cpp:973
+#: src/kcm_grub2.cpp:979
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Magenta clar"
 
-#: src/kcm_grub2.cpp:975
+#: src/kcm_grub2.cpp:981
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Roig clar"
 
-#: src/kcm_grub2.cpp:977
+#: src/kcm_grub2.cpp:983
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/kcm_grub2.cpp:979
+#: src/kcm_grub2.cpp:985
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Roig"
 
-#: src/kcm_grub2.cpp:981
+#: src/kcm_grub2.cpp:987
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Blanc"
 
-#: src/kcm_grub2.cpp:983
+#: src/kcm_grub2.cpp:989
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Groc"
 
-#: src/kcm_grub2.cpp:1006 src/kcm_grub2.cpp:1015
+#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Arrencada silenciosa"
 
-#: src/kcm_grub2.cpp:1007 src/kcm_grub2.cpp:1016
+#: src/kcm_grub2.cpp:1013 src/kcm_grub2.cpp:1022
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Mostra la pantalla de benvinguda"
 
-#: src/kcm_grub2.cpp:1008 src/kcm_grub2.cpp:1017
+#: src/kcm_grub2.cpp:1014 src/kcm_grub2.cpp:1023
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Deshabilita Plymouth"
 
-#: src/kcm_grub2.cpp:1009 src/kcm_grub2.cpp:1018
+#: src/kcm_grub2.cpp:1015 src/kcm_grub2.cpp:1024
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "Desactiva ACPI"
 
-#: src/kcm_grub2.cpp:1010 src/kcm_grub2.cpp:1019
+#: src/kcm_grub2.cpp:1016 src/kcm_grub2.cpp:1025
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "Desactiva APIC"
 
-#: src/kcm_grub2.cpp:1011 src/kcm_grub2.cpp:1020
+#: src/kcm_grub2.cpp:1017 src/kcm_grub2.cpp:1026
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Desactiva APIC local"
 
-#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
+#: src/kcm_grub2.cpp:1018 src/kcm_grub2.cpp:1027
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Mode d'un sol usuari"
 
-#: src/kcm_grub2.cpp:1024 src/kcm_grub2.cpp:1029 src/kcm_grub2.cpp:1036
+#: src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1035 src/kcm_grub2.cpp:1042
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "BIOS del PC i consola EFI"
 
-#: src/kcm_grub2.cpp:1025 src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1037
+#: src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1036 src/kcm_grub2.cpp:1043
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Terminal sèrie"
 
-#: src/kcm_grub2.cpp:1026 src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1038
+#: src/kcm_grub2.cpp:1032 src/kcm_grub2.cpp:1037 src/kcm_grub2.cpp:1044
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Consola d'«Open Firmware»"
 
-#: src/kcm_grub2.cpp:1032
+#: src/kcm_grub2.cpp:1038
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "Teclat AT per a PC (Coreboot)"
 
-#: src/kcm_grub2.cpp:1033
+#: src/kcm_grub2.cpp:1039
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "Teclat USB (protocol d'arrencada HID)"
 
-#: src/kcm_grub2.cpp:1039
+#: src/kcm_grub2.cpp:1045
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Eixida del mode gràfic"
 
-#: src/kcm_grub2.cpp:1040
+#: src/kcm_grub2.cpp:1046
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "Eixida de text VGA (Coreboot)"
 
-#: src/kcm_grub2.cpp:1240
+#: src/kcm_grub2.cpp:1252
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Prova dels dispositius"
 
-#: src/kcm_grub2.cpp:1241
+#: src/kcm_grub2.cpp:1253
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "S'estan provant els dispositius pels seus noms a Grub2..."
 
-#: src/kcm_grub2.cpp:1260
+#: src/kcm_grub2.cpp:1272
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "No s'han pogut obtindre els noms dels dispositius a Grub2..."
 
-#: src/kcm_grub2.cpp:1267
+#: src/kcm_grub2.cpp:1279
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "L'assistent ha retornat una llista de dispositius mal formada."
 
-#: src/kcm_grub2.cpp:1359 src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1371 src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Name"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1359
+#: src/kcm_grub2.cpp:1371
 msgctxt "@header"
 msgid "Superuser"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1359
+#: src/kcm_grub2.cpp:1371
 msgctxt "@header"
 msgid "Password type"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Locked"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Allowed users"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1513 src/kcm_grub2.cpp:1516
+#: src/kcm_grub2.cpp:1525 src/kcm_grub2.cpp:1528
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "A mida..."
 
-#: src/kcm_grub2.cpp:1517
+#: src/kcm_grub2.cpp:1529
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Sense especificar"
 
-#: src/kcm_grub2.cpp:1518
+#: src/kcm_grub2.cpp:1530
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Arrencada en mode text"
 
-#: src/kcm_grub2.cpp:1519
+#: src/kcm_grub2.cpp:1531
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "Mantindre la resolució de Grub"
+
+#: src/kcm_grub2.cpp:1543
+msgctxt "@info"
+msgid "Not Authorized."
+msgstr ""
+
+#: src/kcm_grub2.cpp:1547
+msgctxt "@info"
+msgid "The process could not be started."
+msgstr "No es pot iniciar el procés."
+
+#: src/kcm_grub2.cpp:1550
+msgctxt "@info"
+msgid "The process crashed."
+msgstr "El procés ha fallat."
+
+#: src/kcm_grub2.cpp:1559
+msgctxt "@info"
+msgid "Command: %1 Error code: %2 Error message: %3"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1561
+msgctxt "@info"
+msgid "Error message: %1"
+msgstr ""
 
 #: src/qPkBackend.cpp:31
 msgctxt "This is when the transaction status is not known"
@@ -1296,14 +1321,6 @@ msgstr ""
 #~ msgctxt "@label:textbox"
 #~ msgid "Please enter a Linux boot resolution:"
 #~ msgstr "Per favor, introduïu una resolució per arrencar Linux:"
-
-#~ msgctxt "@info"
-#~ msgid "The process could not be started."
-#~ msgstr "No es pot iniciar el procés."
-
-#~ msgctxt "@info"
-#~ msgid "The process crashed."
-#~ msgstr "El procés ha fallat."
 
 #~ msgctxt "@info"
 #~ msgid ""

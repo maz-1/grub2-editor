@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: sallewell@users.sourceforge.net\n"
-"POT-Creation-Date: 2015-12-07 23:05+0800\n"
+"Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
+"POT-Creation-Date: 2015-12-08 11:36+0800\n"
 "PO-Revision-Date: 2013-09-03 11:43+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -649,7 +649,7 @@ msgstr ""
 
 #: src/groupDlg.cpp:34
 msgctxt "@title:window"
-msgid "Edit Group"
+msgid "Edit Group %1"
 msgstr ""
 
 #: src/helper/helper.cpp:93
@@ -701,7 +701,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "Selhala instalace GRUB."
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:556
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:561
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Informace"
@@ -741,295 +741,320 @@ msgctxt "@info"
 msgid "Successfully restored the default values."
 msgstr "Výchozí hodnoty úspěšně obnoveny."
 
-#: src/kcm_grub2.cpp:542
+#: src/kcm_grub2.cpp:541
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "Ukládá se"
 
-#: src/kcm_grub2.cpp:543
+#: src/kcm_grub2.cpp:542
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "Ukládám nastavení GRUB..."
 
-#: src/kcm_grub2.cpp:559
+#: src/kcm_grub2.cpp:565
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "Nastavení GRUB úspěšně aktualizováno."
 
-#: src/kcm_grub2.cpp:562
+#: src/kcm_grub2.cpp:568
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "Nepovedlo se uložit nastavení GRUB."
 
-#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
-#: src/kcm_grub2.cpp:1380 src/kcm_grub2.cpp:1440
+#: src/kcm_grub2.cpp:662 src/kcm_grub2.cpp:695 src/kcm_grub2.cpp:715
+#: src/kcm_grub2.cpp:1392 src/kcm_grub2.cpp:1452
 msgctxt "@property"
 msgid "Yes"
 msgstr ""
 
-#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
-#: src/kcm_grub2.cpp:1383 src/kcm_grub2.cpp:1448
+#: src/kcm_grub2.cpp:662 src/kcm_grub2.cpp:695 src/kcm_grub2.cpp:715
+#: src/kcm_grub2.cpp:1395 src/kcm_grub2.cpp:1460
 msgctxt "@property"
 msgid "No"
 msgstr ""
 
-#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1388
+#: src/kcm_grub2.cpp:663 src/kcm_grub2.cpp:717 src/kcm_grub2.cpp:1400
 msgctxt "@property"
 msgid "Encrypted"
 msgstr ""
 
-#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1391
+#: src/kcm_grub2.cpp:663 src/kcm_grub2.cpp:717 src/kcm_grub2.cpp:1403
 msgctxt "@property"
 msgid "Plain"
 msgstr ""
 
-#: src/kcm_grub2.cpp:665
+#: src/kcm_grub2.cpp:671
 msgctxt "@info"
 msgid "No users found!"
 msgstr ""
 
-#: src/kcm_grub2.cpp:682 src/kcm_grub2.cpp:1444
+#: src/kcm_grub2.cpp:688 src/kcm_grub2.cpp:1456
 msgctxt "@property"
 msgid "Superusers only"
 msgstr ""
 
-#: src/kcm_grub2.cpp:686 src/kcm_grub2.cpp:1449
+#: src/kcm_grub2.cpp:692 src/kcm_grub2.cpp:1461
 msgctxt "@property"
 msgid "Everyone"
 msgstr ""
 
-#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
+#: src/kcm_grub2.cpp:741 src/kcm_grub2.cpp:763
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Zadat rozlišení obrazovky"
 
-#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
+#: src/kcm_grub2.cpp:741 src/kcm_grub2.cpp:763
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "Prosím zadejte rozlišení GRUB:"
 
-#: src/kcm_grub2.cpp:803
+#: src/kcm_grub2.cpp:809
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr ""
 "Stiskněte <shortcut>Escape</shortcut> pro opuštění režimu celé obrazovky."
 
-#: src/kcm_grub2.cpp:952 src/kcm_grub2.cpp:953
+#: src/kcm_grub2.cpp:958 src/kcm_grub2.cpp:959
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Černá"
 
-#: src/kcm_grub2.cpp:954 src/kcm_grub2.cpp:955
+#: src/kcm_grub2.cpp:960 src/kcm_grub2.cpp:961
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Průhledná"
 
-#: src/kcm_grub2.cpp:957
+#: src/kcm_grub2.cpp:963
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Modrá"
 
-#: src/kcm_grub2.cpp:959
+#: src/kcm_grub2.cpp:965
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Azurová"
 
-#: src/kcm_grub2.cpp:961
+#: src/kcm_grub2.cpp:967
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Tmavě šedá"
 
-#: src/kcm_grub2.cpp:963
+#: src/kcm_grub2.cpp:969
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Zelená"
 
-#: src/kcm_grub2.cpp:965
+#: src/kcm_grub2.cpp:971
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Světle azurová"
 
-#: src/kcm_grub2.cpp:967
+#: src/kcm_grub2.cpp:973
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Světle modrá"
 
-#: src/kcm_grub2.cpp:969
+#: src/kcm_grub2.cpp:975
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Světle zelená"
 
-#: src/kcm_grub2.cpp:971
+#: src/kcm_grub2.cpp:977
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Světle šedá"
 
-#: src/kcm_grub2.cpp:973
+#: src/kcm_grub2.cpp:979
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Světle purpurová"
 
-#: src/kcm_grub2.cpp:975
+#: src/kcm_grub2.cpp:981
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Světle červená"
 
-#: src/kcm_grub2.cpp:977
+#: src/kcm_grub2.cpp:983
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Purpurová"
 
-#: src/kcm_grub2.cpp:979
+#: src/kcm_grub2.cpp:985
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Červená"
 
-#: src/kcm_grub2.cpp:981
+#: src/kcm_grub2.cpp:987
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Bílá"
 
-#: src/kcm_grub2.cpp:983
+#: src/kcm_grub2.cpp:989
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Žlutá"
 
-#: src/kcm_grub2.cpp:1006 src/kcm_grub2.cpp:1015
+#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Tichý boot"
 
-#: src/kcm_grub2.cpp:1007 src/kcm_grub2.cpp:1016
+#: src/kcm_grub2.cpp:1013 src/kcm_grub2.cpp:1022
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Ukázat úvodní obrazovku"
 
-#: src/kcm_grub2.cpp:1008 src/kcm_grub2.cpp:1017
+#: src/kcm_grub2.cpp:1014 src/kcm_grub2.cpp:1023
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Vypnout Plymouth"
 
-#: src/kcm_grub2.cpp:1009 src/kcm_grub2.cpp:1018
+#: src/kcm_grub2.cpp:1015 src/kcm_grub2.cpp:1024
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "Vypnout ACPI"
 
-#: src/kcm_grub2.cpp:1010 src/kcm_grub2.cpp:1019
+#: src/kcm_grub2.cpp:1016 src/kcm_grub2.cpp:1025
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "Vypnout APIC"
 
-#: src/kcm_grub2.cpp:1011 src/kcm_grub2.cpp:1020
+#: src/kcm_grub2.cpp:1017 src/kcm_grub2.cpp:1026
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Vypnout lokální APIC"
 
-#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
+#: src/kcm_grub2.cpp:1018 src/kcm_grub2.cpp:1027
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Režim jednoho uživatele"
 
-#: src/kcm_grub2.cpp:1024 src/kcm_grub2.cpp:1029 src/kcm_grub2.cpp:1036
+#: src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1035 src/kcm_grub2.cpp:1042
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "Konzole PC BIOS && EFI"
 
-#: src/kcm_grub2.cpp:1025 src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1037
+#: src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1036 src/kcm_grub2.cpp:1043
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Seriová konzole"
 
-#: src/kcm_grub2.cpp:1026 src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1038
+#: src/kcm_grub2.cpp:1032 src/kcm_grub2.cpp:1037 src/kcm_grub2.cpp:1044
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Otevřít konzoli firmware"
 
-#: src/kcm_grub2.cpp:1032
+#: src/kcm_grub2.cpp:1038
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "PC AT klávesnice (Coreboot)"
 
-#: src/kcm_grub2.cpp:1033
+#: src/kcm_grub2.cpp:1039
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "USB klávesnice (HID zaváděcí protokol)"
 
-#: src/kcm_grub2.cpp:1039
+#: src/kcm_grub2.cpp:1045
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Výstup v Grafickém režimu"
 
-#: src/kcm_grub2.cpp:1040
+#: src/kcm_grub2.cpp:1046
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "Výstup VGA Text (Coreboot)"
 
-#: src/kcm_grub2.cpp:1240
+#: src/kcm_grub2.cpp:1252
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Prohledávám zařízení"
 
-#: src/kcm_grub2.cpp:1241
+#: src/kcm_grub2.cpp:1253
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "Prohledávám zařízení pro GRUB názvy..."
 
-#: src/kcm_grub2.cpp:1260
+#: src/kcm_grub2.cpp:1272
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "Selhalo získání GRUB názvů zařízení."
 
-#: src/kcm_grub2.cpp:1267
+#: src/kcm_grub2.cpp:1279
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "Pomocník vrátil poškozený seznam zařízení."
 
-#: src/kcm_grub2.cpp:1359 src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1371 src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Name"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1359
+#: src/kcm_grub2.cpp:1371
 msgctxt "@header"
 msgid "Superuser"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1359
+#: src/kcm_grub2.cpp:1371
 msgctxt "@header"
 msgid "Password type"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Locked"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Allowed users"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1513 src/kcm_grub2.cpp:1516
+#: src/kcm_grub2.cpp:1525 src/kcm_grub2.cpp:1528
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "Vlastní..."
 
-#: src/kcm_grub2.cpp:1517
+#: src/kcm_grub2.cpp:1529
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Neurčeno"
 
-#: src/kcm_grub2.cpp:1518
+#: src/kcm_grub2.cpp:1530
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Boot v textovém režimu"
 
-#: src/kcm_grub2.cpp:1519
+#: src/kcm_grub2.cpp:1531
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "Ponechat rozlišení GRUB"
+
+#: src/kcm_grub2.cpp:1543
+msgctxt "@info"
+msgid "Not Authorized."
+msgstr ""
+
+#: src/kcm_grub2.cpp:1547
+msgctxt "@info"
+msgid "The process could not be started."
+msgstr "Proces nemohl být spuštěn."
+
+#: src/kcm_grub2.cpp:1550
+msgctxt "@info"
+msgid "The process crashed."
+msgstr "Proces zhavaroval."
+
+#: src/kcm_grub2.cpp:1559
+msgctxt "@info"
+msgid "Command: %1 Error code: %2 Error message: %3"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1561
+msgctxt "@info"
+msgid "Error message: %1"
+msgstr ""
 
 #: src/qPkBackend.cpp:31
 msgctxt "This is when the transaction status is not known"
@@ -1290,14 +1315,6 @@ msgstr ""
 #~ msgctxt "@label:textbox"
 #~ msgid "Please enter a Linux boot resolution:"
 #~ msgstr "Prosím zadejte rozlišení bootu Linuxu:"
-
-#~ msgctxt "@info"
-#~ msgid "The process could not be started."
-#~ msgstr "Proces nemohl být spuštěn."
-
-#~ msgctxt "@info"
-#~ msgid "The process crashed."
-#~ msgstr "Proces zhavaroval."
 
 #~ msgctxt "@info"
 #~ msgid ""

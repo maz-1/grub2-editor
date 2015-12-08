@@ -31,7 +31,7 @@
 GroupDialog::GroupDialog(QWidget *parent, QString groupName, QStringList allUsers, QStringList usersInGroup, bool Locked, Qt::WindowFlags flags) : QDialog(parent, flags)
 {
     resize(parent->size().width(), parent->size().height() / 2);
-    this->setWindowTitle(i18nc("@title:window", "Edit Group"));
+    this->setWindowTitle(i18nc("@title:window", "Edit Group %1", groupName));
     QWidget *widget = new QWidget(this);
     ui = new Ui::GroupDialog;
     ui->setupUi(widget);

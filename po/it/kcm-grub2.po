@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm-grub2\n"
-"Report-Msgid-Bugs-To: sallewell@users.sourceforge.net\n"
-"POT-Creation-Date: 2015-12-07 23:05+0800\n"
+"Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
+"POT-Creation-Date: 2015-12-08 11:36+0800\n"
 "PO-Revision-Date: 2012-08-31 14:06+0200\n"
 "Last-Translator: Innocenzo Ventre <innocenzo.ventre@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -646,7 +646,7 @@ msgstr ""
 
 #: src/groupDlg.cpp:34
 msgctxt "@title:window"
-msgid "Edit Group"
+msgid "Edit Group %1"
 msgstr ""
 
 #: src/helper/helper.cpp:93
@@ -700,7 +700,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "Installazione di GRUB fallita."
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:556
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:561
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Informazioni"
@@ -740,205 +740,205 @@ msgctxt "@info"
 msgid "Successfully restored the default values."
 msgstr "Valori predefiniti ripristinati correttamente."
 
-#: src/kcm_grub2.cpp:542
+#: src/kcm_grub2.cpp:541
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "Salvataggio"
 
-#: src/kcm_grub2.cpp:543
+#: src/kcm_grub2.cpp:542
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "Salvataggio delle impostazioni di GRUB..."
 
-#: src/kcm_grub2.cpp:559
+#: src/kcm_grub2.cpp:565
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "Impostazioni di GRUB salvate correttamente."
 
-#: src/kcm_grub2.cpp:562
+#: src/kcm_grub2.cpp:568
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "Impossibile salvare le impostazioni di GRUB."
 
-#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
-#: src/kcm_grub2.cpp:1380 src/kcm_grub2.cpp:1440
+#: src/kcm_grub2.cpp:662 src/kcm_grub2.cpp:695 src/kcm_grub2.cpp:715
+#: src/kcm_grub2.cpp:1392 src/kcm_grub2.cpp:1452
 msgctxt "@property"
 msgid "Yes"
 msgstr ""
 
-#: src/kcm_grub2.cpp:656 src/kcm_grub2.cpp:689 src/kcm_grub2.cpp:709
-#: src/kcm_grub2.cpp:1383 src/kcm_grub2.cpp:1448
+#: src/kcm_grub2.cpp:662 src/kcm_grub2.cpp:695 src/kcm_grub2.cpp:715
+#: src/kcm_grub2.cpp:1395 src/kcm_grub2.cpp:1460
 msgctxt "@property"
 msgid "No"
 msgstr ""
 
-#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1388
+#: src/kcm_grub2.cpp:663 src/kcm_grub2.cpp:717 src/kcm_grub2.cpp:1400
 msgctxt "@property"
 msgid "Encrypted"
 msgstr ""
 
-#: src/kcm_grub2.cpp:657 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:1391
+#: src/kcm_grub2.cpp:663 src/kcm_grub2.cpp:717 src/kcm_grub2.cpp:1403
 msgctxt "@property"
 msgid "Plain"
 msgstr ""
 
-#: src/kcm_grub2.cpp:665
+#: src/kcm_grub2.cpp:671
 msgctxt "@info"
 msgid "No users found!"
 msgstr ""
 
-#: src/kcm_grub2.cpp:682 src/kcm_grub2.cpp:1444
+#: src/kcm_grub2.cpp:688 src/kcm_grub2.cpp:1456
 msgctxt "@property"
 msgid "Superusers only"
 msgstr ""
 
-#: src/kcm_grub2.cpp:686 src/kcm_grub2.cpp:1449
+#: src/kcm_grub2.cpp:692 src/kcm_grub2.cpp:1461
 msgctxt "@property"
 msgid "Everyone"
 msgstr ""
 
-#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
+#: src/kcm_grub2.cpp:741 src/kcm_grub2.cpp:763
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Inserisci la risoluzione dello schermo "
 
-#: src/kcm_grub2.cpp:735 src/kcm_grub2.cpp:757
+#: src/kcm_grub2.cpp:741 src/kcm_grub2.cpp:763
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "Inserisci la risoluzione video per GRUB:"
 
-#: src/kcm_grub2.cpp:803
+#: src/kcm_grub2.cpp:809
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr ""
 "Premi <shortcut>Esc</shortcut> per uscire dalla modalità a schermo intero."
 
-#: src/kcm_grub2.cpp:952 src/kcm_grub2.cpp:953
+#: src/kcm_grub2.cpp:958 src/kcm_grub2.cpp:959
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Nero"
 
-#: src/kcm_grub2.cpp:954 src/kcm_grub2.cpp:955
+#: src/kcm_grub2.cpp:960 src/kcm_grub2.cpp:961
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Trasparente"
 
-#: src/kcm_grub2.cpp:957
+#: src/kcm_grub2.cpp:963
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Blu"
 
-#: src/kcm_grub2.cpp:959
+#: src/kcm_grub2.cpp:965
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Ciano"
 
-#: src/kcm_grub2.cpp:961
+#: src/kcm_grub2.cpp:967
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Grigio scuro"
 
-#: src/kcm_grub2.cpp:963
+#: src/kcm_grub2.cpp:969
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Verde"
 
-#: src/kcm_grub2.cpp:965
+#: src/kcm_grub2.cpp:971
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Ciano chiaro"
 
-#: src/kcm_grub2.cpp:967
+#: src/kcm_grub2.cpp:973
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Blu chiaro"
 
-#: src/kcm_grub2.cpp:969
+#: src/kcm_grub2.cpp:975
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Verde chiaro"
 
-#: src/kcm_grub2.cpp:971
+#: src/kcm_grub2.cpp:977
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Grigio chiaro"
 
-#: src/kcm_grub2.cpp:973
+#: src/kcm_grub2.cpp:979
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Magenta chiaro"
 
-#: src/kcm_grub2.cpp:975
+#: src/kcm_grub2.cpp:981
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Rosso chiaro"
 
-#: src/kcm_grub2.cpp:977
+#: src/kcm_grub2.cpp:983
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/kcm_grub2.cpp:979
+#: src/kcm_grub2.cpp:985
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Rosso"
 
-#: src/kcm_grub2.cpp:981
+#: src/kcm_grub2.cpp:987
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Bianco"
 
-#: src/kcm_grub2.cpp:983
+#: src/kcm_grub2.cpp:989
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Giallo"
 
-#: src/kcm_grub2.cpp:1006 src/kcm_grub2.cpp:1015
+#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Avvio silenzioso"
 
-#: src/kcm_grub2.cpp:1007 src/kcm_grub2.cpp:1016
+#: src/kcm_grub2.cpp:1013 src/kcm_grub2.cpp:1022
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Mostra schermata di avvio"
 
-#: src/kcm_grub2.cpp:1008 src/kcm_grub2.cpp:1017
+#: src/kcm_grub2.cpp:1014 src/kcm_grub2.cpp:1023
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Disabilita Plymouth"
 
-#: src/kcm_grub2.cpp:1009 src/kcm_grub2.cpp:1018
+#: src/kcm_grub2.cpp:1015 src/kcm_grub2.cpp:1024
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "Disattiva ACPI"
 
-#: src/kcm_grub2.cpp:1010 src/kcm_grub2.cpp:1019
+#: src/kcm_grub2.cpp:1016 src/kcm_grub2.cpp:1025
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "Disattiva APIC"
 
-#: src/kcm_grub2.cpp:1011 src/kcm_grub2.cpp:1020
+#: src/kcm_grub2.cpp:1017 src/kcm_grub2.cpp:1026
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Disattiva APIC locale"
 
-#: src/kcm_grub2.cpp:1012 src/kcm_grub2.cpp:1021
+#: src/kcm_grub2.cpp:1018 src/kcm_grub2.cpp:1027
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Modalità utente singolo"
 
-#: src/kcm_grub2.cpp:1024 src/kcm_grub2.cpp:1029 src/kcm_grub2.cpp:1036
+#: src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1035 src/kcm_grub2.cpp:1042
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "PC BIOS && EFI Console"
 
-#: src/kcm_grub2.cpp:1025 src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1037
+#: src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1036 src/kcm_grub2.cpp:1043
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Terminale seriale"
 
-#: src/kcm_grub2.cpp:1026 src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1038
+#: src/kcm_grub2.cpp:1032 src/kcm_grub2.cpp:1037 src/kcm_grub2.cpp:1044
 #, fuzzy
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
@@ -946,90 +946,115 @@ msgctxt ""
 msgid "Open Firmware Console"
 msgstr "Apri la console per il firmware"
 
-#: src/kcm_grub2.cpp:1032
+#: src/kcm_grub2.cpp:1038
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "Tastiera PC AT (Coreboot)"
 
-#: src/kcm_grub2.cpp:1033
+#: src/kcm_grub2.cpp:1039
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "Tastiera USB (protocollo di avvio HID)"
 
-#: src/kcm_grub2.cpp:1039
+#: src/kcm_grub2.cpp:1045
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Modalità grafica"
 
-#: src/kcm_grub2.cpp:1040
+#: src/kcm_grub2.cpp:1046
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "Uscita solo testo VGA (Coreboot)"
 
-#: src/kcm_grub2.cpp:1240
+#: src/kcm_grub2.cpp:1252
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Interrogazione dei dispositivi"
 
-#: src/kcm_grub2.cpp:1241
+#: src/kcm_grub2.cpp:1253
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "Interroga i dispositivi per trovarne i loro nomi in GRUB..."
 
-#: src/kcm_grub2.cpp:1260
+#: src/kcm_grub2.cpp:1272
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "Impossibile trovare i nomi per i dispositivi di GRUB."
 
-#: src/kcm_grub2.cpp:1267
+#: src/kcm_grub2.cpp:1279
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "L'assistente ha restituito una lista di dispositivi non validi."
 
-#: src/kcm_grub2.cpp:1359 src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1371 src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Name"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1359
+#: src/kcm_grub2.cpp:1371
 msgctxt "@header"
 msgid "Superuser"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1359
+#: src/kcm_grub2.cpp:1371
 msgctxt "@header"
 msgid "Password type"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Locked"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1408
+#: src/kcm_grub2.cpp:1420
 msgctxt "@header"
 msgid "Allowed users"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1513 src/kcm_grub2.cpp:1516
+#: src/kcm_grub2.cpp:1525 src/kcm_grub2.cpp:1528
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "Personalizzato..."
 
-#: src/kcm_grub2.cpp:1517
+#: src/kcm_grub2.cpp:1529
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Non specificato"
 
-#: src/kcm_grub2.cpp:1518
+#: src/kcm_grub2.cpp:1530
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Avvio in modalità testo"
 
-#: src/kcm_grub2.cpp:1519
+#: src/kcm_grub2.cpp:1531
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "Mantieni la risoluzione di GRUB"
+
+#: src/kcm_grub2.cpp:1543
+msgctxt "@info"
+msgid "Not Authorized."
+msgstr ""
+
+#: src/kcm_grub2.cpp:1547
+msgctxt "@info"
+msgid "The process could not be started."
+msgstr "Il processo non può essere avviato."
+
+#: src/kcm_grub2.cpp:1550
+msgctxt "@info"
+msgid "The process crashed."
+msgstr "Il processo è andato in crash."
+
+#: src/kcm_grub2.cpp:1559
+msgctxt "@info"
+msgid "Command: %1 Error code: %2 Error message: %3"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1561
+msgctxt "@info"
+msgid "Error message: %1"
+msgstr ""
 
 #: src/qPkBackend.cpp:31
 msgctxt "This is when the transaction status is not known"
@@ -1293,14 +1318,6 @@ msgstr ""
 #~ msgctxt "@label:textbox"
 #~ msgid "Please enter a Linux boot resolution:"
 #~ msgstr "Inserisci la risoluzione video per l'avvio di Linux:"
-
-#~ msgctxt "@info"
-#~ msgid "The process could not be started."
-#~ msgstr "Il processo non può essere avviato."
-
-#~ msgctxt "@info"
-#~ msgid "The process crashed."
-#~ msgstr "Il processo è andato in crash."
 
 #~ msgctxt "@info"
 #~ msgid ""
