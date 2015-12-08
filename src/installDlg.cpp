@@ -121,10 +121,10 @@ void InstallDialog::SlotOkButtonClicked()
         ExecuteJob* reply = installAction.execute();
         reply->exec();
         
-        //if (installAction.status() != Action::AuthorizedStatus ) {
-        //  progressDlg.hide();
-        //  return;
-        //}
+        if (reply->action().status() != Action::AuthorizedStatus ) {
+          progressDlg.hide();
+          return;
+        }
         
         //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
         progressDlg.hide();

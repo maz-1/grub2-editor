@@ -102,6 +102,7 @@ private:
     ExecuteJob * loadFile(GrubFile grubFile);
     QString readFile(GrubFile grubFile);
     void readEntries();
+    bool initializeAuthorized = false;
     void readSettings();
     void readEnv();
     void readMemtest();
@@ -118,7 +119,7 @@ private:
     void sortResolutions();
     void showResolutions();
 
-    void processReply(ActionReply &reply);
+    QString processReply(ExecuteJob *reply);
     QString parseTitle(const QString &line);
     void parseEntries(const QString &config);
     void parseSettings(const QString &config);

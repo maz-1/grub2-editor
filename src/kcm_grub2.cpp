@@ -99,7 +99,7 @@ void KCMGRUB2::defaults()
     
     ExecuteJob *reply = defaultsAction.execute();
     if (!reply->exec())
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), reply->errorString());
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), processReply(reply));
     else
         load();
         save();
@@ -108,6 +108,9 @@ void KCMGRUB2::defaults()
 void KCMGRUB2::load()
 {
     readEntries();
+    //stop load if not authorized
+    if (initializeAuthorized == false)
+        return;
     readSettings();
     readEnv();
     readMemtest();
@@ -533,11 +536,7 @@ void KCMGRUB2::save()
         }
         
     }
-/*
-    if (saveAction.authorize() != Action::Authorized) {
-        return;
-    }
-*/
+    
     QProgressDialog progressDlg(this, Qt::Dialog);
         progressDlg.setWindowTitle(i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"));
         progressDlg.setLabelText(i18nc("@info:progress", "Saving GRUB settings..."));
@@ -550,16 +549,23 @@ void KCMGRUB2::save()
     ExecuteJob *reply = saveAction.execute();
     //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
     reply->exec();
+    
+    if (reply->action().status() != Action::AuthorizedStatus ) {
+        progressDlg.hide();
+        return;
+    }
+
     progressDlg.hide();
     if (!reply->error()) {
         QDialog *dialog = new QDialog(this, Qt::Dialog);
         dialog->setWindowTitle(i18nc("@title:window", "Information"));
         dialog->setModal(true);
+        //TO BE FIXED. Have no idea how to show a kmessagebox with a "Details" button.
         QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
         KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, reply->data().value("output").toString()); // krazy:exclude=qclasses
         load();
     } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), reply->errorString());
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), processReply(reply));
     }
 }
 
@@ -576,7 +582,7 @@ void KCMGRUB2::slotRemoveOldEntries()
 void KCMGRUB2::slotGrubSavedefaultChanged()
 {
     m_dirtyBits.setBit(grubSavedefaultDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubHiddenTimeoutToggled(bool checked)
 {
@@ -586,12 +592,12 @@ void KCMGRUB2::slotGrubHiddenTimeoutToggled(bool checked)
 void KCMGRUB2::slotGrubHiddenTimeoutChanged()
 {
     m_dirtyBits.setBit(grubHiddenTimeoutDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubHiddenTimeoutQuietChanged()
 {
     m_dirtyBits.setBit(grubHiddenTimeoutQuietDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubTimeoutToggled(bool checked)
 {
@@ -602,23 +608,23 @@ void KCMGRUB2::slotGrubTimeoutToggled(bool checked)
 void KCMGRUB2::slotGrubTimeoutChanged()
 {
     m_dirtyBits.setBit(grubTimeoutDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubDisableRecoveryChanged()
 {
     m_dirtyBits.setBit(grubDisableRecoveryDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotMemtestChanged()
 {
     m_dirtyBits.setBit(memtestDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 //Security
 void KCMGRUB2::slotSecurityChanged()
 {
     m_dirtyBits.setBit(securityDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 
 void KCMGRUB2::slotDeleteUser()
@@ -634,7 +640,7 @@ void KCMGRUB2::slotDeleteUser()
     m_userIsSuper.remove(selectedUserName);
     ui->users->removeRow(selectedUserNum);
     m_dirtyBits.setBit(securityUsersDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotEditUser()
 {
@@ -656,7 +662,7 @@ void KCMGRUB2::slotEditUser()
         ui->users->setItem(selectedUserNum,1,new QTableWidgetItem(userDlg->isSuperUser() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
         ui->users->setItem(selectedUserNum,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@property", "Encrypted") : i18nc("@property", "Plain")));
         m_dirtyBits.setBit(securityUsersDirty);
-        emit changed(true);
+        if (initializeAuthorized) emit changed(true);
     }
     delete userDlg;
 }
@@ -675,7 +681,7 @@ void KCMGRUB2::slotEditGroup(){
     
     if(groupDlg->exec()) {
         m_dirtyBits.setBit(securityGroupsDirty);
-        emit changed(true);
+        if (initializeAuthorized) emit changed(true);
         m_groupFileAllowedUsers[selectedGroupName] = groupDlg->allowedUsers().join(",");
         if (groupDlg->isLocked()) {
             if (groupDlg->allowedUsers().count() == 0)
@@ -710,7 +716,7 @@ void KCMGRUB2::slotAddUser(){
         
         ui->users->setItem(j,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@property", "Encrypted") : i18nc("@property", "Plain")));
         m_dirtyBits.setBit(securityUsersDirty);
-        emit changed(true);
+        if (initializeAuthorized) emit changed(true);
     }
     delete userDlg;
 }
@@ -719,7 +725,7 @@ void KCMGRUB2::slotAddUser(){
 void KCMGRUB2::slotGrubDisableOsProberChanged()
 {
     m_dirtyBits.setBit(grubDisableOsProberDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotInstallBootloader()
 {
@@ -747,7 +753,7 @@ void KCMGRUB2::slotGrubGfxmodeChanged()
         }
     }
     m_dirtyBits.setBit(grubGfxmodeDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
 {
@@ -769,23 +775,23 @@ void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
         }
     }
     m_dirtyBits.setBit(grubGfxpayloadLinuxDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubColorNormalChanged()
 {
     m_dirtyBits.setBit(grubColorNormalDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubColorHighlightChanged()
 {
     m_dirtyBits.setBit(grubColorHighlightDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slowGrubBackgroundChanged()
 {
     ui->kpushbutton_preview->setEnabled(!ui->kurlrequester_background->text().isEmpty());
     m_dirtyBits.setBit(grubBackgroundDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotPreviewGrubBackground()
 {
@@ -816,17 +822,17 @@ void KCMGRUB2::slotCreateGrubBackground()
 void KCMGRUB2::slotGrubThemeChanged()
 {
     m_dirtyBits.setBit(grubThemeDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubCmdlineLinuxDefaultChanged()
 {
     m_dirtyBits.setBit(grubCmdlineLinuxDefaultDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubCmdlineLinuxChanged()
 {
     m_dirtyBits.setBit(grubCmdlineLinuxDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubTerminalChanged()
 {
@@ -836,37 +842,37 @@ void KCMGRUB2::slotGrubTerminalChanged()
     ui->klineedit_terminalInput->setText(!grubTerminal.isEmpty() ? grubTerminal : unquoteWord(m_settings.value("GRUB_TERMINAL_INPUT")));
     ui->klineedit_terminalOutput->setText(!grubTerminal.isEmpty() ? grubTerminal : unquoteWord(m_settings.value("GRUB_TERMINAL_OUTPUT")));
     m_dirtyBits.setBit(grubTerminalDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubTerminalInputChanged()
 {
     m_dirtyBits.setBit(grubTerminalInputDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubTerminalOutputChanged()
 {
     m_dirtyBits.setBit(grubTerminalOutputDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubDistributorChanged()
 {
     m_dirtyBits.setBit(grubDistributorDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubSerialCommandChanged()
 {
     m_dirtyBits.setBit(grubSerialCommandDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubInitTuneChanged()
 {
     m_dirtyBits.setBit(grubInitTuneDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 void KCMGRUB2::slotGrubDisableLinuxUuidChanged()
 {
     m_dirtyBits.setBit(grubDisableLinuxUuidDirty);
-    emit changed(true);
+    if (initializeAuthorized) emit changed(true);
 }
 
 void KCMGRUB2::slotUpdateSuggestions()
@@ -1174,9 +1180,15 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
     }
 
     ExecuteJob *reply = loadFile(grubFile);
-    if (!reply->exec()) {
+    reply->exec();
+    
+    if (reply->action().status() == Action::AuthorizedStatus ) {
+        initializeAuthorized = true;
+    }
+    
+    if (reply->error()) {
         qDebug() << "Error loading:" << fileName;
-        qDebug() << "Error description:" << reply->errorString();
+        qDebug() << "Error description:" << processReply(reply);
         return QString();
     }
     return QString::fromLocal8Bit(reply->data().value("rawFileContents").toByteArray());
@@ -1214,7 +1226,7 @@ void KCMGRUB2::readMemtest()
     ExecuteJob *reply = loadFile(GrubMemtestFile);
     if (!reply->exec()) {
         qDebug() << "Error loading:" << GRUB_MEMTEST;
-        qDebug() << "Error description:" << reply->errorString();
+        qDebug() << "Error description:" << processReply(reply);
         return;
     }
     m_memtest = reply->data().value("memtest").toBool();
@@ -1257,7 +1269,7 @@ void KCMGRUB2::readDevices()
     progressDlg.hide();
     
     if (reply->error()) {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), reply->errorString());
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), processReply(reply));
         return;
     }// else {
      // progressDlg.hide();
@@ -1523,38 +1535,33 @@ void KCMGRUB2::showResolutions()
         ui->kcombobox_gfxpayload->addItem(resolution, resolution);
     }
 }
-/*
-void KCMGRUB2::processReply(ExecuteJob * reply)
+
+QString KCMGRUB2::processReply(ExecuteJob * reply)
 {
-    if (reply.type() == ActionReply::Success || reply.type() == ActionReply::KAuthError) {
-        return;
-    }
-
-    if (reply.errorCode() == 0) {
-        QLatin1String key("errorDescription");
-        if (reply.data().contains(key)) {
-            reply.setErrorDescription(reply.data().value(key).toString());
-            reply.data().remove(key);
-        }
-        return;
-    }
-
     QString errorMessage;
-    switch (reply.errorCode()) {
-    case -2:
-        errorMessage = i18nc("@info", "The process could not be started.");
-        break;
-    case -1:
-        errorMessage = i18nc("@info", "The process crashed.");
-        break;
-    default:
-        errorMessage = QString::fromLocal8Bit(reply.data().value(QLatin1String("output")).toByteArray());
-        break;
+    if (reply->action().status() != Action::AuthorizedStatus) {
+        errorMessage = i18nc("@info", "Not Authorized.");
+    } else {
+        switch (reply->error()) {
+        case -2:
+            errorMessage = i18nc("@info", "The process could not be started.");
+            break;
+        case -1:
+            errorMessage = i18nc("@info", "The process crashed.");
+            break;
+        default:
+            errorMessage = QString::fromLocal8Bit(reply->data().value(QLatin1String("output")).toByteArray());
+            break;
+        }
+    
     }
-    reply.addData(QLatin1String("errorMessage"), errorMessage);
-    reply.setErrorDescription(i18nc("@info", "Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error message:<nl/><message>%3</message>", reply.data().value(QLatin1String("command")).toStringList().join(QLatin1String(" ")), reply.errorCode(), errorMessage));
+    if (reply->data().value("command").toString() != QString())
+        return i18nc("@info", "Command: %1 Error code: %2 Error message: %3", reply->data().value("command").toString(), reply->data().value("output").toString(), errorMessage);
+    else
+        return i18nc("@info", "Error message: %1", errorMessage);
+    
 }
-*/
+
 QString KCMGRUB2::parseTitle(const QString &line)
 {
     QString entry, lineStr = line;
