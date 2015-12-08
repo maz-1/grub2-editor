@@ -76,7 +76,7 @@ KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(parent,
     about->setShortDescription(i18n("A KDE Control Module for configuring the GRUB2 bootloader."));
     about->setLicense(KAboutLicense::GPL_V3);
     about->setHomepage("http://ksmanis.wordpress.com/projects/grub2-editor/");
-
+    
     about->addAuthor("Κonstantinos Smanis", i18n("Main Developer"), "konstantinos.smanis@gmail.com");
     about->addAuthor("Lin Ziyun", i18n("Developer"), "ohmygod19993@gmail.com");
     
@@ -110,13 +110,21 @@ void KCMGRUB2::defaults()
         save();
         KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
 }
+
+void KCMGRUB2::slotRetry()
+{
+    if (initializeAuthorized == false)
+        load();
+}
+
 void KCMGRUB2::load()
 {
     readEntries();
     //stop load if not authorized
+    for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(true);
     if (initializeAuthorized == false)
     {
-        ui->ktabwidget->setEnabled(false);
+        for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(false);
         return;
     }
     readSettings();
@@ -1055,6 +1063,9 @@ void KCMGRUB2::setupObjects()
 }
 void KCMGRUB2::setupConnections()
 {
+    //Retry when click on tab
+    connect(ui->ktabwidget, SIGNAL(tabBarClicked(int)), this, SLOT(slotRetry()));
+    
     connect(ui->kcombobox_default, SIGNAL(activated(int)), this, SLOT(changed()));
     connect(ui->kpushbutton_remove, SIGNAL(clicked(bool)), this, SLOT(slotRemoveOldEntries()));
     connect(ui->checkBox_savedefault, SIGNAL(clicked(bool)), this, SLOT(slotGrubSavedefaultChanged()));

@@ -52,6 +52,7 @@ public:
     virtual void load();
     virtual void save();
 private Q_SLOTS:
+    void slotRetry();
     void slotRemoveOldEntries();
     void slotGrubSavedefaultChanged();
     void slotGrubHiddenTimeoutToggled(bool checked);

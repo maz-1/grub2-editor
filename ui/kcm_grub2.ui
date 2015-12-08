@@ -16,7 +16,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tab_general">
       <attribute name="title">
        <string comment="@title:tab Refers to settings.">General</string>
       </attribute>
@@ -239,7 +239,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="tab_appearance">
       <attribute name="title">
        <string comment="@title:tab">Appearance</string>
       </attribute>
@@ -400,7 +400,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_4">
+     <widget class="QWidget" name="tab_security">
       <attribute name="title">
        <string comment="@title:tab">Security</string>
       </attribute>
@@ -584,7 +584,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tab_advanced">
       <attribute name="title">
        <string comment="@title:tab Refers to settings.">Advanced</string>
       </attribute>
