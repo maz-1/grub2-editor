@@ -103,7 +103,7 @@
              <bool>false</bool>
             </property>
             <property name="text">
-             <string comment="@option:radio">Immediately</string>
+             <string comment="@option:radio">&amp;Immediately</string>
             </property>
            </widget>
           </item>
@@ -128,7 +128,7 @@
                <bool>false</bool>
               </property>
               <property name="text">
-               <string comment="@option:radio">After:</string>
+               <string comment="@option:radio">&amp;After:</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -424,6 +424,62 @@
           <string comment="@label:users">Users</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="1">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QToolButton" name="userAdd">
+              <property name="toolTip">
+               <string>Add user</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset theme="list-add"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="userDel">
+              <property name="toolTip">
+               <string>Delete user</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset theme="list-remove"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="userMod">
+              <property name="toolTip">
+               <string>Edit user</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset theme="document-edit"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
           <item row="0" column="0">
            <widget class="QTableWidget" name="users">
             <property name="sizePolicy">
@@ -461,44 +517,6 @@
             <column/>
            </widget>
           </item>
-          <item row="1" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="userAdd">
-              <property name="text">
-               <string comment="@label:add">Add</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="userDel">
-              <property name="text">
-               <string comment="@label:del">Delete</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="userMod">
-              <property name="text">
-               <string comment="@label:edit">Edit</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
          </layout>
         </widget>
        </item>
@@ -514,6 +532,36 @@
           <string comment="@label:groups">Groups</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="1">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QToolButton" name="groupMod">
+              <property name="toolTip">
+               <string>Edit group</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset theme="document-edit"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
           <item row="0" column="0">
            <widget class="QTableWidget" name="groups">
             <property name="sizePolicy">
@@ -541,30 +589,6 @@
             <column/>
             <column/>
            </widget>
-          </item>
-          <item row="1" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <spacer name="horizontalSpacer_7">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>420</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="groupMod">
-              <property name="text">
-               <string comment="@label:edit">Edit</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
           </item>
          </layout>
         </widget>
@@ -810,7 +834,7 @@
   </customwidget>
   <customwidget>
    <class>KUrlRequester</class>
-   <extends>QFrame</extends>
+   <extends>QWidget</extends>
    <header>kurlrequester.h</header>
   </customwidget>
   <customwidget>
