@@ -84,10 +84,16 @@ ActionReply Helper::initialize(QVariantMap args)
 ActionReply Helper::defaults(QVariantMap args)
 {
     Q_UNUSED(args)
+//Disable security
+    QString filePath(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+    QFile::Permissions permissions = QFile::permissions(filePath);
+    permissions &= ~(QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+    QFile::setPermissions(filePath, permissions);
+    
     ActionReply reply;
     QString configFileName = GRUB_CONFIG;
     QString originalConfigFileName = configFileName + ".original";
-
+        
     if (!QFile::exists(originalConfigFileName)) {
         reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Original configuration file <filename>%1</filename> does not exist.", originalConfigFileName));
