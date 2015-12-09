@@ -20,9 +20,11 @@
 
 //Qt
 #include <QBitArray>
-
+#include <QProgressDialog>
+#include <QDebug>
 //KDE
 #include <KCModule>
+
 namespace KAuth
 {
     class ActionReply;
@@ -50,6 +52,7 @@ public:
     virtual void load();
     virtual void save();
 private Q_SLOTS:
+    void slotRetry();
     void slotRemoveOldEntries();
     void slotGrubSavedefaultChanged();
     void slotGrubHiddenTimeoutToggled(bool checked);
@@ -78,6 +81,14 @@ private Q_SLOTS:
     void slotGrubSerialCommandChanged();
     void slotGrubInitTuneChanged();
     void slotGrubDisableLinuxUuidChanged();
+    //Security
+    void slotSecurityChanged();
+    //users
+    void slotAddUser();
+    void slotDeleteUser();
+    void slotEditUser();
+    //groups
+    void slotEditGroup();
 
     void slotUpdateSuggestions();
     void slotTriggeredSuggestion(QAction *action);
@@ -89,19 +100,27 @@ private:
     QString convertToGRUBFileName(const QString &fileName);
     QString convertToLocalFileName(const QString &grubFileName);
 
-    ActionReply loadFile(GrubFile grubFile);
+    ExecuteJob * loadFile(GrubFile grubFile);
     QString readFile(GrubFile grubFile);
     void readEntries();
+    bool initializeAuthorized = false;
     void readSettings();
     void readEnv();
     void readMemtest();
     void readDevices();
     void readResolutions();
-
+//Security
+    void parseGroupDir();
+    void getSuperUsers();
+    void getUsers();
+    void getGroups();
+//Encryption
+    QString pbkdf2Encrypt(QString passwd); //, int key_length, int iteration_count
+    
     void sortResolutions();
     void showResolutions();
 
-    void processReply(ActionReply &reply);
+    QString processReply(ExecuteJob *reply);
     QString parseTitle(const QString &line);
     void parseEntries(const QString &config);
     void parseSettings(const QString &config);
@@ -132,6 +151,12 @@ private:
         grubSerialCommandDirty,
         grubInitTuneDirty,
         grubDisableLinuxUuidDirty,
+//Security
+//-------------------------------------------------
+        securityDirty,
+        securityUsersDirty,
+        securityGroupsDirty,
+//-------------------------------------------------
         lastDirtyBit
     };
     QBitArray m_dirtyBits;
@@ -143,6 +168,27 @@ private:
     bool m_memtestOn;
     QHash<QString, QString> m_devices;
     QStringList m_resolutions;
+//Security
+    bool m_security;
+    bool m_securityOn;
+//Group
+//-----------------------------------------------------
+    QStringList m_groupFilesList;
+    QHash<QString, QString> m_groupFilesContent;
+    QHash<QString, bool> m_groupFileLocked;
+    QHash<QString, QString> m_groupFileAllowedUsers;
+//-----------------------------------------------------
+    QString m_headerFile;
+//SuperUsers
+    QStringList m_superUsers;
+//Users
+//-----------------------------------------------------
+    QStringList m_users;
+    QHash<QString, QString> m_userPassword;
+    QHash<QString, bool> m_userPasswordEncrypted;
+    QHash<QString, bool> m_userIsSuper;
+//-----------------------------------------------------
 };
+
 
 #endif

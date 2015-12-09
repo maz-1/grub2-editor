@@ -66,7 +66,7 @@ QString unquoteWord(const QString &word)
                         return QString();
                     }
                     stream >> ch;
-                    switch (ch.toAscii()) {
+                    switch (ch.toLatin1()) {
                         case '$':
                         case '"':
                         case '\\':
@@ -92,7 +92,7 @@ QString unquoteWord(const QString &word)
                         return unquotedWord;
                     }
                     stream >> ch;
-                    switch (ch.toAscii()) {
+                    switch (ch.toLatin1()) {
                         case '\n':
                             break;
                         default:

@@ -25,11 +25,9 @@
 #include <QDir>
 
 //KDE
-#include <KDebug>
-#include <KGlobal>
-#include <KLocale>
+//#include <KDebug>
 #include <KProcess>
-#include <KAuth/HelperSupport>
+#include <klocalizedstring.h>
 
 //Project
 #include "../config.h"
@@ -44,7 +42,6 @@ static const QString path = QLatin1String("/usr/sbin:/usr/bin:/sbin:/bin");
 
 Helper::Helper()
 {
-    KGlobal::locale()->insertCatalog("kcm-grub2");
     qputenv("PATH", path.toLatin1());
 }
 
@@ -54,38 +51,61 @@ ActionReply Helper::executeCommand(const QStringList &command)
     process.setProgram(command);
     process.setOutputChannelMode(KProcess::MergedChannels);
 
-    kDebug() << "Executing" << command.join(" ");
+    qDebug() << "Executing" << command.join(" ");
     int exitCode = process.execute();
 
     ActionReply reply;
     if (exitCode != 0) {
-        reply = ActionReply::HelperErrorReply;
-        reply.setErrorCode(exitCode);
+        reply = ActionReply::HelperErrorReply();
+        //TO BE FIXED
+        reply.setErrorCode(ActionReply::Error::InvalidActionError);
     }
     reply.addData("command", command);
     reply.addData("output", process.readAll());
     return reply;
 }
 
+ActionReply Helper::initialize(QVariantMap args)
+{
+    ActionReply reply;
+    switch (args.value("actionType").toInt()) {
+    case actionLoad:
+        reply = load(args);
+        break;
+    case actionProbe:
+        reply = probe(args);
+        break;
+    case actionProbevbe:
+        reply = probevbe(args);
+    }
+    return reply;
+}
+
 ActionReply Helper::defaults(QVariantMap args)
 {
     Q_UNUSED(args)
+//Disable security
+    QString filePath(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+    QFile::Permissions permissions = QFile::permissions(filePath);
+    permissions &= ~(QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+    QFile::setPermissions(filePath, permissions);
+    
     ActionReply reply;
     QString configFileName = GRUB_CONFIG;
     QString originalConfigFileName = configFileName + ".original";
-
+        
     if (!QFile::exists(originalConfigFileName)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Original configuration file <filename>%1</filename> does not exist.", originalConfigFileName));
         return reply;
     }
     if (!QFile::remove(configFileName)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Cannot remove current configuration file <filename>%1</filename>.", configFileName));
         return reply;
     }
     if (!QFile::copy(originalConfigFileName, configFileName)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", i18nc("@info", "Cannot copy original configuration file <filename>%1</filename> to <filename>%2</filename>.", originalConfigFileName, configFileName));
         return reply;
     }
@@ -101,7 +121,7 @@ ActionReply Helper::install(QVariantMap args)
     if (mountPoint.isEmpty()) {
         for (int i = 0; QDir(mountPoint = QString("%1/kcm-grub2-%2").arg(QDir::tempPath(), QString::number(i))).exists(); i++);
         if (!QDir().mkpath(mountPoint)) {
-            reply = ActionReply::HelperErrorReply;
+            reply = ActionReply::HelperErrorReply();
             reply.addData("errorDescription", i18nc("@info", "Failed to create temporary mount point."));
             return reply;
         }
@@ -134,6 +154,19 @@ ActionReply Helper::load(QVariantMap args)
     case GrubEnvironmentFile:
         fileName = GRUB_ENV;
         break;
+//Security
+    case GrubGroupFile:
+        fileName = GRUB_CONFIGDIR + args.value("groupFile").toString();
+        if (args.value("groupFile").toString() == GRUB_SECURITY) {
+            if (!QFile::exists(fileName)) 
+                executeCommand(QStringList() << "touch" << fileName);
+            bool security = QFile::exists(fileName);
+            reply.addData("security", security);
+            reply.addData("securityOn", (bool)(QFile::permissions(fileName) & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther)));
+            if (!security)
+                qDebug() << "Unable to create" << fileName << ", please check file permissions.";
+        }
+        break;
     case GrubMemtestFile:
         bool memtest = QFile::exists(GRUB_MEMTEST);
         reply.addData("memtest", memtest);
@@ -142,10 +175,10 @@ ActionReply Helper::load(QVariantMap args)
         }
         return reply;
     }
-
+    
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", file.errorString());
         return reply;
     }
@@ -190,7 +223,7 @@ ActionReply Helper::probevbe(QVariantMap args)
     hd_free_hd_data(&hd_data);
     reply.addData("gfxmodes", gfxmodes);
 #else
-    reply = ActionReply::HelperErrorReply;
+    reply = ActionReply::HelperErrorReply();
 #endif
 
     return reply;
@@ -202,12 +235,13 @@ ActionReply Helper::save(QVariantMap args)
     QByteArray rawConfigFileContents = args.value("rawConfigFileContents").toByteArray();
     QByteArray rawDefaultEntry = args.value("rawDefaultEntry").toByteArray();
     bool memtest = args.value("memtest").toBool();
+    bool security = args.value("security").toBool();
 
     QFile::copy(configFileName, configFileName + ".original");
 
     QFile file(configFileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        reply = ActionReply::HelperErrorReply;
+        reply = ActionReply::HelperErrorReply();
         reply.addData("errorDescription", file.errorString());
         return reply;
     }
@@ -223,7 +257,41 @@ ActionReply Helper::save(QVariantMap args)
         }
         QFile::setPermissions(GRUB_MEMTEST, permissions);
     }
-
+    
+    if (args.contains("security")) {
+        QString filePath(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+        QFile::Permissions permissions = QFile::permissions(filePath);
+        if (security) {
+            permissions |= (QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        } else {
+            permissions &= ~(QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        }
+        QFile::setPermissions(filePath, permissions);
+    }
+    
+    if (args.contains("securityUsers")) {
+        QByteArray rawUsersFileContents = args.value("securityUsers").toByteArray();
+        //qDebug() << rawUsersFileContents;
+        QFile usersFile(QString(GRUB_CONFIGDIR)+QString(GRUB_SECURITY));
+        usersFile.open(QIODevice::WriteOnly | QIODevice::Text);
+        usersFile.write(rawUsersFileContents);
+        usersFile.close();
+        
+    }
+    
+    if (args.contains("securityGroupsList")) {
+        QStringList groupFilesList = args.value("securityGroupsList").toString().split("/");
+        for ( int i=0; i<groupFilesList.count(); ++i ) {
+            QByteArray rawGroupFileContent = args.value(QString("GroupContent_")+groupFilesList[i]).toByteArray();
+            //qDebug() << groupFilesList[i] << rawGroupFileContent;
+            QFile groupFile(QString(GRUB_CONFIGDIR)+groupFilesList[i]);
+            groupFile.open(QIODevice::WriteOnly | QIODevice::Text);
+            groupFile.write(rawGroupFileContent);
+            groupFile.close();
+        }
+        //qDebug() << "Groups modified :" << groupFilesList;
+    }
+    
     ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;
@@ -237,4 +305,4 @@ ActionReply Helper::save(QVariantMap args)
     return grub_mkconfigReply;
 }
 
-KDE4_AUTH_HELPER_MAIN("org.kde.kcontrol.kcmgrub2", Helper)
+KAUTH_HELPER_MAIN("org.kde.kcontrol.kcmgrub2", Helper)

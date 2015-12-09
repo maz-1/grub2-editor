@@ -19,23 +19,34 @@
 #include "convertDlg.h"
 
 //KDE
-#include <KFileDialog>
 #include <KMessageBox>
-#include <KMimeType>
-
+//#include <KMimeType>
+//Qt
+#include <QFileDialog>
+#include <QMimeType>
+#include <QMimeDatabase>
 //ImageMagick
 #include <Magick++.h>
 
 //Ui
 #include "ui_convertDlg.h"
 
-ConvertDialog::ConvertDialog(QWidget *parent, Qt::WFlags flags) : KDialog(parent, flags)
+ConvertDialog::ConvertDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags)
 {
     QWidget *widget = new QWidget(this);
     ui = new Ui::ConvertDialog;
     ui->setupUi(widget);
-    setMainWidget(widget);
-
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(widget);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+    buttonBox->button(QDialogButtonBox::Ok)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOkButton));
+    buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCancelButton));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(SlotOkButtonClicked()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    
+    QMimeDatabase db;
     QString readFilter;
     QList<Magick::CoderInfo> coderList;
     coderInfoList(&coderList, Magick::CoderInfo::TrueMatch, Magick::CoderInfo::AnyMatch, Magick::CoderInfo::AnyMatch);
@@ -47,14 +58,14 @@ ConvertDialog::ConvertDialog(QWidget *parent, Qt::WFlags flags) : KDialog(parent
     readFilter.remove(0, 1);
     readFilter.append('|').append(i18nc("@item:inlistbox", "ImageMagick supported image formats"));
 
-    QString writeFilter = QString("*%1|%5 (%1)\n*%2|%6 (%2)\n*%3 *%4|%7 (%3 %4)").arg(".png", ".tga", ".jpg", ".jpeg", KMimeType::mimeType("image/png")->comment(), KMimeType::mimeType("image/x-tga")->comment(), KMimeType::mimeType("image/jpeg")->comment());
+    QString writeFilter = QString("*%1|%5 (%1)\n*%2|%6 (%2)\n*%3 *%4|%7 (%3 %4)").arg(".png", ".tga", ".jpg", ".jpeg", db.mimeTypeForName("image/png").comment(), db.mimeTypeForName("image/x-tga").comment(), db.mimeTypeForName("image/jpeg").comment());
 
     ui->kurlrequester_image->setMode(KFile::File | KFile::ExistingOnly | KFile::LocalOnly);
-    ui->kurlrequester_image->fileDialog()->setOperationMode(KFileDialog::Opening);
-    ui->kurlrequester_image->fileDialog()->setFilter(readFilter);
+    ui->kurlrequester_image->fileDialog()->setAcceptMode(QFileDialog::AcceptOpen);
+    ui->kurlrequester_image->fileDialog()->setNameFilter(readFilter);
     ui->kurlrequester_converted->setMode(KFile::File | KFile::LocalOnly);
-    ui->kurlrequester_converted->fileDialog()->setOperationMode(KFileDialog::Saving);
-    ui->kurlrequester_converted->fileDialog()->setFilter(writeFilter);
+    ui->kurlrequester_converted->fileDialog()->setAcceptMode(QFileDialog::AcceptSave);
+    ui->kurlrequester_converted->fileDialog()->setNameFilter(writeFilter);
 }
 ConvertDialog::~ConvertDialog()
 {
@@ -69,16 +80,17 @@ void ConvertDialog::setResolution(int width, int height)
     }
 }
 
-void ConvertDialog::slotButtonClicked(int button)
+void ConvertDialog::slotOkButtonClicked()
 {
-    if (button == KDialog::Ok) {
+    QRegularExpression getdirectory("\\S*/");
+    
         if (ui->kurlrequester_image->text().isEmpty() || ui->kurlrequester_converted->text().isEmpty()) {
             KMessageBox::information(this, i18nc("@info", "Please fill in both <interface>Image</interface> and <interface>Convert To</interface> fields."));
             return;
         } else if (ui->spinBox_width->value() == 0 || ui->spinBox_height->value() == 0) {
             KMessageBox::information(this, i18nc("@info", "Please fill in both <interface>Width</interface> and <interface>Height</interface> fields."));
             return;
-        } else if (!QFileInfo(ui->kurlrequester_converted->url().directory()).isWritable()) {
+        } else if (!QFileInfo(getdirectory.match(ui->kurlrequester_converted->url().toLocalFile()).captured(1)).isWritable()) {
             KMessageBox::information(this, i18nc("@info", "You do not have write permissions in this directory, please select another destination."));
             return;
         }
@@ -92,6 +104,5 @@ void ConvertDialog::slotButtonClicked(int button)
         if (ui->checkBox_wallpaper->isChecked()) {
             emit splashImageCreated(ui->kurlrequester_converted->url().toLocalFile());
         }
-    }
-    KDialog::slotButtonClicked(button);
+    this->accept();
 }

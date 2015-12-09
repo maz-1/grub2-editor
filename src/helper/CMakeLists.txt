@@ -8,17 +8,17 @@ endif(HAVE_HD)
 set(kcmgrub2helper_SRCS helper.cpp)
 
 # Set Link Libraries
-set(kcmgrub2helper_LINK_LIBS ${KDE4_KDECORE_LIBS})
+set(kcmgrub2helper_LINK_LIBS Qt5::DBus KF5::Auth KF5::I18n)
 if(HAVE_HD)
     set(kcmgrub2helper_LINK_LIBS ${kcmgrub2helper_LINK_LIBS} ${HD_LIBRARY})
 endif(HAVE_HD)
 
 # Build & Link
 include_directories(${kcmgrub2helper_INCLUDE_DIRS})
-kde4_add_executable(kcmgrub2helper ${kcmgrub2helper_SRCS})
+add_executable(kcmgrub2helper ${kcmgrub2helper_SRCS})
 target_link_libraries(kcmgrub2helper ${kcmgrub2helper_LINK_LIBS})
 
 # Install
-install(TARGETS kcmgrub2helper DESTINATION ${LIBEXEC_INSTALL_DIR})
-kde4_install_auth_helper_files(kcmgrub2helper org.kde.kcontrol.kcmgrub2 root)
-kde4_install_auth_actions(org.kde.kcontrol.kcmgrub2 kcmgrub2.actions)
+install(TARGETS kcmgrub2helper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
+kauth_install_helper_files(kcmgrub2helper org.kde.kcontrol.kcmgrub2 root)
+kauth_install_actions(org.kde.kcontrol.kcmgrub2 kcmgrub2.actions)

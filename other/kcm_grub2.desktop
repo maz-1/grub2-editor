@@ -2,12 +2,12 @@
 Icon=system-reboot
 Type=Service
 X-KDE-ServiceTypes=KCModule
-Exec=kcmshell4 kcm_grub2
+Exec=kcmshell5 kcm_grub2
 
 X-KDE-Library=kcm_grub2
 X-KDE-ParentApp=kcontrol
 
-X-KDE-System-Settings-Parent-Category=startup-and-shutdown
+X-KDE-System-Settings-Parent-Category=session
 
 Name=GRUB2 Bootloader
 Name[bs]=GRUB2 pokretač sistemar
@@ -79,6 +79,7 @@ Comment[ug]=Grub2 سىستېما باشلىغۇچنى ئۆزلەشتۈرۈش
 Comment[uk]=Налаштування завантажувача GRUB2
 Comment[x-test]=xxCustomize the GRUB2 bootloaderxx
 Comment[zh_TW]=自訂 GRUB2 開機載入器
+Comment[zh_CN]=自定义 GRUB2 启动加载器
 X-KDE-Keywords=grub,boot,menu,entries,default,timeout,password,color,splash,image,bootloader
 X-KDE-Keywords[ca]=grub,arrencada,menú,entrades,omissió,temps d'expiració,contrasenya,color,benvinguda,imatge,carregador d'arrencada
 X-KDE-Keywords[ca@valencia]=grub,arrencada,menú,entrades,omissió,temps d'expiració,contrasenya,color,benvinguda,imatge,carregador d'arrencada

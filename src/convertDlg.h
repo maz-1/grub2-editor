@@ -18,8 +18,8 @@
 #ifndef CONVERTDLG_H
 #define CONVERTDLG_H
 
-//KDE
-#include <KDialog>
+//Qt
+#include <QDialog>
 
 //Ui
 namespace Ui
@@ -27,16 +27,16 @@ namespace Ui
     class ConvertDialog;
 }
 
-class ConvertDialog : public KDialog
+class ConvertDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ConvertDialog(QWidget *parent = 0, Qt::WFlags flags = 0);
+    explicit ConvertDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     virtual ~ConvertDialog();
 
     void setResolution(int width, int height);
 protected Q_SLOTS:
-    virtual void slotButtonClicked(int button);
+    virtual void slotOkButtonClicked();
 Q_SIGNALS:
     void splashImageCreated(const QString &splashImage);
 private:

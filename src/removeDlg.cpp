@@ -28,7 +28,8 @@
 
 //KDE
 #include <KMessageBox>
-#include <KProgressDialog>
+//Qt
+#include <QProgressDialog>
 
 //Project
 #include "entry.h"
@@ -36,13 +37,22 @@
 //Ui
 #include "ui_removeDlg.h"
 
-RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WFlags flags) : KDialog(parent, flags)
+RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags)
 {
     QWidget *widget = new QWidget(this);
     ui = new Ui::RemoveDialog;
     ui->setupUi(widget);
-    setMainWidget(widget);
-    enableButtonOk(false);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(widget);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    mainLayout->addWidget(buttonBox);
+    buttonBox->button(QDialogButtonBox::Ok)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOkButton));
+    buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCancelButton));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(SlotOkButtonClicked()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    
     setWindowTitle(i18nc("@title:window", "Remove Old Entries"));
     setWindowIcon(KIcon("list-remove"));
 
@@ -57,8 +67,8 @@ RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WFl
 #endif
 
     detectCurrentKernelImage();
-    KProgressDialog progressDlg(this, i18nc("@title:window", "Finding Old Entries"), i18nc("@info:progress", "Finding Old Entries..."));
-    progressDlg.setAllowCancel(false);
+    QProgressDialog progressDlg(this, i18nc("@title:window", "Finding Old Entries"), i18nc("@info:progress", "Finding Old Entries..."));
+    progressDlg.setCancelButton(0);
     progressDlg.setModal(true);
     progressDlg.show();
     bool found = false;
@@ -97,7 +107,7 @@ RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WFl
         ui->treeWidget->resizeColumnToContents(0);
         ui->treeWidget->setMinimumWidth(ui->treeWidget->columnWidth(0) + ui->treeWidget->sizeHintForRow(0));
         connect(ui->treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(slotItemChanged()));
-        enableButtonOk(true);
+        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     } else {
         KMessageBox::sorry(this, i18nc("@info", "No removable entries were found."));
         QTimer::singleShot(0, this, SLOT(reject()));
@@ -108,9 +118,9 @@ RemoveDialog::~RemoveDialog()
     delete m_backend;
     delete ui;
 }
-void RemoveDialog::slotButtonClicked(int button)
+void RemoveDialog::slotOkButtonClicked(int button)
 {
-    if (button == KDialog::Ok) {
+
         for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
             if (ui->treeWidget->topLevelItem(i)->checkState(0) == Qt::Checked) {
                 QString packageName = ui->treeWidget->topLevelItem(i)->data(0, Qt::UserRole).toString();
@@ -129,24 +139,23 @@ void RemoveDialog::slotButtonClicked(int button)
             m_backend->undoChanges();
         }
         return;
-    }
-    KDialog::slotButtonClicked(button);
+    this->accept();
 }
 void RemoveDialog::slotItemChanged()
 {
     for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
         if (ui->treeWidget->topLevelItem(i)->checkState(0) == Qt::Checked) {
-            enableButtonOk(true);
+            this->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
             return;
         }
     }
-    enableButtonOk(false);
+    this->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 void RemoveDialog::slotProgress(const QString &status, int percentage)
 {
     if (!m_progressDlg) {
-        m_progressDlg = new KProgressDialog(this, i18nc("@title:window", "Removing Old Entries"));
-        m_progressDlg->setAllowCancel(false);
+        m_progressDlg = new QProgressDialog(this, i18nc("@title:window", "Removing Old Entries"));
+        m_progressDlg->setCancelButton(0);
         m_progressDlg->setModal(true);
         m_progressDlg->show();
     }

@@ -20,22 +20,28 @@
 
 //Own
 #include "kcm_grub2.h"
-
+#include "widgets/regexpinputdialog.h"
 //Qt
 #include <QDesktopWidget>
 #include <QStandardItemModel>
 #include <QTreeView>
-
+#include <QMenu>
+#include <QProgressBar>
+#include <QTextStream>
+#include <QProcess>
+//Encryption
+//#define random(x) (rand()%x)
 //KDE
 #include <KAboutData>
-#include <KDebug>
-#include <KInputDialog>
-#include <KMenu>
+//#include <KDebug>
 #include <KMessageBox>
 #include <kmountpoint.h>
 #include <KPluginFactory>
-#include <KProgressDialog>
-#include <KAuth/ActionWatcher>
+#include <KAuth>
+using namespace KAuth;
+
+#define TRANSLATION_DOMAIN "kcm-grub2"
+#include <klocalizedstring.h>
 
 //Project
 #include "common.h"
@@ -44,6 +50,12 @@
 #endif
 #include "entry.h"
 #include "installDlg.h"
+//Security
+#include "userDlg.h"
+#include "groupDlg.h"
+#define MENUPLACEHOLDER "__MENUPLACEHOLDER__"
+#define SUBPLACEHOLDER "__SUBPLACEHOLDER__"
+//
 #if HAVE_QAPT || HAVE_QPACKAGEKIT
 #include "removeDlg.h"
 #endif
@@ -54,13 +66,20 @@
 K_PLUGIN_FACTORY(GRUB2Factory, registerPlugin<KCMGRUB2>();)
 K_EXPORT_PLUGIN(GRUB2Factory("kcmgrub2"))
 
-KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(GRUB2Factory::componentData(), parent, list)
+#include <kcm_grub2.moc>
+
+KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(parent, list)
 {
     //Isn't KAboutData's second argument supposed to do this?
-    KGlobal::locale()->insertCatalog("kcm-grub2");
 
-    KAboutData *about = new KAboutData("kcmgrub2", "kcm-grub2", ki18nc("@title", "KDE GRUB2 Bootloader Control Module"), KCM_GRUB2_VERSION, ki18nc("@title", "A KDE Control Module for configuring the GRUB2 bootloader."), KAboutData::License_GPL_V3, ki18nc("@info:credit", "Copyright (C) 2008-2013 Konstantinos Smanis"), KLocalizedString(), "http://ksmanis.wordpress.com/projects/grub2-editor/");
-    about->addAuthor(ki18nc("@info:credit", "Κonstantinos Smanis"), ki18nc("@info:credit", "Main Developer"), "konstantinos.smanis@gmail.com", "http://ksmanis.wordpress.com/");
+    KAboutData* about = new KAboutData("kcmgrub2", i18n("KDE GRUB2 Bootloader Control Module"), KCM_GRUB2_VERSION);
+    about->setShortDescription(i18n("A KDE Control Module for configuring the GRUB2 bootloader."));
+    about->setLicense(KAboutLicense::GPL_V3);
+    about->setHomepage("http://ksmanis.wordpress.com/projects/grub2-editor/");
+    
+    about->addAuthor("Κonstantinos Smanis", i18n("Main Developer"), "konstantinos.smanis@gmail.com");
+    about->addAuthor("Lin Ziyun", i18n("Developer"), "ohmygod19993@gmail.com");
+    
     setAboutData(about);
 
     ui = new Ui::KCMGRUB2;
@@ -75,28 +94,47 @@ KCMGRUB2::~KCMGRUB2()
 
 void KCMGRUB2::defaults()
 {
+    if (initializeAuthorized == false)
+    {
+        return;
+    }
     Action defaultsAction("org.kde.kcontrol.kcmgrub2.defaults");
-    defaultsAction.setHelperID("org.kde.kcontrol.kcmgrub2");
-#if KDE_IS_VERSION(4,6,0)
-    defaultsAction.setParentWidget(this);
-#endif
-
-    ActionReply reply = defaultsAction.execute();
-    processReply(reply);
-    if (reply.succeeded()) {
+    defaultsAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    
+    ExecuteJob *reply = defaultsAction.execute();
+    reply->exec();
+    if (reply->error())
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), processReply(reply));
+    else
         load();
         save();
         KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
-    } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), reply.errorDescription());
-    }
 }
+
+void KCMGRUB2::slotRetry()
+{
+    if (initializeAuthorized == false)
+        load();
+}
+
 void KCMGRUB2::load()
 {
     readEntries();
+    //stop load if not authorized
+    for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(true);
+    if (initializeAuthorized == false)
+    {
+        for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(false);
+        return;
+    }
     readSettings();
     readEnv();
     readMemtest();
+//Security
+    parseGroupDir();
+//TEST
+    //qDebug() << "Password : passwd_sample";
+    //qDebug() << "Result :" << pbkdf2Encrypt("passwd_sample", 64, 10000);
 #if HAVE_HD
     readResolutions();
 #endif
@@ -163,7 +201,7 @@ void KCMGRUB2::load()
                 ui->kcombobox_default->setRootModelIndex(model->indexFromItem(model->invisibleRootItem()));
             }
         } else {
-            kWarning() << "Invalid GRUB_DEFAULT value";
+            qDebug() << "Invalid GRUB_DEFAULT value";
         }
     }
     ui->kpushbutton_remove->setEnabled(!m_entries.isEmpty());
@@ -176,7 +214,7 @@ void KCMGRUB2::load()
             ui->checkBox_hiddenTimeout->setChecked(grubHiddenTimeout > 0);
             ui->spinBox_hiddenTimeout->setValue(grubHiddenTimeout);
         } else {
-            kWarning() << "Invalid GRUB_HIDDEN_TIMEOUT value";
+            qDebug() << "Invalid GRUB_HIDDEN_TIMEOUT value";
         }
     }
     ui->checkBox_hiddenTimeoutShowTimer->setChecked(unquoteWord(m_settings.value("GRUB_HIDDEN_TIMEOUT_QUIET")).compare("true") != 0);
@@ -187,12 +225,16 @@ void KCMGRUB2::load()
         ui->radioButton_timeout->setChecked(grubTimeout > 0);
         ui->spinBox_timeout->setValue(grubTimeout);
     } else {
-        kWarning() << "Invalid GRUB_TIMEOUT value";
+        qDebug() << "Invalid GRUB_TIMEOUT value";
     }
 
     ui->checkBox_recovery->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_RECOVERY")).compare("true") != 0);
     ui->checkBox_memtest->setVisible(m_memtest);
     ui->checkBox_memtest->setChecked(m_memtestOn);
+    //Security
+    ui->usersGroup->setEnabled(m_securityOn);
+    ui->groupsGroup->setEnabled(m_securityOn);
+    
     ui->checkBox_osProber->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_OS_PROBER")).compare("true") != 0);
 
     m_resolutions.append("640x480");
@@ -215,7 +257,7 @@ void KCMGRUB2::load()
         int normalForegroundIndex = ui->kcombobox_normalForeground->findData(grubColorNormal.section('/', 0, 0));
         int normalBackgroundIndex = ui->kcombobox_normalBackground->findData(grubColorNormal.section('/', 1));
         if (normalForegroundIndex == -1 || normalBackgroundIndex == -1) {
-            kWarning() << "Invalid GRUB_COLOR_NORMAL value";
+            qDebug() << "Invalid GRUB_COLOR_NORMAL value";
         }
         if (normalForegroundIndex != -1) {
             ui->kcombobox_normalForeground->setCurrentIndex(normalForegroundIndex);
@@ -229,7 +271,7 @@ void KCMGRUB2::load()
         int highlightForegroundIndex = ui->kcombobox_highlightForeground->findData(grubColorHighlight.section('/', 0, 0));
         int highlightBackgroundIndex = ui->kcombobox_highlightBackground->findData(grubColorHighlight.section('/', 1));
         if (highlightForegroundIndex == -1 || highlightBackgroundIndex == -1) {
-            kWarning() << "Invalid GRUB_COLOR_HIGHLIGHT value";
+            qDebug() << "Invalid GRUB_COLOR_HIGHLIGHT value";
         }
         if (highlightForegroundIndex != -1) {
             ui->kcombobox_highlightForeground->setCurrentIndex(highlightForegroundIndex);
@@ -259,6 +301,11 @@ void KCMGRUB2::load()
     ui->klineedit_initTune->setText(unquoteWord(m_settings.value("GRUB_INIT_TUNE")));
     ui->checkBox_uuid->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_LINUX_UUID")).compare("true") != 0);
 
+//Security
+    ui->secEnabled->setVisible(m_security);
+    ui->secEnabled->setChecked(m_securityOn);
+    
+    
     m_dirtyBits.fill(0);
     emit changed(false);
 }
@@ -326,14 +373,14 @@ void KCMGRUB2::save()
     }
     if (m_dirtyBits.testBit(grubGfxmodeDirty)) {
         if (ui->kcombobox_gfxmode->currentIndex() <= 0) {
-            kError() << "Something went terribly wrong!";
+            qDebug() << "Something went terribly wrong!";
         } else {
             m_settings["GRUB_GFXMODE"] = quoteWord(ui->kcombobox_gfxmode->itemData(ui->kcombobox_gfxmode->currentIndex()).toString());
         }
     }
     if (m_dirtyBits.testBit(grubGfxpayloadLinuxDirty)) {
         if (ui->kcombobox_gfxpayload->currentIndex() <= 0) {
-            kError() << "Something went terribly wrong!";
+            qDebug() << "Something went terribly wrong!";
         } else if (ui->kcombobox_gfxpayload->currentIndex() == 1) {
             m_settings.remove("GRUB_GFXPAYLOAD_LINUX");
         } else if (ui->kcombobox_gfxpayload->currentIndex() > 1) {
@@ -445,7 +492,7 @@ void KCMGRUB2::save()
             m_settings["GRUB_DISABLE_LINUX_UUID"] = "true";
         }
     }
-
+    
     QString configFileContents;
     QTextStream stream(&configFileContents, QIODevice::WriteOnly | QIODevice::Text);
     QHash<QString, QString>::const_iterator it = m_settings.constBegin();
@@ -453,43 +500,88 @@ void KCMGRUB2::save()
     for (; it != end; ++it) {
         stream << it.key() << '=' << it.value() << endl;
     }
-
+    
     Action saveAction("org.kde.kcontrol.kcmgrub2.save");
-    saveAction.setHelperID("org.kde.kcontrol.kcmgrub2");
+    saveAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     saveAction.addArgument("rawConfigFileContents", configFileContents.toLocal8Bit());
     saveAction.addArgument("rawDefaultEntry", !m_entries.isEmpty() ? grubDefault : m_settings.value("GRUB_DEFAULT").toLocal8Bit());
     if (m_dirtyBits.testBit(memtestDirty)) {
         saveAction.addArgument("memtest", ui->checkBox_memtest->isChecked());
     }
-#if KDE_IS_VERSION(4,6,0)
-    saveAction.setParentWidget(this);
-#endif
-
-    if (saveAction.authorize() != Action::Authorized) {
+    //Security
+    if (m_dirtyBits.testBit(securityDirty)) {
+        saveAction.addArgument("security", ui->secEnabled->isChecked());
+    }
+    //Security : save users list
+    if (m_dirtyBits.testBit(securityUsersDirty)) {
+        QString userFileContents;
+        userFileContents.append("#!/bin/sh\n# This file is generated by grub2-editor, don't try to edit, all changes made hrer will be overwritten!\necho '\n#insmod password\n#insmod password_pbkdf2\n#insmod pbkdf2\nset superusers=\"");
+        QStringList superUsers;
+        for( int i=0; i<m_users.count(); ++i ) {
+            if (m_userIsSuper[m_users[i]]){
+                superUsers.append(m_users[i]);
+            }
+        }
+        userFileContents.append(superUsers.join(","));
+        userFileContents.append("\"\n");
+        
+        for ( int i=0; i<m_users.count(); ++i ) {
+            userFileContents.append(m_userPasswordEncrypted[m_users[i]]?"password_pbkdf2":"password");
+            userFileContents.append(QChar(32) + m_users[i] + QChar(32));
+            userFileContents.append(m_userPassword[m_users[i]]);
+            userFileContents.append("\n");
+        }
+        userFileContents.append("'\n");
+        //qDebug() << userFileContents;
+        saveAction.addArgument("securityUsers", userFileContents);
+    }
+    //Security : save group files
+    if (m_dirtyBits.testBit(securityGroupsDirty)) {
+        saveAction.addArgument("securityGroupsList", m_groupFilesList.join("/"));
+        QHash<QString, QString> groupFilesContent(m_groupFilesContent);
+        for ( int i=0; i<m_groupFilesList.count(); ++i ) {
+            if (m_groupFileLocked[m_groupFilesList[i]]) {
+                groupFilesContent[m_groupFilesList[i]].replace(QString(MENUPLACEHOLDER), QString("menuentry --users ")+m_groupFileAllowedUsers[m_groupFilesList[i]]+QString(" "));
+                groupFilesContent[m_groupFilesList[i]].replace(QString(SUBPLACEHOLDER), QString("submenu --users ")+m_groupFileAllowedUsers[m_groupFilesList[i]]+QString(" "));
+            } else {
+                groupFilesContent[m_groupFilesList[i]].replace(QString(MENUPLACEHOLDER), QString("menuentry --unrestricted "));
+                groupFilesContent[m_groupFilesList[i]].replace(QString(SUBPLACEHOLDER), QString("submenu --unrestricted "));
+            }
+            //qDebug() << "groupFiles :" << groupFilesContent[m_groupFilesList[i]];
+            saveAction.addArgument(QString("GroupContent_")+m_groupFilesList[i], groupFilesContent[m_groupFilesList[i]]);
+        }
+        
+    }
+    
+    QProgressDialog progressDlg(this, Qt::Dialog);
+        progressDlg.setWindowTitle(i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"));
+        progressDlg.setLabelText(i18nc("@info:progress", "Saving GRUB settings..."));
+        progressDlg.setCancelButton(0);
+        progressDlg.setModal(true);
+        progressDlg.setRange(0,0);
+        progressDlg.show();
+    
+    
+    ExecuteJob *reply = saveAction.execute();
+    //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
+    reply->exec();
+    
+    if (reply->action().status() != Action::AuthorizedStatus ) {
+        progressDlg.hide();
         return;
     }
 
-    KProgressDialog progressDlg(this, i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"), i18nc("@info:progress", "Saving GRUB settings..."));
-    progressDlg.setAllowCancel(false);
-    progressDlg.setModal(true);
-    progressDlg.progressBar()->setMinimum(0);
-    progressDlg.progressBar()->setMaximum(0);
-    progressDlg.show();
-    connect(saveAction.watcher(), SIGNAL(actionPerformed(ActionReply)), &progressDlg, SLOT(hide()));
-
-    ActionReply reply = saveAction.execute();
-    processReply(reply);
-    if (reply.succeeded()) {
-        KDialog *dialog = new KDialog(this, Qt::Dialog);
-        dialog->setCaption(i18nc("@title:window", "Information"));
-        dialog->setButtons(KDialog::Ok | KDialog::Details);
+    progressDlg.hide();
+    if (!reply->error()) {
+        QDialog *dialog = new QDialog(this, Qt::Dialog);
+        dialog->setWindowTitle(i18nc("@title:window", "Information"));
         dialog->setModal(true);
-        dialog->setDefaultButton(KDialog::Ok);
-        dialog->setEscapeButton(KDialog::Ok);
-        KMessageBox::createKMessageBox(dialog, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, reply.data().value("output").toString()); // krazy:exclude=qclasses
+        //TO BE FIXED. Have no idea how to show a kmessagebox with a "Details" button.
+        QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
+        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, reply->data().value("output").toString()); // krazy:exclude=qclasses
         load();
     } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), reply.errorDescription());
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), processReply(reply));
     }
 }
 
@@ -544,6 +636,108 @@ void KCMGRUB2::slotMemtestChanged()
     m_dirtyBits.setBit(memtestDirty);
     emit changed(true);
 }
+//Security
+void KCMGRUB2::slotSecurityChanged()
+{
+    m_dirtyBits.setBit(securityDirty);
+    emit changed(true);
+}
+
+void KCMGRUB2::slotDeleteUser()
+{
+    QList<QTableWidgetItem *> selectedUser = ui->users->selectedItems();
+    if (selectedUser.count() == 0)
+        return;
+    int selectedUserNum = selectedUser[0]->row();
+    QString selectedUserName = ui->users->item(selectedUserNum, 0)->text();
+    m_users.removeOne(selectedUserName);
+    m_userPassword.remove(selectedUserName);
+    m_userPasswordEncrypted.remove(selectedUserName);
+    m_userIsSuper.remove(selectedUserName);
+    ui->users->removeRow(selectedUserNum);
+    m_dirtyBits.setBit(securityUsersDirty);
+    emit changed(true);
+}
+void KCMGRUB2::slotEditUser()
+{
+    QList<QTableWidgetItem *> selectedUser = ui->users->selectedItems();
+    if (selectedUser.count() == 0)
+        return;
+    int selectedUserNum = selectedUser[0]->row();
+    QString selectedUserName = ui->users->item(selectedUserNum, 0)->text();
+    QPointer<UserDialog> userDlg = new UserDialog(this, selectedUserName, m_userIsSuper[selectedUserName], m_userPasswordEncrypted[selectedUserName]);
+    if(userDlg->exec()) {
+        m_userIsSuper[selectedUserName] = userDlg->isSuperUser();
+        if (userDlg->requireEncryption()) {
+            m_userPasswordEncrypted[selectedUserName] = true;
+            m_userPassword[selectedUserName] = pbkdf2Encrypt(userDlg->getPassword());
+        } else {
+            m_userPasswordEncrypted[selectedUserName] = false;
+            m_userPassword[selectedUserName] = userDlg->getPassword();
+        }
+        ui->users->setItem(selectedUserNum,1,new QTableWidgetItem(userDlg->isSuperUser() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
+        ui->users->setItem(selectedUserNum,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@property", "Encrypted") : i18nc("@property", "Plain")));
+        m_dirtyBits.setBit(securityUsersDirty);
+        emit changed(true);
+    }
+    delete userDlg;
+}
+void KCMGRUB2::slotEditGroup(){
+    if (m_users.count() == 0){
+        KMessageBox::sorry(this, i18nc("@info", "No users found!"));
+        return;
+    }
+    
+    QList<QTableWidgetItem *> selectedGroup = ui->groups->selectedItems();
+    if (selectedGroup.count() == 0)
+        return;
+    int selectedGroupNum = selectedGroup[0]->row();
+    QString selectedGroupName = ui->groups->item(selectedGroupNum, 0)->text();
+    QPointer<GroupDialog> groupDlg = new GroupDialog(this, selectedGroupName, m_users, m_groupFileAllowedUsers[selectedGroupName].split(","), m_groupFileLocked[selectedGroupName]);
+    
+    if(groupDlg->exec()) {
+        m_dirtyBits.setBit(securityGroupsDirty);
+        emit changed(true);
+        m_groupFileAllowedUsers[selectedGroupName] = groupDlg->allowedUsers().join(",");
+        if (groupDlg->isLocked()) {
+            if (groupDlg->allowedUsers().count() == 0)
+                ui->groups->setItem(selectedGroupNum, 2, new QTableWidgetItem(i18nc("@property", "Superusers only")));
+            else
+                ui->groups->setItem(selectedGroupNum, 2, new QTableWidgetItem(m_groupFileAllowedUsers[selectedGroupName]));
+        } else {
+            ui->groups->setItem(selectedGroupNum, 2, new QTableWidgetItem(i18nc("@property", "Everyone")));
+        }
+        m_groupFileLocked[selectedGroupName] = groupDlg->isLocked();
+        ui->groups->setItem(selectedGroupNum,1,new QTableWidgetItem(groupDlg->isLocked() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
+    }
+    delete groupDlg;
+}
+void KCMGRUB2::slotAddUser(){
+    QPointer<UserDialog> userDlg = new UserDialog(this);
+    if(userDlg->exec()) {
+        int j = ui->users->rowCount();
+        ui->users->setRowCount(j+1);
+        m_users.append(userDlg->getUserName());
+        m_userIsSuper[userDlg->getUserName()] = userDlg->isSuperUser();
+        if (userDlg->requireEncryption()) {
+            m_userPasswordEncrypted[userDlg->getUserName()] = true;
+            m_userPassword[userDlg->getUserName()] = pbkdf2Encrypt(userDlg->getPassword());
+        } else {
+            m_userPasswordEncrypted[userDlg->getUserName()] = false;
+            m_userPassword[userDlg->getUserName()] = userDlg->getPassword();
+        }
+        ui->users->setItem(j,0,new QTableWidgetItem(userDlg->getUserName()));
+        
+        ui->users->setItem(j,1,new QTableWidgetItem(userDlg->isSuperUser() ? i18nc("@property", "Yes") : i18nc("@property", "No")));
+        
+        ui->users->setItem(j,2,new QTableWidgetItem(userDlg->requireEncryption() ? i18nc("@property", "Encrypted") : i18nc("@property", "Plain")));
+        m_dirtyBits.setBit(securityUsersDirty);
+        emit changed(true);
+    }
+    delete userDlg;
+}
+
+
 void KCMGRUB2::slotGrubDisableOsProberChanged()
 {
     m_dirtyBits.setBit(grubDisableOsProberDirty);
@@ -559,8 +753,8 @@ void KCMGRUB2::slotGrubGfxmodeChanged()
 {
     if (ui->kcombobox_gfxmode->currentIndex() == 0) {
         bool ok;
-        QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
-        QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), &ok, this, &regExp);
+        QRegExp regExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?");
+        QString resolution = RegExpInputDialog::getText(this, i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), regExp, &ok);
         if (ok) {
             if (!m_resolutions.contains(resolution)) {
                 QString gfxpayload = ui->kcombobox_gfxpayload->itemData(ui->kcombobox_gfxpayload->currentIndex()).toString();
@@ -581,8 +775,8 @@ void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
 {
     if (ui->kcombobox_gfxpayload->currentIndex() == 0) {
         bool ok;
-        QRegExpValidator regExp(QRegExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?"), this);
-        QString resolution = KInputDialog::getText(i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a Linux boot resolution:"), QString(), &ok, this, &regExp);
+        QRegExp regExp("\\d{3,4}x\\d{3,4}(x\\d{1,2})?");
+        QString resolution = RegExpInputDialog::getText(this, i18nc("@title:window", "Enter screen resolution"), i18nc("@label:textbox", "Please enter a GRUB resolution:"), QString(), regExp, &ok);
         if (ok) {
             if (!m_resolutions.contains(resolution)) {
                 QString gfxmode = ui->kcombobox_gfxmode->itemData(ui->kcombobox_gfxmode->currentIndex()).toString();
@@ -770,8 +964,8 @@ void KCMGRUB2::setupObjects()
     view->setRootIsDecorated(false);
     ui->kcombobox_default->setView(view);
 
-    ui->kpushbutton_install->setIcon(KIcon("system-software-update"));
-    ui->kpushbutton_remove->setIcon(KIcon("list-remove"));
+    ui->kpushbutton_install->setIcon(QIcon::fromTheme(QStringLiteral("system-software-update")));
+    ui->kpushbutton_remove->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
     ui->kpushbutton_remove->setVisible(HAVE_QAPT || HAVE_QPACKAGEKIT);
 
     QPixmap black(16, 16), transparent(16, 16);
@@ -825,12 +1019,12 @@ void KCMGRUB2::setupObjects()
     ui->kcombobox_highlightForeground->setCurrentIndex(ui->kcombobox_highlightForeground->findData("black"));
     ui->kcombobox_highlightBackground->setCurrentIndex(ui->kcombobox_highlightBackground->findData("light-gray"));
 
-    ui->kpushbutton_preview->setIcon(KIcon("image-png"));
-    ui->kpushbutton_create->setIcon(KIcon("insert-image"));
+    ui->kpushbutton_preview->setIcon(QIcon::fromTheme(QStringLiteral("image-png")));
+    ui->kpushbutton_create->setIcon(QIcon::fromTheme(QStringLiteral("insert-image")));
     ui->kpushbutton_create->setVisible(HAVE_IMAGEMAGICK);
 
-    ui->kpushbutton_cmdlineDefaultSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_cmdlineDefaultSuggestions->setMenu(new KMenu(ui->kpushbutton_cmdlineDefaultSuggestions));
+    ui->kpushbutton_cmdlineDefaultSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_cmdlineDefaultSuggestions->setMenu(new QMenu(ui->kpushbutton_cmdlineDefaultSuggestions));
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Quiet Boot"))->setData("quiet");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Show Splash Screen"))->setData("splash");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Disable Plymouth"))->setData("noplymouth");
@@ -838,8 +1032,8 @@ void KCMGRUB2::setupObjects()
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off APIC"))->setData("noapic");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off Local APIC"))->setData("nolapic");
     ui->kpushbutton_cmdlineDefaultSuggestions->menu()->addAction(i18nc("@action:inmenu", "Single User Mode"))->setData("single");
-    ui->kpushbutton_cmdlineSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_cmdlineSuggestions->setMenu(new KMenu(ui->kpushbutton_cmdlineSuggestions));
+    ui->kpushbutton_cmdlineSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_cmdlineSuggestions->setMenu(new QMenu(ui->kpushbutton_cmdlineSuggestions));
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Quiet Boot"))->setData("quiet");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Show Splash Screen"))->setData("splash");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Disable Plymouth"))->setData("noplymouth");
@@ -847,20 +1041,20 @@ void KCMGRUB2::setupObjects()
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off APIC"))->setData("noapic");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Turn Off Local APIC"))->setData("nolapic");
     ui->kpushbutton_cmdlineSuggestions->menu()->addAction(i18nc("@action:inmenu", "Single User Mode"))->setData("single");
-    ui->kpushbutton_terminalSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_terminalSuggestions->setMenu(new KMenu(ui->kpushbutton_terminalSuggestions));
+    ui->kpushbutton_terminalSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_terminalSuggestions->setMenu(new QMenu(ui->kpushbutton_terminalSuggestions));
     ui->kpushbutton_terminalSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC BIOS && EFI Console"))->setData("console");
     ui->kpushbutton_terminalSuggestions->menu()->addAction(i18nc("@action:inmenu", "Serial Terminal"))->setData("serial");
     ui->kpushbutton_terminalSuggestions->menu()->addAction(i18nc("@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a former IEEE standard.", "Open Firmware Console"))->setData("ofconsole");
-    ui->kpushbutton_terminalInputSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_terminalInputSuggestions->setMenu(new KMenu(ui->kpushbutton_terminalInputSuggestions));
+    ui->kpushbutton_terminalInputSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_terminalInputSuggestions->setMenu(new QMenu(ui->kpushbutton_terminalInputSuggestions));
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC BIOS && EFI Console"))->setData("console");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "Serial Terminal"))->setData("serial");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a former IEEE standard.", "Open Firmware Console"))->setData("ofconsole");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC AT Keyboard (Coreboot)"))->setData("at_keyboard");
     ui->kpushbutton_terminalInputSuggestions->menu()->addAction(i18nc("@action:inmenu", "USB Keyboard (HID Boot Protocol)"))->setData("usb_keyboard");
-    ui->kpushbutton_terminalOutputSuggestions->setIcon(KIcon("tools-wizard"));
-    ui->kpushbutton_terminalOutputSuggestions->setMenu(new KMenu(ui->kpushbutton_terminalOutputSuggestions));
+    ui->kpushbutton_terminalOutputSuggestions->setIcon(QIcon::fromTheme(QStringLiteral("tools-wizard")));
+    ui->kpushbutton_terminalOutputSuggestions->setMenu(new QMenu(ui->kpushbutton_terminalOutputSuggestions));
     ui->kpushbutton_terminalOutputSuggestions->menu()->addAction(i18nc("@action:inmenu", "PC BIOS && EFI Console"))->setData("console");
     ui->kpushbutton_terminalOutputSuggestions->menu()->addAction(i18nc("@action:inmenu", "Serial Terminal"))->setData("serial");
     ui->kpushbutton_terminalOutputSuggestions->menu()->addAction(i18nc("@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a former IEEE standard.", "Open Firmware Console"))->setData("ofconsole");
@@ -869,6 +1063,9 @@ void KCMGRUB2::setupObjects()
 }
 void KCMGRUB2::setupConnections()
 {
+    //Retry when click on tab
+    connect(ui->ktabwidget, SIGNAL(tabBarClicked(int)), this, SLOT(slotRetry()));
+    
     connect(ui->kcombobox_default, SIGNAL(activated(int)), this, SLOT(changed()));
     connect(ui->kpushbutton_remove, SIGNAL(clicked(bool)), this, SLOT(slotRemoveOldEntries()));
     connect(ui->checkBox_savedefault, SIGNAL(clicked(bool)), this, SLOT(slotGrubSavedefaultChanged()));
@@ -887,6 +1084,17 @@ void KCMGRUB2::setupConnections()
 
     connect(ui->checkBox_recovery, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableRecoveryChanged()));
     connect(ui->checkBox_memtest, SIGNAL(clicked(bool)), this, SLOT(slotMemtestChanged()));
+    //Security
+    connect(ui->secEnabled, SIGNAL(clicked(bool)), this, SLOT(slotSecurityChanged()));
+    connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->usersGroup, SLOT(setEnabled(bool)));
+    connect(ui->secEnabled, SIGNAL(clicked(bool)), ui->groupsGroup, SLOT(setEnabled(bool)));
+    //user
+    connect(ui->userDel, SIGNAL(clicked(bool)), this, SLOT(slotDeleteUser()));
+    connect(ui->userMod, SIGNAL(clicked(bool)), this, SLOT(slotEditUser()));
+    connect(ui->userAdd, SIGNAL(clicked(bool)), this, SLOT(slotAddUser()));
+    //Group
+    connect(ui->groupMod, SIGNAL(clicked(bool)), this, SLOT(slotEditGroup()));
+    
     connect(ui->checkBox_osProber, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableOsProberChanged()));
 
     connect(ui->kcombobox_gfxmode, SIGNAL(activated(int)), this, SLOT(slotGrubGfxmodeChanged()));
@@ -956,18 +1164,14 @@ QString KCMGRUB2::convertToLocalFileName(const QString &grubFileName)
     return fileName;
 }
 
-ActionReply KCMGRUB2::loadFile(GrubFile grubFile)
+ExecuteJob * KCMGRUB2::loadFile(GrubFile grubFile)
 {
-    Action loadAction("org.kde.kcontrol.kcmgrub2.load");
-    loadAction.setHelperID("org.kde.kcontrol.kcmgrub2");
+    Action loadAction("org.kde.kcontrol.kcmgrub2.initialize");
+    loadAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    loadAction.addArgument("actionType", actionLoad);
     loadAction.addArgument("grubFile", grubFile);
-#if KDE_IS_VERSION(4,6,0)
-    loadAction.setParentWidget(this);
-#endif
 
-    ActionReply reply = loadAction.execute();
-    processReply(reply);
-    return reply;
+    return loadAction.execute();
 }
 QString KCMGRUB2::readFile(GrubFile grubFile)
 {
@@ -984,6 +1188,8 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
         break;
     case GrubMemtestFile:
         return QString();
+    case GrubGroupFile:
+        return QString();
     }
 
     QFile file(fileName);
@@ -992,13 +1198,19 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
         return stream.readAll();
     }
 
-    ActionReply reply = loadFile(grubFile);
-    if (reply.failed()) {
-        kError() << "Error loading:" << fileName;
-        kError() << "Error description:" << reply.errorDescription();
+    ExecuteJob *reply = loadFile(grubFile);
+    reply->exec();
+    
+    if (reply->action().status() == Action::AuthorizedStatus ) {
+        initializeAuthorized = true;
+    }
+    
+    if (reply->error()) {
+        qDebug() << "Error loading:" << fileName;
+        qDebug() << "Error description:" << processReply(reply);
         return QString();
     }
-    return QString::fromLocal8Bit(reply.data().value("rawFileContents").toByteArray());
+    return QString::fromLocal8Bit(reply->data().value("rawFileContents").toByteArray());
 }
 void KCMGRUB2::readEntries()
 {
@@ -1030,15 +1242,15 @@ void KCMGRUB2::readMemtest()
         return;
     }
 
-    ActionReply reply = loadFile(GrubMemtestFile);
-    if (reply.failed()) {
-        kError() << "Error loading:" << GRUB_MEMTEST;
-        kError() << "Error description:" << reply.errorDescription();
+    ExecuteJob *reply = loadFile(GrubMemtestFile);
+    if (!reply->exec()) {
+        qDebug() << "Error loading:" << GRUB_MEMTEST;
+        qDebug() << "Error description:" << processReply(reply);
         return;
     }
-    m_memtest = reply.data().value("memtest").toBool();
+    m_memtest = reply->data().value("memtest").toBool();
     if (m_memtest) {
-        m_memtestOn = reply.data().value("memtestOn").toBool();
+        m_memtestOn = reply->data().value("memtestOn").toBool();
     }
 }
 void KCMGRUB2::readDevices()
@@ -1050,29 +1262,38 @@ void KCMGRUB2::readDevices()
         }
     }
 
-    Action probeAction("org.kde.kcontrol.kcmgrub2.probe");
-    probeAction.setHelperID("org.kde.kcontrol.kcmgrub2");
+    Action probeAction("org.kde.kcontrol.kcmgrub2.initialize");
+    probeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    probeAction.addArgument("actionType", actionProbe);
     probeAction.addArgument("mountPoints", mountPoints);
-#if KDE_IS_VERSION(4,6,0)
-    probeAction.setParentWidget(this);
-#endif
-    if (probeAction.authorize() != Action::Authorized) {
+    
+    QProgressDialog progressDlg(this, Qt::Dialog);
+        progressDlg.setWindowTitle(i18nc("@title:window", "Probing devices"));
+        progressDlg.setLabelText(i18nc("@info:progress", "Probing devices for their GRUB names..."));
+        progressDlg.setCancelButton(0);
+        progressDlg.setModal(true);
+        QProgressBar * mProgressBar = new QProgressBar(this);
+        progressDlg.setBar(mProgressBar);
+        progressDlg.show();
+        
+    ExecuteJob *reply = probeAction.execute();
+    //connect(reply, SIGNAL(progressStep(int)), mProgressBar, SLOT(setValue(int)));
+    reply->exec();
+    
+    if (probeAction.status() != Action::AuthorizedStatus ) {
+        progressDlg.hide();
         return;
     }
-
-    KProgressDialog progressDlg(this, i18nc("@title:window", "Probing devices"), i18nc("@info:progress", "Probing devices for their GRUB names..."));
-    progressDlg.setAllowCancel(false);
-    progressDlg.setModal(true);
-    progressDlg.show();
-    connect(probeAction.watcher(), SIGNAL(progressStep(int)), progressDlg.progressBar(), SLOT(setValue(int)));
-
-    ActionReply reply = probeAction.execute();
-    processReply(reply);
-    if (reply.failed()) {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), reply.errorDescription());
+    
+    progressDlg.hide();
+    
+    if (reply->error()) {
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), processReply(reply));
         return;
-    }
-    QStringList grubPartitions = reply.data().value("grubPartitions").toStringList();
+    }// else {
+     // progressDlg.hide();
+//}
+    QStringList grubPartitions = reply->data().value("grubPartitions").toStringList();
     if (mountPoints.size() != grubPartitions.size()) {
         KMessageBox::error(this, i18nc("@info", "Helper returned malformed device list."));
         return;
@@ -1085,21 +1306,214 @@ void KCMGRUB2::readDevices()
 }
 void KCMGRUB2::readResolutions()
 {
-    Action probeVbeAction("org.kde.kcontrol.kcmgrub2.probevbe");
-    probeVbeAction.setHelperID("org.kde.kcontrol.kcmgrub2");
-#if KDE_IS_VERSION(4,6,0)
-    probeVbeAction.setParentWidget(this);
-#endif
+    Action probeVbeAction("org.kde.kcontrol.kcmgrub2.initialize");
+    probeVbeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+    probeVbeAction.addArgument("actionType", actionProbevbe);
 
-    ActionReply reply = probeVbeAction.execute();
-    processReply(reply);
-    if (reply.failed()) {
+    ExecuteJob *reply = probeVbeAction.execute();
+    if (!reply->exec()) {
         return;
     }
 
     m_resolutions.clear();
-    m_resolutions = reply.data().value("gfxmodes").toStringList();
+    m_resolutions = reply->data().value("gfxmodes").toStringList();
 }
+
+//Security
+void KCMGRUB2::parseGroupDir()
+{
+    m_groupFilesList.clear();
+    m_groupFilesContent.clear();
+    QDir GroupDir(GRUB_CONFIGDIR);
+    //exclude GRUB_SECURITY
+    QRegExp filters(QString("[1-9]\\d{1,}.*"));
+    m_groupFilesList = GroupDir.entryList(QDir::Files).filter(filters);
+    m_groupFilesList.removeDuplicates();
+    for( int i=0; i<m_groupFilesList.count(); ++i ) {
+        Action readGroupAction("org.kde.kcontrol.kcmgrub2.initialize");
+        readGroupAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+        readGroupAction.addArgument("actionType", actionLoad);
+        readGroupAction.addArgument("grubFile", GrubGroupFile);
+        readGroupAction.addArgument("groupFile", m_groupFilesList[i]);
+        ExecuteJob * readGroupJob = readGroupAction.execute();
+        if (!readGroupJob->exec()) {
+           qDebug() << "Error loading:" << m_groupFilesList[i];
+           qDebug() << "Error description:" << readGroupJob->errorString();
+           m_groupFilesContent[m_groupFilesList[i]] = QString();
+        } else {
+           m_groupFilesContent[m_groupFilesList[i]] = QString::fromLocal8Bit(readGroupJob->data().value("rawFileContents").toByteArray());
+        }
+    }
+    //parse GRUB_SECURITY
+    Action readHeaderAction("org.kde.kcontrol.kcmgrub2.initialize");
+     readHeaderAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+     readHeaderAction.addArgument("actionType", actionLoad);
+     readHeaderAction.addArgument("grubFile", GrubGroupFile);
+     readHeaderAction.addArgument("groupFile", GRUB_SECURITY);
+     
+     ExecuteJob * readHeaderJob = readHeaderAction.execute();
+     if (!readHeaderJob->exec()) {
+           qDebug() << "Error loading:" << GRUB_SECURITY;
+           qDebug() << "Error description:" << readHeaderJob->errorString();
+           m_headerFile = QString();
+     } else {
+           m_headerFile = QString::fromLocal8Bit(readHeaderJob->data().value("rawFileContents").toByteArray()).replace(";", "\n");
+     }
+     
+    m_security = readHeaderJob->data().value("security").toBool();
+    if (m_security) {
+        m_securityOn = readHeaderJob->data().value("securityOn").toBool();
+    }
+     
+    getSuperUsers();
+    getUsers();
+    getGroups();
+}
+void KCMGRUB2::getSuperUsers()
+{
+    m_superUsers.clear();
+    QRegExp regex("set( +)superusers *= *\"?([a-zA-Z0-9,]{1,})\"?");
+     regex.setMinimal(false);
+    int superusersmatch = regex.indexIn(m_headerFile);
+    QString superusersstring = regex.cap(2);
+    m_superUsers = superusersstring.split(",", QString::SkipEmptyParts);
+}
+void KCMGRUB2::getUsers()
+{
+    m_users.clear();
+    m_userPasswordEncrypted.clear();
+    m_userPassword.clear();
+    ui->users->setRowCount(0);
+    ui->users->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->users->setSelectionMode(QAbstractItemView::SingleSelection);
+    QStringList tableHeader;  
+    tableHeader << i18nc("@header", "Name") << i18nc("@header", "Superuser") << i18nc("@header", "Password type");  
+    ui->users->setHorizontalHeaderLabels(tableHeader); 
+    
+    QRegExp cryptoreg(" *password_pbkdf2 +[a-zA-Z0-9]{1,} +[^ \n#]+ *");
+     cryptoreg.setMinimal(false);
+    QRegExp plainreg(" *password +[a-zA-Z0-9]{1,} +[^ \n#]+ *");
+     plainreg.setMinimal(false);
+    
+    QStringList headerFileLines = m_headerFile.split("\n", QString::SkipEmptyParts);
+    
+    int j = 0;
+    for( int i=0; i<headerFileLines.count(); ++i ) {
+        QStringList currentUser = headerFileLines[i].split(QRegExp("\\s+"), QString::SkipEmptyParts);
+        if (cryptoreg.exactMatch(headerFileLines[i]) || plainreg.exactMatch(headerFileLines[i])) {
+            m_users.append(currentUser[1]);
+            m_userPassword[currentUser[1]] = currentUser[2];
+            ui->users->setRowCount(j + 1);
+            ui->users->setItem(j,0,new QTableWidgetItem(m_users[j]));
+            
+            if (m_superUsers.contains(m_users[j])) {
+                m_userIsSuper[m_users[j]] = true;
+                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@property", "Yes")));
+            } else {
+                m_userIsSuper[m_users[j]] = false;
+                ui->users->setItem(j,1,new QTableWidgetItem(i18nc("@property", "No")));
+            }
+            
+            if (cryptoreg.exactMatch(headerFileLines[i])) {
+                m_userPasswordEncrypted[currentUser[1]] = true;
+                ui->users->setItem(j,2,new QTableWidgetItem(i18nc("@property", "Encrypted")));
+            } else {
+                m_userPasswordEncrypted[currentUser[1]] = false;
+                ui->users->setItem(j,2,new QTableWidgetItem(i18nc("@property", "Plain")));
+            }
+            
+            
+            ++j;
+        }
+    }
+    
+}
+void KCMGRUB2::getGroups()
+{
+    m_groupFileLocked.clear();
+    m_groupFileAllowedUsers.clear();
+    ui->groups->setRowCount(0);
+    ui->groups->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->groups->setSelectionMode(QAbstractItemView::SingleSelection);
+    QStringList tableHeader;  
+    tableHeader << i18nc("@header", "Name") << i18nc("@header", "Locked") << i18nc("@header", "Allowed users");  
+    ui->groups->setHorizontalHeaderLabels(tableHeader); 
+    QRegExp hasentryregex("menuentry .+\\{");
+     hasentryregex.setMinimal(true);
+    QRegExp lockedregex("menuentry +--users \"?[a-zA-Z0-9,]{0,}\"? .*\\{");
+     lockedregex.setMinimal(true);
+    QRegExp unlockedregex("menuentry +--unrestricted .*\\{");
+     unlockedregex.setMinimal(true);
+    QRegExp usersregex("--users \"?([a-zA-Z0-9,]{0,})\"? .*\\{");
+     usersregex.setMinimal(true);
+    //strip
+    QRegExp menustripregex("menuentry (--users \"?[a-zA-Z0-9,]{0,}\"? |--unrestricted )? *");
+     menustripregex.setMinimal(false);
+    QRegExp substripregex("submenu (--users \"?[a-zA-Z0-9,]{0,}\"? |--unrestricted )? *");
+     substripregex.setMinimal(false);
+    
+    int j = 0;
+    for( int i=0; i<m_groupFilesContent.count(); ++i ) {
+        int hasentrymatch = hasentryregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        int lockedmatch = lockedregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        int unlockedmatch = unlockedregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        int usersmatch = usersregex.indexIn(m_groupFilesContent[m_groupFilesList[i]]);
+        m_groupFilesContent[m_groupFilesList[i]].replace(menustripregex, MENUPLACEHOLDER);
+        m_groupFilesContent[m_groupFilesList[i]].replace(substripregex, SUBPLACEHOLDER);
+        //qDebug() << m_groupFilesContent[m_groupFilesList[i]];
+        QString usersmatchstring = usersregex.cap(1);
+        if (hasentrymatch != -1) {
+            ui->groups->setRowCount(j + 1);
+            ui->groups->setItem(j,0,new QTableWidgetItem(m_groupFilesList[i]));
+            if (lockedmatch != -1 || unlockedmatch == -1) {
+                m_groupFileLocked[m_groupFilesList[i]] = true;
+                m_groupFileAllowedUsers[m_groupFilesList[i]] = usersmatchstring;
+                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@property", "Yes")));
+                if (usersmatch!= -1 && usersmatchstring != "") {
+                    ui->groups->setItem(j,2,new QTableWidgetItem(usersmatchstring));
+                } else {
+                    ui->groups->setItem(j,2,new QTableWidgetItem(i18nc("@property", "Superusers only")));
+                }
+            } else {
+                m_groupFileLocked[m_groupFilesList[i]] = false;
+                ui->groups->setItem(j,1,new QTableWidgetItem(i18nc("@property", "No")));
+                ui->groups->setItem(j,2,new QTableWidgetItem(i18nc("@property", "Everyone")));
+            }
+            //qDebug() << "File" << GRUB_CONFIGDIR + m_groupFilesList[i] << "processed.";
+            ++j;
+        } else {
+            //qDebug() << "File" << GRUB_CONFIGDIR + m_groupFilesList[i] << "ignored.";
+        }
+    }
+}
+QString KCMGRUB2::pbkdf2Encrypt(QString passwd){ //, int key_length = 64, int iteration_count = 10000
+    /*
+    QByteArray salt;
+    for( int i=0; i<key_length; ++i ) {
+        qsrand(time(NULL));
+        char salt_char = random(256);
+        salt.append(salt_char);
+    }
+    QByteArray salt_hex = salt.toHex().toUpper();
+    qDebug() << "Salt :" << salt_hex;
+    return passwd;
+    */
+    QByteArray passwdstr("");
+    for (unsigned i = 0; i < 2; ++i){
+        passwdstr.append(passwd.toLatin1().append(QChar(10)));
+    }
+    QProcess process;
+    process.start(GRUB_MAKE_PASSWD_EXE);
+    process.write(passwdstr);
+    process.waitForFinished(-1);
+    QRegExp passwdregex("(grub[A-Za-z0-9.]{20,})");
+    int pos = passwdregex.indexIn(process.readAllStandardOutput());
+    if (pos > -1)
+        return passwdregex.cap(1);
+    else
+        return QString();
+}
+
 
 void KCMGRUB2::sortResolutions()
 {
@@ -1141,75 +1555,47 @@ void KCMGRUB2::showResolutions()
     }
 }
 
-void KCMGRUB2::processReply(ActionReply &reply)
+QString KCMGRUB2::processReply(ExecuteJob * reply)
 {
-    if (reply.type() == ActionReply::Success || reply.type() == ActionReply::KAuthError) {
-        return;
-    }
-
-    if (reply.errorCode() == 0) {
-        QLatin1String key("errorDescription");
-        if (reply.data().contains(key)) {
-            reply.setErrorDescription(reply.data().value(key).toString());
-            reply.data().remove(key);
-        }
-        return;
-    }
-
     QString errorMessage;
-    switch (reply.errorCode()) {
-    case -2:
-        errorMessage = i18nc("@info", "The process could not be started.");
-        break;
-    case -1:
-        errorMessage = i18nc("@info", "The process crashed.");
-        break;
-    default:
-        errorMessage = QString::fromLocal8Bit(reply.data().value(QLatin1String("output")).toByteArray());
-        break;
+    if (reply->action().status() != Action::AuthorizedStatus) {
+        errorMessage = i18nc("@info", "Not Authorized.");
+    } else {
+        switch (reply->error()) {
+        case -2:
+            errorMessage = i18nc("@info", "The process could not be started.");
+            break;
+        case -1:
+            errorMessage = i18nc("@info", "The process crashed.");
+            break;
+        default:
+            errorMessage = QString::fromLocal8Bit(reply->data().value(QLatin1String("output")).toByteArray());
+            break;
+        }
+    
     }
-    reply.addData(QLatin1String("errorMessage"), errorMessage);
-    reply.setErrorDescription(i18nc("@info", "Command: <command>%1</command><nl/>Error code: <numid>%2</numid><nl/>Error message:<nl/><message>%3</message>", reply.data().value(QLatin1String("command")).toStringList().join(QLatin1String(" ")), reply.errorCode(), errorMessage));
+    if (reply->data().value("command").toString() != QString())
+        return i18nc("@info", "Command: %1 Error code: %2 Error message: %3", reply->data().value("command").toString(), reply->data().value("output").toString(), errorMessage);
+    else
+        return i18nc("@info", "Error message: %1", errorMessage);
+    
 }
+
 QString KCMGRUB2::parseTitle(const QString &line)
 {
-    QChar ch;
     QString entry, lineStr = line;
-    QTextStream stream(&lineStr, QIODevice::ReadOnly | QIODevice::Text);
-
-    stream.skipWhiteSpace();
-    if (stream.atEnd()) {
-        return QString();
-    }
-
-    stream >> ch;
-    entry += ch;
-    if (ch == '\'') {
-        do {
-            if (stream.atEnd()) {
-                return QString();
-            }
-            stream >> ch;
-            entry += ch;
-        } while (ch != '\'');
-    } else if (ch == '"') {
-        do {
-            if (stream.atEnd()) {
-                return QString();
-            }
-            stream >> ch;
-            entry += ch;
-        } while (ch != '"' || entry.at(entry.size() - 2) == '\\');
-    } else {
-        do {
-            if (stream.atEnd()) {
-                return QString();
-            }
-            stream >> ch;
-            entry += ch;
-        } while (!ch.isSpace() || entry.at(entry.size() - 2) == '\\');
-        entry.chop(1); //remove trailing space
-    }
+    QStringList lineStrList = lineStr.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+    QRegExp entryRegex("\\s*(menuentry|submenu)\\s+[^\\n]+\\{\\s*");
+    //qDebug() << lineStrList;
+    if (lineStrList[1] == "--unrestricted")
+        entry = QChar(39) + lineStr.split(QRegExp("['\"]"))[1] + QChar(39);
+    else if (lineStrList[1] == "--users")
+        if (lineStrList[2].contains(QRegExp("['\"]")))
+            entry = QChar(39) + lineStr.split(QRegExp("['\"]"))[3] + QChar(39);
+        else
+            entry = QChar(39) + lineStr.split(QRegExp("['\"]"))[1] + QChar(39);
+    else
+        entry = QChar(39) + lineStr.split(QRegExp("['\"]"))[1] + QChar(39);
     return entry;
 }
 void KCMGRUB2::parseEntries(const QString &config)
@@ -1230,8 +1616,8 @@ void KCMGRUB2::parseEntries(const QString &config)
         //If the first word is known, process the rest of the line
         if (word == QLatin1String("menuentry")) {
             if (inEntry) {
-                kError() << "Malformed configuration file! Aborting entries' parsing.";
-                kDebug() << "A 'menuentry' directive was detected inside the scope of a menuentry.";
+                qDebug() << "Malformed configuration file! Aborting entries' parsing.";
+                qDebug() << "A 'menuentry' directive was detected inside the scope of a menuentry.";
                 m_entries.clear();
                 return;
             }
@@ -1245,8 +1631,8 @@ void KCMGRUB2::parseEntries(const QString &config)
             continue;
         } else if (word == QLatin1String("submenu")) {
             if (inEntry) {
-                kError() << "Malformed configuration file! Aborting entries' parsing.";
-                kDebug() << "A 'submenu' directive was detected inside the scope of a menuentry.";
+                qDebug() << "Malformed configuration file! Aborting entries' parsing.";
+                qDebug() << "A 'submenu' directive was detected inside the scope of a menuentry.";
                 m_entries.clear();
                 return;
             }
@@ -1262,8 +1648,8 @@ void KCMGRUB2::parseEntries(const QString &config)
             continue;
         } else if (word == QLatin1String("linux")) {
             if (!inEntry) {
-                kError() << "Malformed configuration file! Aborting entries' parsing.";
-                kDebug() << "A 'linux' directive was detected outside the scope of a menuentry.";
+                qDebug() << "Malformed configuration file! Aborting entries' parsing.";
+                qDebug() << "A 'linux' directive was detected outside the scope of a menuentry.";
                 m_entries.clear();
                 return;
             }

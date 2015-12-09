@@ -17,9 +17,10 @@
 
 #ifndef HELPER_H
 #define HELPER_H
-
+//Qt
+#include <QDebug>
 //KDE
-#include <KAuth/ActionReply>
+#include <KAuth>
 using namespace KAuth;
 
 class Helper : public QObject
@@ -29,12 +30,14 @@ public:
     Helper();
 private:
     ActionReply executeCommand(const QStringList &command);
-public Q_SLOTS:
-    ActionReply defaults(QVariantMap args);
-    ActionReply install(QVariantMap args);
+    //merge
     ActionReply load(QVariantMap args);
     ActionReply probe(QVariantMap args);
     ActionReply probevbe(QVariantMap args);
+public Q_SLOTS:
+    ActionReply initialize(QVariantMap args);
+    ActionReply defaults(QVariantMap args);
+    ActionReply install(QVariantMap args);
     ActionReply save(QVariantMap args);
 };
 

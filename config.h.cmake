@@ -13,16 +13,26 @@
 #define GRUB_MKCONFIG_EXE "@GRUB_MKCONFIG_EXE@"
 #define GRUB_PROBE_EXE "@GRUB_PROBE_EXE@"
 #define GRUB_SET_DEFAULT_EXE "@GRUB_SET_DEFAULT_EXE@"
+#define GRUB_MAKE_PASSWD_EXE "@GRUB_MAKE_PASSWD_EXE@"
 #define GRUB_MENU "@GRUB_MENU@"
 #define GRUB_CONFIG "@GRUB_CONFIG@"
 #define GRUB_ENV "@GRUB_ENV@"
 #define GRUB_MEMTEST "@GRUB_MEMTEST@"
+#define GRUB_CONFIGDIR "@GRUB_CONFIGDIR@/"
+#define GRUB_SECURITY "@GRUB_SECURITY@"
+
+enum actionType {
+    actionLoad,
+    actionProbe,
+    actionProbevbe
+};
 
 enum GrubFile {
     GrubMenuFile,
     GrubConfigurationFile,
     GrubEnvironmentFile,
-    GrubMemtestFile
+    GrubMemtestFile,
+    GrubGroupFile
 };
 
 #endif
