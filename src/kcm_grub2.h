@@ -104,6 +104,7 @@ private:
     QString readFile(GrubFile grubFile);
     void readEntries();
     bool initializeAuthorized = false;
+    bool saveAuthorized = false;
     void readSettings();
     void readEnv();
     void readMemtest();

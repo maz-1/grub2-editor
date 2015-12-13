@@ -103,12 +103,16 @@ void KCMGRUB2::defaults()
     
     ExecuteJob *reply = defaultsAction.execute();
     reply->exec();
-    if (reply->error())
+    if (reply->error()) {
         KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), processReply(reply));
-    else
+    } else {
         load();
         save();
-        KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
+        if (saveAuthorized)
+            KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
+        else
+            KMessageBox::error(this, i18nc("@info", "Save action not authorized."));
+    }
 }
 
 void KCMGRUB2::slotRetry()
@@ -566,12 +570,15 @@ void KCMGRUB2::save()
     //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
     reply->exec();
     
-    if (reply->action().status() != Action::AuthorizedStatus ) {
-        progressDlg.hide();
-        return;
-    }
-
     progressDlg.hide();
+    
+    if (reply->action().status() != Action::AuthorizedStatus ) {
+        saveAuthorized = false;
+        return;
+    } else {
+        saveAuthorized = true;
+    }
+    
     if (!reply->error()) {
         QDialog *dialog = new QDialog(this, Qt::Dialog);
         dialog->setWindowTitle(i18nc("@title:window", "Information"));
