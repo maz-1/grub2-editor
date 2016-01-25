@@ -18,6 +18,9 @@
 //Krazy
 //krazy:excludeall=cpp
 
+//root detect
+#include <unistd.h>
+
 //Own
 #include "kcm_grub2.h"
 #include "widgets/regexpinputdialog.h"
@@ -124,24 +127,27 @@ void KCMGRUB2::slotRetry()
 void KCMGRUB2::load()
 {
     readEntries();
-    //stop load if not authorized
-    for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(true);
+    if (initializeAuthorized == true)
+        readSettings();
+    if (initializeAuthorized == true)
+        readEnv();
+    if (initializeAuthorized == true)
+        readMemtest();
+//Security
+    if (initializeAuthorized == true)
+        parseGroupDir();
+//stop load if not authorized
     if (initializeAuthorized == false)
     {
         for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(false);
         return;
+    } else {
+        for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(true);
     }
-    readSettings();
-    readEnv();
-    readMemtest();
-//Security
-    parseGroupDir();
-//TEST
-    //qDebug() << "Password : passwd_sample";
-    //qDebug() << "Result :" << pbkdf2Encrypt("passwd_sample", 64, 10000);
 #if HAVE_HD
     readResolutions();
 #endif
+    
     QString grubDefault = unquoteWord(m_settings.value("GRUB_DEFAULT"));
     if (grubDefault == QLatin1String("saved")) {
         grubDefault = (m_env.value("saved_entry").isEmpty() ? "0" : m_env.value("saved_entry"));
@@ -1198,9 +1204,15 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
     case GrubGroupFile:
         return QString();
     }
-
+    
+    if (getuid() == 0) {
+        initializeAuthorized = true;
+    }
+    
+    
     QFile file(fileName);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        initializeAuthorized = true;
         QTextStream stream(&file);
         return stream.readAll();
     }
@@ -1208,9 +1220,10 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
     ExecuteJob *reply = loadFile(grubFile);
     reply->exec();
     
-    if (reply->action().status() == Action::AuthorizedStatus ) {
+    if (reply->action().status() == Action::AuthorizedStatus)
         initializeAuthorized = true;
-    }
+    else
+        initializeAuthorized = false;
     
     if (reply->error()) {
         qDebug() << "Error loading:" << fileName;
@@ -1246,11 +1259,21 @@ void KCMGRUB2::readMemtest()
     if (memtest) {
         m_memtest = true;
         m_memtestOn = (bool)(QFile::permissions(GRUB_MEMTEST) & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther));
+        initializeAuthorized = true;
         return;
     }
 
     ExecuteJob *reply = loadFile(GrubMemtestFile);
-    if (!reply->exec()) {
+    reply->exec();
+    
+    if (reply->action().status() != Action::AuthorizedStatus) {
+        initializeAuthorized = false;
+        return;
+    } else {
+        initializeAuthorized = true;
+    }
+    
+    if (reply->error()) {
         qDebug() << "Error loading:" << GRUB_MEMTEST;
         qDebug() << "Error description:" << processReply(reply);
         return;
@@ -1332,45 +1355,78 @@ void KCMGRUB2::parseGroupDir()
     m_groupFilesList.clear();
     m_groupFilesContent.clear();
     QDir GroupDir(GRUB_CONFIGDIR);
+    
+    if (getuid() == 0) {
+        initializeAuthorized = true;
+    }
     //exclude GRUB_SECURITY
     QRegExp filters(QString("[1-9]\\d{1,}.*"));
     m_groupFilesList = GroupDir.entryList(QDir::Files).filter(filters);
     m_groupFilesList.removeDuplicates();
     for( int i=0; i<m_groupFilesList.count(); ++i ) {
-        Action readGroupAction("org.kde.kcontrol.kcmgrub2.initialize");
-        readGroupAction.setHelperId("org.kde.kcontrol.kcmgrub2");
-        readGroupAction.addArgument("actionType", actionLoad);
-        readGroupAction.addArgument("grubFile", GrubGroupFile);
-        readGroupAction.addArgument("groupFile", m_groupFilesList[i]);
-        ExecuteJob * readGroupJob = readGroupAction.execute();
-        if (!readGroupJob->exec()) {
-           qDebug() << "Error loading:" << m_groupFilesList[i];
-           qDebug() << "Error description:" << readGroupJob->errorString();
-           m_groupFilesContent[m_groupFilesList[i]] = QString();
+        QFile file(GroupDir.absoluteFilePath(m_groupFilesList[i]));
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream stream(&file);
+            m_groupFilesContent[m_groupFilesList[i]] = stream.readAll();
+            initializeAuthorized = true;
         } else {
-           m_groupFilesContent[m_groupFilesList[i]] = QString::fromLocal8Bit(readGroupJob->data().value("rawFileContents").toByteArray());
+            Action readGroupAction("org.kde.kcontrol.kcmgrub2.initialize");
+            readGroupAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+            readGroupAction.addArgument("actionType", actionLoad);
+            readGroupAction.addArgument("grubFile", GrubGroupFile);
+            readGroupAction.addArgument("groupFile", m_groupFilesList[i]);
+            ExecuteJob * readGroupJob = readGroupAction.execute();
+            readGroupJob->exec();
+            
+            if (readGroupJob->action().status() != Action::AuthorizedStatus) {
+                initializeAuthorized = false;
+                return;
+            }
+            
+            if (readGroupJob->error()) {
+                qDebug() << "Error loading:" << m_groupFilesList[i];
+                qDebug() << "Error description:" << readGroupJob->errorString();
+            } else {
+                m_groupFilesContent[m_groupFilesList[i]] = QString::fromLocal8Bit(readGroupJob->data().value("rawFileContents").toByteArray());
+            }
         }
     }
     //parse GRUB_SECURITY
-    Action readHeaderAction("org.kde.kcontrol.kcmgrub2.initialize");
-     readHeaderAction.setHelperId("org.kde.kcontrol.kcmgrub2");
-     readHeaderAction.addArgument("actionType", actionLoad);
-     readHeaderAction.addArgument("grubFile", GrubGroupFile);
-     readHeaderAction.addArgument("groupFile", GRUB_SECURITY);
-     
-     ExecuteJob * readHeaderJob = readHeaderAction.execute();
-     if (!readHeaderJob->exec()) {
-           qDebug() << "Error loading:" << GRUB_SECURITY;
-           qDebug() << "Error description:" << readHeaderJob->errorString();
-           m_headerFile = QString();
-     } else {
-           m_headerFile = QString::fromLocal8Bit(readHeaderJob->data().value("rawFileContents").toByteArray()).replace(";", "\n");
-     }
-     
-    m_security = readHeaderJob->data().value("security").toBool();
-    if (m_security) {
-        m_securityOn = readHeaderJob->data().value("securityOn").toBool();
+    QFile file(GroupDir.absoluteFilePath(GRUB_SECURITY));
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&file);
+        m_headerFile = stream.readAll();
+        m_security = file.exists();
+        if (m_security) {
+            m_securityOn = file.permissions() & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther);
+        }
+    } else {
+        Action readHeaderAction("org.kde.kcontrol.kcmgrub2.initialize");
+         readHeaderAction.setHelperId("org.kde.kcontrol.kcmgrub2");
+         readHeaderAction.addArgument("actionType", actionLoad);
+         readHeaderAction.addArgument("grubFile", GrubGroupFile);
+         readHeaderAction.addArgument("groupFile", GRUB_SECURITY);
+         
+         ExecuteJob * readHeaderJob = readHeaderAction.execute();
+         readHeaderJob->exec();
+         
+         if (readHeaderJob->action().status() != Action::AuthorizedStatus) {
+             initializeAuthorized = false;
+             return;
+         }
+         
+         if (readHeaderJob->error()) {
+               qDebug() << "Error loading:" << GRUB_SECURITY;
+               qDebug() << "Error description:" << readHeaderJob->errorString();
+         } else {
+               m_headerFile = QString::fromLocal8Bit(readHeaderJob->data().value("rawFileContents").toByteArray()).replace(";", "\n");
+         }
+         m_security = readHeaderJob->data().value("security").toBool();
+         if (m_security) {
+               m_securityOn = readHeaderJob->data().value("securityOn").toBool();
+         }
     }
+     
      
     getSuperUsers();
     getUsers();
