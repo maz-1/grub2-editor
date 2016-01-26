@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
+    <width>519</width>
     <height>575</height>
    </rect>
   </property>
@@ -278,6 +278,16 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="pushbutton_loadres">
+            <property name="text">
+             <string>Load Available Resolutions</string>
+            </property>
+            <property name="icon">
+             <iconset theme="dialog-warning"/>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -448,7 +458,9 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset theme="list-add"/>
+               <iconset theme="list-add">
+                <normaloff/>
+               </iconset>
               </property>
              </widget>
             </item>
@@ -461,7 +473,9 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset theme="list-remove"/>
+               <iconset theme="list-remove">
+                <normaloff/>
+               </iconset>
               </property>
              </widget>
             </item>
@@ -474,7 +488,9 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset theme="document-edit"/>
+               <iconset theme="document-edit">
+                <normaloff/>
+               </iconset>
               </property>
              </widget>
             </item>
@@ -556,7 +572,9 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset theme="document-edit"/>
+               <iconset theme="document-edit">
+                <normaloff/>
+               </iconset>
               </property>
              </widget>
             </item>
@@ -833,14 +851,14 @@
    <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
-   <class>KUrlRequester</class>
-   <extends>QWidget</extends>
-   <header>kurlrequester.h</header>
-  </customwidget>
-  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KUrlRequester</class>
+   <extends>QFrame</extends>
+   <header>kurlrequester.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

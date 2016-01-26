@@ -66,6 +66,7 @@ private Q_SLOTS:
     void slotInstallBootloader();
     void slotGrubGfxmodeChanged();
     void slotGrubGfxpayloadLinuxChanged();
+    void slotReadResolutions();
     void slotGrubColorNormalChanged();
     void slotGrubColorHighlightChanged();
     void slowGrubBackgroundChanged();
@@ -109,6 +110,7 @@ private:
     void readEnv();
     void readMemtest();
     void readDevices();
+    void initResolutions();
     void readResolutions();
 //Security
     void parseGroupDir();

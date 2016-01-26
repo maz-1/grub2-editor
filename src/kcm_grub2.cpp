@@ -144,9 +144,7 @@ void KCMGRUB2::load()
     } else {
         for (int i=0;i<ui->ktabwidget->count();++i) ui->ktabwidget->widget(i)->setEnabled(true);
     }
-#if HAVE_HD
-    readResolutions();
-#endif
+
     
     QString grubDefault = unquoteWord(m_settings.value("GRUB_DEFAULT"));
     if (grubDefault == QLatin1String("saved")) {
@@ -247,21 +245,15 @@ void KCMGRUB2::load()
     
     ui->checkBox_osProber->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_OS_PROBER")).compare("true") != 0);
 
-    m_resolutions.append("640x480");
-    QString grubGfxmode = (m_settings.value("GRUB_GFXMODE").isEmpty() ? "640x480" : unquoteWord(m_settings.value("GRUB_GFXMODE")));
-    if (!grubGfxmode.isEmpty() && !m_resolutions.contains(grubGfxmode)) {
-        m_resolutions.append(grubGfxmode);
-    }
-    QString grubGfxpayloadLinux = unquoteWord(m_settings.value("GRUB_GFXPAYLOAD_LINUX"));
-    if (!grubGfxpayloadLinux.isEmpty() && grubGfxpayloadLinux.compare("text") != 0 && grubGfxpayloadLinux.compare("keep") != 0 && !m_resolutions.contains(grubGfxpayloadLinux)) {
-        m_resolutions.append(grubGfxpayloadLinux);
-    }
-    m_resolutions.removeDuplicates();
-    sortResolutions();
-    showResolutions();
-    ui->kcombobox_gfxmode->setCurrentIndex(ui->kcombobox_gfxmode->findData(grubGfxmode));
-    ui->kcombobox_gfxpayload->setCurrentIndex(ui->kcombobox_gfxpayload->findData(grubGfxpayloadLinux));
-
+#if HAVE_HD
+    ui->pushbutton_loadres->setEnabled(true);
+    //readResolutions();
+#else
+    ui->pushbutton_loadres->setEnabled(false);
+    //initResolutions();
+#endif
+    initResolutions();
+    
     QString grubColorNormal = unquoteWord(m_settings.value("GRUB_COLOR_NORMAL"));
     if (!grubColorNormal.isEmpty()) {
         int normalForegroundIndex = ui->kcombobox_normalForeground->findData(grubColorNormal.section('/', 0, 0));
@@ -806,6 +798,10 @@ void KCMGRUB2::slotGrubGfxpayloadLinuxChanged()
     m_dirtyBits.setBit(grubGfxpayloadLinuxDirty);
     emit changed(true);
 }
+void KCMGRUB2::slotReadResolutions()
+{
+    readResolutions();
+}
 void KCMGRUB2::slotGrubColorNormalChanged()
 {
     m_dirtyBits.setBit(grubColorNormalDirty);
@@ -1027,6 +1023,7 @@ void KCMGRUB2::setupObjects()
         ui->kcombobox_normalBackground->addItem(QIcon(color), colors.values(it.key()).at(1), it.key());
         ui->kcombobox_highlightBackground->addItem(QIcon(color), colors.values(it.key()).at(1), it.key());
     }
+    
     ui->kcombobox_normalForeground->setCurrentIndex(ui->kcombobox_normalForeground->findData("light-gray"));
     ui->kcombobox_normalBackground->setCurrentIndex(ui->kcombobox_normalBackground->findData("black"));
     ui->kcombobox_highlightForeground->setCurrentIndex(ui->kcombobox_highlightForeground->findData("black"));
@@ -1112,7 +1109,8 @@ void KCMGRUB2::setupConnections()
 
     connect(ui->kcombobox_gfxmode, SIGNAL(activated(int)), this, SLOT(slotGrubGfxmodeChanged()));
     connect(ui->kcombobox_gfxpayload, SIGNAL(activated(int)), this, SLOT(slotGrubGfxpayloadLinuxChanged()));
-
+    connect(ui->pushbutton_loadres, SIGNAL(clicked(bool)), this, SLOT(slotReadResolutions()));
+    
     connect(ui->kcombobox_normalForeground, SIGNAL(activated(int)), this, SLOT(slotGrubColorNormalChanged()));
     connect(ui->kcombobox_normalBackground, SIGNAL(activated(int)), this, SLOT(slotGrubColorNormalChanged()));
     connect(ui->kcombobox_highlightForeground, SIGNAL(activated(int)), this, SLOT(slotGrubColorHighlightChanged()));
@@ -1341,12 +1339,17 @@ void KCMGRUB2::readResolutions()
     probeVbeAction.addArgument("actionType", actionProbevbe);
 
     ExecuteJob *reply = probeVbeAction.execute();
-    if (!reply->exec()) {
+    reply->exec();
+    
+    if (reply->error()) {
         return;
     }
-
+    
+    ui->pushbutton_loadres->setEnabled(false);
+    
     m_resolutions.clear();
     m_resolutions = reply->data().value("gfxmodes").toStringList();
+    initResolutions();
 }
 
 //Security
@@ -1601,6 +1604,25 @@ void KCMGRUB2::sortResolutions()
         }
     }
 }
+
+void KCMGRUB2::initResolutions()
+{
+    m_resolutions.append("640x480");
+    QString grubGfxmode = (m_settings.value("GRUB_GFXMODE").isEmpty() ? "640x480" : unquoteWord(m_settings.value("GRUB_GFXMODE")));
+    if (!grubGfxmode.isEmpty() && !m_resolutions.contains(grubGfxmode)) {
+        m_resolutions.append(grubGfxmode);
+    }
+    QString grubGfxpayloadLinux = unquoteWord(m_settings.value("GRUB_GFXPAYLOAD_LINUX"));
+    if (!grubGfxpayloadLinux.isEmpty() && grubGfxpayloadLinux.compare("text") != 0 && grubGfxpayloadLinux.compare("keep") != 0 && !m_resolutions.contains(grubGfxpayloadLinux)) {
+        m_resolutions.append(grubGfxpayloadLinux);
+    }
+    m_resolutions.removeDuplicates();
+    sortResolutions();
+    showResolutions();
+    ui->kcombobox_gfxmode->setCurrentIndex(ui->kcombobox_gfxmode->findData(grubGfxmode));
+    ui->kcombobox_gfxpayload->setCurrentIndex(ui->kcombobox_gfxpayload->findData(grubGfxpayloadLinux));
+}
+
 void KCMGRUB2::showResolutions()
 {
     ui->kcombobox_gfxmode->clear();
