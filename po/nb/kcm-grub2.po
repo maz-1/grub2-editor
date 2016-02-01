@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
-"POT-Creation-Date: 2015-12-09 08:58+0800\n"
+"POT-Creation-Date: 2016-02-01 11:52+0800\n"
 "PO-Revision-Date: 2013-04-30 21:17+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
@@ -297,340 +297,346 @@ msgctxt "@label:listbox"
 msgid "Linux Kernel:"
 msgstr "Linux-kjerne:"
 
-#. i18n: file: ui/kcm_grub2.ui:287
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
+#. i18n: file: ui/kcm_grub2.ui:284
+#. i18n: ectx: property (text), widget (QPushButton, pushbutton_loadres)
 #: rc.cpp:120
+msgid "Load Available Resolutions"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:297
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
+#: rc.cpp:123
 msgctxt "@title:group"
 msgid "Colors"
 msgstr "Farger"
 
-#. i18n: file: ui/kcm_grub2.ui:295
+#. i18n: file: ui/kcm_grub2.ui:305
 #. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
-#: rc.cpp:123
+#: rc.cpp:126
 msgctxt "@label:chooser"
 msgid "Normal Foreground (Text):"
 msgstr "Normal forgrunn (tekst):"
 
-#. i18n: file: ui/kcm_grub2.ui:305
+#. i18n: file: ui/kcm_grub2.ui:315
 #. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
-#: rc.cpp:126
+#: rc.cpp:129
 msgctxt "@label:chooser"
 msgid "Highlight Foreground (Text):"
 msgstr "Fremhevet forgrunn (tekst):"
 
-#. i18n: file: ui/kcm_grub2.ui:319
+#. i18n: file: ui/kcm_grub2.ui:329
 #. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
-#: rc.cpp:129
+#: rc.cpp:132
 msgctxt "@label:chooser"
 msgid "Normal Background:"
 msgstr "Normal bakgrunn:"
 
-#. i18n: file: ui/kcm_grub2.ui:329
+#. i18n: file: ui/kcm_grub2.ui:339
 #. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
-#: rc.cpp:132
+#: rc.cpp:135
 msgctxt "@label:chooser"
 msgid "Highlight Background:"
 msgstr "Fremhevingsbakgrunn:"
 
-#. i18n: file: ui/kcm_grub2.ui:344
+#. i18n: file: ui/kcm_grub2.ui:354
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
-#: rc.cpp:135
+#: rc.cpp:138
 msgctxt "@title:group Refers to the image shown behind the boot menu."
 msgid "Background"
 msgstr "Bakgrunn"
 
-#. i18n: file: ui/kcm_grub2.ui:350
+#. i18n: file: ui/kcm_grub2.ui:360
 #. i18n: ectx: property (text), widget (QLabel, label_background)
-#: rc.cpp:138
+#: rc.cpp:141
 msgctxt "@label:textbox"
 msgid "Wallpaper:"
 msgstr "Tapet:"
 
-#. i18n: file: ui/kcm_grub2.ui:362
+#. i18n: file: ui/kcm_grub2.ui:372
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_preview)
-#: rc.cpp:141
+#: rc.cpp:144
 msgctxt "@action:button"
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
-#. i18n: file: ui/kcm_grub2.ui:369
+#. i18n: file: ui/kcm_grub2.ui:379
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_create)
-#: rc.cpp:144
+#: rc.cpp:147
 msgctxt "@action:button"
 msgid "Create"
 msgstr "Opprett"
 
-#. i18n: file: ui/kcm_grub2.ui:378
+#. i18n: file: ui/kcm_grub2.ui:388
 #. i18n: ectx: property (text), widget (QLabel, label_theme)
-#: rc.cpp:147
+#: rc.cpp:150
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Tema:"
 
-#. i18n: file: ui/kcm_grub2.ui:405
+#. i18n: file: ui/kcm_grub2.ui:415
 #. i18n: ectx: attribute (title), widget (QWidget, tab_security)
-#: rc.cpp:150
+#: rc.cpp:153
 msgctxt "@title:tab"
 msgid "Security"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:411
+#. i18n: file: ui/kcm_grub2.ui:421
 #. i18n: ectx: property (text), widget (QCheckBox, secEnabled)
-#: rc.cpp:153
+#: rc.cpp:156
 msgctxt "@label:enablesec"
 msgid "Enable security"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:424
+#. i18n: file: ui/kcm_grub2.ui:434
 #. i18n: ectx: property (title), widget (QGroupBox, usersGroup)
-#: rc.cpp:156
+#: rc.cpp:159
 msgctxt "@label:users"
 msgid "Users"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:445
+#. i18n: file: ui/kcm_grub2.ui:455
 #. i18n: ectx: property (toolTip), widget (QToolButton, userAdd)
-#: rc.cpp:159
+#: rc.cpp:162
 msgid "Add user"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:448
+#. i18n: file: ui/kcm_grub2.ui:458
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
-#. i18n: file: ui/kcm_grub2.ui:461
+#. i18n: file: ui/kcm_grub2.ui:473
 #. i18n: ectx: property (text), widget (QToolButton, userDel)
-#. i18n: file: ui/kcm_grub2.ui:474
+#. i18n: file: ui/kcm_grub2.ui:488
 #. i18n: ectx: property (text), widget (QToolButton, userMod)
-#. i18n: file: ui/kcm_grub2.ui:556
+#. i18n: file: ui/kcm_grub2.ui:572
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
-#. i18n: file: ui/kcm_grub2.ui:448
+#. i18n: file: ui/kcm_grub2.ui:458
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
-#. i18n: file: ui/kcm_grub2.ui:461
+#. i18n: file: ui/kcm_grub2.ui:473
 #. i18n: ectx: property (text), widget (QToolButton, userDel)
-#. i18n: file: ui/kcm_grub2.ui:474
+#. i18n: file: ui/kcm_grub2.ui:488
 #. i18n: ectx: property (text), widget (QToolButton, userMod)
-#. i18n: file: ui/kcm_grub2.ui:556
+#. i18n: file: ui/kcm_grub2.ui:572
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
-#: rc.cpp:162 rc.cpp:168 rc.cpp:174 rc.cpp:183
+#: rc.cpp:165 rc.cpp:171 rc.cpp:177 rc.cpp:186
 msgid "..."
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:458
+#. i18n: file: ui/kcm_grub2.ui:470
 #. i18n: ectx: property (toolTip), widget (QToolButton, userDel)
-#: rc.cpp:165
+#: rc.cpp:168
 msgid "Delete user"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:471
+#. i18n: file: ui/kcm_grub2.ui:485
 #. i18n: ectx: property (toolTip), widget (QToolButton, userMod)
-#: rc.cpp:171
+#: rc.cpp:174
 msgid "Edit user"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:532
+#. i18n: file: ui/kcm_grub2.ui:548
 #. i18n: ectx: property (title), widget (QGroupBox, groupsGroup)
-#: rc.cpp:177
+#: rc.cpp:180
 msgctxt "@label:groups"
 msgid "Groups"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:553
+#. i18n: file: ui/kcm_grub2.ui:569
 #. i18n: ectx: property (toolTip), widget (QToolButton, groupMod)
-#: rc.cpp:180
+#: rc.cpp:183
 msgid "Edit group"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:613
+#. i18n: file: ui/kcm_grub2.ui:631
 #. i18n: ectx: attribute (title), widget (QWidget, tab_advanced)
-#: rc.cpp:186
+#: rc.cpp:189
 msgctxt "@title:tab Refers to settings."
 msgid "Advanced"
 msgstr "Avansert"
 
-#. i18n: file: ui/kcm_grub2.ui:619
+#. i18n: file: ui/kcm_grub2.ui:637
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
-#: rc.cpp:189
+#: rc.cpp:192
 msgctxt "@title:group"
 msgid "Linux Kernel Arguments"
 msgstr "Argumenter til Linux-kjerne"
 
-#. i18n: file: ui/kcm_grub2.ui:625
+#. i18n: file: ui/kcm_grub2.ui:643
 #. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
-#: rc.cpp:192
+#: rc.cpp:195
 msgctxt "@label:textbox"
 msgid "Normal Entries:"
 msgstr "Normale oppføringer:"
 
-#. i18n: file: ui/kcm_grub2.ui:637
+#. i18n: file: ui/kcm_grub2.ui:655
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:658
+#. i18n: file: ui/kcm_grub2.ui:676
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:688
+#. i18n: file: ui/kcm_grub2.ui:706
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:709
+#. i18n: file: ui/kcm_grub2.ui:727
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:730
+#. i18n: file: ui/kcm_grub2.ui:748
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:637
+#. i18n: file: ui/kcm_grub2.ui:655
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:658
+#. i18n: file: ui/kcm_grub2.ui:676
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:688
+#. i18n: file: ui/kcm_grub2.ui:706
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:709
+#. i18n: file: ui/kcm_grub2.ui:727
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:730
+#. i18n: file: ui/kcm_grub2.ui:748
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#: rc.cpp:195 rc.cpp:201 rc.cpp:210 rc.cpp:216 rc.cpp:222
+#: rc.cpp:198 rc.cpp:204 rc.cpp:213 rc.cpp:219 rc.cpp:225
 msgctxt "@action:button"
 msgid "Suggestions"
 msgstr "Forslag"
 
-#. i18n: file: ui/kcm_grub2.ui:646
+#. i18n: file: ui/kcm_grub2.ui:664
 #. i18n: ectx: property (text), widget (QLabel, label_cmdline)
-#: rc.cpp:198
+#: rc.cpp:201
 msgctxt "@label:textbox"
 msgid "All Entries:"
 msgstr "Alle oppføringer:"
 
-#. i18n: file: ui/kcm_grub2.ui:670
+#. i18n: file: ui/kcm_grub2.ui:688
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
-#: rc.cpp:204
+#: rc.cpp:207
 msgctxt "@title:group Noun."
 msgid "Terminal"
 msgstr "Terminal"
 
-#. i18n: file: ui/kcm_grub2.ui:676
+#. i18n: file: ui/kcm_grub2.ui:694
 #. i18n: ectx: property (text), widget (QLabel, label_terminal)
-#: rc.cpp:207
+#: rc.cpp:210
 msgctxt "@label:textbox Noun."
 msgid "Terminal:"
 msgstr "Terminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:697
+#. i18n: file: ui/kcm_grub2.ui:715
 #. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
-#: rc.cpp:213
+#: rc.cpp:216
 msgctxt "@label:textbox"
 msgid "Input Terminal:"
 msgstr "Inndata-terminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:718
+#. i18n: file: ui/kcm_grub2.ui:736
 #. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
-#: rc.cpp:219
+#: rc.cpp:222
 msgctxt "@label:textbox"
 msgid "Output Terminal:"
 msgstr "Utdata-terminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:742
+#. i18n: file: ui/kcm_grub2.ui:760
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
-#: rc.cpp:225
+#: rc.cpp:228
 msgctxt "@title:group Refers to settings."
 msgid "Other"
 msgstr "Annet"
 
-#. i18n: file: ui/kcm_grub2.ui:748
+#. i18n: file: ui/kcm_grub2.ui:766
 #. i18n: ectx: property (text), widget (QLabel, label_distributor)
-#: rc.cpp:228
+#: rc.cpp:231
 msgctxt "@label:textbox"
 msgid "Distributor:"
 msgstr "Distributør:"
 
-#. i18n: file: ui/kcm_grub2.ui:758
+#. i18n: file: ui/kcm_grub2.ui:776
 #. i18n: ectx: property (text), widget (QLabel, label_serial)
-#: rc.cpp:231
+#: rc.cpp:234
 msgctxt "@label:textbox"
 msgid "Serial Command:"
 msgstr "Seriell-kommando:"
 
-#. i18n: file: ui/kcm_grub2.ui:768
+#. i18n: file: ui/kcm_grub2.ui:786
 #. i18n: ectx: property (text), widget (QLabel, label_initTune)
-#: rc.cpp:234
+#: rc.cpp:237
 msgctxt "@label:textbox"
 msgid "Init Tune:"
 msgstr "Startmelodi:"
 
-#. i18n: file: ui/kcm_grub2.ui:778
+#. i18n: file: ui/kcm_grub2.ui:796
 #. i18n: ectx: property (text), widget (QLabel, label_uuid)
-#: rc.cpp:237
+#: rc.cpp:240
 msgctxt "@option:check"
 msgid "Enable UUIDs:"
 msgstr "Slå på UUID-er:"
 
-#. i18n: file: ui/kcm_grub2.ui:804
+#. i18n: file: ui/kcm_grub2.ui:822
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
-#: rc.cpp:240
+#: rc.cpp:243
 msgctxt "@title:group"
 msgid "Tools"
 msgstr "Verktøy"
 
-#. i18n: file: ui/kcm_grub2.ui:816
+#. i18n: file: ui/kcm_grub2.ui:834
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_install)
-#: rc.cpp:243
+#: rc.cpp:246
 msgctxt "@action:button"
 msgid "Install/Recover Bootloader"
 msgstr "Installer/tilbakestill oppstartslaster"
 
 #. i18n: file: ui/removeDlg.ui:17
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:246
+#: rc.cpp:249
 msgctxt "@label:listbox"
 msgid "Select entries to remove:"
 msgstr "Velg oppføringer som skal fjernes:"
 
 #. i18n: file: ui/removeDlg.ui:34
 #. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:249
+#: rc.cpp:252
 msgctxt "@info:tooltip"
 msgid "Remove associated kernel header files."
 msgstr "Fjern tilhørende hodefiler for kjernen."
 
 #. i18n: file: ui/removeDlg.ui:37
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:252
+#: rc.cpp:255
 msgctxt "@option:check"
 msgid "Also remove associated old packages"
 msgstr "Fjern også gamle tilhørende pakker"
 
 #. i18n: file: ui/userDlg.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:255
+#: rc.cpp:258
 msgctxt "@label:username"
 msgid "User Name"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:29
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:258
+#: rc.cpp:261
 msgctxt "@label:password"
 msgid "Password"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:43
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:261
+#: rc.cpp:264
 msgctxt "@label:confirmpassword"
 msgid "Confirm password"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:59
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
-#: rc.cpp:264
+#: rc.cpp:267
 msgctxt "@label:superuser"
 msgid "Superuser"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:66
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
-#: rc.cpp:267
+#: rc.cpp:270
 msgctxt "@label:cryptpassword"
 msgid "Crypt password"
 msgstr ""
 
-#: rc.cpp:268
+#: rc.cpp:271
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Bjørn Steensrud"
 
-#: rc.cpp:269
+#: rc.cpp:272
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "bjornst@skogkatt.homelinux.org"
@@ -670,17 +676,17 @@ msgctxt "@title:window"
 msgid "Edit Group %1"
 msgstr ""
 
-#: src/helper/helper.cpp:93
+#: src/helper/helper.cpp:99
 msgctxt "@info"
 msgid "Original configuration file <filename>%1</filename> does not exist."
 msgstr "Opprinnelkig oppsettsfil <filename>%1</filename> finnes ikke."
 
-#: src/helper/helper.cpp:98
+#: src/helper/helper.cpp:104
 msgctxt "@info"
 msgid "Cannot remove current configuration file <filename>%1</filename>."
 msgstr "Klarte ikke å åpne gjeldende oppsettsfil <filename>%1</filename>."
 
-#: src/helper/helper.cpp:103
+#: src/helper/helper.cpp:109
 msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
@@ -689,7 +695,7 @@ msgstr ""
 "Kan ikke kopiere opprinnelig oppsettsfil <filename>%1</filename> til "
 "<filename>%2</filename>."
 
-#: src/helper/helper.cpp:119
+#: src/helper/helper.cpp:125
 msgctxt "@info"
 msgid "Failed to create temporary mount point."
 msgstr "Klarte ikke å opprette midlertidig monteringspunkt."
@@ -719,7 +725,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "Klarte ikke å installere GRUB."
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:577
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:582
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Informasjon"
@@ -729,346 +735,351 @@ msgctxt "@info"
 msgid "Successfully installed GRUB."
 msgstr "GRUB er vellykket installert."
 
-#: src/kcm_grub2.cpp:75
+#: src/kcm_grub2.cpp:78
 #, fuzzy
 msgid "KDE GRUB2 Bootloader Control Module"
 msgstr "Styringsmodul for KDE GRUB2 oppstartslaster"
 
-#: src/kcm_grub2.cpp:76
+#: src/kcm_grub2.cpp:79
 #, fuzzy
 msgid "A KDE Control Module for configuring the GRUB2 bootloader."
 msgstr "En KDE styringsmodul for å sette opp oppstartslasteren GRUB2."
 
-#: src/kcm_grub2.cpp:80
+#: src/kcm_grub2.cpp:83
 #, fuzzy
 msgid "Main Developer"
 msgstr "Hovedutvikler"
 
-#: src/kcm_grub2.cpp:81
+#: src/kcm_grub2.cpp:84
 #, fuzzy
 msgid "Developer"
 msgstr "Hovedutvikler"
 
-#: src/kcm_grub2.cpp:107
+#: src/kcm_grub2.cpp:110
 msgctxt "@info"
 msgid "Failed to restore the default values."
 msgstr "Klarte ikke å tilbakestille standardverdier."
 
-#: src/kcm_grub2.cpp:111
+#: src/kcm_grub2.cpp:115
 msgctxt "@info"
 msgid "Successfully restored the default values."
 msgstr "Standardverdier er vellykket tilbakestilt."
 
-#: src/kcm_grub2.cpp:557
+#: src/kcm_grub2.cpp:117
+msgctxt "@info"
+msgid "Save action not authorized."
+msgstr ""
+
+#: src/kcm_grub2.cpp:559
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "Lagrer"
 
-#: src/kcm_grub2.cpp:558
+#: src/kcm_grub2.cpp:560
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "Lagrer GRUB-innstillinger …"
 
-#: src/kcm_grub2.cpp:581
+#: src/kcm_grub2.cpp:586
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "GRUB-innstillinger lagret."
 
-#: src/kcm_grub2.cpp:584
+#: src/kcm_grub2.cpp:589
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "Klarte ikke å lagre GRUB-innstillinger."
 
-#: src/kcm_grub2.cpp:678 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:731
-#: src/kcm_grub2.cpp:1411 src/kcm_grub2.cpp:1471
+#: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
+#: src/kcm_grub2.cpp:1477 src/kcm_grub2.cpp:1537
 msgctxt "@property"
 msgid "Yes"
 msgstr ""
 
-#: src/kcm_grub2.cpp:678 src/kcm_grub2.cpp:711 src/kcm_grub2.cpp:731
-#: src/kcm_grub2.cpp:1414 src/kcm_grub2.cpp:1479
+#: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
+#: src/kcm_grub2.cpp:1480 src/kcm_grub2.cpp:1545
 msgctxt "@property"
 msgid "No"
 msgstr ""
 
-#: src/kcm_grub2.cpp:679 src/kcm_grub2.cpp:733 src/kcm_grub2.cpp:1419
+#: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1485
 msgctxt "@property"
 msgid "Encrypted"
 msgstr ""
 
-#: src/kcm_grub2.cpp:679 src/kcm_grub2.cpp:733 src/kcm_grub2.cpp:1422
+#: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1488
 msgctxt "@property"
 msgid "Plain"
 msgstr ""
 
-#: src/kcm_grub2.cpp:687
+#: src/kcm_grub2.cpp:692
 msgctxt "@info"
 msgid "No users found!"
 msgstr ""
 
-#: src/kcm_grub2.cpp:704 src/kcm_grub2.cpp:1475
+#: src/kcm_grub2.cpp:709 src/kcm_grub2.cpp:1541
 msgctxt "@property"
 msgid "Superusers only"
 msgstr ""
 
-#: src/kcm_grub2.cpp:708 src/kcm_grub2.cpp:1480
+#: src/kcm_grub2.cpp:713 src/kcm_grub2.cpp:1546
 msgctxt "@property"
 msgid "Everyone"
 msgstr ""
 
-#: src/kcm_grub2.cpp:757 src/kcm_grub2.cpp:779
+#: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Skriv inn skjermoppløsnng"
 
-#: src/kcm_grub2.cpp:757 src/kcm_grub2.cpp:779
+#: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "Skriv inn en GRUB-oppløsning:"
 
-#: src/kcm_grub2.cpp:825
+#: src/kcm_grub2.cpp:834
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr "Trykk <shortcut>Escape</shortcut> for å gå ut av fullskjermmodus."
 
-#: src/kcm_grub2.cpp:974 src/kcm_grub2.cpp:975
+#: src/kcm_grub2.cpp:983 src/kcm_grub2.cpp:984
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Svart"
 
-#: src/kcm_grub2.cpp:976 src/kcm_grub2.cpp:977
+#: src/kcm_grub2.cpp:985 src/kcm_grub2.cpp:986
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Gjennomsiktig"
 
-#: src/kcm_grub2.cpp:979
+#: src/kcm_grub2.cpp:988
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Blå"
 
-#: src/kcm_grub2.cpp:981
+#: src/kcm_grub2.cpp:990
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Cyanblå"
 
-#: src/kcm_grub2.cpp:983
+#: src/kcm_grub2.cpp:992
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Mørk grå"
 
-#: src/kcm_grub2.cpp:985
+#: src/kcm_grub2.cpp:994
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Grønn"
 
-#: src/kcm_grub2.cpp:987
+#: src/kcm_grub2.cpp:996
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Lys cyanblå"
 
-#: src/kcm_grub2.cpp:989
+#: src/kcm_grub2.cpp:998
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Lys blå"
 
-#: src/kcm_grub2.cpp:991
+#: src/kcm_grub2.cpp:1000
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Lys grønn"
 
-#: src/kcm_grub2.cpp:993
+#: src/kcm_grub2.cpp:1002
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Lys grå"
 
-#: src/kcm_grub2.cpp:995
+#: src/kcm_grub2.cpp:1004
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Lys magentarød"
 
-#: src/kcm_grub2.cpp:997
+#: src/kcm_grub2.cpp:1006
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Lys rød"
 
-#: src/kcm_grub2.cpp:999
+#: src/kcm_grub2.cpp:1008
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Magentarød"
 
-#: src/kcm_grub2.cpp:1001
+#: src/kcm_grub2.cpp:1010
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Rød"
 
-#: src/kcm_grub2.cpp:1003
+#: src/kcm_grub2.cpp:1012
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Hvit"
 
-#: src/kcm_grub2.cpp:1005
+#: src/kcm_grub2.cpp:1014
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Gul"
 
-#: src/kcm_grub2.cpp:1028 src/kcm_grub2.cpp:1037
+#: src/kcm_grub2.cpp:1038 src/kcm_grub2.cpp:1047
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Stille oppstart"
 
-#: src/kcm_grub2.cpp:1029 src/kcm_grub2.cpp:1038
+#: src/kcm_grub2.cpp:1039 src/kcm_grub2.cpp:1048
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Vis velkomstskjerm"
 
-#: src/kcm_grub2.cpp:1030 src/kcm_grub2.cpp:1039
+#: src/kcm_grub2.cpp:1040 src/kcm_grub2.cpp:1049
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Slå av Plymouth"
 
-#: src/kcm_grub2.cpp:1031 src/kcm_grub2.cpp:1040
+#: src/kcm_grub2.cpp:1041 src/kcm_grub2.cpp:1050
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "Slå av ACPI"
 
-#: src/kcm_grub2.cpp:1032 src/kcm_grub2.cpp:1041
+#: src/kcm_grub2.cpp:1042 src/kcm_grub2.cpp:1051
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "Slå av APIC"
 
-#: src/kcm_grub2.cpp:1033 src/kcm_grub2.cpp:1042
+#: src/kcm_grub2.cpp:1043 src/kcm_grub2.cpp:1052
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Slå av lokal APIC"
 
-#: src/kcm_grub2.cpp:1034 src/kcm_grub2.cpp:1043
+#: src/kcm_grub2.cpp:1044 src/kcm_grub2.cpp:1053
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Enbruker-modus"
 
-#: src/kcm_grub2.cpp:1046 src/kcm_grub2.cpp:1051 src/kcm_grub2.cpp:1058
+#: src/kcm_grub2.cpp:1056 src/kcm_grub2.cpp:1061 src/kcm_grub2.cpp:1068
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "PC BIOS && EFI Console"
 
-#: src/kcm_grub2.cpp:1047 src/kcm_grub2.cpp:1052 src/kcm_grub2.cpp:1059
+#: src/kcm_grub2.cpp:1057 src/kcm_grub2.cpp:1062 src/kcm_grub2.cpp:1069
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Seriell terminal"
 
-#: src/kcm_grub2.cpp:1048 src/kcm_grub2.cpp:1053 src/kcm_grub2.cpp:1060
+#: src/kcm_grub2.cpp:1058 src/kcm_grub2.cpp:1063 src/kcm_grub2.cpp:1070
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Åpne fastvare-konsoll"
 
-#: src/kcm_grub2.cpp:1054
+#: src/kcm_grub2.cpp:1064
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "PC AT tastatur (Kjernestart)"
 
-#: src/kcm_grub2.cpp:1055
+#: src/kcm_grub2.cpp:1065
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "USB-tastatur (HID oppstartsprotokoll)"
 
-#: src/kcm_grub2.cpp:1061
+#: src/kcm_grub2.cpp:1071
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Utdata i grafisk modus"
 
-#: src/kcm_grub2.cpp:1062
+#: src/kcm_grub2.cpp:1072
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "Utdata i VGA tekst (Kjernestart)"
 
-#: src/kcm_grub2.cpp:1271
+#: src/kcm_grub2.cpp:1299
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Leter etter enheter"
 
-#: src/kcm_grub2.cpp:1272
+#: src/kcm_grub2.cpp:1300
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "Leter etter GRUB-navn på enheter …"
 
-#: src/kcm_grub2.cpp:1291
+#: src/kcm_grub2.cpp:1319
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "Klarte ikke å hente GRUB-navn på enheter."
 
-#: src/kcm_grub2.cpp:1298
+#: src/kcm_grub2.cpp:1326
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "Hjelperen returnerte en feil enhetsliste."
 
-#: src/kcm_grub2.cpp:1390 src/kcm_grub2.cpp:1439
+#: src/kcm_grub2.cpp:1456 src/kcm_grub2.cpp:1505
 msgctxt "@header"
 msgid "Name"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1390
+#: src/kcm_grub2.cpp:1456
 msgctxt "@header"
 msgid "Superuser"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1390
+#: src/kcm_grub2.cpp:1456
 msgctxt "@header"
 msgid "Password type"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1439
+#: src/kcm_grub2.cpp:1505
 msgctxt "@header"
 msgid "Locked"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1439
+#: src/kcm_grub2.cpp:1505
 msgctxt "@header"
 msgid "Allowed users"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1544 src/kcm_grub2.cpp:1547
+#: src/kcm_grub2.cpp:1629 src/kcm_grub2.cpp:1632
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "Egendefinert …"
 
-#: src/kcm_grub2.cpp:1548
+#: src/kcm_grub2.cpp:1633
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Ikke oppgitt"
 
-#: src/kcm_grub2.cpp:1549
+#: src/kcm_grub2.cpp:1634
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Start opp i tekstmodus"
 
-#: src/kcm_grub2.cpp:1550
+#: src/kcm_grub2.cpp:1635
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "Behold GRUBs oppløsning"
 
-#: src/kcm_grub2.cpp:1562
+#: src/kcm_grub2.cpp:1647
 msgctxt "@info"
 msgid "Not Authorized."
 msgstr ""
 
-#: src/kcm_grub2.cpp:1566
+#: src/kcm_grub2.cpp:1651
 msgctxt "@info"
 msgid "The process could not be started."
 msgstr "Prosessen kunne ikke startes."
 
-#: src/kcm_grub2.cpp:1569
+#: src/kcm_grub2.cpp:1654
 msgctxt "@info"
 msgid "The process crashed."
 msgstr "Prosessen krasjet."
 
-#: src/kcm_grub2.cpp:1578
+#: src/kcm_grub2.cpp:1663
 msgctxt "@info"
 msgid "Command: %1 Error code: %2 Error message: %3"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1580
+#: src/kcm_grub2.cpp:1665
 msgctxt "@info"
 msgid "Error message: %1"
 msgstr ""
