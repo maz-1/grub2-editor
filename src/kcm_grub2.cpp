@@ -541,8 +541,8 @@ void KCMGRUB2::save()
     
     Action saveAction("org.kde.kcontrol.kcmgrub2.save");
     saveAction.setHelperId("org.kde.kcontrol.kcmgrub2");
-    saveAction.addArgument("rawConfigFileContents", configFileContents.toLocal8Bit());
-    saveAction.addArgument("rawDefaultEntry", !m_entries.isEmpty() ? grubDefault : m_settings.value("GRUB_DEFAULT").toLocal8Bit());
+    saveAction.addArgument("rawConfigFileContents", configFileContents.toUtf8());
+    saveAction.addArgument("rawDefaultEntry", !m_entries.isEmpty() ? grubDefault.toUtf8() : m_settings.value("GRUB_DEFAULT").toUtf8());
     if (m_dirtyBits.testBit(memtestDirty)) {
         saveAction.addArgument("memtest", ui->checkBox_memtest->isChecked());
     }
@@ -621,7 +621,7 @@ void KCMGRUB2::save()
         dialog->setModal(true);
         //TO BE FIXED. Have no idea how to show a kmessagebox with a "Details" button.
         QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
-        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, reply->data().value("output").toString()); // krazy:exclude=qclasses
+        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, QString::fromUtf8(reply->data().value("output").toByteArray())); // krazy:exclude=qclasses
         load();
     } else {
         KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), processReply(reply));
@@ -1737,7 +1737,7 @@ QString KCMGRUB2::processReply(ExecuteJob * reply)
             errorMessage = i18nc("@info", "The process crashed.");
             break;
         default:
-            errorMessage = QString::fromLocal8Bit(reply->data().value(QLatin1String("output")).toByteArray());
+            errorMessage = QString::fromUtf8(reply->data().value(QLatin1String("output")).toByteArray());
             break;
         }
     
