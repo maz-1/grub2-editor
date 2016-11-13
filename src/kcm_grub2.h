@@ -82,6 +82,8 @@ private Q_SLOTS:
     void slotGrubSerialCommandChanged();
     void slotGrubInitTuneChanged();
     void slotGrubDisableLinuxUuidChanged();
+    void slotGrubLanguageChanged();
+ 
     //Security
     void slotSecurityChanged();
     //users
@@ -110,6 +112,7 @@ private:
     void readEnv();
     void readMemtest();
     void readDevices();
+    void readLanguages();
     void initResolutions();
     void readResolutions();
 //Security
@@ -122,6 +125,8 @@ private:
     
     void sortResolutions();
     void showResolutions();
+
+    void showLanguages();
 
     QString processReply(ExecuteJob *reply);
     QString parseTitle(const QString &line);
@@ -154,6 +159,7 @@ private:
         grubSerialCommandDirty,
         grubInitTuneDirty,
         grubDisableLinuxUuidDirty,
+        grubLanguageDirty,
 //Security
 //-------------------------------------------------
         securityDirty,
@@ -164,12 +170,15 @@ private:
     };
     QBitArray m_dirtyBits;
 
+    QString resultLanguage;
+
     QList<Entry> m_entries;
     QHash<QString, QString> m_settings;
     QHash<QString, QString> m_env;
     bool m_memtest;
     bool m_memtestOn;
     QHash<QString, QString> m_devices;
+    QHash<QString, QString> m_languages;
     QStringList m_resolutions;
 //Security
     bool m_security;

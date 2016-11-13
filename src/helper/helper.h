@@ -29,7 +29,7 @@ class Helper : public QObject
 public:
     Helper();
 private:
-    ActionReply executeCommand(const QStringList &command);
+    ActionReply executeCommand(const QStringList &command, QHash<QString, QString> &environment);
     //merge
     ActionReply load(QVariantMap args);
     ActionReply probe(QVariantMap args);

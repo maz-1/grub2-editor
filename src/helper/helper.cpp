@@ -23,6 +23,7 @@
 
 //Qt
 #include <QDir>
+#include <QtGlobal>
 
 //KDE
 //#include <KDebug>
@@ -45,11 +46,18 @@ Helper::Helper()
     qputenv("PATH", path.toLatin1());
 }
 
-ActionReply Helper::executeCommand(const QStringList &command)
+ActionReply Helper::executeCommand(const QStringList &command, QHash<QString, QString> &environment)
 {
     KProcess process;
     process.setProgram(command);
     process.setOutputChannelMode(KProcess::MergedChannels);
+
+    if (!environment.isEmpty()) {
+        QStringList grub_envKeys = environment.keys();
+        Q_FOREACH(const QString &envKey, grub_envKeys) {
+            process.setEnv(envKey, environment.value(envKey));
+        }
+    }
 
     qDebug() << "Executing" << command.join(" ");
     int exitCode = process.execute();
@@ -114,6 +122,7 @@ ActionReply Helper::defaults(QVariantMap args)
 ActionReply Helper::install(QVariantMap args)
 {
     ActionReply reply;
+    QHash<QString, QString> empty_hash;
     QString partition = args.value("partition").toString();
     QString mountPoint = args.value("mountPoint").toString();
     bool mbrInstall = args.value("mbrInstall").toBool();
@@ -125,7 +134,7 @@ ActionReply Helper::install(QVariantMap args)
             reply.addData("errorDescription", i18nc("@info", "Failed to create temporary mount point."));
             return reply;
         }
-        ActionReply mountReply = executeCommand(QStringList() << "mount" << partition << mountPoint);
+        ActionReply mountReply = executeCommand(QStringList() << "mount" << partition << mountPoint, empty_hash);
         if (mountReply.failed()) {
             return mountReply;
         }
@@ -138,10 +147,11 @@ ActionReply Helper::install(QVariantMap args)
     } else {
         grub_installCommand << "--force" << partition;
     }
-    return executeCommand(grub_installCommand);
+    return executeCommand(grub_installCommand, empty_hash);
 }
 ActionReply Helper::load(QVariantMap args)
 {
+    QHash<QString, QString> empty_hash;
     ActionReply reply;
     QString fileName;
     switch (args.value("grubFile").toInt()) {
@@ -159,7 +169,7 @@ ActionReply Helper::load(QVariantMap args)
         fileName = GRUB_CONFIGDIR + args.value("groupFile").toString();
         if (args.value("groupFile").toString() == GRUB_SECURITY) {
             if (!QFile::exists(fileName)) 
-                executeCommand(QStringList() << "touch" << fileName);
+                executeCommand(QStringList() << "touch" << fileName, empty_hash);
             bool security = QFile::exists(fileName);
             reply.addData("security", security);
             reply.addData("securityOn", (bool)(QFile::permissions(fileName) & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther)));
@@ -188,12 +198,13 @@ ActionReply Helper::load(QVariantMap args)
 ActionReply Helper::probe(QVariantMap args)
 {
     ActionReply reply;
+    QHash<QString, QString> empty_hash;
     QStringList mountPoints = args.value("mountPoints").toStringList();
 
     QStringList grubPartitions;
     HelperSupport::progressStep(0);
     for (int i = 0; i < mountPoints.size(); i++) {
-        ActionReply grub_probeReply = executeCommand(QStringList() << GRUB_PROBE_EXE << "-t" << "drive" << mountPoints.at(i));
+        ActionReply grub_probeReply = executeCommand(QStringList() << GRUB_PROBE_EXE << "-t" << "drive" << mountPoints.at(i), empty_hash);
         if (grub_probeReply.failed()) {
             return grub_probeReply;
         }
@@ -234,6 +245,7 @@ ActionReply Helper::save(QVariantMap args)
     QString configFileName = GRUB_CONFIG;
     QByteArray rawConfigFileContents = args.value("rawConfigFileContents").toByteArray();
     QByteArray rawDefaultEntry = args.value("rawDefaultEntry").toByteArray();
+    QString resultLanguage = args.value("resultLanguage").toString();
     bool memtest = args.value("memtest").toBool();
     bool security = args.value("security").toBool();
 
@@ -291,13 +303,17 @@ ActionReply Helper::save(QVariantMap args)
         }
         //qDebug() << "Groups modified :" << groupFilesList;
     }
-    
-    ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU);
+   
+    QHash<QString, QString> environment;
+    environment["LANG"] = resultLanguage;
+    environment["LANGUAGE"] = resultLanguage;
+
+    ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU, environment);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;
     }
 
-    ActionReply grub_set_defaultReply = executeCommand(QStringList() << GRUB_SET_DEFAULT_EXE << rawDefaultEntry);
+    ActionReply grub_set_defaultReply = executeCommand(QStringList() << GRUB_SET_DEFAULT_EXE << rawDefaultEntry, environment);
     if (grub_set_defaultReply.failed()) {
         return grub_set_defaultReply;
     }

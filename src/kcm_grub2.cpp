@@ -20,7 +20,7 @@
 
 //root detect
 #include <unistd.h>
-
+#include <iostream>
 //Own
 #include "kcm_grub2.h"
 #include "widgets/regexpinputdialog.h"
@@ -28,8 +28,11 @@
 #include <QDesktopWidget>
 #include <QStandardItemModel>
 #include <QTreeView>
+#include <QtGlobal>
+#include <QtAlgorithms>
 #include <QMenu>
 #include <QProgressBar>
+#include <QStandardPaths>
 #include <QTextStream>
 #include <QProcess>
 //Encryption
@@ -253,7 +256,9 @@ void KCMGRUB2::load()
     //initResolutions();
 #endif
     initResolutions();
-    
+   
+    readLanguages();
+ 
     QString grubColorNormal = unquoteWord(m_settings.value("GRUB_COLOR_NORMAL"));
     if (!grubColorNormal.isEmpty()) {
         int normalForegroundIndex = ui->kcombobox_normalForeground->findData(grubColorNormal.section('/', 0, 0));
@@ -281,6 +286,23 @@ void KCMGRUB2::load()
         if (highlightBackgroundIndex != -1) {
             ui->kcombobox_highlightBackground->setCurrentIndex(highlightBackgroundIndex);
         }
+    }
+
+    showLanguages();
+    QString grubLang = unquoteWord(m_settings.value("LANG"));
+    QString grubLanguage = unquoteWord(m_settings.value("LANGUAGE"));
+    if (!grubLang.isEmpty() && !grubLanguage.isEmpty()) {
+        if (grubLang.compare(grubLanguage)) {
+            qDebug() << "LANG and LANGUAGE should have the same value";
+        }
+        if (!m_languages.contains(grubLang)) {
+            qDebug() << "Invalid or unsupported LANG and LANGUAGE values";
+        }
+        ui->kcombobox_languages->setCurrentIndex(ui->kcombobox_languages->findData(grubLanguage));
+    } else if (!grubLang.isEmpty() || !grubLang.isEmpty()) {
+        qDebug() << "Both LANG and LANGUAGE should be used";
+    } else {
+        ui->kcombobox_languages->setCurrentIndex(ui->kcombobox_languages->findData("system"));
     }
 
     QString grubBackground = unquoteWord(m_settings.value("GRUB_BACKGROUND"));
@@ -494,7 +516,21 @@ void KCMGRUB2::save()
             m_settings["GRUB_DISABLE_LINUX_UUID"] = "true";
         }
     }
-    
+   
+    if (m_dirtyBits.testBit(grubLanguageDirty)) {
+        QString language_id = ui->kcombobox_languages->itemData(ui->kcombobox_languages->currentIndex()).toString();
+        if (!language_id.isEmpty() && language_id.compare("system")) {
+            m_settings["LANG"] = language_id;
+            m_settings["LANGUAGE"] = language_id;
+
+            resultLanguage = language_id;
+        } else {
+            m_settings.remove("LANG");
+            m_settings.remove("LANGUAGE");
+            resultLanguage = qgetenv("LANG");
+        }
+    }
+ 
     QString configFileContents;
     QTextStream stream(&configFileContents, QIODevice::WriteOnly | QIODevice::Text);
     QHash<QString, QString>::const_iterator it = m_settings.constBegin();
@@ -514,6 +550,8 @@ void KCMGRUB2::save()
     if (m_dirtyBits.testBit(securityDirty)) {
         saveAction.addArgument("security", ui->secEnabled->isChecked());
     }
+    saveAction.addArgument("resultLanguage", resultLanguage);
+
     //Security : save users list
     if (m_dirtyBits.testBit(securityUsersDirty)) {
         QString userFileContents;
@@ -899,6 +937,11 @@ void KCMGRUB2::slotGrubDisableLinuxUuidChanged()
     m_dirtyBits.setBit(grubDisableLinuxUuidDirty);
     emit changed(true);
 }
+void KCMGRUB2::slotGrubLanguageChanged()
+{
+    m_dirtyBits.setBit(grubLanguageDirty);
+    emit changed(true);
+}
 
 void KCMGRUB2::slotUpdateSuggestions()
 {
@@ -1142,6 +1185,7 @@ void KCMGRUB2::setupConnections()
     connect(ui->klineedit_serial, SIGNAL(textEdited(QString)), this, SLOT(slotGrubSerialCommandChanged()));
     connect(ui->klineedit_initTune, SIGNAL(textEdited(QString)), this, SLOT(slotGrubInitTuneChanged()));
     connect(ui->checkBox_uuid, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableLinuxUuidChanged()));
+    connect(ui->kcombobox_languages, SIGNAL(activated(int)), this, SLOT(slotGrubLanguageChanged()));
 
     connect(ui->kpushbutton_install, SIGNAL(clicked(bool)), this, SLOT(slotInstallBootloader()));
 }
@@ -1581,6 +1625,34 @@ QString KCMGRUB2::pbkdf2Encrypt(QString passwd){ //, int key_length = 64, int it
 }
 
 
+void KCMGRUB2::readLanguages()
+{
+    m_languages.clear();
+
+    QFile file(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kcm-grub2/config/languages"));
+
+    if(!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(0, "error", file.errorString());
+    }
+
+    QTextStream in(&file);
+    in.setCodec("UTF-8");
+
+    int i = 1;
+    QString lang_id;
+    QString line;
+    while(!in.atEnd()) {
+        line = in.readLine();
+        if (i % 2) {
+            lang_id = line;
+        } else {
+            m_languages[lang_id] = line;
+        }
+        i++;
+    }
+    file.close();
+}
+
 void KCMGRUB2::sortResolutions()
 {
     for (int i = 0; i < m_resolutions.size(); i++) {
@@ -1637,6 +1709,17 @@ void KCMGRUB2::showResolutions()
     Q_FOREACH(const QString &resolution, m_resolutions) {
         ui->kcombobox_gfxmode->addItem(resolution, resolution);
         ui->kcombobox_gfxpayload->addItem(resolution, resolution);
+    }
+}
+
+void KCMGRUB2::showLanguages()
+{
+    ui->kcombobox_languages->clear();
+    ui->kcombobox_languages->addItem(i18n("System language"), "system");
+    QStringList keys = m_languages.keys();
+    qSort(keys);
+    Q_FOREACH(const QString &key, keys) {
+        ui->kcombobox_languages->addItem(m_languages.value(key), key);
     }
 }
 
@@ -1760,6 +1843,8 @@ void KCMGRUB2::parseSettings(const QString &config)
     while (!stream.atEnd()) {
         line = stream.readLine().trimmed();
         if (line.startsWith(QLatin1String("GRUB_"))) {
+            m_settings[line.section('=', 0, 0)] = line.section('=', 1);
+        }else if (line.startsWith(QLatin1String("LANG"))) {
             m_settings[line.section('=', 0, 0)] = line.section('=', 1);
         }
     }
