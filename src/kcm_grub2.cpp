@@ -1629,7 +1629,7 @@ void KCMGRUB2::readLanguages()
 {
     m_languages.clear();
 
-    QFile file(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kcm-grub2/config/languages"));
+    QFile file(QStandardPaths::locate(QStandardPaths::ApplicationsLocation, "kcm-grub2/config/languages"));
 
     if(!file.open(QIODevice::ReadOnly)) {
         QMessageBox::information(0, "error", file.errorString());
