@@ -305,9 +305,33 @@ ActionReply Helper::save(QVariantMap args)
     }
    
     QHash<QString, QString> environment;
-    environment["LANG"] = resultLanguage;
-    environment["LANGUAGE"] = resultLanguage;
 
+
+    if(resultLanguage == "")
+    {
+       QFile file("/etc/locale.conf");
+       if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+     
+
+          QString configStr = file.readAll();
+
+
+          QString line;
+          QTextStream stream(&configStr, QIODevice::ReadOnly | QIODevice::Text);
+          while (!stream.atEnd()) {
+             line = stream.readLine().trimmed();
+             environment[line.section('=', 0, 0)] = line.section('=', 1);
+          }
+       
+       }
+
+    }
+    else
+    {
+      environment["LANG"] = resultLanguage;
+      environment["LANGUAGE"] = resultLanguage;
+    }
+ 
     ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU, environment);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;
