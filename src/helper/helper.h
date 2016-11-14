@@ -30,6 +30,7 @@ public:
     Helper();
 private:
     ActionReply executeCommand(const QStringList &command, QHash<QString, QString> &environment);
+    ActionReply executeLongCommand(const QStringList &command, QHash<QString, QString> &environment);
     //merge
     ActionReply load(QVariantMap args);
     ActionReply probe(QVariantMap args);

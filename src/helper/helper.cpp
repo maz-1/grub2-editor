@@ -89,6 +89,41 @@ ActionReply Helper::initialize(QVariantMap args)
     return reply;
 }
 
+ActionReply Helper::executeLongCommand(const QStringList &command, QHash<QString, QString> &environment)
+{
+    KProcess process;
+    process.setProgram(command);
+    process.setOutputChannelMode(KProcess::MergedChannels);
+
+    if (!environment.isEmpty()) {
+        QStringList grub_envKeys = environment.keys();
+        Q_FOREACH(const QString &envKey, grub_envKeys) {
+            process.setEnv(envKey, environment.value(envKey));
+        }
+    }
+
+    qDebug() << "Executing" << command.join(" ");
+    process.start();
+    bool finished = false; HelperSupport::progressStep(0); int i=0;
+    do { 
+      finished = process.waitForFinished(10000);
+    
+      HelperSupport::progressStep(i++); 
+       
+    } while(!finished);
+ 
+    int exitCode = process.exitCode();
+
+    ActionReply reply;
+    if (exitCode != 0) {
+        reply = ActionReply::HelperErrorReply();
+        reply.setErrorCode(ActionReply::Error::InvalidActionError);
+    }
+    reply.addData("command", command);
+    reply.addData("output", process.readAll());
+    return reply;
+}
+
 ActionReply Helper::defaults(QVariantMap args)
 {
     Q_UNUSED(args)
@@ -332,7 +367,7 @@ ActionReply Helper::save(QVariantMap args)
       environment["LANGUAGE"] = resultLanguage;
     }
  
-    ActionReply grub_mkconfigReply = executeCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU, environment);
+    ActionReply grub_mkconfigReply = executeLongCommand(QStringList() << GRUB_MKCONFIG_EXE << "-o" << GRUB_MENU, environment);
     if (grub_mkconfigReply.failed()) {
         return grub_mkconfigReply;
     }

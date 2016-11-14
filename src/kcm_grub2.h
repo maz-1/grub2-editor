@@ -25,10 +25,8 @@
 //KDE
 #include <KCModule>
 
-namespace KAuth
-{
-    class ActionReply;
-}
+#include <KCoreAddons/KJob>
+#include <KAuth/KAuthActionReply>
 using namespace KAuth;
 
 //Project
@@ -52,6 +50,7 @@ public:
     virtual void load();
     virtual void save();
 private Q_SLOTS:
+    void saveComplete(KJob*);
     void slotRetry();
     void slotRemoveOldEntries();
     void slotGrubSavedefaultChanged();

@@ -593,38 +593,46 @@ void KCMGRUB2::save()
         
     }
     
-    QProgressDialog progressDlg(this, Qt::Dialog);
-        progressDlg.setWindowTitle(i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"));
-        progressDlg.setLabelText(i18nc("@info:progress", "Saving GRUB settings..."));
-        progressDlg.setCancelButton(0);
-        progressDlg.setModal(true);
-        progressDlg.setRange(0,0);
-        progressDlg.show();
+    QProgressDialog* progressDlg = new QProgressDialog(this, Qt::Dialog);
+        progressDlg->setWindowTitle(i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"));
+        progressDlg->setLabelText(i18nc("@info:progress", "Saving GRUB settings..."));
+        progressDlg->setCancelButton(0);
+        progressDlg->setModal(true);
+        progressDlg->setRange(0,0);
+        progressDlg->show();
     
-    
-    ExecuteJob *reply = saveAction.execute();
-    //connect(reply, SIGNAL(result()), &progressDlg, SLOT(hide()));
-    reply->exec();
-    
-    progressDlg.hide();
-    
-    if (reply->action().status() != Action::AuthorizedStatus ) {
+    ExecuteJob *job = saveAction.execute();
+
+    connect(job, SIGNAL(result(KJob*)), progressDlg, SLOT(hide()));
+    connect(job, &KAuth::ExecuteJob::result, this, &KCMGRUB2::saveComplete);
+    //connect(job, SIGNAL(percent(KJob*, unsigned long)), progressDlg, SLOT(setValue(int)));
+
+
+
+    job->start();
+
+}
+void KCMGRUB2::saveComplete(KJob *kjob)
+{
+    auto job = qobject_cast<KAuth::ExecuteJob *>(kjob);
+ 
+    if (job->action().status() != Action::AuthorizedStatus ) {
         saveAuthorized = false;
         return;
     } else {
         saveAuthorized = true;
     }
     
-    if (!reply->error()) {
+    if (!job->error()) {
         QDialog *dialog = new QDialog(this, Qt::Dialog);
         dialog->setWindowTitle(i18nc("@title:window", "Information"));
         dialog->setModal(true);
         //TO BE FIXED. Have no idea how to show a kmessagebox with a "Details" button.
         QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
-        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, QString::fromUtf8(reply->data().value("output").toByteArray())); // krazy:exclude=qclasses
+        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, QString::fromUtf8(job->data().value("output").toByteArray())); // krazy:exclude=qclasses
         load();
     } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), processReply(reply));
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), processReply(job));
     }
 }
 
