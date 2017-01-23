@@ -1331,6 +1331,17 @@ msgctxt "@info"
 msgid "Please fill in username!"
 msgstr "请输入用户名!"
 
+msgid "System language"
+msgstr "系统语言"
+
+msgctxt "@title:group"
+msgid "Language"
+msgstr "语言"
+
+msgctxt "@label:listbox"
+msgid "Language:"
+msgstr "语言："
+
 #~ msgctxt "@label:add"
 #~ msgid "Add"
 #~ msgstr "添加"
