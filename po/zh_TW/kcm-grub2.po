@@ -3,19 +3,20 @@
 #
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2011, 2012.
 # Franklin Weng <franklin@mail.everfocus.com.tw>, 2012, 2013.
+# Jeff Huang <s8321414@gmail.com>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
 "POT-Creation-Date: 2016-02-01 11:52+0800\n"
-"PO-Revision-Date: 2013-07-04 16:31+0800\n"
-"Last-Translator: Franklin Weng <franklin at goodhorse dot idv dot tw>\n"
+"PO-Revision-Date: 2017-11-21 11:48+0800\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese Traditional <kde-tw@googlegroups.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. i18n: file: ui/convertDlg.ui:19
@@ -72,21 +73,21 @@ msgstr "設為 GRUB 桌布："
 #: rc.cpp:24
 msgctxt "@label:lockgroup"
 msgid "Lock group"
-msgstr ""
+msgstr "鎖定群組"
 
 #. i18n: file: ui/groupDlg.ui:24
 #. i18n: ectx: property (availableLabel), widget (KActionSelector, userSelector)
 #: rc.cpp:27
 msgctxt "@label:availusers"
 msgid "&Available users:"
-msgstr ""
+msgstr "可用的使用者：(&A)"
 
 #. i18n: file: ui/groupDlg.ui:27
 #. i18n: ectx: property (selectedLabel), widget (KActionSelector, userSelector)
 #: rc.cpp:30
 msgctxt "@label:selecusers"
 msgid "Selected &users:"
-msgstr ""
+msgstr "選定的使用者：(&U)"
 
 #. i18n: file: ui/installDlg.ui:17
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -197,18 +198,16 @@ msgstr "顯示選單後自動以預設的項目開機"
 #. i18n: file: ui/kcm_grub2.ui:106
 #. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout0)
 #: rc.cpp:75
-#, fuzzy
 msgctxt "@option:radio"
 msgid "&Immediately"
-msgstr "立即"
+msgstr "立即(&I)"
 
 #. i18n: file: ui/kcm_grub2.ui:131
 #. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
 #: rc.cpp:78
-#, fuzzy
 msgctxt "@option:radio"
 msgid "&After:"
-msgstr "多久之後："
+msgstr "多久之後：(&A)"
 
 #. i18n: file: ui/kcm_grub2.ui:172
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
@@ -298,7 +297,7 @@ msgstr "Linux 核心："
 #. i18n: ectx: property (text), widget (QPushButton, pushbutton_loadres)
 #: rc.cpp:120
 msgid "Load Available Resolutions"
-msgstr ""
+msgstr "載入可用的解析度"
 
 #. i18n: file: ui/kcm_grub2.ui:297
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
@@ -375,27 +374,27 @@ msgstr "主題："
 #: rc.cpp:153
 msgctxt "@title:tab"
 msgid "Security"
-msgstr ""
+msgstr "安全功能"
 
 #. i18n: file: ui/kcm_grub2.ui:421
 #. i18n: ectx: property (text), widget (QCheckBox, secEnabled)
 #: rc.cpp:156
 msgctxt "@label:enablesec"
 msgid "Enable security"
-msgstr ""
+msgstr "啟用安全功能"
 
 #. i18n: file: ui/kcm_grub2.ui:434
 #. i18n: ectx: property (title), widget (QGroupBox, usersGroup)
 #: rc.cpp:159
 msgctxt "@label:users"
 msgid "Users"
-msgstr ""
+msgstr "使用者"
 
 #. i18n: file: ui/kcm_grub2.ui:455
 #. i18n: ectx: property (toolTip), widget (QToolButton, userAdd)
 #: rc.cpp:162
 msgid "Add user"
-msgstr ""
+msgstr "新增使用者"
 
 #. i18n: file: ui/kcm_grub2.ui:458
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
@@ -415,32 +414,32 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
 #: rc.cpp:165 rc.cpp:171 rc.cpp:177 rc.cpp:186
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #. i18n: file: ui/kcm_grub2.ui:470
 #. i18n: ectx: property (toolTip), widget (QToolButton, userDel)
 #: rc.cpp:168
 msgid "Delete user"
-msgstr ""
+msgstr "刪除使用者"
 
 #. i18n: file: ui/kcm_grub2.ui:485
 #. i18n: ectx: property (toolTip), widget (QToolButton, userMod)
 #: rc.cpp:174
 msgid "Edit user"
-msgstr ""
+msgstr "編輯使用者"
 
 #. i18n: file: ui/kcm_grub2.ui:548
 #. i18n: ectx: property (title), widget (QGroupBox, groupsGroup)
 #: rc.cpp:180
 msgctxt "@label:groups"
 msgid "Groups"
-msgstr ""
+msgstr "群組"
 
 #. i18n: file: ui/kcm_grub2.ui:569
 #. i18n: ectx: property (toolTip), widget (QToolButton, groupMod)
 #: rc.cpp:183
 msgid "Edit group"
-msgstr ""
+msgstr "編輯群組"
 
 #. i18n: file: ui/kcm_grub2.ui:631
 #. i18n: ectx: attribute (title), widget (QWidget, tab_advanced)
@@ -598,45 +597,45 @@ msgstr "同時移除相關的舊套件"
 #: rc.cpp:258
 msgctxt "@label:username"
 msgid "User Name"
-msgstr ""
+msgstr "使用者名稱"
 
 #. i18n: file: ui/userDlg.ui:29
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: rc.cpp:261
 msgctxt "@label:password"
 msgid "Password"
-msgstr ""
+msgstr "密碼"
 
 #. i18n: file: ui/userDlg.ui:43
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: rc.cpp:264
 msgctxt "@label:confirmpassword"
 msgid "Confirm password"
-msgstr ""
+msgstr "確認密碼"
 
 #. i18n: file: ui/userDlg.ui:59
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
 #: rc.cpp:267
 msgctxt "@label:superuser"
 msgid "Superuser"
-msgstr ""
+msgstr "超級使用者"
 
 #. i18n: file: ui/userDlg.ui:66
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
 #: rc.cpp:270
 msgctxt "@label:cryptpassword"
 msgid "Crypt password"
-msgstr ""
+msgstr "加密密碼"
 
 #: rc.cpp:271
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Frank Weng (a.k.a. Franklin)"
+msgstr "Frank Weng (a.k.a. Franklin), Jeff Huang"
 
 #: rc.cpp:272
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "franklin@goodhorse.idv.tw"
+msgstr "franklin@goodhorse.idv.tw, s8321414@gmail.com"
 
 #: src/convertDlg.cpp:59
 msgctxt "@item:inlistbox"
@@ -657,8 +656,7 @@ msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
 "interface> fields."
-msgstr ""
-"請填入「<interface>寬度</interface>」與「<interface>高度</interface>」欄位。"
+msgstr "請填入「<interface>寬度</interface>」與「<interface>高度</interface>」欄位。"
 
 #: src/convertDlg.cpp:94
 msgctxt "@info"
@@ -670,7 +668,7 @@ msgstr "您沒有此目錄的寫入權限。請選擇其他的目標。"
 #: src/groupDlg.cpp:34
 msgctxt "@title:window"
 msgid "Edit Group %1"
-msgstr ""
+msgstr "編輯群組 %1"
 
 #: src/helper/helper.cpp:99
 msgctxt "@info"
@@ -687,8 +685,7 @@ msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
 "%2</filename>."
-msgstr ""
-"無法複製原始設定檔 <filename>%1</filename> 到 <filename>%2</filename>。"
+msgstr "無法複製原始設定檔 <filename>%1</filename> 到 <filename>%2</filename>。"
 
 #: src/helper/helper.cpp:125
 msgctxt "@info"
@@ -731,24 +728,20 @@ msgid "Successfully installed GRUB."
 msgstr "已成功安裝 GRUB。"
 
 #: src/kcm_grub2.cpp:78
-#, fuzzy
 msgid "KDE GRUB2 Bootloader Control Module"
 msgstr "KDE GRUB2 開機載入器控制模組"
 
 #: src/kcm_grub2.cpp:79
-#, fuzzy
 msgid "A KDE Control Module for configuring the GRUB2 bootloader."
-msgstr "設定 GRUB2 開機載入器的 KDE 控制模組"
+msgstr "設定 GRUB2 開機載入器的 KDE 控制模組。"
 
 #: src/kcm_grub2.cpp:83
-#, fuzzy
 msgid "Main Developer"
 msgstr "主要開發者"
 
 #: src/kcm_grub2.cpp:84
-#, fuzzy
 msgid "Developer"
-msgstr "主要開發者"
+msgstr "開發者"
 
 #: src/kcm_grub2.cpp:110
 msgctxt "@info"
@@ -763,7 +756,7 @@ msgstr "已成功回復預設值。"
 #: src/kcm_grub2.cpp:117
 msgctxt "@info"
 msgid "Save action not authorized."
-msgstr ""
+msgstr "儲存動作未認證。"
 
 #: src/kcm_grub2.cpp:559
 msgctxt "@title:window Verb (gerund). Refers to current status."
@@ -789,38 +782,38 @@ msgstr "儲存 GRUB 設定失敗。"
 #: src/kcm_grub2.cpp:1477 src/kcm_grub2.cpp:1537
 msgctxt "@property"
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
 #: src/kcm_grub2.cpp:1480 src/kcm_grub2.cpp:1545
 msgctxt "@property"
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1485
 msgctxt "@property"
 msgid "Encrypted"
-msgstr ""
+msgstr "已加密"
 
 #: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1488
 msgctxt "@property"
 msgid "Plain"
-msgstr ""
+msgstr "純文字"
 
 #: src/kcm_grub2.cpp:692
 msgctxt "@info"
 msgid "No users found!"
-msgstr ""
+msgstr "找不到使用者！"
 
 #: src/kcm_grub2.cpp:709 src/kcm_grub2.cpp:1541
 msgctxt "@property"
 msgid "Superusers only"
-msgstr ""
+msgstr "僅超級使用者"
 
 #: src/kcm_grub2.cpp:713 src/kcm_grub2.cpp:1546
 msgctxt "@property"
 msgid "Everyone"
-msgstr ""
+msgstr "所有人"
 
 #: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
 msgctxt "@title:window"
@@ -1012,27 +1005,27 @@ msgstr "協助程式傳回不正確的裝置清單。"
 #: src/kcm_grub2.cpp:1456 src/kcm_grub2.cpp:1505
 msgctxt "@header"
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 #: src/kcm_grub2.cpp:1456
 msgctxt "@header"
 msgid "Superuser"
-msgstr ""
+msgstr "超級使用者"
 
 #: src/kcm_grub2.cpp:1456
 msgctxt "@header"
 msgid "Password type"
-msgstr ""
+msgstr "密碼類型"
 
 #: src/kcm_grub2.cpp:1505
 msgctxt "@header"
 msgid "Locked"
-msgstr ""
+msgstr "已鎖定"
 
 #: src/kcm_grub2.cpp:1505
 msgctxt "@header"
 msgid "Allowed users"
-msgstr ""
+msgstr "允許的使用者"
 
 #: src/kcm_grub2.cpp:1629 src/kcm_grub2.cpp:1632
 msgctxt "@item:inlistbox Refers to screen resolution."
@@ -1057,7 +1050,7 @@ msgstr "保持 GRUB 的解析度"
 #: src/kcm_grub2.cpp:1647
 msgctxt "@info"
 msgid "Not Authorized."
-msgstr ""
+msgstr "未認證。"
 
 #: src/kcm_grub2.cpp:1651
 msgctxt "@info"
@@ -1072,12 +1065,12 @@ msgstr "行程已崩潰。"
 #: src/kcm_grub2.cpp:1663
 msgctxt "@info"
 msgid "Command: %1 Error code: %2 Error message: %3"
-msgstr ""
+msgstr "指令：%1 錯誤代碼：%2 錯誤訊息：%3"
 
 #: src/kcm_grub2.cpp:1665
 msgctxt "@info"
 msgid "Error message: %1"
-msgstr ""
+msgstr "錯誤訊息：%1"
 
 #: src/qPkBackend.cpp:31
 msgctxt "This is when the transaction status is not known"
@@ -1310,22 +1303,22 @@ msgstr "移除套件失敗。"
 #: src/userDlg.cpp:31
 msgctxt "@title:window"
 msgid "Edit User"
-msgstr ""
+msgstr "編輯使用者"
 
 #: src/userDlg.cpp:67
 msgctxt "@info"
 msgid "Passwords don't match!"
-msgstr ""
+msgstr "密碼不符！"
 
 #: src/userDlg.cpp:70
 msgctxt "@info"
 msgid "Please fill in passwords!"
-msgstr ""
+msgstr "請填寫密碼！"
 
 #: src/userDlg.cpp:73
 msgctxt "@info"
 msgid "Please fill in username!"
-msgstr ""
+msgstr "請填寫使用者名稱！"
 
 #~ msgctxt "@info:credit"
 #~ msgid "Copyright (C) 2008-2013 Konstantinos Smanis"
