@@ -22,6 +22,8 @@
 #include <KMessageBox>
 //Qt
 #include <QPushButton>
+#include <QStyle>
+#include <QRegExpValidator>
 //Ui
 #include "ui_userDlg.h"
 
