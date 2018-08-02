@@ -25,6 +25,7 @@
 #include <QFileDialog>
 #include <QMimeType>
 #include <QMimeDatabase>
+#include <QStyle>
 //ImageMagick
 #include <Magick++.h>
 
