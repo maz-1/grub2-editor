@@ -309,7 +309,9 @@ void KCMGRUB2::load()
     QString grubBackground = unquoteWord(m_settings.value("GRUB_BACKGROUND"));
     ui->kurlrequester_background->setText(grubBackground);
     ui->kpushbutton_preview->setEnabled(!grubBackground.isEmpty());
+    ui->kurlrequester_theme->setStartDir(QUrl::fromLocalFile("/boot/grub/themes"));
     ui->kurlrequester_theme->setText(unquoteWord(m_settings.value("GRUB_THEME")));
+    ui->kurlrequester_theme->setFilter("theme.txt");
 
     ui->klineedit_cmdlineDefault->setText(unquoteWord(m_settings.value("GRUB_CMDLINE_LINUX_DEFAULT")));
     ui->klineedit_cmdline->setText(unquoteWord(m_settings.value("GRUB_CMDLINE_LINUX")));
