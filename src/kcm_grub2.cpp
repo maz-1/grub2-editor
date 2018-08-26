@@ -238,7 +238,8 @@ void KCMGRUB2::load()
     } else {
         qDebug() << "Invalid GRUB_TIMEOUT value";
     }
-
+    ui->checkBox_noEcho->setChecked(unquoteWord(m_settings.value("GRUB_NOECHO")).compare("true") == 0);
+    
     ui->checkBox_recovery->setChecked(unquoteWord(m_settings.value("GRUB_DISABLE_RECOVERY")).compare("true") != 0);
     ui->checkBox_memtest->setVisible(m_memtest);
     ui->checkBox_memtest->setChecked(m_memtestOn);
@@ -354,6 +355,13 @@ void KCMGRUB2::save()
             m_settings["GRUB_SAVEDEFAULT"] = "true";
         } else {
             m_settings.remove("GRUB_SAVEDEFAULT");
+        }
+    }
+    if (m_dirtyBits.testBit(grubNoEchoDirty)) {
+        if (ui->checkBox_noEcho->isChecked()) {
+            m_settings["GRUB_NOECHO"] = "true";
+        } else {
+            m_settings.remove("GRUB_NOECHO");
         }
     }
     if (m_dirtyBits.testBit(grubHiddenTimeoutDirty)) {
@@ -592,6 +600,10 @@ void KCMGRUB2::save()
         }
         
     }
+    //remove echo
+    if (m_dirtyBits.testBit(grubNoEchoDirty)) {
+        saveAction.addArgument("noecho", ui->checkBox_noEcho->isChecked());
+    }
     
     QProgressDialog* progressDlg = new QProgressDialog(this, Qt::Dialog);
         progressDlg->setWindowTitle(i18nc("@title:window Verb (gerund). Refers to current status.", "Saving"));
@@ -649,6 +661,11 @@ void KCMGRUB2::slotRemoveOldEntries()
 void KCMGRUB2::slotGrubSavedefaultChanged()
 {
     m_dirtyBits.setBit(grubSavedefaultDirty);
+    emit changed(true);
+}
+void KCMGRUB2::slotGrubNoEchoChanged()
+{
+    m_dirtyBits.setBit(grubNoEchoDirty);
     emit changed(true);
 }
 void KCMGRUB2::slotGrubHiddenTimeoutToggled(bool checked)
@@ -1130,6 +1147,7 @@ void KCMGRUB2::setupConnections()
     connect(ui->kcombobox_default, SIGNAL(activated(int)), this, SLOT(changed()));
     connect(ui->kpushbutton_remove, SIGNAL(clicked(bool)), this, SLOT(slotRemoveOldEntries()));
     connect(ui->checkBox_savedefault, SIGNAL(clicked(bool)), this, SLOT(slotGrubSavedefaultChanged()));
+    connect(ui->checkBox_noEcho, SIGNAL(clicked(bool)), this, SLOT(slotGrubNoEchoChanged()));
 
     connect(ui->checkBox_hiddenTimeout, SIGNAL(toggled(bool)), this, SLOT(slotGrubHiddenTimeoutToggled(bool)));
     connect(ui->checkBox_hiddenTimeout, SIGNAL(clicked(bool)), this, SLOT(slotGrubHiddenTimeoutChanged()));

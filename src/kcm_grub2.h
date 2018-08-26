@@ -54,6 +54,7 @@ private Q_SLOTS:
     void slotRetry();
     void slotRemoveOldEntries();
     void slotGrubSavedefaultChanged();
+    void slotGrubNoEchoChanged();
     void slotGrubHiddenTimeoutToggled(bool checked);
     void slotGrubHiddenTimeoutChanged();
     void slotGrubHiddenTimeoutQuietChanged();
@@ -140,6 +141,7 @@ private:
         grubHiddenTimeoutDirty,
         grubHiddenTimeoutQuietDirty,
         grubTimeoutDirty,
+        grubNoEchoDirty,
         grubDisableRecoveryDirty,
         memtestDirty,
         grubDisableOsProberDirty,

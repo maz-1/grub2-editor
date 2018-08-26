@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
-"POT-Creation-Date: 2016-02-01 11:52+0800\n"
+"POT-Creation-Date: 2018-08-26 22:15+0800\n"
 "PO-Revision-Date: 2013-01-31 11:50+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu.bivol@jurnaltv.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -209,64 +209,64 @@ msgstr "Imediat"
 #: rc.cpp:78
 #, fuzzy
 msgctxt "@option:radio"
-msgid "&After:"
+msgid "A&fter:"
 msgstr "După:"
 
 #. i18n: file: ui/kcm_grub2.ui:172
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
-#: rc.cpp:84
-msgctxt "@title:group"
-msgid "Generated Entries"
-msgstr "Înregistrări generate"
-
-#. i18n: file: ui/kcm_grub2.ui:178
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
-#: rc.cpp:87
-msgctxt "@option:check"
-msgid "Generate recovery entries"
-msgstr "Generează înregistrări de recuperare"
-
-#. i18n: file: ui/kcm_grub2.ui:185
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
-#: rc.cpp:90
-msgctxt "@option:check"
-msgid "Generate memtest entries"
-msgstr "Generează înregistrări de verificare a memoriei"
-
-#. i18n: file: ui/kcm_grub2.ui:192
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
-#: rc.cpp:93
-msgctxt "@option:check"
-msgid "Probe for operating systems"
-msgstr "Sondează după sisteme de operare"
-
-#. i18n: file: ui/kcm_grub2.ui:202
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
-#: rc.cpp:96
+#: rc.cpp:84
 msgctxt "@title:group"
 msgid "Default Entry"
 msgstr "Înregistrare implicită"
 
-#. i18n: file: ui/kcm_grub2.ui:208
+#. i18n: file: ui/kcm_grub2.ui:178
 #. i18n: ectx: property (text), widget (QLabel, label_default)
-#: rc.cpp:99
+#: rc.cpp:87
 msgctxt "@label:listbox"
 msgid "Default Entry:"
 msgstr "Înregistrare implicită:"
 
-#. i18n: file: ui/kcm_grub2.ui:224
+#. i18n: file: ui/kcm_grub2.ui:194
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_remove)
-#: rc.cpp:102
+#: rc.cpp:90
 msgctxt "@action:button"
 msgid "Remove Old Entries"
 msgstr "Elimină înregistrările vechi"
 
-#. i18n: file: ui/kcm_grub2.ui:233
+#. i18n: file: ui/kcm_grub2.ui:203
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
-#: rc.cpp:105
+#: rc.cpp:93
 msgctxt "@option:check"
 msgid "The next booted entry will become default"
 msgstr "Următoarea înregistrare demarată va deveni implicită"
+
+#. i18n: file: ui/kcm_grub2.ui:213
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
+#: rc.cpp:96
+msgctxt "@title:group"
+msgid "Generated Entries"
+msgstr "Înregistrări generate"
+
+#. i18n: file: ui/kcm_grub2.ui:219
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
+#: rc.cpp:99
+msgctxt "@option:check"
+msgid "Generate recovery entries"
+msgstr "Generează înregistrări de recuperare"
+
+#. i18n: file: ui/kcm_grub2.ui:226
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
+#: rc.cpp:102
+msgctxt "@option:check"
+msgid "Generate memtest entries"
+msgstr "Generează înregistrări de verificare a memoriei"
+
+#. i18n: file: ui/kcm_grub2.ui:233
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
+#: rc.cpp:105
+msgctxt "@option:check"
+msgid "Probe for operating systems"
+msgstr "Sondează după sisteme de operare"
 
 #. i18n: file: ui/kcm_grub2.ui:244
 #. i18n: ectx: attribute (title), widget (QWidget, tab_appearance)
@@ -276,376 +276,396 @@ msgid "Appearance"
 msgstr "Aspect"
 
 #. i18n: file: ui/kcm_grub2.ui:250
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_languages)
 #: rc.cpp:111
+msgctxt "@title:group"
+msgid "Language"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:256
+#. i18n: ectx: property (text), widget (QLabel, label_languages)
+#: rc.cpp:114
+msgctxt "@label:listbox"
+msgid "Language:"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:273
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#: rc.cpp:117
 msgctxt "@title:group"
 msgid "Resolutions"
 msgstr "Rezoluții"
 
-#. i18n: file: ui/kcm_grub2.ui:256
+#. i18n: file: ui/kcm_grub2.ui:279
 #. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
-#: rc.cpp:114
+#: rc.cpp:120
 msgctxt "@label:listbox"
 msgid "GRUB:"
 msgstr "GRUB:"
 
-#. i18n: file: ui/kcm_grub2.ui:270
+#. i18n: file: ui/kcm_grub2.ui:293
 #. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
-#: rc.cpp:117
+#: rc.cpp:123
 msgctxt "@label:listbox"
 msgid "Linux Kernel:"
 msgstr "Nucleu Linux:"
 
-#. i18n: file: ui/kcm_grub2.ui:284
+#. i18n: file: ui/kcm_grub2.ui:307
 #. i18n: ectx: property (text), widget (QPushButton, pushbutton_loadres)
-#: rc.cpp:120
+#: rc.cpp:126
 msgid "Load Available Resolutions"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:297
+#. i18n: file: ui/kcm_grub2.ui:321
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
-#: rc.cpp:123
+#: rc.cpp:129
 msgctxt "@title:group"
 msgid "Colors"
 msgstr "Culori"
 
-#. i18n: file: ui/kcm_grub2.ui:305
+#. i18n: file: ui/kcm_grub2.ui:329
 #. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
-#: rc.cpp:126
+#: rc.cpp:132
 msgctxt "@label:chooser"
 msgid "Normal Foreground (Text):"
 msgstr "Prim-plan normal (text):"
 
-#. i18n: file: ui/kcm_grub2.ui:315
+#. i18n: file: ui/kcm_grub2.ui:339
 #. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
-#: rc.cpp:129
+#: rc.cpp:135
 msgctxt "@label:chooser"
 msgid "Highlight Foreground (Text):"
 msgstr "Prim-plan evidențiat (text):"
 
-#. i18n: file: ui/kcm_grub2.ui:329
+#. i18n: file: ui/kcm_grub2.ui:353
 #. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
-#: rc.cpp:132
+#: rc.cpp:138
 msgctxt "@label:chooser"
 msgid "Normal Background:"
 msgstr "Fundal normal:"
 
-#. i18n: file: ui/kcm_grub2.ui:339
+#. i18n: file: ui/kcm_grub2.ui:363
 #. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
-#: rc.cpp:135
+#: rc.cpp:141
 msgctxt "@label:chooser"
 msgid "Highlight Background:"
 msgstr "Fundal evidențiat:"
 
-#. i18n: file: ui/kcm_grub2.ui:354
+#. i18n: file: ui/kcm_grub2.ui:378
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
-#: rc.cpp:138
+#: rc.cpp:144
 msgctxt "@title:group Refers to the image shown behind the boot menu."
 msgid "Background"
 msgstr "Fundal"
 
-#. i18n: file: ui/kcm_grub2.ui:360
+#. i18n: file: ui/kcm_grub2.ui:384
 #. i18n: ectx: property (text), widget (QLabel, label_background)
-#: rc.cpp:141
+#: rc.cpp:147
 msgctxt "@label:textbox"
 msgid "Wallpaper:"
 msgstr "Tapet:"
 
-#. i18n: file: ui/kcm_grub2.ui:372
+#. i18n: file: ui/kcm_grub2.ui:396
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_preview)
-#: rc.cpp:144
+#: rc.cpp:150
 msgctxt "@action:button"
 msgid "Preview"
 msgstr "Previzualizează"
 
-#. i18n: file: ui/kcm_grub2.ui:379
+#. i18n: file: ui/kcm_grub2.ui:403
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_create)
-#: rc.cpp:147
+#: rc.cpp:153
 msgctxt "@action:button"
 msgid "Create"
 msgstr "Creează"
 
-#. i18n: file: ui/kcm_grub2.ui:388
+#. i18n: file: ui/kcm_grub2.ui:412
 #. i18n: ectx: property (text), widget (QLabel, label_theme)
-#: rc.cpp:150
+#: rc.cpp:156
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Temă:"
 
-#. i18n: file: ui/kcm_grub2.ui:415
+#. i18n: file: ui/kcm_grub2.ui:439
 #. i18n: ectx: attribute (title), widget (QWidget, tab_security)
-#: rc.cpp:153
+#: rc.cpp:159
 msgctxt "@title:tab"
 msgid "Security"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:421
+#. i18n: file: ui/kcm_grub2.ui:445
 #. i18n: ectx: property (text), widget (QCheckBox, secEnabled)
-#: rc.cpp:156
+#: rc.cpp:162
 msgctxt "@label:enablesec"
 msgid "Enable security"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:434
+#. i18n: file: ui/kcm_grub2.ui:458
 #. i18n: ectx: property (title), widget (QGroupBox, usersGroup)
-#: rc.cpp:159
+#: rc.cpp:165
 msgctxt "@label:users"
 msgid "Users"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:455
+#. i18n: file: ui/kcm_grub2.ui:479
 #. i18n: ectx: property (toolTip), widget (QToolButton, userAdd)
-#: rc.cpp:162
+#: rc.cpp:168
 msgid "Add user"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:458
+#. i18n: file: ui/kcm_grub2.ui:482
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
-#. i18n: file: ui/kcm_grub2.ui:473
+#. i18n: file: ui/kcm_grub2.ui:496
 #. i18n: ectx: property (text), widget (QToolButton, userDel)
-#. i18n: file: ui/kcm_grub2.ui:488
+#. i18n: file: ui/kcm_grub2.ui:510
 #. i18n: ectx: property (text), widget (QToolButton, userMod)
-#. i18n: file: ui/kcm_grub2.ui:572
+#. i18n: file: ui/kcm_grub2.ui:593
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
-#. i18n: file: ui/kcm_grub2.ui:458
+#. i18n: file: ui/kcm_grub2.ui:482
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
-#. i18n: file: ui/kcm_grub2.ui:473
+#. i18n: file: ui/kcm_grub2.ui:496
 #. i18n: ectx: property (text), widget (QToolButton, userDel)
-#. i18n: file: ui/kcm_grub2.ui:488
+#. i18n: file: ui/kcm_grub2.ui:510
 #. i18n: ectx: property (text), widget (QToolButton, userMod)
-#. i18n: file: ui/kcm_grub2.ui:572
+#. i18n: file: ui/kcm_grub2.ui:593
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
-#: rc.cpp:165 rc.cpp:171 rc.cpp:177 rc.cpp:186
+#: rc.cpp:171 rc.cpp:177 rc.cpp:183 rc.cpp:192
 msgid "..."
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:470
+#. i18n: file: ui/kcm_grub2.ui:493
 #. i18n: ectx: property (toolTip), widget (QToolButton, userDel)
-#: rc.cpp:168
+#: rc.cpp:174
 msgid "Delete user"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:485
+#. i18n: file: ui/kcm_grub2.ui:507
 #. i18n: ectx: property (toolTip), widget (QToolButton, userMod)
-#: rc.cpp:174
+#: rc.cpp:180
 msgid "Edit user"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:548
+#. i18n: file: ui/kcm_grub2.ui:569
 #. i18n: ectx: property (title), widget (QGroupBox, groupsGroup)
-#: rc.cpp:180
+#: rc.cpp:186
 msgctxt "@label:groups"
 msgid "Groups"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:569
+#. i18n: file: ui/kcm_grub2.ui:590
 #. i18n: ectx: property (toolTip), widget (QToolButton, groupMod)
-#: rc.cpp:183
+#: rc.cpp:189
 msgid "Edit group"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:631
+#. i18n: file: ui/kcm_grub2.ui:651
 #. i18n: ectx: attribute (title), widget (QWidget, tab_advanced)
-#: rc.cpp:189
+#: rc.cpp:195
 msgctxt "@title:tab Refers to settings."
 msgid "Advanced"
 msgstr "Avansat"
 
-#. i18n: file: ui/kcm_grub2.ui:637
+#. i18n: file: ui/kcm_grub2.ui:657
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
-#: rc.cpp:192
+#: rc.cpp:198
 msgctxt "@title:group"
 msgid "Linux Kernel Arguments"
 msgstr "Argumente pentru nucleul Linux"
 
-#. i18n: file: ui/kcm_grub2.ui:643
+#. i18n: file: ui/kcm_grub2.ui:663
 #. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
-#: rc.cpp:195
+#: rc.cpp:201
 msgctxt "@label:textbox"
 msgid "Normal Entries:"
 msgstr "Înregistrări normale:"
 
-#. i18n: file: ui/kcm_grub2.ui:655
+#. i18n: file: ui/kcm_grub2.ui:675
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:676
+#. i18n: file: ui/kcm_grub2.ui:696
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: file: ui/kcm_grub2.ui:726
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:727
+#. i18n: file: ui/kcm_grub2.ui:747
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:748
+#. i18n: file: ui/kcm_grub2.ui:768
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:655
+#. i18n: file: ui/kcm_grub2.ui:675
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:676
+#. i18n: file: ui/kcm_grub2.ui:696
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: file: ui/kcm_grub2.ui:726
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:727
+#. i18n: file: ui/kcm_grub2.ui:747
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:748
+#. i18n: file: ui/kcm_grub2.ui:768
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#: rc.cpp:198 rc.cpp:204 rc.cpp:213 rc.cpp:219 rc.cpp:225
+#: rc.cpp:204 rc.cpp:210 rc.cpp:219 rc.cpp:225 rc.cpp:231
 msgctxt "@action:button"
 msgid "Suggestions"
 msgstr "Sugestii"
 
-#. i18n: file: ui/kcm_grub2.ui:664
+#. i18n: file: ui/kcm_grub2.ui:684
 #. i18n: ectx: property (text), widget (QLabel, label_cmdline)
-#: rc.cpp:201
+#: rc.cpp:207
 msgctxt "@label:textbox"
 msgid "All Entries:"
 msgstr "Toate înregistrările:"
 
-#. i18n: file: ui/kcm_grub2.ui:688
+#. i18n: file: ui/kcm_grub2.ui:708
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
-#: rc.cpp:207
+#: rc.cpp:213
 msgctxt "@title:group Noun."
 msgid "Terminal"
 msgstr "Terminal"
 
-#. i18n: file: ui/kcm_grub2.ui:694
+#. i18n: file: ui/kcm_grub2.ui:714
 #. i18n: ectx: property (text), widget (QLabel, label_terminal)
-#: rc.cpp:210
+#: rc.cpp:216
 msgctxt "@label:textbox Noun."
 msgid "Terminal:"
 msgstr "Terminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:715
+#. i18n: file: ui/kcm_grub2.ui:735
 #. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
-#: rc.cpp:216
+#: rc.cpp:222
 msgctxt "@label:textbox"
 msgid "Input Terminal:"
 msgstr "Terminal de introducere:"
 
-#. i18n: file: ui/kcm_grub2.ui:736
+#. i18n: file: ui/kcm_grub2.ui:756
 #. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
-#: rc.cpp:222
+#: rc.cpp:228
 msgctxt "@label:textbox"
 msgid "Output Terminal:"
 msgstr "Terminal de afișare:"
 
-#. i18n: file: ui/kcm_grub2.ui:760
+#. i18n: file: ui/kcm_grub2.ui:780
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
-#: rc.cpp:228
+#: rc.cpp:234
 msgctxt "@title:group Refers to settings."
 msgid "Other"
 msgstr "Altele"
 
-#. i18n: file: ui/kcm_grub2.ui:766
+#. i18n: file: ui/kcm_grub2.ui:786
 #. i18n: ectx: property (text), widget (QLabel, label_distributor)
-#: rc.cpp:231
+#: rc.cpp:237
 msgctxt "@label:textbox"
 msgid "Distributor:"
 msgstr "Distribuitor:"
 
-#. i18n: file: ui/kcm_grub2.ui:776
+#. i18n: file: ui/kcm_grub2.ui:796
 #. i18n: ectx: property (text), widget (QLabel, label_serial)
-#: rc.cpp:234
+#: rc.cpp:240
 msgctxt "@label:textbox"
 msgid "Serial Command:"
 msgstr "Comandă în serie:"
 
-#. i18n: file: ui/kcm_grub2.ui:786
+#. i18n: file: ui/kcm_grub2.ui:806
 #. i18n: ectx: property (text), widget (QLabel, label_initTune)
-#: rc.cpp:237
+#: rc.cpp:243
 msgctxt "@label:textbox"
 msgid "Init Tune:"
 msgstr "Sunet de inițializare:"
 
-#. i18n: file: ui/kcm_grub2.ui:796
-#. i18n: ectx: property (text), widget (QLabel, label_uuid)
-#: rc.cpp:240
-msgctxt "@option:check"
-msgid "Enable UUIDs:"
+#. i18n: file: ui/kcm_grub2.ui:816
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_uuid)
+#: rc.cpp:246
+#, fuzzy
+msgid "Enable UUIDs"
 msgstr "Activează UUID-uri:"
 
-#. i18n: file: ui/kcm_grub2.ui:822
+#. i18n: file: ui/kcm_grub2.ui:823
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_noEcho)
+#: rc.cpp:249
+msgid "Remove echo commands for silent boot"
+msgstr ""
+
+#. i18n: file: ui/kcm_grub2.ui:846
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
-#: rc.cpp:243
+#: rc.cpp:252
 msgctxt "@title:group"
 msgid "Tools"
 msgstr "Unelte"
 
-#. i18n: file: ui/kcm_grub2.ui:834
+#. i18n: file: ui/kcm_grub2.ui:858
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_install)
-#: rc.cpp:246
+#: rc.cpp:255
 msgctxt "@action:button"
 msgid "Install/Recover Bootloader"
 msgstr "Instalează/recuperează încărcătorul"
 
 #. i18n: file: ui/removeDlg.ui:17
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:249
+#: rc.cpp:258
 msgctxt "@label:listbox"
 msgid "Select entries to remove:"
 msgstr "Alegeți înregistrările de eliminat:"
 
 #. i18n: file: ui/removeDlg.ui:34
 #. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:252
+#: rc.cpp:261
 msgctxt "@info:tooltip"
 msgid "Remove associated kernel header files."
 msgstr "Elimină fișierele-antet ale nucleului asociate."
 
 #. i18n: file: ui/removeDlg.ui:37
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:255
+#: rc.cpp:264
 msgctxt "@option:check"
 msgid "Also remove associated old packages"
 msgstr "De asemenea elimină pachetele vechi asociate"
 
 #. i18n: file: ui/userDlg.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:258
+#: rc.cpp:267
 msgctxt "@label:username"
 msgid "User Name"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:29
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:261
+#: rc.cpp:270
 msgctxt "@label:password"
 msgid "Password"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:43
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:264
+#: rc.cpp:273
 msgctxt "@label:confirmpassword"
 msgid "Confirm password"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:59
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
-#: rc.cpp:267
+#: rc.cpp:276
 msgctxt "@label:superuser"
 msgid "Superuser"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:66
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
-#: rc.cpp:270
+#: rc.cpp:279
 msgctxt "@label:cryptpassword"
 msgid "Crypt password"
 msgstr ""
 
-#: rc.cpp:271
+#: rc.cpp:280
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Sergiu Bivol"
 
-#: rc.cpp:272
+#: rc.cpp:281
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "sergiu@ase.md"
 
-#: src/convertDlg.cpp:59
+#: src/convertDlg.cpp:60
 msgctxt "@item:inlistbox"
 msgid "ImageMagick supported image formats"
 msgstr "Formate susținute de ImageMagick"
 
-#: src/convertDlg.cpp:88
+#: src/convertDlg.cpp:89
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Image</interface> and <interface>Convert To</"
@@ -654,7 +674,7 @@ msgstr ""
 "Completați atît cîmpul <interface>Imagine</interface> cît și "
 "<interface>Conversie în</interface>."
 
-#: src/convertDlg.cpp:91
+#: src/convertDlg.cpp:92
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
@@ -663,7 +683,7 @@ msgstr ""
 "Completați atît cîmpul <interface>Lățime</interface> cît și "
 "<interface>Lungime</interface>."
 
-#: src/convertDlg.cpp:94
+#: src/convertDlg.cpp:95
 msgctxt "@info"
 msgid ""
 "You do not have write permissions in this directory, please select another "
@@ -675,18 +695,18 @@ msgctxt "@title:window"
 msgid "Edit Group %1"
 msgstr ""
 
-#: src/helper/helper.cpp:99
+#: src/helper/helper.cpp:143
 msgctxt "@info"
 msgid "Original configuration file <filename>%1</filename> does not exist."
 msgstr "Fișierul de configurare original <filename>%1</filename> nu există."
 
-#: src/helper/helper.cpp:104
+#: src/helper/helper.cpp:148
 msgctxt "@info"
 msgid "Cannot remove current configuration file <filename>%1</filename>."
 msgstr ""
 "Fișierul de configurare curent <filename>%1</filename> nu poate fi eliminat."
 
-#: src/helper/helper.cpp:109
+#: src/helper/helper.cpp:153
 msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
@@ -695,7 +715,7 @@ msgstr ""
 "Fișierul de configurare original <filename>%1</filename> nu poate fi copiat "
 "la <filename>%2</filename>."
 
-#: src/helper/helper.cpp:125
+#: src/helper/helper.cpp:170
 msgctxt "@info"
 msgid "Failed to create temporary mount point."
 msgstr "Crearea punctului de montare temporar a eșuat."
@@ -725,7 +745,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "Instalarea GRUB a eșuat."
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:582
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:640
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Informații"
@@ -735,352 +755,356 @@ msgctxt "@info"
 msgid "Successfully installed GRUB."
 msgstr "GRUB a fost instalat cu succes."
 
-#: src/kcm_grub2.cpp:78
+#: src/kcm_grub2.cpp:81
 #, fuzzy
 msgid "KDE GRUB2 Bootloader Control Module"
 msgstr "Modul de control KDE pentru încărcătorul GRUB2"
 
-#: src/kcm_grub2.cpp:79
+#: src/kcm_grub2.cpp:82
 #, fuzzy
 msgid "A KDE Control Module for configuring the GRUB2 bootloader."
 msgstr "Modul de control KDE pentru configurarea încărcătorului GRUB2."
 
-#: src/kcm_grub2.cpp:83
+#: src/kcm_grub2.cpp:86
 #, fuzzy
 msgid "Main Developer"
 msgstr "Dezvoltator principal"
 
-#: src/kcm_grub2.cpp:84
+#: src/kcm_grub2.cpp:87
 #, fuzzy
 msgid "Developer"
 msgstr "Dezvoltator principal"
 
-#: src/kcm_grub2.cpp:110
+#: src/kcm_grub2.cpp:113
 msgctxt "@info"
 msgid "Failed to restore the default values."
 msgstr "Restabilirea valorilor implicite a eșuat."
 
-#: src/kcm_grub2.cpp:115
+#: src/kcm_grub2.cpp:118
 msgctxt "@info"
 msgid "Successfully restored the default values."
 msgstr "Valorile implicite au fost restabilite cu succes."
 
-#: src/kcm_grub2.cpp:117
+#: src/kcm_grub2.cpp:120
 msgctxt "@info"
 msgid "Save action not authorized."
 msgstr ""
 
-#: src/kcm_grub2.cpp:559
+#: src/kcm_grub2.cpp:609
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "Se salvează"
 
-#: src/kcm_grub2.cpp:560
+#: src/kcm_grub2.cpp:610
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "Se salvează configurările GRUB..."
 
-#: src/kcm_grub2.cpp:586
+#: src/kcm_grub2.cpp:644
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "Configurările GRUB au fost salvate cu succes."
 
-#: src/kcm_grub2.cpp:589
+#: src/kcm_grub2.cpp:647
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "Salvarea configurărilor GRUB a eșuat."
 
-#: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
-#: src/kcm_grub2.cpp:1477 src/kcm_grub2.cpp:1537
+#: src/kcm_grub2.cpp:746 src/kcm_grub2.cpp:779 src/kcm_grub2.cpp:799
+#: src/kcm_grub2.cpp:1547 src/kcm_grub2.cpp:1607
 msgctxt "@property"
 msgid "Yes"
 msgstr ""
 
-#: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
-#: src/kcm_grub2.cpp:1480 src/kcm_grub2.cpp:1545
+#: src/kcm_grub2.cpp:746 src/kcm_grub2.cpp:779 src/kcm_grub2.cpp:799
+#: src/kcm_grub2.cpp:1550 src/kcm_grub2.cpp:1615
 msgctxt "@property"
 msgid "No"
 msgstr ""
 
-#: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1485
+#: src/kcm_grub2.cpp:747 src/kcm_grub2.cpp:801 src/kcm_grub2.cpp:1555
 msgctxt "@property"
 msgid "Encrypted"
 msgstr ""
 
-#: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1488
+#: src/kcm_grub2.cpp:747 src/kcm_grub2.cpp:801 src/kcm_grub2.cpp:1558
 msgctxt "@property"
 msgid "Plain"
 msgstr ""
 
-#: src/kcm_grub2.cpp:692
+#: src/kcm_grub2.cpp:755
 msgctxt "@info"
 msgid "No users found!"
 msgstr ""
 
-#: src/kcm_grub2.cpp:709 src/kcm_grub2.cpp:1541
+#: src/kcm_grub2.cpp:772 src/kcm_grub2.cpp:1611
 msgctxt "@property"
 msgid "Superusers only"
 msgstr ""
 
-#: src/kcm_grub2.cpp:713 src/kcm_grub2.cpp:1546
+#: src/kcm_grub2.cpp:776 src/kcm_grub2.cpp:1616
 msgctxt "@property"
 msgid "Everyone"
 msgstr ""
 
-#: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
+#: src/kcm_grub2.cpp:825 src/kcm_grub2.cpp:847
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Introduceți rezoluția ecranului"
 
-#: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
+#: src/kcm_grub2.cpp:825 src/kcm_grub2.cpp:847
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "Introduceți o rezoluție GRUB:"
 
-#: src/kcm_grub2.cpp:834
+#: src/kcm_grub2.cpp:897
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr ""
 "Apăsați <shortcut>Escape</shortcut> pentru a părăsi regimul de ecran complet."
 
-#: src/kcm_grub2.cpp:983 src/kcm_grub2.cpp:984
+#: src/kcm_grub2.cpp:1051 src/kcm_grub2.cpp:1052
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Negru"
 
-#: src/kcm_grub2.cpp:985 src/kcm_grub2.cpp:986
+#: src/kcm_grub2.cpp:1053 src/kcm_grub2.cpp:1054
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Transparent"
 
-#: src/kcm_grub2.cpp:988
+#: src/kcm_grub2.cpp:1056
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Albastru"
 
-#: src/kcm_grub2.cpp:990
+#: src/kcm_grub2.cpp:1058
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Turcoaz"
 
-#: src/kcm_grub2.cpp:992
+#: src/kcm_grub2.cpp:1060
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Gri închis"
 
-#: src/kcm_grub2.cpp:994
+#: src/kcm_grub2.cpp:1062
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Verde"
 
-#: src/kcm_grub2.cpp:996
+#: src/kcm_grub2.cpp:1064
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Turcoaz deschis"
 
-#: src/kcm_grub2.cpp:998
+#: src/kcm_grub2.cpp:1066
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Albastru deschis"
 
-#: src/kcm_grub2.cpp:1000
+#: src/kcm_grub2.cpp:1068
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Verde deschis"
 
-#: src/kcm_grub2.cpp:1002
+#: src/kcm_grub2.cpp:1070
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Gri deschis"
 
-#: src/kcm_grub2.cpp:1004
+#: src/kcm_grub2.cpp:1072
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Purpuriu deschis"
 
-#: src/kcm_grub2.cpp:1006
+#: src/kcm_grub2.cpp:1074
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Roșu deschis"
 
-#: src/kcm_grub2.cpp:1008
+#: src/kcm_grub2.cpp:1076
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Purpuriu"
 
-#: src/kcm_grub2.cpp:1010
+#: src/kcm_grub2.cpp:1078
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Roșu"
 
-#: src/kcm_grub2.cpp:1012
+#: src/kcm_grub2.cpp:1080
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Alb"
 
-#: src/kcm_grub2.cpp:1014
+#: src/kcm_grub2.cpp:1082
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Galben"
 
-#: src/kcm_grub2.cpp:1038 src/kcm_grub2.cpp:1047
+#: src/kcm_grub2.cpp:1106 src/kcm_grub2.cpp:1115
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Încărcare silențioasă"
 
-#: src/kcm_grub2.cpp:1039 src/kcm_grub2.cpp:1048
+#: src/kcm_grub2.cpp:1107 src/kcm_grub2.cpp:1116
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Arată ecranul de întîmpinare"
 
-#: src/kcm_grub2.cpp:1040 src/kcm_grub2.cpp:1049
+#: src/kcm_grub2.cpp:1108 src/kcm_grub2.cpp:1117
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Dezactivează Plymouth"
 
-#: src/kcm_grub2.cpp:1041 src/kcm_grub2.cpp:1050
+#: src/kcm_grub2.cpp:1109 src/kcm_grub2.cpp:1118
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "Dezactivează ACPI"
 
-#: src/kcm_grub2.cpp:1042 src/kcm_grub2.cpp:1051
+#: src/kcm_grub2.cpp:1110 src/kcm_grub2.cpp:1119
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "Dezactivează APIC"
 
-#: src/kcm_grub2.cpp:1043 src/kcm_grub2.cpp:1052
+#: src/kcm_grub2.cpp:1111 src/kcm_grub2.cpp:1120
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Dezactivează APIC local"
 
-#: src/kcm_grub2.cpp:1044 src/kcm_grub2.cpp:1053
+#: src/kcm_grub2.cpp:1112 src/kcm_grub2.cpp:1121
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Regim de utilizator unic"
 
-#: src/kcm_grub2.cpp:1056 src/kcm_grub2.cpp:1061 src/kcm_grub2.cpp:1068
+#: src/kcm_grub2.cpp:1124 src/kcm_grub2.cpp:1129 src/kcm_grub2.cpp:1136
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "Consolă PC BIOS și EFI"
 
-#: src/kcm_grub2.cpp:1057 src/kcm_grub2.cpp:1062 src/kcm_grub2.cpp:1069
+#: src/kcm_grub2.cpp:1125 src/kcm_grub2.cpp:1130 src/kcm_grub2.cpp:1137
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Terminal în serie"
 
-#: src/kcm_grub2.cpp:1058 src/kcm_grub2.cpp:1063 src/kcm_grub2.cpp:1070
+#: src/kcm_grub2.cpp:1126 src/kcm_grub2.cpp:1131 src/kcm_grub2.cpp:1138
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Consolă „Open Firmware”"
 
-#: src/kcm_grub2.cpp:1064
+#: src/kcm_grub2.cpp:1132
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "Tastatură PC AT (Coreboot)"
 
-#: src/kcm_grub2.cpp:1065
+#: src/kcm_grub2.cpp:1133
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "Tastatură USB (protocolul HID Boot)"
 
-#: src/kcm_grub2.cpp:1071
+#: src/kcm_grub2.cpp:1139
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Regim de afișare grafică"
 
-#: src/kcm_grub2.cpp:1072
+#: src/kcm_grub2.cpp:1140
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "Afișare textuală VGA (Coreboot)"
 
-#: src/kcm_grub2.cpp:1299
+#: src/kcm_grub2.cpp:1369
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Se sondează dispozitivele"
 
-#: src/kcm_grub2.cpp:1300
+#: src/kcm_grub2.cpp:1370
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "Se sondează dispozitivele pentru denumirile lor GRUB..."
 
-#: src/kcm_grub2.cpp:1319
+#: src/kcm_grub2.cpp:1389
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "Obținerea denumirilor de dispozitive GRUB a eșuat."
 
-#: src/kcm_grub2.cpp:1326
+#: src/kcm_grub2.cpp:1396
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "Ajutătorul a întors o listă de dispozitive deformată."
 
-#: src/kcm_grub2.cpp:1456 src/kcm_grub2.cpp:1505
+#: src/kcm_grub2.cpp:1526 src/kcm_grub2.cpp:1575
 msgctxt "@header"
 msgid "Name"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1456
+#: src/kcm_grub2.cpp:1526
 msgctxt "@header"
 msgid "Superuser"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1456
+#: src/kcm_grub2.cpp:1526
 msgctxt "@header"
 msgid "Password type"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1505
+#: src/kcm_grub2.cpp:1575
 msgctxt "@header"
 msgid "Locked"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1505
+#: src/kcm_grub2.cpp:1575
 msgctxt "@header"
 msgid "Allowed users"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1629 src/kcm_grub2.cpp:1632
+#: src/kcm_grub2.cpp:1727 src/kcm_grub2.cpp:1730
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "Personalizat..."
 
-#: src/kcm_grub2.cpp:1633
+#: src/kcm_grub2.cpp:1731
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Nespecificat"
 
-#: src/kcm_grub2.cpp:1634
+#: src/kcm_grub2.cpp:1732
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Demarează în regim textual"
 
-#: src/kcm_grub2.cpp:1635
+#: src/kcm_grub2.cpp:1733
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "Păstrează rezoluția GRUB"
 
-#: src/kcm_grub2.cpp:1647
+#: src/kcm_grub2.cpp:1744
+msgid "System language"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1756
 msgctxt "@info"
 msgid "Not Authorized."
 msgstr ""
 
-#: src/kcm_grub2.cpp:1651
+#: src/kcm_grub2.cpp:1760
 msgctxt "@info"
 msgid "The process could not be started."
 msgstr "Procesul nu a putut fi pornit."
 
-#: src/kcm_grub2.cpp:1654
+#: src/kcm_grub2.cpp:1763
 msgctxt "@info"
 msgid "The process crashed."
 msgstr "Procesul a eșuat."
 
-#: src/kcm_grub2.cpp:1663
+#: src/kcm_grub2.cpp:1772
 msgctxt "@info"
 msgid "Command: %1 Error code: %2 Error message: %3"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1665
+#: src/kcm_grub2.cpp:1774
 msgctxt "@info"
 msgid "Error message: %1"
 msgstr ""
@@ -1313,22 +1337,22 @@ msgctxt "@info"
 msgid "Package removal failed."
 msgstr "Eliminarea pachetelor a eșuat."
 
-#: src/userDlg.cpp:31
+#: src/userDlg.cpp:33
 msgctxt "@title:window"
 msgid "Edit User"
 msgstr ""
 
-#: src/userDlg.cpp:67
+#: src/userDlg.cpp:69
 msgctxt "@info"
 msgid "Passwords don't match!"
 msgstr ""
 
-#: src/userDlg.cpp:70
+#: src/userDlg.cpp:72
 msgctxt "@info"
 msgid "Please fill in passwords!"
 msgstr ""
 
-#: src/userDlg.cpp:73
+#: src/userDlg.cpp:75
 msgctxt "@info"
 msgid "Please fill in username!"
 msgstr ""

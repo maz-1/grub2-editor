@@ -19,6 +19,7 @@ add_executable(kcmgrub2helper ${kcmgrub2helper_SRCS})
 target_link_libraries(kcmgrub2helper ${kcmgrub2helper_LINK_LIBS})
 
 # Install
+install(PROGRAMS grub_rmecho.sh DESTINATION ${CMAKE_INSTALL_PREFIX}/share/grub RENAME grub_rmecho)
 install(TARGETS kcmgrub2helper DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
 kauth_install_helper_files(kcmgrub2helper org.kde.kcontrol.kcmgrub2 root)
 kauth_install_actions(org.kde.kcontrol.kcmgrub2 kcmgrub2.actions)

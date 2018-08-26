@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
-"POT-Creation-Date: 2016-02-01 11:52+0800\n"
+"POT-Creation-Date: 2018-08-26 22:15+0800\n"
 "PO-Revision-Date: 2013-07-04 16:31+0800\n"
 "Last-Translator: Lin Ziyun < ohmygod19993 at gmail dot com >\n"
 "Language-Team: Chinese Simplified <kde-cn@googlegroups.com>\n"
@@ -206,64 +206,64 @@ msgstr "立即"
 #: rc.cpp:78
 #, fuzzy
 msgctxt "@option:radio"
-msgid "&After:"
+msgid "A&fter:"
 msgstr "多久之后："
 
 #. i18n: file: ui/kcm_grub2.ui:172
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
-#: rc.cpp:84
-msgctxt "@title:group"
-msgid "Generated Entries"
-msgstr "产生的项目"
-
-#. i18n: file: ui/kcm_grub2.ui:178
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
-#: rc.cpp:87
-msgctxt "@option:check"
-msgid "Generate recovery entries"
-msgstr "产生救援的选项"
-
-#. i18n: file: ui/kcm_grub2.ui:185
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
-#: rc.cpp:90
-msgctxt "@option:check"
-msgid "Generate memtest entries"
-msgstr "产生内存测试的选项"
-
-#. i18n: file: ui/kcm_grub2.ui:192
-#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
-#: rc.cpp:93
-msgctxt "@option:check"
-msgid "Probe for operating systems"
-msgstr "检测操作系统"
-
-#. i18n: file: ui/kcm_grub2.ui:202
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
-#: rc.cpp:96
+#: rc.cpp:84
 msgctxt "@title:group"
 msgid "Default Entry"
 msgstr "预设项目"
 
-#. i18n: file: ui/kcm_grub2.ui:208
+#. i18n: file: ui/kcm_grub2.ui:178
 #. i18n: ectx: property (text), widget (QLabel, label_default)
-#: rc.cpp:99
+#: rc.cpp:87
 msgctxt "@label:listbox"
 msgid "Default Entry:"
 msgstr "预设项目："
 
-#. i18n: file: ui/kcm_grub2.ui:224
+#. i18n: file: ui/kcm_grub2.ui:194
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_remove)
-#: rc.cpp:102
+#: rc.cpp:90
 msgctxt "@action:button"
 msgid "Remove Old Entries"
 msgstr "移除旧项目"
 
-#. i18n: file: ui/kcm_grub2.ui:233
+#. i18n: file: ui/kcm_grub2.ui:203
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_savedefault)
-#: rc.cpp:105
+#: rc.cpp:93
 msgctxt "@option:check"
 msgid "The next booted entry will become default"
 msgstr "下一个开机项目会成为预设值"
+
+#. i18n: file: ui/kcm_grub2.ui:213
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_entries)
+#: rc.cpp:96
+msgctxt "@title:group"
+msgid "Generated Entries"
+msgstr "产生的项目"
+
+#. i18n: file: ui/kcm_grub2.ui:219
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_recovery)
+#: rc.cpp:99
+msgctxt "@option:check"
+msgid "Generate recovery entries"
+msgstr "产生救援的选项"
+
+#. i18n: file: ui/kcm_grub2.ui:226
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_memtest)
+#: rc.cpp:102
+msgctxt "@option:check"
+msgid "Generate memtest entries"
+msgstr "产生内存测试的选项"
+
+#. i18n: file: ui/kcm_grub2.ui:233
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_osProber)
+#: rc.cpp:105
+msgctxt "@option:check"
+msgid "Probe for operating systems"
+msgstr "检测操作系统"
 
 #. i18n: file: ui/kcm_grub2.ui:244
 #. i18n: ectx: attribute (title), widget (QWidget, tab_appearance)
@@ -273,380 +273,400 @@ msgid "Appearance"
 msgstr "外观"
 
 #. i18n: file: ui/kcm_grub2.ui:250
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_languages)
 #: rc.cpp:111
+msgctxt "@title:group"
+msgid "Language"
+msgstr "语言"
+
+#. i18n: file: ui/kcm_grub2.ui:256
+#. i18n: ectx: property (text), widget (QLabel, label_languages)
+#: rc.cpp:114
+msgctxt "@label:listbox"
+msgid "Language:"
+msgstr "语言："
+
+#. i18n: file: ui/kcm_grub2.ui:273
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
+#: rc.cpp:117
 msgctxt "@title:group"
 msgid "Resolutions"
 msgstr "分辨率"
 
-#. i18n: file: ui/kcm_grub2.ui:256
+#. i18n: file: ui/kcm_grub2.ui:279
 #. i18n: ectx: property (text), widget (QLabel, label_gfxmode)
-#: rc.cpp:114
+#: rc.cpp:120
 msgctxt "@label:listbox"
 msgid "GRUB:"
 msgstr "GRUB："
 
-#. i18n: file: ui/kcm_grub2.ui:270
+#. i18n: file: ui/kcm_grub2.ui:293
 #. i18n: ectx: property (text), widget (QLabel, label_gfxpayload)
-#: rc.cpp:117
+#: rc.cpp:123
 msgctxt "@label:listbox"
 msgid "Linux Kernel:"
 msgstr "Linux 内核："
 
-#. i18n: file: ui/kcm_grub2.ui:284
+#. i18n: file: ui/kcm_grub2.ui:307
 #. i18n: ectx: property (text), widget (QPushButton, pushbutton_loadres)
-#: rc.cpp:120
+#: rc.cpp:126
 msgid "Load Available Resolutions"
 msgstr "加载可用分辨率"
 
-#. i18n: file: ui/kcm_grub2.ui:297
+#. i18n: file: ui/kcm_grub2.ui:321
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_colors)
-#: rc.cpp:123
+#: rc.cpp:129
 msgctxt "@title:group"
 msgid "Colors"
 msgstr "颜色"
 
-#. i18n: file: ui/kcm_grub2.ui:305
+#. i18n: file: ui/kcm_grub2.ui:329
 #. i18n: ectx: property (text), widget (QLabel, label_normalForeground)
-#: rc.cpp:126
+#: rc.cpp:132
 msgctxt "@label:chooser"
 msgid "Normal Foreground (Text):"
 msgstr "正常前景（文字）："
 
-#. i18n: file: ui/kcm_grub2.ui:315
+#. i18n: file: ui/kcm_grub2.ui:339
 #. i18n: ectx: property (text), widget (QLabel, label_highlightForeground)
-#: rc.cpp:129
+#: rc.cpp:135
 msgctxt "@label:chooser"
 msgid "Highlight Foreground (Text):"
 msgstr "突显的前景（文字）："
 
-#. i18n: file: ui/kcm_grub2.ui:329
+#. i18n: file: ui/kcm_grub2.ui:353
 #. i18n: ectx: property (text), widget (QLabel, label_normalBackground)
-#: rc.cpp:132
+#: rc.cpp:138
 msgctxt "@label:chooser"
 msgid "Normal Background:"
 msgstr "正常背景："
 
-#. i18n: file: ui/kcm_grub2.ui:339
+#. i18n: file: ui/kcm_grub2.ui:363
 #. i18n: ectx: property (text), widget (QLabel, label_highlightBackground)
-#: rc.cpp:135
+#: rc.cpp:141
 msgctxt "@label:chooser"
 msgid "Highlight Background:"
 msgstr "突显的背景："
 
-#. i18n: file: ui/kcm_grub2.ui:354
+#. i18n: file: ui/kcm_grub2.ui:378
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_background)
-#: rc.cpp:138
+#: rc.cpp:144
 msgctxt "@title:group Refers to the image shown behind the boot menu."
 msgid "Background"
 msgstr "背景"
 
-#. i18n: file: ui/kcm_grub2.ui:360
+#. i18n: file: ui/kcm_grub2.ui:384
 #. i18n: ectx: property (text), widget (QLabel, label_background)
-#: rc.cpp:141
+#: rc.cpp:147
 msgctxt "@label:textbox"
 msgid "Wallpaper:"
 msgstr "桌面："
 
-#. i18n: file: ui/kcm_grub2.ui:372
+#. i18n: file: ui/kcm_grub2.ui:396
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_preview)
-#: rc.cpp:144
+#: rc.cpp:150
 msgctxt "@action:button"
 msgid "Preview"
 msgstr "预览"
 
-#. i18n: file: ui/kcm_grub2.ui:379
+#. i18n: file: ui/kcm_grub2.ui:403
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_create)
-#: rc.cpp:147
+#: rc.cpp:153
 msgctxt "@action:button"
 msgid "Create"
 msgstr "建立"
 
-#. i18n: file: ui/kcm_grub2.ui:388
+#. i18n: file: ui/kcm_grub2.ui:412
 #. i18n: ectx: property (text), widget (QLabel, label_theme)
-#: rc.cpp:150
+#: rc.cpp:156
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "主题："
 
-#. i18n: file: ui/kcm_grub2.ui:415
+#. i18n: file: ui/kcm_grub2.ui:439
 #. i18n: ectx: attribute (title), widget (QWidget, tab_security)
-#: rc.cpp:153
+#: rc.cpp:159
 msgctxt "@title:tab"
 msgid "Security"
 msgstr "安全"
 
-#. i18n: file: ui/kcm_grub2.ui:421
+#. i18n: file: ui/kcm_grub2.ui:445
 #. i18n: ectx: property (text), widget (QCheckBox, secEnabled)
-#: rc.cpp:156
+#: rc.cpp:162
 msgctxt "@label:enablesec"
 msgid "Enable security"
 msgstr "启用安全选项"
 
-#. i18n: file: ui/kcm_grub2.ui:434
+#. i18n: file: ui/kcm_grub2.ui:458
 #. i18n: ectx: property (title), widget (QGroupBox, usersGroup)
-#: rc.cpp:159
+#: rc.cpp:165
 msgctxt "@label:users"
 msgid "Users"
 msgstr "用户"
 
-#. i18n: file: ui/kcm_grub2.ui:455
+#. i18n: file: ui/kcm_grub2.ui:479
 #. i18n: ectx: property (toolTip), widget (QToolButton, userAdd)
-#: rc.cpp:162
+#: rc.cpp:168
 #, fuzzy
 msgid "Add user"
 msgstr "添加用户"
 
-#. i18n: file: ui/kcm_grub2.ui:458
+#. i18n: file: ui/kcm_grub2.ui:482
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
-#. i18n: file: ui/kcm_grub2.ui:473
+#. i18n: file: ui/kcm_grub2.ui:496
 #. i18n: ectx: property (text), widget (QToolButton, userDel)
-#. i18n: file: ui/kcm_grub2.ui:488
+#. i18n: file: ui/kcm_grub2.ui:510
 #. i18n: ectx: property (text), widget (QToolButton, userMod)
-#. i18n: file: ui/kcm_grub2.ui:572
+#. i18n: file: ui/kcm_grub2.ui:593
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
-#. i18n: file: ui/kcm_grub2.ui:458
+#. i18n: file: ui/kcm_grub2.ui:482
 #. i18n: ectx: property (text), widget (QToolButton, userAdd)
-#. i18n: file: ui/kcm_grub2.ui:473
+#. i18n: file: ui/kcm_grub2.ui:496
 #. i18n: ectx: property (text), widget (QToolButton, userDel)
-#. i18n: file: ui/kcm_grub2.ui:488
+#. i18n: file: ui/kcm_grub2.ui:510
 #. i18n: ectx: property (text), widget (QToolButton, userMod)
-#. i18n: file: ui/kcm_grub2.ui:572
+#. i18n: file: ui/kcm_grub2.ui:593
 #. i18n: ectx: property (text), widget (QToolButton, groupMod)
-#: rc.cpp:165 rc.cpp:171 rc.cpp:177 rc.cpp:186
+#: rc.cpp:171 rc.cpp:177 rc.cpp:183 rc.cpp:192
 msgid "..."
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:470
+#. i18n: file: ui/kcm_grub2.ui:493
 #. i18n: ectx: property (toolTip), widget (QToolButton, userDel)
-#: rc.cpp:168
+#: rc.cpp:174
 #, fuzzy
 msgid "Delete user"
 msgstr "删除用户"
 
-#. i18n: file: ui/kcm_grub2.ui:485
+#. i18n: file: ui/kcm_grub2.ui:507
 #. i18n: ectx: property (toolTip), widget (QToolButton, userMod)
-#: rc.cpp:174
+#: rc.cpp:180
 #, fuzzy
 msgid "Edit user"
 msgstr "编辑用户"
 
-#. i18n: file: ui/kcm_grub2.ui:548
+#. i18n: file: ui/kcm_grub2.ui:569
 #. i18n: ectx: property (title), widget (QGroupBox, groupsGroup)
-#: rc.cpp:180
+#: rc.cpp:186
 msgctxt "@label:groups"
 msgid "Groups"
 msgstr "组"
 
-#. i18n: file: ui/kcm_grub2.ui:569
+#. i18n: file: ui/kcm_grub2.ui:590
 #. i18n: ectx: property (toolTip), widget (QToolButton, groupMod)
-#: rc.cpp:183
+#: rc.cpp:189
 #, fuzzy
 msgid "Edit group"
 msgstr "编辑组"
 
-#. i18n: file: ui/kcm_grub2.ui:631
+#. i18n: file: ui/kcm_grub2.ui:651
 #. i18n: ectx: attribute (title), widget (QWidget, tab_advanced)
-#: rc.cpp:189
+#: rc.cpp:195
 msgctxt "@title:tab Refers to settings."
 msgid "Advanced"
 msgstr "高级"
 
-#. i18n: file: ui/kcm_grub2.ui:637
+#. i18n: file: ui/kcm_grub2.ui:657
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
-#: rc.cpp:192
+#: rc.cpp:198
 msgctxt "@title:group"
 msgid "Linux Kernel Arguments"
 msgstr "Linux 内核参数"
 
-#. i18n: file: ui/kcm_grub2.ui:643
+#. i18n: file: ui/kcm_grub2.ui:663
 #. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
-#: rc.cpp:195
+#: rc.cpp:201
 msgctxt "@label:textbox"
 msgid "Normal Entries:"
 msgstr "正常的项目："
 
-#. i18n: file: ui/kcm_grub2.ui:655
+#. i18n: file: ui/kcm_grub2.ui:675
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:676
+#. i18n: file: ui/kcm_grub2.ui:696
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: file: ui/kcm_grub2.ui:726
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:727
+#. i18n: file: ui/kcm_grub2.ui:747
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:748
+#. i18n: file: ui/kcm_grub2.ui:768
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:655
+#. i18n: file: ui/kcm_grub2.ui:675
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:676
+#. i18n: file: ui/kcm_grub2.ui:696
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:706
+#. i18n: file: ui/kcm_grub2.ui:726
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:727
+#. i18n: file: ui/kcm_grub2.ui:747
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:748
+#. i18n: file: ui/kcm_grub2.ui:768
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#: rc.cpp:198 rc.cpp:204 rc.cpp:213 rc.cpp:219 rc.cpp:225
+#: rc.cpp:204 rc.cpp:210 rc.cpp:219 rc.cpp:225 rc.cpp:231
 msgctxt "@action:button"
 msgid "Suggestions"
 msgstr "建议"
 
-#. i18n: file: ui/kcm_grub2.ui:664
+#. i18n: file: ui/kcm_grub2.ui:684
 #. i18n: ectx: property (text), widget (QLabel, label_cmdline)
-#: rc.cpp:201
+#: rc.cpp:207
 msgctxt "@label:textbox"
 msgid "All Entries:"
 msgstr "所有的项目："
 
-#. i18n: file: ui/kcm_grub2.ui:688
+#. i18n: file: ui/kcm_grub2.ui:708
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
-#: rc.cpp:207
+#: rc.cpp:213
 msgctxt "@title:group Noun."
 msgid "Terminal"
 msgstr "终端"
 
-#. i18n: file: ui/kcm_grub2.ui:694
+#. i18n: file: ui/kcm_grub2.ui:714
 #. i18n: ectx: property (text), widget (QLabel, label_terminal)
-#: rc.cpp:210
+#: rc.cpp:216
 msgctxt "@label:textbox Noun."
 msgid "Terminal:"
 msgstr "终端："
 
-#. i18n: file: ui/kcm_grub2.ui:715
+#. i18n: file: ui/kcm_grub2.ui:735
 #. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
-#: rc.cpp:216
+#: rc.cpp:222
 msgctxt "@label:textbox"
 msgid "Input Terminal:"
 msgstr "输入终端："
 
-#. i18n: file: ui/kcm_grub2.ui:736
+#. i18n: file: ui/kcm_grub2.ui:756
 #. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
-#: rc.cpp:222
+#: rc.cpp:228
 msgctxt "@label:textbox"
 msgid "Output Terminal:"
 msgstr "输出终端："
 
-#. i18n: file: ui/kcm_grub2.ui:760
+#. i18n: file: ui/kcm_grub2.ui:780
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
-#: rc.cpp:228
+#: rc.cpp:234
 msgctxt "@title:group Refers to settings."
 msgid "Other"
 msgstr "其他"
 
-#. i18n: file: ui/kcm_grub2.ui:766
+#. i18n: file: ui/kcm_grub2.ui:786
 #. i18n: ectx: property (text), widget (QLabel, label_distributor)
-#: rc.cpp:231
+#: rc.cpp:237
 msgctxt "@label:textbox"
 msgid "Distributor:"
 msgstr "发布者："
 
-#. i18n: file: ui/kcm_grub2.ui:776
+#. i18n: file: ui/kcm_grub2.ui:796
 #. i18n: ectx: property (text), widget (QLabel, label_serial)
-#: rc.cpp:234
+#: rc.cpp:240
 msgctxt "@label:textbox"
 msgid "Serial Command:"
 msgstr "序列命令："
 
-#. i18n: file: ui/kcm_grub2.ui:786
+#. i18n: file: ui/kcm_grub2.ui:806
 #. i18n: ectx: property (text), widget (QLabel, label_initTune)
-#: rc.cpp:237
+#: rc.cpp:243
 msgctxt "@label:textbox"
 msgid "Init Tune:"
 msgstr "初始化调整："
 
-#. i18n: file: ui/kcm_grub2.ui:796
-#. i18n: ectx: property (text), widget (QLabel, label_uuid)
-#: rc.cpp:240
-msgctxt "@option:check"
-msgid "Enable UUIDs:"
+#. i18n: file: ui/kcm_grub2.ui:816
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_uuid)
+#: rc.cpp:246
+#, fuzzy
+msgid "Enable UUIDs"
 msgstr "开启 UUID："
 
-#. i18n: file: ui/kcm_grub2.ui:822
+#. i18n: file: ui/kcm_grub2.ui:823
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_noEcho)
+#: rc.cpp:249
+msgid "Remove echo commands for silent boot"
+msgstr "移除echo命令（用于静默启动）"
+
+#. i18n: file: ui/kcm_grub2.ui:846
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
-#: rc.cpp:243
+#: rc.cpp:252
 msgctxt "@title:group"
 msgid "Tools"
 msgstr "工具"
 
-#. i18n: file: ui/kcm_grub2.ui:834
+#. i18n: file: ui/kcm_grub2.ui:858
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_install)
-#: rc.cpp:246
+#: rc.cpp:255
 msgctxt "@action:button"
 msgid "Install/Recover Bootloader"
 msgstr "安装/恢复启动加载器"
 
 #. i18n: file: ui/removeDlg.ui:17
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:249
+#: rc.cpp:258
 msgctxt "@label:listbox"
 msgid "Select entries to remove:"
 msgstr "选择要移除的项目："
 
 #. i18n: file: ui/removeDlg.ui:34
 #. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:252
+#: rc.cpp:261
 msgctxt "@info:tooltip"
 msgid "Remove associated kernel header files."
 msgstr "移除相关的内核头文件。"
 
 #. i18n: file: ui/removeDlg.ui:37
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:255
+#: rc.cpp:264
 msgctxt "@option:check"
 msgid "Also remove associated old packages"
 msgstr "同时移除相关的旧包"
 
 #. i18n: file: ui/userDlg.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:258
+#: rc.cpp:267
 msgctxt "@label:username"
 msgid "User Name"
 msgstr "用户名"
 
 #. i18n: file: ui/userDlg.ui:29
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:261
+#: rc.cpp:270
 msgctxt "@label:password"
 msgid "Password"
 msgstr "密码"
 
 #. i18n: file: ui/userDlg.ui:43
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:264
+#: rc.cpp:273
 msgctxt "@label:confirmpassword"
 msgid "Confirm password"
 msgstr "确认密码"
 
 #. i18n: file: ui/userDlg.ui:59
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
-#: rc.cpp:267
+#: rc.cpp:276
 msgctxt "@label:superuser"
 msgid "Superuser"
 msgstr "超级用户"
 
 #. i18n: file: ui/userDlg.ui:66
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
-#: rc.cpp:270
+#: rc.cpp:279
 msgctxt "@label:cryptpassword"
 msgid "Crypt password"
 msgstr "密码加密"
 
-#: rc.cpp:271
+#: rc.cpp:280
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Lin Ziyun"
 
-#: rc.cpp:272
+#: rc.cpp:281
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "ohmygod19993@gmail.com"
 
-#: src/convertDlg.cpp:59
+#: src/convertDlg.cpp:60
 msgctxt "@item:inlistbox"
 msgid "ImageMagick supported image formats"
 msgstr "ImageMagick 支持的图像格式"
 
-#: src/convertDlg.cpp:88
+#: src/convertDlg.cpp:89
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Image</interface> and <interface>Convert To</"
@@ -655,7 +675,7 @@ msgstr ""
 "请填入「<interface>图像</interface>」与「<interface>转换为</interface>」栏"
 "目。"
 
-#: src/convertDlg.cpp:91
+#: src/convertDlg.cpp:92
 msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
@@ -663,7 +683,7 @@ msgid ""
 msgstr ""
 "请填入「<interface>宽度</interface>」与「<interface>高度</interface>」栏目。"
 
-#: src/convertDlg.cpp:94
+#: src/convertDlg.cpp:95
 msgctxt "@info"
 msgid ""
 "You do not have write permissions in this directory, please select another "
@@ -676,17 +696,17 @@ msgctxt "@title:window"
 msgid "Edit Group %1"
 msgstr "编辑组 %1"
 
-#: src/helper/helper.cpp:99
+#: src/helper/helper.cpp:143
 msgctxt "@info"
 msgid "Original configuration file <filename>%1</filename> does not exist."
 msgstr "原始设置文件 <filename>%1</filename> 不存在。"
 
-#: src/helper/helper.cpp:104
+#: src/helper/helper.cpp:148
 msgctxt "@info"
 msgid "Cannot remove current configuration file <filename>%1</filename>."
 msgstr "无法移除目前的设置文件 <filename>%1</filename>。"
 
-#: src/helper/helper.cpp:109
+#: src/helper/helper.cpp:153
 msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
@@ -694,7 +714,7 @@ msgid ""
 msgstr ""
 "无法复制原始设置文件 <filename>%1</filename> 到 <filename>%2</filename>。"
 
-#: src/helper/helper.cpp:125
+#: src/helper/helper.cpp:170
 msgctxt "@info"
 msgid "Failed to create temporary mount point."
 msgstr "建立暂时的挂载点失败。"
@@ -724,7 +744,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "安装 GRUB 失败。"
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:582
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:640
 msgctxt "@title:window"
 msgid "Information"
 msgstr "信息"
@@ -734,351 +754,355 @@ msgctxt "@info"
 msgid "Successfully installed GRUB."
 msgstr "已成功安装 GRUB。"
 
-#: src/kcm_grub2.cpp:78
+#: src/kcm_grub2.cpp:81
 #, fuzzy
 msgid "KDE GRUB2 Bootloader Control Module"
 msgstr "KDE GRUB2 启动加载器控制模块"
 
-#: src/kcm_grub2.cpp:79
+#: src/kcm_grub2.cpp:82
 #, fuzzy
 msgid "A KDE Control Module for configuring the GRUB2 bootloader."
 msgstr "设置 GRUB2 启动加载器的 KDE 控制模块"
 
-#: src/kcm_grub2.cpp:83
+#: src/kcm_grub2.cpp:86
 #, fuzzy
 msgid "Main Developer"
 msgstr "主要开发者"
 
-#: src/kcm_grub2.cpp:84
+#: src/kcm_grub2.cpp:87
 #, fuzzy
 msgid "Developer"
 msgstr "主要开发者"
 
-#: src/kcm_grub2.cpp:110
+#: src/kcm_grub2.cpp:113
 msgctxt "@info"
 msgid "Failed to restore the default values."
 msgstr "恢复预设值失败。"
 
-#: src/kcm_grub2.cpp:115
+#: src/kcm_grub2.cpp:118
 msgctxt "@info"
 msgid "Successfully restored the default values."
 msgstr "已成功恢复预设值。"
 
-#: src/kcm_grub2.cpp:117
+#: src/kcm_grub2.cpp:120
 msgctxt "@info"
 msgid "Save action not authorized."
 msgstr ""
 
-#: src/kcm_grub2.cpp:559
+#: src/kcm_grub2.cpp:609
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "正在储存"
 
-#: src/kcm_grub2.cpp:560
+#: src/kcm_grub2.cpp:610
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "正在储存 GRUB 设置..."
 
-#: src/kcm_grub2.cpp:586
+#: src/kcm_grub2.cpp:644
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "已成功储存 GRUB 设置。"
 
-#: src/kcm_grub2.cpp:589
+#: src/kcm_grub2.cpp:647
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "储存 GRUB 设置失败。"
 
-#: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
-#: src/kcm_grub2.cpp:1477 src/kcm_grub2.cpp:1537
+#: src/kcm_grub2.cpp:746 src/kcm_grub2.cpp:779 src/kcm_grub2.cpp:799
+#: src/kcm_grub2.cpp:1547 src/kcm_grub2.cpp:1607
 msgctxt "@property"
 msgid "Yes"
 msgstr "是"
 
-#: src/kcm_grub2.cpp:683 src/kcm_grub2.cpp:716 src/kcm_grub2.cpp:736
-#: src/kcm_grub2.cpp:1480 src/kcm_grub2.cpp:1545
+#: src/kcm_grub2.cpp:746 src/kcm_grub2.cpp:779 src/kcm_grub2.cpp:799
+#: src/kcm_grub2.cpp:1550 src/kcm_grub2.cpp:1615
 msgctxt "@property"
 msgid "No"
 msgstr "否"
 
-#: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1485
+#: src/kcm_grub2.cpp:747 src/kcm_grub2.cpp:801 src/kcm_grub2.cpp:1555
 msgctxt "@property"
 msgid "Encrypted"
 msgstr "加密"
 
-#: src/kcm_grub2.cpp:684 src/kcm_grub2.cpp:738 src/kcm_grub2.cpp:1488
+#: src/kcm_grub2.cpp:747 src/kcm_grub2.cpp:801 src/kcm_grub2.cpp:1558
 msgctxt "@property"
 msgid "Plain"
 msgstr "明文"
 
-#: src/kcm_grub2.cpp:692
+#: src/kcm_grub2.cpp:755
 msgctxt "@info"
 msgid "No users found!"
 msgstr "未找到任何用户！"
 
-#: src/kcm_grub2.cpp:709 src/kcm_grub2.cpp:1541
+#: src/kcm_grub2.cpp:772 src/kcm_grub2.cpp:1611
 msgctxt "@property"
 msgid "Superusers only"
 msgstr "仅超级用户"
 
-#: src/kcm_grub2.cpp:713 src/kcm_grub2.cpp:1546
+#: src/kcm_grub2.cpp:776 src/kcm_grub2.cpp:1616
 msgctxt "@property"
 msgid "Everyone"
 msgstr "所有人"
 
-#: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
+#: src/kcm_grub2.cpp:825 src/kcm_grub2.cpp:847
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "输入屏幕分辨率"
 
-#: src/kcm_grub2.cpp:762 src/kcm_grub2.cpp:784
+#: src/kcm_grub2.cpp:825 src/kcm_grub2.cpp:847
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "请输入 GRUB 分辨率："
 
-#: src/kcm_grub2.cpp:834
+#: src/kcm_grub2.cpp:897
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr "按下 ESC 离开全屏幕模式。"
 
-#: src/kcm_grub2.cpp:983 src/kcm_grub2.cpp:984
+#: src/kcm_grub2.cpp:1051 src/kcm_grub2.cpp:1052
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "黑"
 
-#: src/kcm_grub2.cpp:985 src/kcm_grub2.cpp:986
+#: src/kcm_grub2.cpp:1053 src/kcm_grub2.cpp:1054
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "透明"
 
-#: src/kcm_grub2.cpp:988
+#: src/kcm_grub2.cpp:1056
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "蓝"
 
-#: src/kcm_grub2.cpp:990
+#: src/kcm_grub2.cpp:1058
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "青绿色"
 
-#: src/kcm_grub2.cpp:992
+#: src/kcm_grub2.cpp:1060
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "暗灰色"
 
-#: src/kcm_grub2.cpp:994
+#: src/kcm_grub2.cpp:1062
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "绿"
 
-#: src/kcm_grub2.cpp:996
+#: src/kcm_grub2.cpp:1064
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "浅青色"
 
-#: src/kcm_grub2.cpp:998
+#: src/kcm_grub2.cpp:1066
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "亮蓝色"
 
-#: src/kcm_grub2.cpp:1000
+#: src/kcm_grub2.cpp:1068
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "浅绿色"
 
-#: src/kcm_grub2.cpp:1002
+#: src/kcm_grub2.cpp:1070
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "亮灰色"
 
-#: src/kcm_grub2.cpp:1004
+#: src/kcm_grub2.cpp:1072
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "浅品红色"
 
-#: src/kcm_grub2.cpp:1006
+#: src/kcm_grub2.cpp:1074
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "浅红色"
 
-#: src/kcm_grub2.cpp:1008
+#: src/kcm_grub2.cpp:1076
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "紫红色"
 
-#: src/kcm_grub2.cpp:1010
+#: src/kcm_grub2.cpp:1078
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "红色"
 
-#: src/kcm_grub2.cpp:1012
+#: src/kcm_grub2.cpp:1080
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "白色"
 
-#: src/kcm_grub2.cpp:1014
+#: src/kcm_grub2.cpp:1082
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "黄色"
 
-#: src/kcm_grub2.cpp:1038 src/kcm_grub2.cpp:1047
+#: src/kcm_grub2.cpp:1106 src/kcm_grub2.cpp:1115
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "安静开机"
 
-#: src/kcm_grub2.cpp:1039 src/kcm_grub2.cpp:1048
+#: src/kcm_grub2.cpp:1107 src/kcm_grub2.cpp:1116
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "显示欢迎画面"
 
-#: src/kcm_grub2.cpp:1040 src/kcm_grub2.cpp:1049
+#: src/kcm_grub2.cpp:1108 src/kcm_grub2.cpp:1117
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "关闭 Plymouth"
 
-#: src/kcm_grub2.cpp:1041 src/kcm_grub2.cpp:1050
+#: src/kcm_grub2.cpp:1109 src/kcm_grub2.cpp:1118
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "关闭 ACPI"
 
-#: src/kcm_grub2.cpp:1042 src/kcm_grub2.cpp:1051
+#: src/kcm_grub2.cpp:1110 src/kcm_grub2.cpp:1119
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "关闭 APIC"
 
-#: src/kcm_grub2.cpp:1043 src/kcm_grub2.cpp:1052
+#: src/kcm_grub2.cpp:1111 src/kcm_grub2.cpp:1120
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "关闭本地端 APIC"
 
-#: src/kcm_grub2.cpp:1044 src/kcm_grub2.cpp:1053
+#: src/kcm_grub2.cpp:1112 src/kcm_grub2.cpp:1121
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "单一使用者模式"
 
-#: src/kcm_grub2.cpp:1056 src/kcm_grub2.cpp:1061 src/kcm_grub2.cpp:1068
+#: src/kcm_grub2.cpp:1124 src/kcm_grub2.cpp:1129 src/kcm_grub2.cpp:1136
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "PC BIOS 与 EFI 主控台"
 
-#: src/kcm_grub2.cpp:1057 src/kcm_grub2.cpp:1062 src/kcm_grub2.cpp:1069
+#: src/kcm_grub2.cpp:1125 src/kcm_grub2.cpp:1130 src/kcm_grub2.cpp:1137
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "序列终端"
 
-#: src/kcm_grub2.cpp:1058 src/kcm_grub2.cpp:1063 src/kcm_grub2.cpp:1070
+#: src/kcm_grub2.cpp:1126 src/kcm_grub2.cpp:1131 src/kcm_grub2.cpp:1138
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "开启固件主控台"
 
-#: src/kcm_grub2.cpp:1064
+#: src/kcm_grub2.cpp:1132
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "PC AT 键盘（Coreboot）"
 
-#: src/kcm_grub2.cpp:1065
+#: src/kcm_grub2.cpp:1133
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "USB 键盘(HID 开机协定）"
 
-#: src/kcm_grub2.cpp:1071
+#: src/kcm_grub2.cpp:1139
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "图形模式输出"
 
-#: src/kcm_grub2.cpp:1072
+#: src/kcm_grub2.cpp:1140
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "VGA 文字输出（Coreboot）"
 
-#: src/kcm_grub2.cpp:1299
+#: src/kcm_grub2.cpp:1369
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "检测设备中"
 
-#: src/kcm_grub2.cpp:1300
+#: src/kcm_grub2.cpp:1370
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "检测设备在 GRUB 上的名称中..."
 
-#: src/kcm_grub2.cpp:1319
+#: src/kcm_grub2.cpp:1389
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "取得 GRUB 设备名称失败。"
 
-#: src/kcm_grub2.cpp:1326
+#: src/kcm_grub2.cpp:1396
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "协助程序传回不正确的设备列表。"
 
-#: src/kcm_grub2.cpp:1456 src/kcm_grub2.cpp:1505
+#: src/kcm_grub2.cpp:1526 src/kcm_grub2.cpp:1575
 msgctxt "@header"
 msgid "Name"
 msgstr "名称"
 
-#: src/kcm_grub2.cpp:1456
+#: src/kcm_grub2.cpp:1526
 msgctxt "@header"
 msgid "Superuser"
 msgstr "超级用户"
 
-#: src/kcm_grub2.cpp:1456
+#: src/kcm_grub2.cpp:1526
 msgctxt "@header"
 msgid "Password type"
 msgstr "密码类型"
 
-#: src/kcm_grub2.cpp:1505
+#: src/kcm_grub2.cpp:1575
 msgctxt "@header"
 msgid "Locked"
 msgstr "锁定"
 
-#: src/kcm_grub2.cpp:1505
+#: src/kcm_grub2.cpp:1575
 msgctxt "@header"
 msgid "Allowed users"
 msgstr "允许的用户"
 
-#: src/kcm_grub2.cpp:1629 src/kcm_grub2.cpp:1632
+#: src/kcm_grub2.cpp:1727 src/kcm_grub2.cpp:1730
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "自定义..."
 
-#: src/kcm_grub2.cpp:1633
+#: src/kcm_grub2.cpp:1731
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "未指定"
 
-#: src/kcm_grub2.cpp:1634
+#: src/kcm_grub2.cpp:1732
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "以文字模式开机"
 
-#: src/kcm_grub2.cpp:1635
+#: src/kcm_grub2.cpp:1733
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "保持 GRUB 的分辨率"
 
-#: src/kcm_grub2.cpp:1647
+#: src/kcm_grub2.cpp:1744
+msgid "System language"
+msgstr "系统语言"
+
+#: src/kcm_grub2.cpp:1756
 msgctxt "@info"
 msgid "Not Authorized."
 msgstr ""
 
-#: src/kcm_grub2.cpp:1651
+#: src/kcm_grub2.cpp:1760
 msgctxt "@info"
 msgid "The process could not be started."
 msgstr "无法启动进程。"
 
-#: src/kcm_grub2.cpp:1654
+#: src/kcm_grub2.cpp:1763
 msgctxt "@info"
 msgid "The process crashed."
 msgstr "进程已崩溃。"
 
-#: src/kcm_grub2.cpp:1663
+#: src/kcm_grub2.cpp:1772
 msgctxt "@info"
 msgid "Command: %1 Error code: %2 Error message: %3"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1665
+#: src/kcm_grub2.cpp:1774
 msgctxt "@info"
 msgid "Error message: %1"
 msgstr ""
@@ -1311,36 +1335,25 @@ msgctxt "@info"
 msgid "Package removal failed."
 msgstr "移除包失败。"
 
-#: src/userDlg.cpp:31
+#: src/userDlg.cpp:33
 msgctxt "@title:window"
 msgid "Edit User"
 msgstr "编辑用户"
 
-#: src/userDlg.cpp:67
+#: src/userDlg.cpp:69
 msgctxt "@info"
 msgid "Passwords don't match!"
 msgstr "两次输入的密码不同!"
 
-#: src/userDlg.cpp:70
+#: src/userDlg.cpp:72
 msgctxt "@info"
 msgid "Please fill in passwords!"
 msgstr "请输入密码!"
 
-#: src/userDlg.cpp:73
+#: src/userDlg.cpp:75
 msgctxt "@info"
 msgid "Please fill in username!"
 msgstr "请输入用户名!"
-
-msgid "System language"
-msgstr "系统语言"
-
-msgctxt "@title:group"
-msgid "Language"
-msgstr "语言"
-
-msgctxt "@label:listbox"
-msgid "Language:"
-msgstr "语言："
 
 #~ msgctxt "@label:add"
 #~ msgid "Add"

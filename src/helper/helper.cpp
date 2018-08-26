@@ -24,6 +24,7 @@
 //Qt
 #include <QDir>
 #include <QtGlobal>
+#include <QRegularExpression>
 
 //KDE
 //#include <KDebug>
@@ -283,6 +284,7 @@ ActionReply Helper::save(QVariantMap args)
     QString resultLanguage = args.value("resultLanguage").toString();
     bool memtest = args.value("memtest").toBool();
     bool security = args.value("security").toBool();
+    bool noecho = args.value("noecho").toBool();
 
     QFile::copy(configFileName, configFileName + ".original");
 
@@ -376,7 +378,26 @@ ActionReply Helper::save(QVariantMap args)
     if (grub_set_defaultReply.failed()) {
         return grub_set_defaultReply;
     }
-
+    
+    if (args.contains("noecho")) {
+        if (noecho) {
+            /*
+            QByteArray GrubCfgData;
+            QFile GrubCfg(GRUB_MENU);
+            if (GrubCfg.open(QIODevice::ReadWrite|QIODevice::Text))
+            {
+                GrubCfgData = GrubCfg.readAll();
+                QString GrubCfgTxt(GrubCfgData);
+                GrubCfgTxt.replace(QRegExp(R"((^|\n)\s*echo\s+.*(\n|$))"), "\\1");
+                GrubCfg.seek(0);
+                GrubCfg.write(GrubCfgTxt.toUtf8());
+                GrubCfg.close();
+            }
+            */
+            executeCommand(QStringList() << "/usr/share/grub/grub_rmecho" << GRUB_MENU, environment);
+        }
+    }
+    
     return grub_mkconfigReply;
 }
 
