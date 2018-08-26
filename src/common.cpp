@@ -27,7 +27,7 @@
 
 QString quoteWord(const QString &word)
 {
-    return !word.startsWith('`') || !word.endsWith('`') ? KShell::quoteArg(word) : word;
+    return !word.startsWith('`') || !word.endsWith('`') ? KShell::quoteArg(word.simplified()) : word.simplified();
 }
 QString unquoteWord(const QString &word)
 {
