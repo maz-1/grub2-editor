@@ -3,15 +3,15 @@
 #
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2011, 2012.
 # Franklin Weng <franklin@mail.everfocus.com.tw>, 2012, 2013.
-# Jeff Huang <s8321414@gmail.com>, 2017.
+# Jeff Huang <s8321414@gmail.com>, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
 "POT-Creation-Date: 2018-08-26 22:15+0800\n"
-"PO-Revision-Date: 2017-11-21 11:48+0800\n"
+"PO-Revision-Date: 2018-08-27 13:25+0800\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
-"Language-Team: Chinese Traditional <kde-tw@googlegroups.com>\n"
+"Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,10 +205,9 @@ msgstr "立即(&I)"
 #. i18n: file: ui/kcm_grub2.ui:131
 #. i18n: ectx: property (text), widget (QRadioButton, radioButton_timeout)
 #: rc.cpp:78
-#, fuzzy
 msgctxt "@option:radio"
 msgid "A&fter:"
-msgstr "多久之後：(&A)"
+msgstr "多久之後：(&F)"
 
 #. i18n: file: ui/kcm_grub2.ui:172
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_default)
@@ -278,14 +277,14 @@ msgstr "外觀"
 #: rc.cpp:111
 msgctxt "@title:group"
 msgid "Language"
-msgstr ""
+msgstr "語言"
 
 #. i18n: file: ui/kcm_grub2.ui:256
 #. i18n: ectx: property (text), widget (QLabel, label_languages)
 #: rc.cpp:114
 msgctxt "@label:listbox"
 msgid "Language:"
-msgstr ""
+msgstr "語言："
 
 #. i18n: file: ui/kcm_grub2.ui:273
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_resolutions)
@@ -568,15 +567,14 @@ msgstr "初始化調整："
 #. i18n: file: ui/kcm_grub2.ui:816
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_uuid)
 #: rc.cpp:246
-#, fuzzy
 msgid "Enable UUIDs"
-msgstr "開啟 UUID："
+msgstr "啟用 UUID"
 
 #. i18n: file: ui/kcm_grub2.ui:823
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_noEcho)
 #: rc.cpp:249
 msgid "Remove echo commands for silent boot"
-msgstr ""
+msgstr "從安靜開機移除 echo 指令"
 
 #. i18n: file: ui/kcm_grub2.ui:846
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
@@ -677,8 +675,7 @@ msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
 "interface> fields."
-msgstr ""
-"請填入「<interface>寬度</interface>」與「<interface>高度</interface>」欄位。"
+msgstr "請填入「<interface>寬度</interface>」與「<interface>高度</interface>」欄位。"
 
 #: src/convertDlg.cpp:95
 msgctxt "@info"
@@ -707,8 +704,7 @@ msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
 "%2</filename>."
-msgstr ""
-"無法複製原始設定檔 <filename>%1</filename> 到 <filename>%2</filename>。"
+msgstr "無法複製原始設定檔 <filename>%1</filename> 到 <filename>%2</filename>。"
 
 #: src/helper/helper.cpp:170
 msgctxt "@info"
@@ -1072,7 +1068,7 @@ msgstr "保持 GRUB 的解析度"
 
 #: src/kcm_grub2.cpp:1744
 msgid "System language"
-msgstr ""
+msgstr "系統語言"
 
 #: src/kcm_grub2.cpp:1756
 msgctxt "@info"
