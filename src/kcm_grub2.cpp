@@ -110,7 +110,7 @@ void KCMGRUB2::defaults()
     ExecuteJob *reply = defaultsAction.execute();
     reply->exec();
     if (reply->error()) {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), processReply(reply));
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), reply->errorString());
     } else {
         load();
         save();
@@ -646,7 +646,7 @@ void KCMGRUB2::saveComplete(KJob *kjob)
         KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, QString::fromUtf8(job->data().value("output").toByteArray())); // krazy:exclude=qclasses
         load();
     } else {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), processReply(job));
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), job->errorString());
     }
 }
 
@@ -1388,7 +1388,7 @@ void KCMGRUB2::readDevices()
     progressDlg.hide();
     
     if (reply->error()) {
-        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), processReply(reply));
+        KMessageBox::detailedError(this, i18nc("@info", "Failed to get GRUB device names."), reply->errorString());
         return;
     }// else {
      // progressDlg.hide();
