@@ -62,11 +62,11 @@ ConvertDialog::ConvertDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(p
     QString writeFilter = QString("*%1|%5 (%1)\n*%2|%6 (%2)\n*%3 *%4|%7 (%3 %4)").arg(".png", ".tga", ".jpg", ".jpeg", db.mimeTypeForName("image/png").comment(), db.mimeTypeForName("image/x-tga").comment(), db.mimeTypeForName("image/jpeg").comment());
 
     ui->kurlrequester_image->setMode(KFile::File | KFile::ExistingOnly | KFile::LocalOnly);
-    ui->kurlrequester_image->fileDialog()->setAcceptMode(QFileDialog::AcceptOpen);
-    ui->kurlrequester_image->fileDialog()->setNameFilter(readFilter);
+    ui->kurlrequester_image->setAcceptMode(QFileDialog::AcceptOpen);
+    ui->kurlrequester_image->setFilter(readFilter);
     ui->kurlrequester_converted->setMode(KFile::File | KFile::LocalOnly);
-    ui->kurlrequester_converted->fileDialog()->setAcceptMode(QFileDialog::AcceptSave);
-    ui->kurlrequester_converted->fileDialog()->setNameFilter(writeFilter);
+    ui->kurlrequester_converted->setAcceptMode(QFileDialog::AcceptSave);
+    ui->kurlrequester_converted->setFilter(writeFilter);
 }
 ConvertDialog::~ConvertDialog()
 {
