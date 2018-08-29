@@ -21,8 +21,8 @@
 //Qt
 #include <QStringList>
 
-//QPackageKit
-#include <QPackageKit>
+//PackageKit
+#include <PackageKit/Transaction>
 
 class QPkBackend : public QObject
 {
@@ -40,17 +40,17 @@ Q_SIGNALS:
     void finished(bool success);
     void progress(const QString &status, int percentage);
 private Q_SLOTS:
-    void slotFinished(PackageKit::Enum::Exit status, uint runtime);
-    void slotPackage(const QSharedPointer<PackageKit::Package> &package);
+    void slotFinished(PackageKit::Transaction::Exit status, uint runtime);
+    void slotPackage(PackageKit::Transaction::Info info, const QString &packageId, const QString &summary);
     void slotUpdateProgress();
 private:
     bool packageExists(const QString &packageName);
 
     PackageKit::Transaction *m_t;
-    PackageKit::Enum::Exit m_status;
-    QSharedPointer<PackageKit::Package> m_package;
+    PackageKit::Transaction::Exit m_status;
+    QString m_packageId;
     QStringList m_remove;
-    QList< QSharedPointer<PackageKit::Package> > m_removePtrs;
+    QStringList m_removeIds;
 };
 
 #endif

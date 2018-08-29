@@ -25,11 +25,13 @@
 #include <QFile>
 #include <QTextStream>
 #include <QTimer>
+#include <QIcon>
+#include <QProgressDialog>
+#include <QPushButton>
 
 //KDE
+#include <KLocalizedString>
 #include <KMessageBox>
-//Qt
-#include <QProgressDialog>
 
 //Project
 #include "entry.h"
@@ -37,43 +39,45 @@
 //Ui
 #include "ui_removeDlg.h"
 
-RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags)
+RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent) : QDialog(parent)
 {
     QWidget *widget = new QWidget(this);
     ui = new Ui::RemoveDialog;
     ui->setupUi(widget);
+    ui->gridLayout->setContentsMargins(0, 0, 0, 0);
+
+    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &RemoveDialog::slotAccepted);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    m_okButton = buttonBox->button(QDialogButtonBox::Ok);
+    m_okButton->setEnabled(false);
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
     mainLayout->addWidget(widget);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
-    buttonBox->button(QDialogButtonBox::Ok)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogOkButton));
-    buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCancelButton));
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(SlotOkButtonClicked()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    
+
     setWindowTitle(i18nc("@title:window", "Remove Old Entries"));
-    setWindowIcon(KIcon("list-remove"));
+    setWindowIcon(QIcon::fromTheme(QLatin1String("list-remove")));
 
     m_progressDlg = 0;
 
-#if HAVE_QAPT && QAPT_VERSION_MAJOR == 1
+#if HAVE_QAPT
     m_backend = new QAptBackend;
-#elif HAVE_QAPT && QAPT_VERSION_MAJOR == 2
-    m_backend = new QApt2Backend;
 #elif HAVE_QPACKAGEKIT
     m_backend = new QPkBackend;
 #endif
 
     detectCurrentKernelImage();
-    QProgressDialog progressDlg(this, i18nc("@title:window", "Finding Old Entries"), i18nc("@info:progress", "Finding Old Entries..."));
-    progressDlg.setCancelButton(0);
+    QProgressDialog progressDlg(this);
+    progressDlg.setWindowTitle(i18nc("@title:window", "Finding Old Entries"));
+    progressDlg.setLabelText(i18nc("@info:progress", "Finding Old Entries..."));
+    progressDlg.setCancelButton(nullptr);
     progressDlg.setModal(true);
     progressDlg.show();
     bool found = false;
     for (int i = 0; i < entries.size(); i++) {
-        progressDlg.progressBar()->setValue(100. / entries.size() * (i + 1));
+        progressDlg.setValue(100. / entries.size() * (i + 1));
         QString file = entries.at(i).kernel();
         if (file.isEmpty() || file == m_currentKernelImage) {
             continue;
@@ -107,7 +111,7 @@ RemoveDialog::RemoveDialog(const QList<Entry> &entries, QWidget *parent, Qt::Win
         ui->treeWidget->resizeColumnToContents(0);
         ui->treeWidget->setMinimumWidth(ui->treeWidget->columnWidth(0) + ui->treeWidget->sizeHintForRow(0));
         connect(ui->treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(slotItemChanged()));
-        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+        m_okButton->setEnabled(true);
     } else {
         KMessageBox::sorry(this, i18nc("@info", "No removable entries were found."));
         QTimer::singleShot(0, this, SLOT(reject()));
@@ -118,49 +122,49 @@ RemoveDialog::~RemoveDialog()
     delete m_backend;
     delete ui;
 }
-void RemoveDialog::slotOkButtonClicked(int button)
+void RemoveDialog::slotAccepted()
 {
-
-        for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
-            if (ui->treeWidget->topLevelItem(i)->checkState(0) == Qt::Checked) {
-                QString packageName = ui->treeWidget->topLevelItem(i)->data(0, Qt::UserRole).toString();
+    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
+        if (ui->treeWidget->topLevelItem(i)->checkState(0) == Qt::Checked) {
+            QString packageName = ui->treeWidget->topLevelItem(i)->data(0, Qt::UserRole).toString();
+            m_backend->markForRemoval(packageName);
+            if (ui->checkBox_headers->isChecked()) {
+                packageName.replace(QLatin1String("image"), QLatin1String("headers"));
                 m_backend->markForRemoval(packageName);
-                if (ui->checkBox_headers->isChecked()) {
-                    packageName.replace("image", "headers");
-                    m_backend->markForRemoval(packageName);
-                }
             }
         }
-        if (KMessageBox::questionYesNoList(this, i18nc("@info", "Are you sure you want to remove the following packages?"), m_backend->markedForRemoval()) == KMessageBox::Yes) {
-            connect(m_backend, SIGNAL(progress(QString,int)), this, SLOT(slotProgress(QString,int)));
-            connect(m_backend, SIGNAL(finished(bool)), this, SLOT(slotFinished(bool)));
-            m_backend->removePackages();
-        } else {
-            m_backend->undoChanges();
-        }
-        return;
-    this->accept();
+    }
+    if (KMessageBox::questionYesNoList(this, i18nc("@info", "Are you sure you want to remove the following packages?"), m_backend->markedForRemoval()) == KMessageBox::Yes) {
+        connect(m_backend, SIGNAL(progress(QString,int)), this, SLOT(slotProgress(QString,int)));
+        connect(m_backend, SIGNAL(finished(bool)), this, SLOT(slotFinished(bool)));
+        m_backend->removePackages();
+    } else {
+        m_backend->undoChanges();
+    }
+
+    accept();
 }
 void RemoveDialog::slotItemChanged()
 {
     for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) {
         if (ui->treeWidget->topLevelItem(i)->checkState(0) == Qt::Checked) {
-            this->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+            m_okButton->setEnabled(true);
             return;
         }
     }
-    this->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    m_okButton->setEnabled(false);
 }
 void RemoveDialog::slotProgress(const QString &status, int percentage)
 {
     if (!m_progressDlg) {
-        m_progressDlg = new QProgressDialog(this, i18nc("@title:window", "Removing Old Entries"));
-        m_progressDlg->setCancelButton(0);
+        m_progressDlg = new QProgressDialog(this);
+        m_progressDlg->setWindowTitle(i18nc("@title:window", "Removing Old Entries"));
+        m_progressDlg->setCancelButton(nullptr);
         m_progressDlg->setModal(true);
         m_progressDlg->show();
     }
     m_progressDlg->setLabelText(status);
-    m_progressDlg->progressBar()->setValue(percentage);
+    m_progressDlg->setValue(percentage);
 }
 void RemoveDialog::slotFinished(bool success)
 {
@@ -173,15 +177,15 @@ void RemoveDialog::slotFinished(bool success)
 }
 void RemoveDialog::detectCurrentKernelImage()
 {
-    QFile file("/proc/cmdline");
+    QFile file(QLatin1String("/proc/cmdline"));
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return;
     }
 
     QTextStream stream(&file);
-    Q_FOREACH(const QString &argument, stream.readAll().split(QRegExp("\\s+"))) {
+    Q_FOREACH(const QString &argument, stream.readAll().split(QRegExp(QLatin1String("\\s+")))) {
         if (argument.startsWith(QLatin1String("BOOT_IMAGE"))) {
-            m_currentKernelImage = argument.section('=', 1);
+            m_currentKernelImage = argument.section(QLatin1Char('='), 1);
             return;
         }
     }

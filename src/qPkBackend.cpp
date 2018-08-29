@@ -18,123 +18,122 @@
 //Own
 #include "qPkBackend.h"
 
+//Qt
+#include <QEventLoop>
+
 //KDE
 #include <KLocalizedString>
 
+//PackageKit
+#include <PackageKit/Daemon>
+
 //Taken from KDE playground/sysadmin/apper "as is"
-static QString statusToString(PackageKit::Enum::Status status)
+static QString statusToString(PackageKit::Transaction::Status status)
 {
     switch (status) {
-    case PackageKit::Enum::LastStatus:
-    case PackageKit::Enum::UnknownStatus:
-        return i18nc("This is when the transaction status is not known",
-                     "Unknown state");
-    case PackageKit::Enum::StatusSetup:
+    case PackageKit::Transaction::StatusSetup:
         return i18nc("transaction state, the daemon is in the process of starting",
                      "Waiting for service to start");
-    case PackageKit::Enum::StatusWait:
+    case PackageKit::Transaction::StatusWait:
         return i18nc("transaction state, the transaction is waiting for another to complete",
                      "Waiting for other tasks");
-    case PackageKit::Enum::StatusRunning:
+    case PackageKit::Transaction::StatusRunning:
         return i18nc("transaction state, just started",
                      "Running task");
-    case PackageKit::Enum::StatusQuery:
+    case PackageKit::Transaction::StatusQuery:
         return i18nc("transaction state, is querying data",
                      "Querying");
-    case PackageKit::Enum::StatusInfo:
+    case PackageKit::Transaction::StatusInfo:
         return i18nc("transaction state, getting data from a server",
                      "Getting information");
-    case PackageKit::Enum::StatusRemove:
+    case PackageKit::Transaction::StatusRemove:
         return i18nc("transaction state, removing packages",
                      "Removing packages");
-    case PackageKit::Enum::StatusDownload:
+    case PackageKit::Transaction::StatusDownload:
         return i18nc("transaction state, downloading package files",
                      "Downloading packages");
-    case PackageKit::Enum::StatusInstall:
+    case PackageKit::Transaction::StatusInstall:
         return i18nc("transaction state, installing packages",
                      "Installing packages");
-    case PackageKit::Enum::StatusRefreshCache:
+    case PackageKit::Transaction::StatusRefreshCache:
         return i18nc("transaction state, refreshing internal lists",
                      "Refreshing software list");
-    case PackageKit::Enum::StatusUpdate:
+    case PackageKit::Transaction::StatusUpdate:
         return i18nc("transaction state, installing updates",
                      "Updating packages");
-    case PackageKit::Enum::StatusCleanup:
+    case PackageKit::Transaction::StatusCleanup:
         return i18nc("transaction state, removing old packages, and cleaning config files",
                      "Cleaning up packages");
-    case PackageKit::Enum::StatusObsolete:
+    case PackageKit::Transaction::StatusObsolete:
         return i18nc("transaction state, obsoleting old packages",
                      "Obsoleting packages");
-    case PackageKit::Enum::StatusDepResolve:
+    case PackageKit::Transaction::StatusDepResolve:
         return i18nc("transaction state, checking the transaction before we do it",
                      "Resolving dependencies");
-    case PackageKit::Enum::StatusSigCheck:
+    case PackageKit::Transaction::StatusSigCheck:
         return i18nc("transaction state, checking if we have all the security keys for the operation",
                      "Checking signatures");
-    case PackageKit::Enum::StatusRollback:
-        return i18nc("transaction state, when we return to a previous system state",
-                     "Rolling back");
-    case PackageKit::Enum::StatusTestCommit:
+    case PackageKit::Transaction::StatusTestCommit:
         return i18nc("transaction state, when we're doing a test transaction",
                      "Testing changes");
-    case PackageKit::Enum::StatusCommit:
+    case PackageKit::Transaction::StatusCommit:
         return i18nc("transaction state, when we're writing to the system package database",
                      "Committing changes");
-    case PackageKit::Enum::StatusRequest:
+    case PackageKit::Transaction::StatusRequest:
         return i18nc("transaction state, requesting data from a server",
                      "Requesting data");
-    case PackageKit::Enum::StatusFinished:
+    case PackageKit::Transaction::StatusFinished:
         return i18nc("transaction state, all done!",
                      "Finished");
-    case PackageKit::Enum::StatusCancel:
+    case PackageKit::Transaction::StatusCancel:
         return i18nc("transaction state, in the process of cancelling",
                      "Cancelling");
-    case PackageKit::Enum::StatusDownloadRepository:
+    case PackageKit::Transaction::StatusDownloadRepository:
         return i18nc("transaction state, downloading metadata",
                      "Downloading repository information");
-    case PackageKit::Enum::StatusDownloadPackagelist:
+    case PackageKit::Transaction::StatusDownloadPackagelist:
         return i18nc("transaction state, downloading metadata",
                      "Downloading list of packages");
-    case PackageKit::Enum::StatusDownloadFilelist:
+    case PackageKit::Transaction::StatusDownloadFilelist:
         return i18nc("transaction state, downloading metadata",
                      "Downloading file lists");
-    case PackageKit::Enum::StatusDownloadChangelog:
+    case PackageKit::Transaction::StatusDownloadChangelog:
         return i18nc("transaction state, downloading metadata",
                      "Downloading lists of changes");
-    case PackageKit::Enum::StatusDownloadGroup:
+    case PackageKit::Transaction::StatusDownloadGroup:
         return i18nc("transaction state, downloading metadata",
                      "Downloading groups");
-    case PackageKit::Enum::StatusDownloadUpdateinfo:
+    case PackageKit::Transaction::StatusDownloadUpdateinfo:
         return i18nc("transaction state, downloading metadata",
                      "Downloading update information");
-    case PackageKit::Enum::StatusRepackaging:
+    case PackageKit::Transaction::StatusRepackaging:
         return i18nc("transaction state, repackaging delta files",
                      "Repackaging files");
-    case PackageKit::Enum::StatusLoadingCache:
+    case PackageKit::Transaction::StatusLoadingCache:
         return i18nc("transaction state, loading databases",
                      "Loading cache");
-    case PackageKit::Enum::StatusScanApplications:
+    case PackageKit::Transaction::StatusScanApplications:
         return i18nc("transaction state, scanning for running processes",
                      "Scanning installed applications");
-    case PackageKit::Enum::StatusGeneratePackageList:
+    case PackageKit::Transaction::StatusGeneratePackageList:
         return i18nc("transaction state, generating a list of packages installed on the system",
                      "Generating package lists");
-    case PackageKit::Enum::StatusWaitingForLock:
+    case PackageKit::Transaction::StatusWaitingForLock:
         return i18nc("transaction state, when we're waiting for the native tools to exit",
                      "Waiting for package manager lock");
-    case PackageKit::Enum::StatusWaitingForAuth:
+    case PackageKit::Transaction::StatusWaitingForAuth:
         return i18nc("waiting for user to type in a password",
                      "Waiting for authentication");
-    case PackageKit::Enum::StatusScanProcessList:
+    case PackageKit::Transaction::StatusScanProcessList:
         return i18nc("we are updating the list of processes",
                      "Updating the list of running applications");
-    case PackageKit::Enum::StatusCheckExecutableFiles:
+    case PackageKit::Transaction::StatusCheckExecutableFiles:
         return i18nc("we are checking executable files in use",
                      "Checking for applications currently in use");
-    case PackageKit::Enum::StatusCheckLibraries:
+    case PackageKit::Transaction::StatusCheckLibraries:
         return i18nc("we are checking for libraries in use",
                      "Checking for libraries currently in use");
-    case PackageKit::Enum::StatusCopyFiles:
+    case PackageKit::Transaction::StatusCopyFiles:
         return i18nc("we are copying package files to prepare to install",
                      "Copying files");
     }
@@ -151,24 +150,21 @@ QPkBackend::~QPkBackend()
 
 QStringList QPkBackend::ownerPackage(const QString &fileName)
 {
-    PackageKit::Transaction t(QString(), this);
-    if (t.error() != PackageKit::Client::NoError) {
-        return QStringList();
-    }
-    m_package.clear();
+    auto *t = PackageKit::Daemon::searchFiles(fileName);
+    m_packageId.clear();
     QEventLoop loop;
-    connect(&t, SIGNAL(finished(PackageKit::Enum::Exit,uint)), &loop, SLOT(quit()));
-    connect(&t, SIGNAL(finished(PackageKit::Enum::Exit,uint)), this, SLOT(slotFinished(PackageKit::Enum::Exit,uint)));
-    connect(&t, SIGNAL(package(QSharedPointer<PackageKit::Package>)), this, SLOT(slotPackage(QSharedPointer<PackageKit::Package>)));
-    t.searchFiles(fileName);
+    connect(t, &PackageKit::Transaction::finished, &loop, &QEventLoop::quit);
+    connect(t, &PackageKit::Transaction::finished, this, &QPkBackend::slotFinished);
+    connect(t, &PackageKit::Transaction::package, this, &QPkBackend::slotPackage);
     loop.exec();
-    return m_status == PackageKit::Enum::ExitSuccess && !m_package.isNull() ? QStringList() << m_package->name() << m_package->version() : QStringList();
+    return m_status == PackageKit::Transaction::ExitSuccess && !m_packageId.isNull() ?
+                QStringList() << PackageKit::Transaction::packageName(m_packageId) << PackageKit::Transaction::packageVersion(m_packageId) : QStringList();
 }
 void QPkBackend::markForRemoval(const QString &packageName)
 {
     if (!m_remove.contains(packageName) && packageExists(packageName)) {
-        m_remove.append(m_package->name());
-        m_removePtrs.append(m_package);
+        m_remove.append(PackageKit::Transaction::packageName(m_packageId));
+        m_removeIds.append(m_packageId);
     }
 }
 QStringList QPkBackend::markedForRemoval() const
@@ -177,49 +173,42 @@ QStringList QPkBackend::markedForRemoval() const
 }
 void QPkBackend::removePackages()
 {
-    m_t = new PackageKit::Transaction(QString(), this);
-    if (m_t->error() != PackageKit::Client::NoError) {
-        return;
-    }
-    connect(m_t, SIGNAL(changed()), this, SLOT(slotUpdateProgress()));
-    connect(m_t, SIGNAL(finished(PackageKit::Enum::Exit,uint)), this, SLOT(slotFinished(PackageKit::Enum::Exit,uint)));
-    m_t->removePackages(m_removePtrs, false, true);
+    m_t = PackageKit::Daemon::removePackages(m_removeIds, false, true);
+    connect(m_t, &PackageKit::Transaction::percentageChanged, this, &QPkBackend::slotUpdateProgress);
+    connect(m_t, &PackageKit::Transaction::statusChanged, this, &QPkBackend::slotUpdateProgress);
+    connect(m_t, &PackageKit::Transaction::finished, this, &QPkBackend::slotFinished);
 }
 void QPkBackend::undoChanges()
 {
     m_remove.clear();
-    m_removePtrs.clear();
+    m_removeIds.clear();
 }
 
-void QPkBackend::slotFinished(PackageKit::Enum::Exit status, uint runtime)
+void QPkBackend::slotFinished(PackageKit::Transaction::Exit status, uint runtime)
 {
     Q_UNUSED(runtime)
     m_status = status;
-    if (m_t && m_t->role() == PackageKit::Enum::RoleRemovePackages) {
-        emit finished(m_status == PackageKit::Enum::ExitSuccess);
+    if (m_t && m_t->role() == PackageKit::Transaction::RoleRemovePackages) {
+        Q_EMIT finished(m_status == PackageKit::Transaction::ExitSuccess);
     }
 }
-void QPkBackend::slotPackage(const QSharedPointer<PackageKit::Package> &package)
+void QPkBackend::slotPackage(PackageKit::Transaction::Info, const QString &packageId, const QString &)
 {
-    m_package = package;
+    m_packageId = packageId;
 }
 void QPkBackend::slotUpdateProgress()
 {
-    emit progress(statusToString(m_t->status()), m_t->percentage());
+    Q_EMIT progress(statusToString(m_t->status()), m_t->percentage());
 }
 
 bool QPkBackend::packageExists(const QString &packageName)
 {
-    PackageKit::Transaction t(QString(), this);
-    if (t.error() != PackageKit::Client::NoError) {
-        return false;
-    }
-    m_package.clear();
+    auto *t = PackageKit::Daemon::resolve(packageName);
+    m_packageId.clear();
     QEventLoop loop;
-    connect(&t, SIGNAL(finished(PackageKit::Enum::Exit,uint)), &loop, SLOT(quit()));
-    connect(&t, SIGNAL(finished(PackageKit::Enum::Exit,uint)), this, SLOT(slotFinished(PackageKit::Enum::Exit,uint)));
-    connect(&t, SIGNAL(package(QSharedPointer<PackageKit::Package>)), this, SLOT(slotPackage(QSharedPointer<PackageKit::Package>)));
-    t.resolve(packageName);
+    connect(t, &PackageKit::Transaction::finished, &loop, &QEventLoop::quit);
+    connect(t, &PackageKit::Transaction::finished, this, &QPkBackend::slotFinished);
+    connect(t, &PackageKit::Transaction::package, this, &QPkBackend::slotPackage);
     loop.exec();
-    return m_status == PackageKit::Enum::ExitSuccess && !m_package.isNull();
+    return m_status == PackageKit::Transaction::ExitSuccess && !m_packageId.isNull();
 }

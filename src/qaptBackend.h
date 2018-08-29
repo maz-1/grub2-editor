@@ -22,7 +22,8 @@
 #include <QStringList>
 
 //QApt
-#include <libqapt/backend.h>
+#include <QApt/Backend>
+#include <QApt/Transaction>
 
 class QAptBackend : public QObject
 {
@@ -40,11 +41,12 @@ Q_SIGNALS:
     void finished(bool success);
     void progress(const QString &status, int percentage);
 private Q_SLOTS:
-    void slotWorkerEvent(QApt::WorkerEvent event);
-    void slotErrorOccurred(QApt::ErrorCode error, const QVariantMap &details);
+    void slotUpdateProgress();
+    void slotTransactionFinished(QApt::ExitStatus status);
 private:
     QApt::Backend *m_backend;
-    QApt::ErrorCode m_error;
+    QApt::ExitStatus m_exitStatus;
+    QApt::Transaction *m_trans;
 };
 
 #endif

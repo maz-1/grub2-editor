@@ -21,18 +21,15 @@
 #ifndef REMOVEDLG_H
 #define REMOVEDLG_H
 
-//KDE
+//Qt
 #include <QDialog>
-#include <QProgressDialog>
 class QProgressDialog;
 
 //Project
 #include <config.h>
 class Entry;
-#if HAVE_QAPT && QAPT_VERSION_MAJOR == 1
+#if HAVE_QAPT
 #include "qaptBackend.h"
-#elif HAVE_QAPT && QAPT_VERSION_MAJOR == 2
-#include "qapt2Backend.h"
 #elif HAVE_QPACKAGEKIT
 #include "qPkBackend.h"
 #endif
@@ -47,27 +44,25 @@ class RemoveDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit RemoveDialog(const QList<Entry> &entries, QWidget *parent = 0, Qt::WFlags flags = 0);
+    explicit RemoveDialog(const QList<Entry> &entries, QWidget *parent = 0);
     virtual ~RemoveDialog();
-protected Q_SLOTS:
-    virtual void slotOkButtonClicked();
 private Q_SLOTS:
+    void slotAccepted();
     void slotItemChanged();
     void slotProgress(const QString &status, int percentage);
     void slotFinished(bool success);
 private:
     void detectCurrentKernelImage();
 
-#if HAVE_QAPT && QAPT_VERSION_MAJOR == 1
+#if HAVE_QAPT
     QAptBackend *m_backend;
-#elif HAVE_QAPT && QAPT_VERSION_MAJOR == 2
-    QApt2Backend *m_backend;
 #elif HAVE_QPACKAGEKIT
     QPkBackend *m_backend;
 #endif
     QString m_currentKernelImage;
-    KProgressDialog *m_progressDlg;
+    QProgressDialog *m_progressDlg;
     Ui::RemoveDialog *ui;
+    QPushButton *m_okButton;
 };
 
 #endif

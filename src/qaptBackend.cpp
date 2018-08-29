@@ -18,14 +18,11 @@
 //Own
 #include "qaptBackend.h"
 
-//Qt
-#include <QEventLoop>
-
 QAptBackend::QAptBackend(QObject *parent) : QObject(parent)
 {
     m_backend = new QApt::Backend;
     m_backend->init();
-    m_error = QApt::UnknownError;
+    m_exitStatus = QApt::ExitSuccess;
 }
 QAptBackend::~QAptBackend()
 {
@@ -59,24 +56,23 @@ QStringList QAptBackend::markedForRemoval() const
 }
 void QAptBackend::removePackages()
 {
-    connect(m_backend, SIGNAL(commitProgress(QString,int)), this, SIGNAL(progress(QString,int)));
-    connect(m_backend, SIGNAL(workerEvent(QApt::WorkerEvent)), this, SLOT(slotWorkerEvent(QApt::WorkerEvent)));
-    connect(m_backend, SIGNAL(errorOccurred(QApt::ErrorCode,QVariantMap)), this, SLOT(slotErrorOccurred(QApt::ErrorCode,QVariantMap)));
-    m_backend->commitChanges();
+    m_trans = m_backend->commitChanges();
+
+    connect(m_trans, SIGNAL(progressChanged(int)), this, SLOT(slotUpdateProgress()));
+    connect(m_trans, SIGNAL(finished(QApt::ExitStatus)), this, SLOT(slotTransactionFinished(QApt::ExitStatus)));
+    m_trans->run();
 }
 void QAptBackend::undoChanges()
 {
     m_backend->init();
 }
 
-void QAptBackend::slotWorkerEvent(QApt::WorkerEvent event)
+void QAptBackend::slotUpdateProgress()
 {
-    if (event == QApt::CommitChangesFinished) {
-        emit finished(m_error == QApt::UnknownError);
-    }
+    Q_EMIT progress(m_trans->statusDetails(), m_trans->progress());
 }
-void QAptBackend::slotErrorOccurred(QApt::ErrorCode error, const QVariantMap &details)
+void QAptBackend::slotTransactionFinished(QApt::ExitStatus status)
 {
-    Q_UNUSED(details)
-    m_error = error;
+    m_exitStatus = status;
+    Q_EMIT finished(status == QApt::ExitSuccess);
 }
