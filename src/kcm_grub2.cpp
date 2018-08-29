@@ -107,6 +107,9 @@ void KCMGRUB2::defaults()
         return;
     }
     
+    if (KMessageBox::questionYesNo(this, i18nc("@info", "All your current settings will be lost! do you want to proceed?")) != KMessageBox::Yes)
+        return;
+    
     Action defaultsAction("org.kde.kcontrol.kcmgrub2.defaults");
     defaultsAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     
