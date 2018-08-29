@@ -104,7 +104,8 @@ void KCMGRUB2::defaults()
     {
         return;
     }
-    Action defaultsAction("org.kde.kcontrol.kcmgrub2.defaults");
+    Action defaultsAction("org.kde.kcontrol.kcmgrub2.main");
+    defaultsAction.addArgument("actionType", actionDefaults);
     defaultsAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     
     ExecuteJob *reply = defaultsAction.execute();
@@ -549,7 +550,8 @@ void KCMGRUB2::save()
         stream << it.key() << '=' << it.value() << endl;
     }
     
-    Action saveAction("org.kde.kcontrol.kcmgrub2.save");
+    Action saveAction("org.kde.kcontrol.kcmgrub2.main");
+    saveAction.addArgument("actionType", actionSave);
     saveAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     saveAction.addArgument("rawConfigFileContents", configFileContents.toUtf8());
     saveAction.addArgument("rawDefaultEntry", !m_entries.isEmpty() ? grubDefault.toUtf8() : m_settings.value("GRUB_DEFAULT").toUtf8());
@@ -1255,7 +1257,7 @@ QString KCMGRUB2::convertToLocalFileName(const QString &grubFileName)
 
 ExecuteJob * KCMGRUB2::loadFile(GrubFile grubFile)
 {
-    Action loadAction("org.kde.kcontrol.kcmgrub2.initialize");
+    Action loadAction("org.kde.kcontrol.kcmgrub2.main");
     loadAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     loadAction.addArgument("actionType", actionLoad);
     loadAction.addArgument("grubFile", grubFile);
@@ -1368,7 +1370,7 @@ void KCMGRUB2::readDevices()
         }
     }
 
-    Action probeAction("org.kde.kcontrol.kcmgrub2.initialize");
+    Action probeAction("org.kde.kcontrol.kcmgrub2.main");
     probeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     probeAction.addArgument("actionType", actionProbe);
     probeAction.addArgument("mountPoints", mountPoints);
@@ -1412,7 +1414,7 @@ void KCMGRUB2::readDevices()
 }
 void KCMGRUB2::readResolutions()
 {
-    Action probeVbeAction("org.kde.kcontrol.kcmgrub2.initialize");
+    Action probeVbeAction("org.kde.kcontrol.kcmgrub2.main");
     probeVbeAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     probeVbeAction.addArgument("actionType", actionProbevbe);
 
@@ -1451,7 +1453,7 @@ void KCMGRUB2::parseGroupDir()
             m_groupFilesContent[m_groupFilesList[i]] = stream.readAll();
             initializeAuthorized = true;
         } else {
-            Action readGroupAction("org.kde.kcontrol.kcmgrub2.initialize");
+            Action readGroupAction("org.kde.kcontrol.kcmgrub2.main");
             readGroupAction.setHelperId("org.kde.kcontrol.kcmgrub2");
             readGroupAction.addArgument("actionType", actionLoad);
             readGroupAction.addArgument("grubFile", GrubGroupFile);
@@ -1482,7 +1484,7 @@ void KCMGRUB2::parseGroupDir()
             m_securityOn = file.permissions() & (QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther);
         }
     } else {
-        Action readHeaderAction("org.kde.kcontrol.kcmgrub2.initialize");
+        Action readHeaderAction("org.kde.kcontrol.kcmgrub2.main");
          readHeaderAction.setHelperId("org.kde.kcontrol.kcmgrub2");
          readHeaderAction.addArgument("actionType", actionLoad);
          readHeaderAction.addArgument("grubFile", GrubGroupFile);

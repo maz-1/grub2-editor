@@ -18,6 +18,8 @@
 #ifndef INSTALLDLG_H
 #define INSTALLDLG_H
 
+#include "config.h"
+
 //KDE
 #include <QDialog>
 #include <QProgressDialog>

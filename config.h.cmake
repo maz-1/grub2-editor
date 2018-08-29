@@ -25,7 +25,10 @@
 enum actionType {
     actionLoad,
     actionProbe,
-    actionProbevbe
+    actionProbevbe,
+    actionDefaults,
+    actionInstall,
+    actionSave
 };
 
 enum GrubFile {

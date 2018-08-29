@@ -74,7 +74,7 @@ ActionReply Helper::executeCommand(const QStringList &command, QHash<QString, QS
     return reply;
 }
 
-ActionReply Helper::initialize(QVariantMap args)
+ActionReply Helper::main(QVariantMap args)
 {
     ActionReply reply;
     switch (args.value("actionType").toInt()) {
@@ -86,6 +86,16 @@ ActionReply Helper::initialize(QVariantMap args)
         break;
     case actionProbevbe:
         reply = probevbe(args);
+        break;
+    case actionDefaults:
+        reply = defaults(args);
+        break;
+    case actionInstall:
+        reply = install(args);
+        break;
+    case actionSave:
+        reply = save(args);
+        break;
     }
     return reply;
 }

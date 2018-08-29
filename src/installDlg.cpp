@@ -93,7 +93,8 @@ InstallDialog::~InstallDialog()
 
 void InstallDialog::SlotOkButtonClicked()
 {
-        Action installAction("org.kde.kcontrol.kcmgrub2.install");
+        Action installAction("org.kde.kcontrol.kcmgrub2.main");
+        installAction.addArgument("actionType", actionInstall);
         installAction.setHelperId("org.kde.kcontrol.kcmgrub2");
         for (int i = 0; i < ui->treeWidget_recover->topLevelItemCount(); i++) {
             QRadioButton *radio = qobject_cast<QRadioButton *>(ui->treeWidget_recover->itemWidget(ui->treeWidget_recover->topLevelItem(i), 0));
