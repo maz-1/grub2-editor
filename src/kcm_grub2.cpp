@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
  * Copyright (C) 2008-2013 Konstantinos Smanis <konstantinos.smanis@gmail.com> *
  *                                                                             *
  * This program is free software: you can redistribute it and/or modify it     *
@@ -638,12 +638,18 @@ void KCMGRUB2::saveComplete(KJob *kjob)
     }
     
     if (!job->error()) {
+        QString strDetails = QString::fromUtf8(job->data().value("output").toByteArray());
         QDialog *dialog = new QDialog(this, Qt::Dialog);
         dialog->setWindowTitle(i18nc("@title:window", "Information"));
         dialog->setModal(true);
-        //TO BE FIXED. Have no idea how to show a kmessagebox with a "Details" button.
+        //TO BE FIXED
         QDialogButtonBox *btnbox = new QDialogButtonBox(QDialogButtonBox::Ok);
-        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, QString::fromUtf8(job->data().value("output").toByteArray())); // krazy:exclude=qclasses
+            QPushButton *detailsButton = new QPushButton;
+            detailsButton->setObjectName(QStringLiteral("detailsButton"));
+            detailsButton->setText(QApplication::translate("KMessageBox", "&Details") + QStringLiteral(" >>"));
+            detailsButton->setIcon(QIcon::fromTheme(QStringLiteral("help-about")));
+            btnbox->addButton(detailsButton, QDialogButtonBox::HelpRole);
+        KMessageBox::createKMessageBox(dialog, btnbox, QMessageBox::Information, i18nc("@info", "Successfully saved GRUB settings."), QStringList(), QString(), 0, KMessageBox::Notify, strDetails); // krazy:exclude=qclasses
         load();
     } else {
         KMessageBox::detailedError(this, i18nc("@info", "Failed to save GRUB settings."), job->errorString());
