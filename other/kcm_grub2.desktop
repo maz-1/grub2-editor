@@ -1,5 +1,5 @@
 [Desktop Entry]
-Icon=system-reboot
+Icon=grub2-editor
 Type=Service
 X-KDE-ServiceTypes=KCModule
 Exec=kcmshell5 kcm_grub2
