@@ -87,7 +87,9 @@ KCMGRUB2::KCMGRUB2(QWidget *parent, const QVariantList &list) : KCModule(parent,
     about->addAuthor("Lin Ziyun", i18n("Developer"), "ohmygod19993@gmail.com");
     
     setAboutData(about);
-
+    
+    this->setNeedsAuthorization(true);
+    
     ui = new Ui::KCMGRUB2;
     ui->setupUi(this);
     setupObjects();
@@ -104,20 +106,27 @@ void KCMGRUB2::defaults()
     {
         return;
     }
+    
     Action defaultsAction("org.kde.kcontrol.kcmgrub2.defaults");
     defaultsAction.setHelperId("org.kde.kcontrol.kcmgrub2");
     
     ExecuteJob *reply = defaultsAction.execute();
     reply->exec();
+    
+    if (reply->action().status() != Action::AuthorizedStatus ) {
+        saveAuthorized = false;
+        KMessageBox::error(this, i18nc("@info", "Save action not authorized."));
+        return;
+    } else {
+        saveAuthorized = true;
+    }
+    
     if (reply->error()) {
         KMessageBox::detailedError(this, i18nc("@info", "Failed to restore the default values."), reply->errorString());
     } else {
         load();
         save();
-        if (saveAuthorized)
-            KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
-        else
-            KMessageBox::error(this, i18nc("@info", "Save action not authorized."));
+        //KMessageBox::information(this, i18nc("@info", "Successfully restored the default values."));
     }
 }
 
@@ -615,6 +624,8 @@ void KCMGRUB2::save()
         progressDlg->setRange(0,0);
         progressDlg->show();
     
+    m_dirtyBitsBak = m_dirtyBits;
+    
     ExecuteJob *job = saveAction.execute();
 
     connect(job, SIGNAL(result(KJob*)), progressDlg, SLOT(hide()));
@@ -632,6 +643,9 @@ void KCMGRUB2::saveComplete(KJob *kjob)
  
     if (job->action().status() != Action::AuthorizedStatus ) {
         saveAuthorized = false;
+        m_dirtyBits = m_dirtyBitsBak;
+        emit changed(true);
+        KMessageBox::error(this, i18nc("@info", "Save action not authorized."));
         return;
     } else {
         saveAuthorized = true;

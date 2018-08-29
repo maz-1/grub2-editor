@@ -170,6 +170,7 @@ private:
         lastDirtyBit
     };
     QBitArray m_dirtyBits;
+    QBitArray m_dirtyBitsBak;
 
     QString resultLanguage;
 
