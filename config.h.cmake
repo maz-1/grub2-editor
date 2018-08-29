@@ -20,6 +20,7 @@
 #define GRUB_MEMTEST "@GRUB_MEMTEST@"
 #define GRUB_CONFIGDIR "@GRUB_CONFIGDIR@/"
 #define GRUB_SECURITY "@GRUB_SECURITY@"
+#define GRUB_RMECHO "@GRUB_RMECHO@"
 
 enum actionType {
     actionLoad,

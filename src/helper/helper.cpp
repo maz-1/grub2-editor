@@ -340,7 +340,18 @@ ActionReply Helper::save(QVariantMap args)
         }
         //qDebug() << "Groups modified :" << groupFilesList;
     }
-   
+    
+    if (args.contains("noecho")) {
+        QString filePath(QString(GRUB_CONFIGDIR)+QString(GRUB_RMECHO));
+        QFile::Permissions permissions = QFile::permissions(filePath);
+        if (noecho) {
+            permissions |= (QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        } else {
+            permissions &= ~(QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther);
+        }
+        QFile::setPermissions(filePath, permissions);
+    }
+    
     QHash<QString, QString> environment;
 
 
@@ -377,25 +388,6 @@ ActionReply Helper::save(QVariantMap args)
     ActionReply grub_set_defaultReply = executeCommand(QStringList() << GRUB_SET_DEFAULT_EXE << rawDefaultEntry, environment);
     if (grub_set_defaultReply.failed()) {
         return grub_set_defaultReply;
-    }
-    
-    if (args.contains("noecho")) {
-        if (noecho) {
-            /*
-            QByteArray GrubCfgData;
-            QFile GrubCfg(GRUB_MENU);
-            if (GrubCfg.open(QIODevice::ReadWrite|QIODevice::Text))
-            {
-                GrubCfgData = GrubCfg.readAll();
-                QString GrubCfgTxt(GrubCfgData);
-                GrubCfgTxt.replace(QRegExp(R"((^|\n)\s*echo\s+.*(\n|$))"), "\\1");
-                GrubCfg.seek(0);
-                GrubCfg.write(GrubCfgTxt.toUtf8());
-                GrubCfg.close();
-            }
-            */
-            executeCommand(QStringList() << "/usr/share/grub/grub_rmecho" << GRUB_MENU, environment);
-        }
     }
     
     return grub_mkconfigReply;
