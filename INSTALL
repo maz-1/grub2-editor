@@ -6,19 +6,19 @@ Enter the directory where you extracted the source code and run:
 
 $ mkdir build
 $ cd build
-$ cmake .. -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+$ cmake .. -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix`
 $ make
 $ sudo make install
 
 You may then find the GRUB2 KCModule under "Startup and Shutdown" in
 System Settings. You may also launch it running:
 
-$ kcmshell4 kcm_grub2
+$ kcmshell5 kcm_grub2
 
 In order to appear in System Settings the first time you install the
 GRUB2 KCModule, you may have to run:
 
-$ kbuildsycoca4
+$ kbuildsycoca5
 
 Note: '$' indicates a shell prompt.
 
@@ -26,13 +26,10 @@ Note: '$' indicates a shell prompt.
 | Dependencies & Requirements |
 \=============================/
 
-Requires KDE >= 4.4, Qt >= 4.6, GRUB2.
+Requires Plasma framework 5, GRUB2.
 Suggests ImageMagick for GRUB splash image management.
 Suggests hwinfo for valid GRUB resolution detection.
 Suggests LibQApt or QPackageKit for removing old entries.
-
-Minimum KDE requirement is kdebase-runtime.
-Install kdebase-workspace instead for System Settings integration.
 
 /======================\
 | GRUB Path Resolution |
