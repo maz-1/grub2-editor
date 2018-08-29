@@ -97,11 +97,11 @@ void ConvertDialog::slotOkButtonClicked()
         }
         Magick::Geometry resolution(ui->spinBox_width->value(), ui->spinBox_height->value());
         resolution.aspect(ui->checkBox_force->isChecked());
-        Magick::Image image(std::string(ui->kurlrequester_image->url().toLocalFile().toUtf8()));
+        Magick::Image image(ui->kurlrequester_image->url().toLocalFile().toStdString());
         image.zoom(resolution);
         image.depth(8);
         image.classType(Magick::DirectClass);
-        image.write(std::string(ui->kurlrequester_converted->url().toLocalFile().toUtf8()));
+        image.write(ui->kurlrequester_converted->url().toLocalFile().toStdString());
         if (ui->checkBox_wallpaper->isChecked()) {
             emit splashImageCreated(ui->kurlrequester_converted->url().toLocalFile());
         }
