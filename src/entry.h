@@ -35,7 +35,7 @@ public:
         Submenu
     };
 
-    Entry(const QString &strTitle = QString(), int numTitle = -1, Entry::Type type = Entry::Invalid, int level = -1);
+    explicit Entry(const QString &strTitle = QString(), int numTitle = -1, Entry::Type type = Entry::Invalid, int level = -1);
 
     Entry::Title title() const;
     QString prettyTitle() const;
