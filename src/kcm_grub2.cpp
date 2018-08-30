@@ -1304,6 +1304,9 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
     case GrubMenuFile:
         fileName = GRUB_MENU;
         break;
+    case GrubCustomEntryFile:
+        fileName = GRUB_MENU_CUSTOM;
+        break;
     case GrubConfigurationFile:
         fileName = GRUB_CONFIG;
         break;
@@ -1346,9 +1349,11 @@ QString KCMGRUB2::readFile(GrubFile grubFile)
 void KCMGRUB2::readEntries()
 {
     QString fileContents = readFile(GrubMenuFile);
+    QString fileContentsCustom = readFile(GrubCustomEntryFile);
 
     m_entries.clear();
-    parseEntries(fileContents);
+    parseEntries(fileContents, true);
+    parseEntries(fileContentsCustom, false);
 }
 void KCMGRUB2::readSettings()
 {
@@ -1835,7 +1840,7 @@ QString KCMGRUB2::parseTitle(const QString &line)
         entry = QChar(39) + lineStr.split(QRegExp("['\"]"))[1] + QChar(39);
     return entry;
 }
-void KCMGRUB2::parseEntries(const QString &config)
+void KCMGRUB2::parseEntries(const QString &config, bool clearOnError)
 {
     bool inEntry = false;
     int menuLvl = 0;
@@ -1855,7 +1860,7 @@ void KCMGRUB2::parseEntries(const QString &config)
             if (inEntry) {
                 qDebug() << "Malformed configuration file! Aborting entries' parsing.";
                 qDebug() << "A 'menuentry' directive was detected inside the scope of a menuentry.";
-                m_entries.clear();
+                if (clearOnError) m_entries.clear();
                 return;
             }
             Entry entry(parseTitle(stream.readLine()), levelCount.at(menuLvl), Entry::Menuentry, menuLvl);
@@ -1870,7 +1875,7 @@ void KCMGRUB2::parseEntries(const QString &config)
             if (inEntry) {
                 qDebug() << "Malformed configuration file! Aborting entries' parsing.";
                 qDebug() << "A 'submenu' directive was detected inside the scope of a menuentry.";
-                m_entries.clear();
+                if (clearOnError) m_entries.clear();
                 return;
             }
             Entry entry(parseTitle(stream.readLine()), levelCount.at(menuLvl), Entry::Submenu, menuLvl);
@@ -1887,7 +1892,7 @@ void KCMGRUB2::parseEntries(const QString &config)
             if (!inEntry) {
                 qDebug() << "Malformed configuration file! Aborting entries' parsing.";
                 qDebug() << "A 'linux' directive was detected outside the scope of a menuentry.";
-                m_entries.clear();
+                if (clearOnError) m_entries.clear();
                 return;
             }
             stream >> word;

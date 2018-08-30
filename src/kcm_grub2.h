@@ -133,7 +133,7 @@ private:
 
     QString processReply(ExecuteJob *reply);
     QString parseTitle(const QString &line);
-    void parseEntries(const QString &config);
+    void parseEntries(const QString &config, bool clearOnError = true);
     void parseSettings(const QString &config);
     void parseEnv(const QString &config);
 

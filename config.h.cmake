@@ -33,7 +33,8 @@ enum GrubFile {
     GrubConfigurationFile,
     GrubEnvironmentFile,
     GrubMemtestFile,
-    GrubGroupFile
+    GrubGroupFile,
+    GrubCustomEntryFile
 };
 
 #endif
