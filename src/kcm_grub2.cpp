@@ -1353,7 +1353,8 @@ void KCMGRUB2::readEntries()
 
     m_entries.clear();
     parseEntries(fileContents, true);
-    parseEntries(fileContentsCustom, false);
+    if (!m_entries.isEmpty())
+        parseEntries(fileContentsCustom, false);
 }
 void KCMGRUB2::readSettings()
 {
