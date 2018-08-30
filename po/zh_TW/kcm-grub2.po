@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
 "POT-Creation-Date: 2018-08-29 19:55+0800\n"
-"PO-Revision-Date: 2018-08-27 13:25+0800\n"
+"PO-Revision-Date: 2018-08-30 07:58+0800\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
 "Language: zh_TW\n"
@@ -675,8 +675,7 @@ msgctxt "@info"
 msgid ""
 "Please fill in both <interface>Width</interface> and <interface>Height</"
 "interface> fields."
-msgstr ""
-"請填入「<interface>寬度</interface>」與「<interface>高度</interface>」欄位。"
+msgstr "請填入「<interface>寬度</interface>」與「<interface>高度</interface>」欄位。"
 
 #: src/convertDlg.cpp:95
 msgctxt "@info"
@@ -705,8 +704,7 @@ msgctxt "@info"
 msgid ""
 "Cannot copy original configuration file <filename>%1</filename> to <filename>"
 "%2</filename>."
-msgstr ""
-"無法複製原始設定檔 <filename>%1</filename> 到 <filename>%2</filename>。"
+msgstr "無法複製原始設定檔 <filename>%1</filename> 到 <filename>%2</filename>。"
 
 #: src/helper/helper.cpp:170
 msgctxt "@info"
@@ -767,7 +765,7 @@ msgstr "開發者"
 #: src/kcm_grub2.cpp:110
 msgctxt "@info"
 msgid "All your current settings will be lost! do you want to proceed?"
-msgstr ""
+msgstr "您目前的所有設定都將會遺失！您想要繼續嗎？"
 
 #: src/kcm_grub2.cpp:121 src/kcm_grub2.cpp:651
 msgctxt "@info"
