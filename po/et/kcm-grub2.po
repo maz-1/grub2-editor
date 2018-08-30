@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: ohmygod19993@gmail.com\n"
-"POT-Creation-Date: 2018-08-29 19:55+0800\n"
+"POT-Creation-Date: 2018-08-30 12:27+0800\n"
 "PO-Revision-Date: 2012-12-25 17:12+0200\n"
 "Last-Translator: Marek Laane <bald@smail.ee>\n"
 "Language-Team: Estonian <kde-et@linux.ee>\n"
@@ -458,203 +458,211 @@ msgid "Edit group"
 msgstr ""
 
 #. i18n: file: ui/kcm_grub2.ui:651
-#. i18n: ectx: attribute (title), widget (QWidget, tab_advanced)
+#. i18n: ectx: attribute (title), widget (QWidget, tab_custom)
 #: rc.cpp:195
+#, fuzzy
+msgctxt "@title:tab Refers to custom entries."
+msgid "Custom Entries"
+msgstr "Tavakirjed:"
+
+#. i18n: file: ui/kcm_grub2.ui:661
+#. i18n: ectx: attribute (title), widget (QWidget, tab_advanced)
+#: rc.cpp:198
 msgctxt "@title:tab Refers to settings."
 msgid "Advanced"
 msgstr "Muu"
 
-#. i18n: file: ui/kcm_grub2.ui:657
+#. i18n: file: ui/kcm_grub2.ui:667
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_linux)
-#: rc.cpp:198
+#: rc.cpp:201
 msgctxt "@title:group"
 msgid "Linux Kernel Arguments"
 msgstr "Linuxi kerneli argumendid"
 
-#. i18n: file: ui/kcm_grub2.ui:663
+#. i18n: file: ui/kcm_grub2.ui:673
 #. i18n: ectx: property (text), widget (QLabel, label_cmdlineDefault)
-#: rc.cpp:201
+#: rc.cpp:204
 msgctxt "@label:textbox"
 msgid "Normal Entries:"
 msgstr "Tavakirjed:"
 
-#. i18n: file: ui/kcm_grub2.ui:675
+#. i18n: file: ui/kcm_grub2.ui:685
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:696
+#. i18n: file: ui/kcm_grub2.ui:706
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:726
+#. i18n: file: ui/kcm_grub2.ui:736
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:747
+#. i18n: file: ui/kcm_grub2.ui:757
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:768
+#. i18n: file: ui/kcm_grub2.ui:778
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:675
+#. i18n: file: ui/kcm_grub2.ui:685
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineDefaultSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:696
+#. i18n: file: ui/kcm_grub2.ui:706
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_cmdlineSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:726
+#. i18n: file: ui/kcm_grub2.ui:736
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:747
+#. i18n: file: ui/kcm_grub2.ui:757
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalInputSuggestions)
-#. i18n: file: ui/kcm_grub2.ui:768
+#. i18n: file: ui/kcm_grub2.ui:778
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_terminalOutputSuggestions)
-#: rc.cpp:204 rc.cpp:210 rc.cpp:219 rc.cpp:225 rc.cpp:231
+#: rc.cpp:207 rc.cpp:213 rc.cpp:222 rc.cpp:228 rc.cpp:234
 msgctxt "@action:button"
 msgid "Suggestions"
 msgstr "Pakkumised"
 
-#. i18n: file: ui/kcm_grub2.ui:684
+#. i18n: file: ui/kcm_grub2.ui:694
 #. i18n: ectx: property (text), widget (QLabel, label_cmdline)
-#: rc.cpp:207
+#: rc.cpp:210
 msgctxt "@label:textbox"
 msgid "All Entries:"
 msgstr "Kõik kirjed:"
 
-#. i18n: file: ui/kcm_grub2.ui:708
+#. i18n: file: ui/kcm_grub2.ui:718
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_terminal)
-#: rc.cpp:213
+#: rc.cpp:216
 msgctxt "@title:group Noun."
 msgid "Terminal"
 msgstr "Terminal"
 
-#. i18n: file: ui/kcm_grub2.ui:714
+#. i18n: file: ui/kcm_grub2.ui:724
 #. i18n: ectx: property (text), widget (QLabel, label_terminal)
-#: rc.cpp:216
+#: rc.cpp:219
 msgctxt "@label:textbox Noun."
 msgid "Terminal:"
 msgstr "Terminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:735
+#. i18n: file: ui/kcm_grub2.ui:745
 #. i18n: ectx: property (text), widget (QLabel, label_terminalInput)
-#: rc.cpp:222
+#: rc.cpp:225
 msgctxt "@label:textbox"
 msgid "Input Terminal:"
 msgstr "Sisendterminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:756
+#. i18n: file: ui/kcm_grub2.ui:766
 #. i18n: ectx: property (text), widget (QLabel, label_terminalOutput)
-#: rc.cpp:228
+#: rc.cpp:231
 msgctxt "@label:textbox"
 msgid "Output Terminal:"
 msgstr "Väljundterminal:"
 
-#. i18n: file: ui/kcm_grub2.ui:780
+#. i18n: file: ui/kcm_grub2.ui:790
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_other)
-#: rc.cpp:234
+#: rc.cpp:237
 msgctxt "@title:group Refers to settings."
 msgid "Other"
 msgstr "Muu"
 
-#. i18n: file: ui/kcm_grub2.ui:786
+#. i18n: file: ui/kcm_grub2.ui:796
 #. i18n: ectx: property (text), widget (QLabel, label_distributor)
-#: rc.cpp:237
+#: rc.cpp:240
 msgctxt "@label:textbox"
 msgid "Distributor:"
 msgstr "Levitaja"
 
-#. i18n: file: ui/kcm_grub2.ui:796
+#. i18n: file: ui/kcm_grub2.ui:806
 #. i18n: ectx: property (text), widget (QLabel, label_serial)
-#: rc.cpp:240
+#: rc.cpp:243
 msgctxt "@label:textbox"
 msgid "Serial Command:"
 msgstr "Jadakäsk:"
 
-#. i18n: file: ui/kcm_grub2.ui:806
+#. i18n: file: ui/kcm_grub2.ui:816
 #. i18n: ectx: property (text), widget (QLabel, label_initTune)
-#: rc.cpp:243
+#: rc.cpp:246
 msgctxt "@label:textbox"
 msgid "Init Tune:"
 msgstr "Init heli:"
 
-#. i18n: file: ui/kcm_grub2.ui:816
+#. i18n: file: ui/kcm_grub2.ui:826
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_uuid)
-#: rc.cpp:246
+#: rc.cpp:249
 #, fuzzy
 msgid "Enable UUIDs"
 msgstr "UUID-de lubamine:"
 
-#. i18n: file: ui/kcm_grub2.ui:823
+#. i18n: file: ui/kcm_grub2.ui:833
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_noEcho)
-#: rc.cpp:249
+#: rc.cpp:252
 msgid "Remove echo commands for silent boot"
 msgstr ""
 
-#. i18n: file: ui/kcm_grub2.ui:846
+#. i18n: file: ui/kcm_grub2.ui:856
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_tools)
-#: rc.cpp:252
+#: rc.cpp:255
 msgctxt "@title:group"
 msgid "Tools"
 msgstr "Tööriistad"
 
-#. i18n: file: ui/kcm_grub2.ui:858
+#. i18n: file: ui/kcm_grub2.ui:868
 #. i18n: ectx: property (text), widget (QPushButton, kpushbutton_install)
-#: rc.cpp:255
+#: rc.cpp:258
 msgctxt "@action:button"
 msgid "Install/Recover Bootloader"
 msgstr "Paigalda/taasta alglaadur"
 
 #. i18n: file: ui/removeDlg.ui:17
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:258
+#: rc.cpp:261
 msgctxt "@label:listbox"
 msgid "Select entries to remove:"
 msgstr "Eemaldatavad kirjed:"
 
 #. i18n: file: ui/removeDlg.ui:34
 #. i18n: ectx: property (toolTip), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:261
+#: rc.cpp:264
 msgctxt "@info:tooltip"
 msgid "Remove associated kernel header files."
 msgstr "Kerneliga seostatud päisefailide eemaldamine."
 
 #. i18n: file: ui/removeDlg.ui:37
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_headers)
-#: rc.cpp:264
+#: rc.cpp:267
 msgctxt "@option:check"
 msgid "Also remove associated old packages"
 msgstr "Ka seotud vanade pakettide eemaldamine"
 
 #. i18n: file: ui/userDlg.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:267
+#: rc.cpp:270
 msgctxt "@label:username"
 msgid "User Name"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:29
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:270
+#: rc.cpp:273
 msgctxt "@label:password"
 msgid "Password"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:43
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:273
+#: rc.cpp:276
 msgctxt "@label:confirmpassword"
 msgid "Confirm password"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:59
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_superuser)
-#: rc.cpp:276
+#: rc.cpp:279
 msgctxt "@label:superuser"
 msgid "Superuser"
 msgstr ""
 
 #. i18n: file: ui/userDlg.ui:66
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_cryptpass)
-#: rc.cpp:279
+#: rc.cpp:282
 msgctxt "@label:cryptpassword"
 msgid "Crypt password"
 msgstr ""
 
-#: rc.cpp:280
+#: rc.cpp:283
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Marek Laane"
 
-#: rc.cpp:281
+#: rc.cpp:284
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "bald@smail.ee"
@@ -743,7 +751,7 @@ msgctxt "@info"
 msgid "Failed to install GRUB."
 msgstr "GRUB-i paigaldamine nurjus."
 
-#: src/installDlg.cpp:137 src/kcm_grub2.cpp:660
+#: src/installDlg.cpp:137 src/kcm_grub2.cpp:671
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Teave"
@@ -778,7 +786,7 @@ msgctxt "@info"
 msgid "All your current settings will be lost! do you want to proceed?"
 msgstr ""
 
-#: src/kcm_grub2.cpp:121 src/kcm_grub2.cpp:651
+#: src/kcm_grub2.cpp:121 src/kcm_grub2.cpp:662
 msgctxt "@info"
 msgid "Save action not authorized."
 msgstr ""
@@ -788,548 +796,538 @@ msgctxt "@info"
 msgid "Failed to restore the default values."
 msgstr "Vaikeväärtuste taastamine nurjus."
 
-#: src/kcm_grub2.cpp:623
+#: src/kcm_grub2.cpp:634
 msgctxt "@title:window Verb (gerund). Refers to current status."
 msgid "Saving"
 msgstr "Salvestamine"
 
-#: src/kcm_grub2.cpp:624
+#: src/kcm_grub2.cpp:635
 msgctxt "@info:progress"
 msgid "Saving GRUB settings..."
 msgstr "GRUB-i seadistuste salvestamine..."
 
-#: src/kcm_grub2.cpp:669
+#: src/kcm_grub2.cpp:680
 msgctxt "@info"
 msgid "Successfully saved GRUB settings."
 msgstr "GRUB-i seadistused on edukalt salvestatud."
 
-#: src/kcm_grub2.cpp:672
+#: src/kcm_grub2.cpp:683
 msgctxt "@info"
 msgid "Failed to save GRUB settings."
 msgstr "GRUB-i seadistuste salvestamine nurjus."
 
-#: src/kcm_grub2.cpp:771 src/kcm_grub2.cpp:804 src/kcm_grub2.cpp:824
-#: src/kcm_grub2.cpp:1572 src/kcm_grub2.cpp:1632
+#: src/kcm_grub2.cpp:782 src/kcm_grub2.cpp:815 src/kcm_grub2.cpp:835
+#: src/kcm_grub2.cpp:1590 src/kcm_grub2.cpp:1650
 msgctxt "@property"
 msgid "Yes"
 msgstr ""
 
-#: src/kcm_grub2.cpp:771 src/kcm_grub2.cpp:804 src/kcm_grub2.cpp:824
-#: src/kcm_grub2.cpp:1575 src/kcm_grub2.cpp:1640
+#: src/kcm_grub2.cpp:782 src/kcm_grub2.cpp:815 src/kcm_grub2.cpp:835
+#: src/kcm_grub2.cpp:1593 src/kcm_grub2.cpp:1658
 msgctxt "@property"
 msgid "No"
 msgstr ""
 
-#: src/kcm_grub2.cpp:772 src/kcm_grub2.cpp:826 src/kcm_grub2.cpp:1580
+#: src/kcm_grub2.cpp:783 src/kcm_grub2.cpp:837 src/kcm_grub2.cpp:1598
 msgctxt "@property"
 msgid "Encrypted"
 msgstr ""
 
-#: src/kcm_grub2.cpp:772 src/kcm_grub2.cpp:826 src/kcm_grub2.cpp:1583
+#: src/kcm_grub2.cpp:783 src/kcm_grub2.cpp:837 src/kcm_grub2.cpp:1601
 msgctxt "@property"
 msgid "Plain"
 msgstr ""
 
-#: src/kcm_grub2.cpp:780
+#: src/kcm_grub2.cpp:791
 msgctxt "@info"
 msgid "No users found!"
 msgstr ""
 
-#: src/kcm_grub2.cpp:797 src/kcm_grub2.cpp:1636
+#: src/kcm_grub2.cpp:808 src/kcm_grub2.cpp:1654
 msgctxt "@property"
 msgid "Superusers only"
 msgstr ""
 
-#: src/kcm_grub2.cpp:801 src/kcm_grub2.cpp:1641
+#: src/kcm_grub2.cpp:812 src/kcm_grub2.cpp:1659
 msgctxt "@property"
 msgid "Everyone"
 msgstr ""
 
-#: src/kcm_grub2.cpp:850 src/kcm_grub2.cpp:872
+#: src/kcm_grub2.cpp:866 src/kcm_grub2.cpp:888
 msgctxt "@title:window"
 msgid "Enter screen resolution"
 msgstr "Ekraani lahutusvõime"
 
-#: src/kcm_grub2.cpp:850 src/kcm_grub2.cpp:872
+#: src/kcm_grub2.cpp:866 src/kcm_grub2.cpp:888
 msgctxt "@label:textbox"
 msgid "Please enter a GRUB resolution:"
 msgstr "GRUB-i lahutusvõime:"
 
-#: src/kcm_grub2.cpp:922
+#: src/kcm_grub2.cpp:938
 msgctxt "@info"
 msgid "Press <shortcut>Escape</shortcut> to exit fullscreen mode."
 msgstr "Täisekraanirežiimist väljumiseks vajuta <shortcut>Escape</shortcut>."
 
-#: src/kcm_grub2.cpp:1076 src/kcm_grub2.cpp:1077
+#: src/kcm_grub2.cpp:1092 src/kcm_grub2.cpp:1093
 msgctxt "@item:inlistbox Refers to color."
 msgid "Black"
 msgstr "Must"
 
-#: src/kcm_grub2.cpp:1078 src/kcm_grub2.cpp:1079
+#: src/kcm_grub2.cpp:1094 src/kcm_grub2.cpp:1095
 msgctxt "@item:inlistbox Refers to color."
 msgid "Transparent"
 msgstr "Läbipaistev"
 
-#: src/kcm_grub2.cpp:1081
+#: src/kcm_grub2.cpp:1097
 msgctxt "@item:inlistbox Refers to color."
 msgid "Blue"
 msgstr "Sinine"
 
-#: src/kcm_grub2.cpp:1083
+#: src/kcm_grub2.cpp:1099
 msgctxt "@item:inlistbox Refers to color."
 msgid "Cyan"
 msgstr "Tsüaan"
 
-#: src/kcm_grub2.cpp:1085
+#: src/kcm_grub2.cpp:1101
 msgctxt "@item:inlistbox Refers to color."
 msgid "Dark Gray"
 msgstr "Tumehall"
 
-#: src/kcm_grub2.cpp:1087
+#: src/kcm_grub2.cpp:1103
 msgctxt "@item:inlistbox Refers to color."
 msgid "Green"
 msgstr "Roheline"
 
-#: src/kcm_grub2.cpp:1089
+#: src/kcm_grub2.cpp:1105
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Cyan"
 msgstr "Heletsüaan"
 
-#: src/kcm_grub2.cpp:1091
+#: src/kcm_grub2.cpp:1107
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Blue"
 msgstr "Helesinine"
 
-#: src/kcm_grub2.cpp:1093
+#: src/kcm_grub2.cpp:1109
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Green"
 msgstr "Heleroheline"
 
-#: src/kcm_grub2.cpp:1095
+#: src/kcm_grub2.cpp:1111
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Gray"
 msgstr "Helehall"
 
-#: src/kcm_grub2.cpp:1097
+#: src/kcm_grub2.cpp:1113
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Magenta"
 msgstr "Helemagenta"
 
-#: src/kcm_grub2.cpp:1099
+#: src/kcm_grub2.cpp:1115
 msgctxt "@item:inlistbox Refers to color."
 msgid "Light Red"
 msgstr "Helepunane"
 
-#: src/kcm_grub2.cpp:1101
+#: src/kcm_grub2.cpp:1117
 msgctxt "@item:inlistbox Refers to color."
 msgid "Magenta"
 msgstr "Magenta"
 
-#: src/kcm_grub2.cpp:1103
+#: src/kcm_grub2.cpp:1119
 msgctxt "@item:inlistbox Refers to color."
 msgid "Red"
 msgstr "Punane"
 
-#: src/kcm_grub2.cpp:1105
+#: src/kcm_grub2.cpp:1121
 msgctxt "@item:inlistbox Refers to color."
 msgid "White"
 msgstr "Valge"
 
-#: src/kcm_grub2.cpp:1107
+#: src/kcm_grub2.cpp:1123
 msgctxt "@item:inlistbox Refers to color."
 msgid "Yellow"
 msgstr "Kollane"
 
-#: src/kcm_grub2.cpp:1131 src/kcm_grub2.cpp:1140
+#: src/kcm_grub2.cpp:1147 src/kcm_grub2.cpp:1156
 msgctxt "@action:inmenu"
 msgid "Quiet Boot"
 msgstr "Vaikne alglaadimine"
 
-#: src/kcm_grub2.cpp:1132 src/kcm_grub2.cpp:1141
+#: src/kcm_grub2.cpp:1148 src/kcm_grub2.cpp:1157
 msgctxt "@action:inmenu"
 msgid "Show Splash Screen"
 msgstr "Tiitelkuva näitamine"
 
-#: src/kcm_grub2.cpp:1133 src/kcm_grub2.cpp:1142
+#: src/kcm_grub2.cpp:1149 src/kcm_grub2.cpp:1158
 msgctxt "@action:inmenu"
 msgid "Disable Plymouth"
 msgstr "Plymouthi keelamine"
 
-#: src/kcm_grub2.cpp:1134 src/kcm_grub2.cpp:1143
+#: src/kcm_grub2.cpp:1150 src/kcm_grub2.cpp:1159
 msgctxt "@action:inmenu"
 msgid "Turn Off ACPI"
 msgstr "ACPI väljalülitamine"
 
-#: src/kcm_grub2.cpp:1135 src/kcm_grub2.cpp:1144
+#: src/kcm_grub2.cpp:1151 src/kcm_grub2.cpp:1160
 msgctxt "@action:inmenu"
 msgid "Turn Off APIC"
 msgstr "APIC-i väljalülitamine"
 
-#: src/kcm_grub2.cpp:1136 src/kcm_grub2.cpp:1145
+#: src/kcm_grub2.cpp:1152 src/kcm_grub2.cpp:1161
 msgctxt "@action:inmenu"
 msgid "Turn Off Local APIC"
 msgstr "Kohaliku APIC-i väljalülitamine"
 
-#: src/kcm_grub2.cpp:1137 src/kcm_grub2.cpp:1146
+#: src/kcm_grub2.cpp:1153 src/kcm_grub2.cpp:1162
 msgctxt "@action:inmenu"
 msgid "Single User Mode"
 msgstr "Üksikkasutaja režiim"
 
-#: src/kcm_grub2.cpp:1149 src/kcm_grub2.cpp:1154 src/kcm_grub2.cpp:1161
+#: src/kcm_grub2.cpp:1165 src/kcm_grub2.cpp:1170 src/kcm_grub2.cpp:1177
 msgctxt "@action:inmenu"
 msgid "PC BIOS && EFI Console"
 msgstr "PC BIOS && EFI konsool"
 
-#: src/kcm_grub2.cpp:1150 src/kcm_grub2.cpp:1155 src/kcm_grub2.cpp:1162
+#: src/kcm_grub2.cpp:1166 src/kcm_grub2.cpp:1171 src/kcm_grub2.cpp:1178
 msgctxt "@action:inmenu"
 msgid "Serial Terminal"
 msgstr "Jadaporditerminal"
 
-#: src/kcm_grub2.cpp:1151 src/kcm_grub2.cpp:1156 src/kcm_grub2.cpp:1163
+#: src/kcm_grub2.cpp:1167 src/kcm_grub2.cpp:1172 src/kcm_grub2.cpp:1179
 msgctxt ""
 "@action:inmenu 'Open' is an adjective here, not a verb. 'Open Firmware' is a "
 "former IEEE standard."
 msgid "Open Firmware Console"
 msgstr "Open Firmware konsool"
 
-#: src/kcm_grub2.cpp:1157
+#: src/kcm_grub2.cpp:1173
 msgctxt "@action:inmenu"
 msgid "PC AT Keyboard (Coreboot)"
 msgstr "PC AT klaviatuur (Coreboot)"
 
-#: src/kcm_grub2.cpp:1158
+#: src/kcm_grub2.cpp:1174
 msgctxt "@action:inmenu"
 msgid "USB Keyboard (HID Boot Protocol)"
 msgstr "USB klaviatuur (HID alglaadimisprotokoll)"
 
-#: src/kcm_grub2.cpp:1164
+#: src/kcm_grub2.cpp:1180
 msgctxt "@action:inmenu"
 msgid "Graphics Mode Output"
 msgstr "Graafikarežiimi väljund"
 
-#: src/kcm_grub2.cpp:1165
+#: src/kcm_grub2.cpp:1181
 msgctxt "@action:inmenu"
 msgid "VGA Text Output (Coreboot)"
 msgstr "VGA tekstiväljund (Coreboot)"
 
-#: src/kcm_grub2.cpp:1394
+#: src/kcm_grub2.cpp:1412
 msgctxt "@title:window"
 msgid "Probing devices"
 msgstr "Seadmete proovimine"
 
-#: src/kcm_grub2.cpp:1395
+#: src/kcm_grub2.cpp:1413
 msgctxt "@info:progress"
 msgid "Probing devices for their GRUB names..."
 msgstr "Seadmete proovimine GRUB-i nimede osas..."
 
-#: src/kcm_grub2.cpp:1414
+#: src/kcm_grub2.cpp:1432
 msgctxt "@info"
 msgid "Failed to get GRUB device names."
 msgstr "GRUB-i seadmenimede hankimine nurjus."
 
-#: src/kcm_grub2.cpp:1421
+#: src/kcm_grub2.cpp:1439
 msgctxt "@info"
 msgid "Helper returned malformed device list."
 msgstr "Abiline tagastas vigase seadmeloendi."
 
-#: src/kcm_grub2.cpp:1551 src/kcm_grub2.cpp:1600
+#: src/kcm_grub2.cpp:1569 src/kcm_grub2.cpp:1618
 msgctxt "@header"
 msgid "Name"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1551
+#: src/kcm_grub2.cpp:1569
 msgctxt "@header"
 msgid "Superuser"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1551
+#: src/kcm_grub2.cpp:1569
 msgctxt "@header"
 msgid "Password type"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1600
+#: src/kcm_grub2.cpp:1618
 msgctxt "@header"
 msgid "Locked"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1600
+#: src/kcm_grub2.cpp:1618
 msgctxt "@header"
 msgid "Allowed users"
 msgstr ""
 
-#: src/kcm_grub2.cpp:1752 src/kcm_grub2.cpp:1755
+#: src/kcm_grub2.cpp:1770 src/kcm_grub2.cpp:1773
 msgctxt "@item:inlistbox Refers to screen resolution."
 msgid "Custom..."
 msgstr "Kohandatud..."
 
-#: src/kcm_grub2.cpp:1756
+#: src/kcm_grub2.cpp:1774
 msgctxt "@item:inlistbox"
 msgid "Unspecified"
 msgstr "Täpsustamata"
 
-#: src/kcm_grub2.cpp:1757
+#: src/kcm_grub2.cpp:1775
 msgctxt "@item:inlistbox"
 msgid "Boot in Text Mode"
 msgstr "Alglaadimine tekstirežiimis"
 
-#: src/kcm_grub2.cpp:1758
+#: src/kcm_grub2.cpp:1776
 msgctxt "@item:inlistbox"
 msgid "Keep GRUB's Resolution"
 msgstr "GRUB-i lahutusvõime säilitamine"
 
-#: src/kcm_grub2.cpp:1769
+#: src/kcm_grub2.cpp:1787
 msgid "System language"
-msgstr ""
-
-#: src/kcm_grub2.cpp:1781
-msgctxt "@info"
-msgid "Not Authorized."
-msgstr ""
-
-#: src/kcm_grub2.cpp:1785
-msgctxt "@info"
-msgid "The process could not be started."
-msgstr "Protsessi käivitamine nurjus."
-
-#: src/kcm_grub2.cpp:1788
-msgctxt "@info"
-msgid "The process crashed."
-msgstr "Protsessi tabas krahh."
-
-#: src/kcm_grub2.cpp:1797
-msgctxt "@info"
-msgid "Command: %1 Error code: %2 Error message: %3"
 msgstr ""
 
 #: src/kcm_grub2.cpp:1799
 msgctxt "@info"
+msgid "Not Authorized."
+msgstr ""
+
+#: src/kcm_grub2.cpp:1803
+msgctxt "@info"
+msgid "The process could not be started."
+msgstr "Protsessi käivitamine nurjus."
+
+#: src/kcm_grub2.cpp:1806
+msgctxt "@info"
+msgid "The process crashed."
+msgstr "Protsessi tabas krahh."
+
+#: src/kcm_grub2.cpp:1815
+msgctxt "@info"
+msgid "Command: %1 Error code: %2 Error message: %3"
+msgstr ""
+
+#: src/kcm_grub2.cpp:1817
+msgctxt "@info"
 msgid "Error message: %1"
 msgstr ""
 
-#: src/qPkBackend.cpp:31
-msgctxt "This is when the transaction status is not known"
-msgid "Unknown state"
-msgstr "Tundmatu olek"
-
-#: src/qPkBackend.cpp:34
+#: src/qPkBackend.cpp:36
 msgctxt "transaction state, the daemon is in the process of starting"
 msgid "Waiting for service to start"
 msgstr "Oodatakse teenuse käivitumist"
 
-#: src/qPkBackend.cpp:37
+#: src/qPkBackend.cpp:39
 msgctxt "transaction state, the transaction is waiting for another to complete"
 msgid "Waiting for other tasks"
 msgstr "Oodatakse teiste ülesannete järel"
 
-#: src/qPkBackend.cpp:40
+#: src/qPkBackend.cpp:42
 msgctxt "transaction state, just started"
 msgid "Running task"
 msgstr "Ülesande täitmine"
 
-#: src/qPkBackend.cpp:43
+#: src/qPkBackend.cpp:45
 msgctxt "transaction state, is querying data"
 msgid "Querying"
 msgstr "Päring"
 
-#: src/qPkBackend.cpp:46
+#: src/qPkBackend.cpp:48
 msgctxt "transaction state, getting data from a server"
 msgid "Getting information"
 msgstr "Teabe hankimine"
 
-#: src/qPkBackend.cpp:49
+#: src/qPkBackend.cpp:51
 msgctxt "transaction state, removing packages"
 msgid "Removing packages"
 msgstr "Pakettide eemaldamine"
 
-#: src/qPkBackend.cpp:52
+#: src/qPkBackend.cpp:54
 msgctxt "transaction state, downloading package files"
 msgid "Downloading packages"
 msgstr "Pakettide allalaadimine"
 
-#: src/qPkBackend.cpp:55
+#: src/qPkBackend.cpp:57
 msgctxt "transaction state, installing packages"
 msgid "Installing packages"
 msgstr "Pakettide paigaldamine"
 
-#: src/qPkBackend.cpp:58
+#: src/qPkBackend.cpp:60
 msgctxt "transaction state, refreshing internal lists"
 msgid "Refreshing software list"
 msgstr "Tarkvaraloendi värskendamine"
 
-#: src/qPkBackend.cpp:61
+#: src/qPkBackend.cpp:63
 msgctxt "transaction state, installing updates"
 msgid "Updating packages"
 msgstr "Pakettide uuendamine"
 
-#: src/qPkBackend.cpp:64
+#: src/qPkBackend.cpp:66
 msgctxt "transaction state, removing old packages, and cleaning config files"
 msgid "Cleaning up packages"
 msgstr "Pakettide puhastamine"
 
-#: src/qPkBackend.cpp:67
+#: src/qPkBackend.cpp:69
 msgctxt "transaction state, obsoleting old packages"
 msgid "Obsoleting packages"
 msgstr "Pakettide igandamine"
 
-#: src/qPkBackend.cpp:70
+#: src/qPkBackend.cpp:72
 msgctxt "transaction state, checking the transaction before we do it"
 msgid "Resolving dependencies"
 msgstr "Sõltuvuste lahendamine"
 
-#: src/qPkBackend.cpp:73
+#: src/qPkBackend.cpp:75
 msgctxt ""
 "transaction state, checking if we have all the security keys for the "
 "operation"
 msgid "Checking signatures"
 msgstr "Allkirjade kontrollimine"
 
-#: src/qPkBackend.cpp:76
-msgctxt "transaction state, when we return to a previous system state"
-msgid "Rolling back"
-msgstr "Taastamine"
-
-#: src/qPkBackend.cpp:79
+#: src/qPkBackend.cpp:78
 msgctxt "transaction state, when we're doing a test transaction"
 msgid "Testing changes"
 msgstr "Muutuste testimine"
 
-#: src/qPkBackend.cpp:82
+#: src/qPkBackend.cpp:81
 msgctxt "transaction state, when we're writing to the system package database"
 msgid "Committing changes"
 msgstr "Muutuste sissekandmine"
 
-#: src/qPkBackend.cpp:85
+#: src/qPkBackend.cpp:84
 msgctxt "transaction state, requesting data from a server"
 msgid "Requesting data"
 msgstr "Andmepäring"
 
-#: src/qPkBackend.cpp:88
+#: src/qPkBackend.cpp:87
 msgctxt "transaction state, all done!"
 msgid "Finished"
 msgstr "Lõpetatud"
 
-#: src/qPkBackend.cpp:91
+#: src/qPkBackend.cpp:90
 msgctxt "transaction state, in the process of cancelling"
 msgid "Cancelling"
 msgstr "Katkestamine"
 
-#: src/qPkBackend.cpp:94
+#: src/qPkBackend.cpp:93
 msgctxt "transaction state, downloading metadata"
 msgid "Downloading repository information"
 msgstr "Hoidla teabe allalaadimine"
 
-#: src/qPkBackend.cpp:97
+#: src/qPkBackend.cpp:96
 msgctxt "transaction state, downloading metadata"
 msgid "Downloading list of packages"
 msgstr "Paketiloendi allalaadimine"
 
-#: src/qPkBackend.cpp:100
+#: src/qPkBackend.cpp:99
 msgctxt "transaction state, downloading metadata"
 msgid "Downloading file lists"
 msgstr "Faililoendite allalaadimine"
 
-#: src/qPkBackend.cpp:103
+#: src/qPkBackend.cpp:102
 msgctxt "transaction state, downloading metadata"
 msgid "Downloading lists of changes"
 msgstr "Muutuste nimekirjade allalaadimine"
 
-#: src/qPkBackend.cpp:106
+#: src/qPkBackend.cpp:105
 msgctxt "transaction state, downloading metadata"
 msgid "Downloading groups"
 msgstr "Gruppide allalaadimine "
 
-#: src/qPkBackend.cpp:109
+#: src/qPkBackend.cpp:108
 msgctxt "transaction state, downloading metadata"
 msgid "Downloading update information"
 msgstr "Uuendusteabe allalaadimine"
 
-#: src/qPkBackend.cpp:112
+#: src/qPkBackend.cpp:111
 msgctxt "transaction state, repackaging delta files"
 msgid "Repackaging files"
 msgstr "Failide ümberpakendamine"
 
-#: src/qPkBackend.cpp:115
+#: src/qPkBackend.cpp:114
 msgctxt "transaction state, loading databases"
 msgid "Loading cache"
 msgstr "Puhvri laadimine"
 
-#: src/qPkBackend.cpp:118
+#: src/qPkBackend.cpp:117
 msgctxt "transaction state, scanning for running processes"
 msgid "Scanning installed applications"
 msgstr "Paigaldatud rakenduste tuvastamine"
 
-#: src/qPkBackend.cpp:121
+#: src/qPkBackend.cpp:120
 msgctxt ""
 "transaction state, generating a list of packages installed on the system"
 msgid "Generating package lists"
 msgstr "Paketiloendite koostamine"
 
-#: src/qPkBackend.cpp:124
+#: src/qPkBackend.cpp:123
 msgctxt "transaction state, when we're waiting for the native tools to exit"
 msgid "Waiting for package manager lock"
 msgstr "Paketihalduri lukustamise ootamine"
 
-#: src/qPkBackend.cpp:127
+#: src/qPkBackend.cpp:126
 msgctxt "waiting for user to type in a password"
 msgid "Waiting for authentication"
 msgstr "Autentimise ootamine"
 
-#: src/qPkBackend.cpp:130
+#: src/qPkBackend.cpp:129
 msgctxt "we are updating the list of processes"
 msgid "Updating the list of running applications"
 msgstr "Töötavate rakenduste nimekirja uuendamine"
 
-#: src/qPkBackend.cpp:133
+#: src/qPkBackend.cpp:132
 msgctxt "we are checking executable files in use"
 msgid "Checking for applications currently in use"
 msgstr "Parajasti kasutusel rakenduste kontrollimine"
 
-#: src/qPkBackend.cpp:136
+#: src/qPkBackend.cpp:135
 msgctxt "we are checking for libraries in use"
 msgid "Checking for libraries currently in use"
 msgstr "Parajasti kasutusel teekide kontrollimine"
 
-#: src/qPkBackend.cpp:139
+#: src/qPkBackend.cpp:138
 msgctxt "we are copying package files to prepare to install"
 msgid "Copying files"
 msgstr "Failide kopeerimine"
 
-#: src/removeDlg.cpp:56
+#: src/removeDlg.cpp:60
 msgctxt "@title:window"
 msgid "Remove Old Entries"
 msgstr "Vanade kirjete eemaldamine"
 
-#: src/removeDlg.cpp:70
+#: src/removeDlg.cpp:73
 msgctxt "@title:window"
 msgid "Finding Old Entries"
 msgstr "Vanade kirjete otsimine"
 
-#: src/removeDlg.cpp:70
+#: src/removeDlg.cpp:74
 msgctxt "@info:progress"
 msgid "Finding Old Entries..."
 msgstr "Vanade kirjete otsimine..."
 
-#: src/removeDlg.cpp:96
+#: src/removeDlg.cpp:100
 msgctxt "@item:inlistbox"
 msgid "Kernel %1"
 msgstr "Kernel %1"
 
-#: src/removeDlg.cpp:112
+#: src/removeDlg.cpp:116
 msgctxt "@info"
 msgid "No removable entries were found."
 msgstr "Ühtegi eemaldatavat kirjet ei leitud."
 
-#: src/removeDlg.cpp:134
+#: src/removeDlg.cpp:137
 msgctxt "@info"
 msgid "Are you sure you want to remove the following packages?"
 msgstr "Kas tõesti eemaldada järgmised paketid?"
 
-#: src/removeDlg.cpp:157
+#: src/removeDlg.cpp:161
 msgctxt "@title:window"
 msgid "Removing Old Entries"
 msgstr "Vanade kirjete eemaldamine"
 
-#: src/removeDlg.cpp:170
+#: src/removeDlg.cpp:174
 msgctxt "@info"
 msgid "Package removal failed."
 msgstr "Paketi eemaldamine nurjus."
@@ -1353,6 +1351,14 @@ msgstr ""
 msgctxt "@info"
 msgid "Please fill in username!"
 msgstr ""
+
+#~ msgctxt "This is when the transaction status is not known"
+#~ msgid "Unknown state"
+#~ msgstr "Tundmatu olek"
+
+#~ msgctxt "transaction state, when we return to a previous system state"
+#~ msgid "Rolling back"
+#~ msgstr "Taastamine"
 
 #~ msgctxt "@info"
 #~ msgid "Successfully restored the default values."

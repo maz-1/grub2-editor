@@ -327,7 +327,14 @@ void KCMGRUB2::load()
 
     ui->klineedit_cmdlineDefault->setText(unquoteWord(m_settings.value("GRUB_CMDLINE_LINUX_DEFAULT")));
     ui->klineedit_cmdline->setText(unquoteWord(m_settings.value("GRUB_CMDLINE_LINUX")));
-
+    
+    QFile file(GRUB_MENU_CUSTOM);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        ui->edit_customEntries->document()->setPlainText(in.readAll());
+        file.close();
+    }
+    
     QString grubTerminal = unquoteWord(m_settings.value("GRUB_TERMINAL"));
     ui->klineedit_terminal->setText(grubTerminal);
     ui->klineedit_terminalInput->setReadOnly(!grubTerminal.isEmpty());
@@ -573,7 +580,11 @@ void KCMGRUB2::save()
         saveAction.addArgument("security", ui->secEnabled->isChecked());
     }
     saveAction.addArgument("resultLanguage", resultLanguage);
-
+    
+    //custom entries
+    if (m_dirtyBits.testBit(customEntriesDirty))
+        saveAction.addArgument("customEntries", ui->edit_customEntries->toPlainText().toUtf8());
+    
     //Security : save users list
     if (m_dirtyBits.testBit(securityUsersDirty)) {
         QString userFileContents;
@@ -830,6 +841,11 @@ void KCMGRUB2::slotAddUser(){
     delete userDlg;
 }
 
+void KCMGRUB2::slotCustomChanged()
+{
+    m_dirtyBits.setBit(customEntriesDirty);
+    emit changed(true);
+}
 
 void KCMGRUB2::slotGrubDisableOsProberChanged()
 {
@@ -1198,6 +1214,8 @@ void KCMGRUB2::setupConnections()
     connect(ui->userAdd, SIGNAL(clicked(bool)), this, SLOT(slotAddUser()));
     //Group
     connect(ui->groupMod, SIGNAL(clicked(bool)), this, SLOT(slotEditGroup()));
+    //custom entries
+    connect(ui->edit_customEntries, SIGNAL(textChanged()), this, SLOT(slotCustomChanged()));
     
     connect(ui->checkBox_osProber, SIGNAL(clicked(bool)), this, SLOT(slotGrubDisableOsProberChanged()));
 

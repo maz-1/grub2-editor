@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>546</width>
-    <height>648</height>
+    <height>656</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout_6">
@@ -308,7 +308,7 @@
             </property>
             <property name="icon">
              <iconset theme="dialog-warning">
-              <normaloff>.</normaloff>.</iconset>
+              <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
             </property>
            </widget>
           </item>
@@ -483,7 +483,7 @@
               </property>
               <property name="icon">
                <iconset theme="list-add">
-                <normaloff>.</normaloff>.</iconset>
+                <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
               </property>
              </widget>
             </item>
@@ -497,7 +497,7 @@
               </property>
               <property name="icon">
                <iconset theme="list-remove">
-                <normaloff>.</normaloff>.</iconset>
+                <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
               </property>
              </widget>
             </item>
@@ -511,7 +511,7 @@
               </property>
               <property name="icon">
                <iconset theme="document-edit">
-                <normaloff>.</normaloff>.</iconset>
+                <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
               </property>
              </widget>
             </item>
@@ -594,7 +594,7 @@
               </property>
               <property name="icon">
                <iconset theme="document-edit">
-                <normaloff>.</normaloff>.</iconset>
+                <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
               </property>
              </widget>
             </item>
@@ -643,6 +643,16 @@
           </size>
          </property>
         </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_custom">
+      <attribute name="title">
+       <string comment="@title:tab Refers to custom entries.">Custom Entries</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="edit_customEntries"/>
        </item>
       </layout>
      </widget>

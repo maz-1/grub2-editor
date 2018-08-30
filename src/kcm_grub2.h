@@ -92,6 +92,9 @@ private Q_SLOTS:
     void slotEditUser();
     //groups
     void slotEditGroup();
+    
+    //custom entries
+    void slotCustomChanged();
 
     void slotUpdateSuggestions();
     void slotTriggeredSuggestion(QAction *action);
@@ -167,6 +170,9 @@ private:
         securityUsersDirty,
         securityGroupsDirty,
 //-------------------------------------------------
+//custom entries
+        customEntriesDirty,
+//--------------
         lastDirtyBit
     };
     QBitArray m_dirtyBits;

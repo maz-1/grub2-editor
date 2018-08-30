@@ -285,7 +285,7 @@ ActionReply Helper::save(QVariantMap args)
     bool memtest = args.value("memtest").toBool();
     bool security = args.value("security").toBool();
     bool noecho = args.value("noecho").toBool();
-
+    
     QFile::copy(configFileName, configFileName + ".original");
 
     QFile file(configFileName);
@@ -296,7 +296,20 @@ ActionReply Helper::save(QVariantMap args)
     }
     file.write(rawConfigFileContents);
     file.close();
-
+    
+    if (args.contains("customEntries")) {
+        QByteArray rawCustomEntries = args.value("customEntries").toByteArray();
+        //qDebug() << customEntries;
+        QFile file(GRUB_MENU_CUSTOM);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            reply = ActionReply::HelperErrorReply();
+            reply.addData("errorDescription", file.errorString());
+            return reply;
+        }
+        file.write(rawCustomEntries);
+        file.close();
+    }
+    
     if (args.contains("memtest")) {
         QFile::Permissions permissions = QFile::permissions(GRUB_MEMTEST);
         if (memtest) {
